@@ -1,0 +1,4 @@
+User-agent: * 
+Disallow:
+
+Sitemap: https://openscoring.io/sitemap.xml

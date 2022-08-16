@@ -1,0 +1,23 @@
+url: "https://openscoring.io" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/" # the subpath of your site, e.g. /blog
+title: "Openscoring" # the name of your site, e.g. ACME Corp.
+
+markdown: kramdown
+highlighter: rouge
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      permalink: /blog/:year/:month/:day/:title/
+
+  -
+    scope:
+      path: assets/*
+    values:
+      sitemap:
+        exclude: "yes"
+

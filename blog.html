@@ -1,0 +1,23 @@
+---
+layout: default
+title: All blog posts
+keywords: blog posts
+description: All blog posts
+permalink: /blog/
+---
+
+<div class="c-entry-header bg-b bg-b--cover">
+  <h1 class="c-entry-header__title container-p0">{{ page.title }}</h1>
+</div>
+
+<main class="c-archive container-p0">
+  {% for post in site.posts %}
+  <div class="c-post col">
+    <a class="c-post__link" href="{{ post.url }}">
+      <div class="c-post__text"><span class="c-post__date">{{ post.date | date: "%Y-%m-%d" }}</span>
+        <h4 class="c-post__title">{{ post.title }}</h4>
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+</main>
