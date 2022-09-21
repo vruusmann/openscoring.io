@@ -1,0 +1,32 @@
+.info {
+  margin-top: 6rem;
+
+  & > div {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+
+    & > .card {
+      padding-top: 1.5rem;
+      padding-right: 1.5rem;
+      padding-bottom: 1.5rem;
+      padding-left: 1.5rem;
+      display: grid;
+      grid-template-columns: 16% 1fr;
+      align-items: center;
+      gap: 1.5rem;
+      min-height: 8rem;
+      box-shadow: var(--shadow);
+  
+      line-height: 1.2;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .info {
+    & > div {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}

@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <meta name="format-detection" content="telephone=no">
   <meta name="theme-color" content="#ffffff" />
   <meta name="msapplication-navbutton-color" content="#ffffff">
@@ -33,11 +33,6 @@
   <meta name="twitter:label2" content="Time to read" />
   <meta name="twitter:data2" content="Less than a minute" />
 
-  <link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
-  <link rel='dns-prefetch' href='http://s.w.org/' />
-  <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&amp;display=swap' type='text/css' media='all' />
-  <script type='text/javascript' src='/assets/js/jquery/jquery.min.js?ver=3.6.0' defer></script>
-  <script type='text/javascript' src='/assets/js/jquery/jquery-migrate.min.js?ver=3.3.2' defer></script>
   <link rel="icon" href="/assets/images/fa-150x150.png" sizes="32x32" />
   <link rel="icon" href="/assets/images/fa.png" sizes="192x192" />
   <link rel="apple-touch-icon" href="/assets/images/fa.png" />
@@ -52,19 +47,21 @@
 <body>
   {% include header.html %}
 
-  {{ content }}
+  <main class="container mt-26">
+    {{ content }}
+  </main>
 
   {% include footer.html %}
 
-  <script>
+  <!-- <script>
     var sc_project = 11704106;
     var sc_security = "a7d1bf16";
     var sc_invisible = 1;
     var scJsHost = (("https:" == document.location.protocol) ?
       "https://secure." : "http://www.");
-  </script>
+  </script> -->
 
-  <script type="text/javascript" src="https://secure.statcounter.com/counter/counter.js" async=""></script>
+  <!-- <script type="text/javascript" src="https://secure.statcounter.com/counter/counter.js" async=""></script>
 
   <noscript>
     <div class="statcounter">
@@ -72,11 +69,9 @@
         <img class="statcounter" src="https://c.statcounter.com/11704106/0/a7d1bf16/1/" alt="web analytics" />
       </a>
     </div>
-  </noscript>
+  </noscript> -->
 
-  <script type="text/javascript" src="/assets/js/bootstrap.bundle.min.js" defer></script>
-  <script type="text/javascript" src="/assets/js/swiper/swiper.min.js" defer></script>
-  <script type="text/javascript" src="/assets/js/functions.js" defer></script>
+  <script type="text/javascript" src="/assets/js/script.js" defer></script>
 </body>
 
 </html>

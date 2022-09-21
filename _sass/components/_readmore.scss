@@ -1,0 +1,48 @@
+.read-more {
+  display: none;
+
+  & ~ .read-more__button {
+    display: flex;
+    justify-content: center;
+
+    & > label {
+      position: relative;
+      padding-right: 1.5rem;
+      color: var(--clr-primary-500);
+      font-weight: 600;
+      cursor: pointer;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: 1rem;
+        height: 1rem;
+        background-image: url("data:image/svg+xml,%3Csvg width='16' height='11' viewBox='0 0 16 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M7.99228 5.34315L12.5781 0.757359L15.4065 3.58579L7.99228 11L0.578068 3.58579L3.40649 0.757359L7.99228 5.34315Z' fill='%2310B4F2'/%3E%3C/svg%3E%0A");
+        background-position: center center;
+        background-repeat: no-repeat;
+        translate: 0 -50%;
+        rotate: 0deg;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
+
+  & ~ .read-more__content {
+    max-height: 0;
+    padding-top: 2rem;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+  }
+
+  &:checked {
+    & ~ .read-more__button > label::after {
+      rotate: 180deg;
+    }
+    
+    & ~ .read-more__content {
+      max-height: 1000vh;
+    }
+  }
+}

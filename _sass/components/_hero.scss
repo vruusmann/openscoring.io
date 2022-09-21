@@ -1,0 +1,38 @@
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  & p {
+    font-size: 1.5rem;
+  }
+
+  & .hero__cta {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    padding-bottom: 3rem;
+
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    & h1 {
+      padding-right: 4rem;
+    }
+
+    & p {
+      padding-right: 8rem;
+      font-size: 1rem;
+    }
+
+    & .hero__cta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+.posts {
+  list-style: none;
+
+  & .post__item {
+    margin-bottom: 1rem;
+  }
+
+  & .post__date {
+    color: #798FCA;
+    font-size: 0.7rem;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  & .post__title {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  & .post__description {
+    margin-top: 0.5rem;
+  }
+}

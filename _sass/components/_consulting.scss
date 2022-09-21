@@ -1,0 +1,89 @@
+.consulting {
+  margin-top: 6rem;
+
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+
+  & > .anchor {
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+  }
+
+  & > .title {
+    grid-column: 1 / -1;
+    grid-row: 1 / 1;
+    margin-bottom: 0;
+  }
+
+  & > .subtitle {
+    grid-column: 1 / -1;
+    grid-row: 2 / 2;
+    text-align: center;
+  }
+
+  & > .contact {
+    grid-column: 1 / 1;
+    grid-row: 3 / 3;
+
+    & .image {
+      margin-bottom: 1rem;
+      border-radius: 50%;
+    }
+
+    & .name,
+    & .role {
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    & .name {
+      padding-bottom: 0.5rem;
+      font-weight: 600;
+    }
+  }
+
+  & > .description {
+    grid-column: 2 / -1;
+    grid-row: 3 / 3;
+  }
+
+  & > .btn {
+    grid-column: 1 / -1;
+    grid-row: 4 / 4;
+  }
+}
+
+@media (min-width: 768px) {
+  .consulting {
+    grid-template-columns: 1fr 4fr;
+    gap: 0;
+    column-gap: 3rem;
+
+    & > .title {
+      grid-column: 2 / -1;
+      margin-bottom: 1rem;
+    }
+
+    & > .subtitle {
+      grid-column: 2 / -1;
+      text-align: left;
+    }
+
+    & > .contact {
+      grid-column: 1 / 1;
+      grid-row: 1 / span 4;
+    }
+
+     & > .description {
+      grid-column: 2 / -1;
+      grid-row: 3 / 3;
+    }
+
+    & > .btn {
+      grid-column: 2 / -1;
+      grid-row: 4 / 4;
+      max-width: 30rem;
+    }
+  }
+}

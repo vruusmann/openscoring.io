@@ -1,0 +1,138 @@
+.news {
+  display: grid;
+
+  grid-template-columns: 10% 80% 10%;
+  grid-template-rows: 8rem 2rem 1fr 2rem;
+
+  margin-top: 6.25rem;
+
+  & > .background {
+    grid-column: 1 / -1;
+    grid-row: 3 / 3;
+
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    background-color: var(--clr-primary-700);
+    border-radius: 15px;
+  }
+
+  & > .title {
+    grid-column: 1 / -1;
+    grid-row: 1 / 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--clr-primary-700);
+    font-size: 2.3rem;
+    font-weight: 700;
+    list-style: 1.2;
+
+    & > .subtitle {
+      padding-top: 1rem;
+      font-size: 1rem;
+      font-weight: 400;
+    }
+  }
+
+  & > .items {
+    grid-column: 2 / 2;
+    grid-row: 2 / -1;
+
+    padding-top: 3rem;
+    padding-right: 2.5rem;
+    padding-bottom: 3rem;
+    padding-left: 2.5rem;
+    background-color: var(--clr-white);
+    border-top: solid 5px var(--clr-primary-500);
+    box-shadow: var(--shadow);
+
+    & .item {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+
+    & .item + .item {
+      margin-top: 3.5rem;
+    }
+
+    & .title {
+      grid-row: 2 / 2;
+      color: var(--clr-primary-700);
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    & .date {
+      grid-row: 1 / 1;
+      color: #798FCA;
+      font-size: 0.7rem;
+      font-weight: 400;
+      line-height: 2;
+    }
+
+    & .description {
+      grid-row: 3 / 3;
+      grid-column: 1 / -1;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .news {
+    grid-template-columns: 50% 40% 10%;
+    grid-template-rows: 2rem 1fr 2rem;
+
+    & > .background {
+      grid-column: 1 / -1;
+      grid-row: 2 / 2;
+    }
+
+    & > .title {
+      grid-column: 1 / 1;
+      grid-row: 2 / 2;
+
+      background-image: url('../images/plane.svg');
+      background-position: center center;
+      background-repeat: no-repeat;
+
+      color: var(--clr-white);
+
+      & > .subtitle {
+        padding-top: 0;
+      }
+    }
+
+    & > .items {
+      grid-column: 2 / 2;
+      grid-row: 1 / -1;
+
+      & .item {
+        display: grid;
+        grid-template-columns: 80% 20%;
+        gap: 0.5rem;
+      }
+
+      & .title {
+        grid-row: 1 / 1;
+        font-size: 1rem;
+      }
+
+      & .date {
+        text-align: right;
+      }
+
+      & .description {
+        grid-row: 2 / 2;
+      }
+    }
+  }
+}

@@ -1,19 +1,41 @@
-<header class="c-head">
-  <div class="c-head__container container-p0">
-    <a class="c-head__logo" href="/"><img src="/assets/images/logo.svg" alt="" /></a>
-    <nav class="c-head__nav">
-      <ul id="menu-main-menu" class="c-head__menu">
-        <li><a href="/" aria-current="page">Home</a></li>
-        <li><a href="/blog/">Blog</a></li>
-        <li><a href="/#products" aria-current="page">Products</a></li>
-        <li><a href="/#licensing" aria-current="page">Licensing</a></li>
-        <li><a href="/#consulting" aria-current="page">Consulting</a></li>
-      </ul>
+<header class="header">
+  <div class="container">
+    <nav class="nav--main">
+      <a class="logo" href="/" aria-label="home">
+        <img src="/assets/images/logo.svg" alt="" width="35" height="32" loading="lazy">
+        <span>Openscoring.io</span>
+      </a>
+
+      <input type="checkbox" id="nav__toggle--main" class="nav__toggle">
+      <label for="nav__toggle--main">Menu<span></span></label>
+
+      <div class="menu">
+        <ul id="menu--main">
+          <li><a href="/" aria-current="page">Home</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li class="lg:hidden"><a href="/#products" aria-current="page">Products</a></li>
+          <li><a href="/#licensing" aria-current="page">Licensing</a></li>
+          <li><a href="/#consulting" aria-current="page">Consulting</a></li>
+          <li class="lg:hidden">
+            <ul class="flex gap-4 list-none">
+              <li>
+                <a href="mailto:villu@openscoring.io" aria-label="email">
+                  <img src="/assets/images/email_round.svg" width="48" height="48" alt="">
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/openscoring" target="_blank" aria-label="twitter">
+                  <img src="/assets/images/twitter_round.svg" width="48" height="48" alt="">
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <label for="nav__toggle--main" class="overlay"></label>
+
+      <a href="/#products" class="btn btn--small" aria-current="page">Products</a>
     </nav>
-    <button id="menu-toggle" class="c-head__toggle c-toggle" type="button">
-      <span class="c-toggle__line c-toggle__top"></span>
-      <span class="c-toggle__line c-toggle__mid"></span>
-      <span class="c-toggle__line c-toggle__bot"></span>
-    </button>
   </div>
 </header>
