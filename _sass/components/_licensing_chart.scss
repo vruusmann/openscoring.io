@@ -1,0 +1,78 @@
+.licensing_chart {
+  --_border: #EDF9FF;
+
+  padding-top: 1.5rem;
+  padding-right: 1rem;
+  padding-bottom: 1.5rem;
+  padding-left: 1.5rem;
+  background-color: var(--clr-primary-100);
+  border-radius: 10px;
+
+  & table {
+    width: 100%;
+  }
+
+  & td {
+    width: 30%;
+    padding-top: 1.4rem;
+    padding-bottom: 1.4rem;
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  & td.separator {
+    width: 1rem;
+  }
+
+  & td:not(.term, .separator) {
+    padding-right: 1rem;
+    padding-left: 1rem;
+    background-color: var(--clr-white);
+    font-weight: 700;
+    
+    & > div {
+      width: 100%;
+      padding-top: 0.5rem;
+      padding-right: 0.5rem;
+      padding-bottom: 0.5rem;
+      padding-left: 0.5rem;
+      border: solid 2px var(--_border);
+      border-radius: 10px;
+      text-align: center;
+    }
+  }
+
+  & tr:first-child {
+    & > td:not(.term, .separator) {
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+    }
+  }
+
+  & tr:last-child {
+    & > td:not(.term, .separator) {
+      border-bottom-right-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+  }
+
+  & .average {
+    --_border: #EDF9FF;
+  }
+
+  & .bad {
+    --_border: #FEB3B1;
+  }
+
+  & .disastrous {
+    --_border: #FE7062;
+  }
+
+  & .excellent {
+    --_border: #17E27C;
+  }
+
+  & .good {
+    --_border: #10B4F2;
+  }
+}

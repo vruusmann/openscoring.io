@@ -41,17 +41,20 @@
 
 .gap-4 {gap: 1rem}
 .gap-8 {gap: 2rem}
+.gap-14 {gap: 3.5rem}
 .gap-26 {gap: 6.5rem}
 
 @media (min-width: 768px) {
   .md\:gap-4 {gap: 1rem}
   .md\:gap-8 {gap: 2rem}
+  .md\:gap-14 {gap: 3.5rem}
   .md\:gap-26 {gap: 6.5rem}
 }
 
 @media (min-width: 1024px) {
   .lg\:gap-4 {gap: 1rem}
   .lg\:gap-8 {gap: 2rem}
+  .lg\:gap-14 {gap: 3.5rem}
   .lg\:gap-26 {gap: 6.5rem}
 }
 
