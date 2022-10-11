@@ -4,13 +4,23 @@
 * Jekyll 4.2.2
 * WEBRick 1.7.0
 
+# Initialization #
+
+Running Bundler:
+
+```
+$ bundle init
+$ bundle add jekyll
+$ bundle add webrick
+```
+
 # Build #
 
 Running Jekyll:
 
 ```
 $ rm -rf _site/
-$ jekyll serve
+$ bundle exec jekyll serve
 ```
 
 # Deployment #
