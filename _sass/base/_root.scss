@@ -1,0 +1,43 @@
+:root {
+  --ff-primary: 'Inter', sans-serif;
+
+  --clr-primary-700: hsl(224, 67%, 35%);
+  --clr-primary-500: hsl(196, 90%, 51%);
+  --clr-primary-300: hsl(197, 97%, 69%);
+  --clr-primary-150: hsl(220, 100%, 96%); // BG 1
+  --clr-primary-100: hsl(200, 100%, 96%); // BG 2
+  --clr-black: #040404;
+  --clr-white: #ffffff;
+
+  --clr-purple-300: hsl(233, 90%, 68%);
+
+  --shadow: 0px 4px 19px 4px hsla(221, 91%, 77%, 0.2);
+}
+
+html {
+  color: var(--clr-primary-700);
+  font-family: var(--ff-primary);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2;
+
+  scroll-behavior: smooth;
+}
+
+img {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+}
+
+.anchor {
+  display: inline-block;
+  height: 0;
+  transform: translateY(-6rem);
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 21px;
+  }
+}

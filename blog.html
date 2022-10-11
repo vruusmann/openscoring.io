@@ -6,18 +6,14 @@ description: All blog posts
 permalink: /blog/
 ---
 
-<div class="c-entry-header bg-b bg-b--cover">
-  <h1 class="c-entry-header__title container-p0">{{ page.title }}</h1>
-</div>
+<h1>{{ page.title }}</h1>
 
-<main class="c-archive container-p0">
+<ul class="posts">
   {% for post in site.posts %}
-  <div class="c-post col">
-    <a class="c-post__link" href="{{ post.url }}">
-      <div class="c-post__text"><span class="c-post__date">{{ post.date | date: "%Y-%m-%d" }}</span>
-        <h4 class="c-post__title">{{ post.title }}</h4>
-      </div>
-    </a>
-  </div>
+  <li class="post__item">
+    <div class="post__date">{{ post.date | date: "%m.%d.%Y" }}</div>
+    <a class="post__title" href="{{ post.url }}">{{ post.title }}</a>
+    <div class="post__description">{{ post.description }}</div>
+  </li>
   {% endfor %}
-</main>
+</ul>

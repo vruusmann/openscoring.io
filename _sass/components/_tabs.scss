@@ -1,0 +1,119 @@
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+
+  & > label {
+    position: relative;
+
+    padding-top: 0.71rem;
+    padding-right: 0.71rem;
+    padding-bottom: 0.71rem;
+    padding-left: 0.71rem;
+
+    background-color: var(--clr-white);
+    
+    border: solid 1px var(--clr-primary-500);
+    border-radius: 10px;
+
+    color: var(--clr-primary-500);
+    font-size: 0.7rem;
+    font-weight: 400;
+    line-height: 1.2;
+
+    text-align: center;
+    text-decoration: none;
+
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+
+    &:active {
+      background-color: var(--clr-purple-300);
+      border-color: var(--clr-purple-300);
+      color: var(--clr-white);
+    }
+  }
+
+  & > .tab {
+    display: none;
+    order: 1;
+
+    width: 100%;
+
+    padding-top: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 2rem;
+
+    background-color: var(--clr-primary-100);
+    border-radius: 15px;
+  }
+
+  & > input[type="radio"] {
+    display: none;
+
+    &:checked + label {
+      background-color: var(--clr-primary-500);
+      color: var(--clr-white);
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 1rem;
+        height: 1rem;
+        background-color: var(--clr-primary-500);
+        transform: translate(-50%, 0.5rem) scale(0.7, 1.5) rotateZ(45deg);
+        z-index: -1;
+        transition: all 0.1s ease-in-out;
+      }
+
+      &:active {
+        background-color: var(--clr-purple-300);
+        border-color: var(--clr-purple-300);
+        color: var(--clr-white);
+
+        &::after {
+          background-color: var(--clr-purple-300);
+        }
+      }
+
+      & + .tab {
+        display: block;
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .tabs {
+    & > label {
+      font-size: 1rem;
+
+      &:hover {
+        background-color: var(--clr-white);
+        border-color: var(--clr-primary-300);
+        color: var(--clr-primary-300);
+      }
+    }
+
+    & > .tab {
+      padding-top: 4rem;
+      padding-right: 5rem;
+      padding-bottom: 3.5rem;
+      padding-left: 5rem;
+    }
+
+    & > input[type="radio"]:checked + label:hover {
+      background-color: var(--clr-white);
+      border-color: var(--clr-primary-300);
+      color: var(--clr-primary-300);
+
+      &::after {
+        background-color: var(--clr-primary-300);
+      }
+    }
+  }
+}

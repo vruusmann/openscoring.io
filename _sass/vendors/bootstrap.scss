@@ -483,7 +483,7 @@ mark,
     max-width: 156rem
 }
 
-@media(min-width: 768px) {
+@media(min-width: 1024px) {
     .container {
         width: calc(100% - 6rem)
     }
@@ -497,7 +497,7 @@ mark,
     margin-right: auto
 }
 
-@media(min-width: 768px) {
+@media(min-width: 1024px) {
 
     .gb-content>:not(.b-block),
     .container-p0 {

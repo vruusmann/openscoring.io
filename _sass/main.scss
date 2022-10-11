@@ -1,5 +1,5 @@
-@import 'vendors/bootstrap.scss';
+@import 'base';
+@import 'layout';
+@import 'components';
 
-@import 'themes/theme';
-
-@import 'layout/syntax';
+@import 'base/utilities';

@@ -21,5 +21,8 @@ defaults:
       sitemap:
         exclude: "yes"
 
+sass:
+  style: compressed
+
 exclude:
   - README.md

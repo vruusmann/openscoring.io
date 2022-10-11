@@ -1,0 +1,72 @@
+.btn {
+  display: inline-block;
+
+  padding-top: 1.5rem;
+  padding-right: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-left: 1.5rem;
+
+  background-color: var(--clr-primary-500);
+  
+  border: solid 1px var(--clr-primary-500);
+  border-radius: 10px;
+
+  color: var(--clr-white);
+  font-size: 1rem;
+  font-weight: 700;
+
+  text-align: center;
+  text-decoration: none;
+
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    background-color: var(--clr-primary-300);
+    border-color: var(--clr-primary-300);
+  }
+
+  &:active {
+    background-color: var(--clr-purple-300);
+    border-color: var(--clr-purple-300);
+  }
+
+  &--small {
+    padding-top: 0.6rem;
+    padding-right: 5rem;
+    padding-bottom: 0.6rem;
+    padding-left: 5rem;
+
+    font-size: 1rem;
+  }
+
+  &--outline {
+    background-color: var(--clr-white);
+    border: solid 1px var(--clr-primary-500);
+    color: var(--clr-primary-500);
+
+    &:hover {
+      background-color: var(--clr-white);
+      border-color: var(--clr-primary-300);
+      color: var(--clr-primary-300);
+    }
+
+    &:active {
+      background-color: var(--clr-purple-300);
+      border-color: var(--clr-purple-300);
+      color: var(--clr-white);
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .btn {
+    padding-top: 0.71rem;
+    padding-right: 0.71rem;
+    padding-bottom: 0.71rem;
+    padding-left: 0.71rem;
+
+    &--small {
+      font-size: 0.8rem;
+    }
+  }
+}
