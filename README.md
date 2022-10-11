@@ -20,7 +20,7 @@ Running Jekyll:
 
 ```
 $ rm -rf _site/
-$ bundle exec jekyll serve
+$ bundle exec jekyll build
 ```
 
 # Deployment #
