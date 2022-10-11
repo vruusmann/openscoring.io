@@ -21,3 +21,5 @@ defaults:
       sitemap:
         exclude: "yes"
 
+exclude:
+  - README.md
