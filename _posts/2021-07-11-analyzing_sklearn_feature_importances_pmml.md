@@ -231,5 +231,5 @@ The first value `0.1445742412830531` corresponds to the root model. The followin
 
 ### Resources
 
-* "Audit" dataset: [`audit.csv`]({{ site.baseurl }}/assets/data/audit.csv)
-* Python script: [`train.py`]({{ site.baseurl }}/assets/2021-07-11/train.py)
+* "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
+* Python script: [`train.py`]({{ "/resources/2021-07-11/train.py" | absolute_url }})

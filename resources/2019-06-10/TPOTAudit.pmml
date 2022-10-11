@@ -1,0 +1,942 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_3" xmlns:data="http://jpmml.org/jpmml-model/InlineTable" version="4.3">
+	<Header>
+		<Application name="JPMML-SkLearn" version="1.5.15"/>
+		<Timestamp>2019-06-10T06:35:01Z</Timestamp>
+	</Header>
+	<MiningBuildTask>
+		<Extension>PMMLPipeline(steps=[('mapper', DataFrameMapper(default=False, df_out=False,
+                features=[(['Education'],
+                           [CategoricalDomain(invalid_value_replacement=None,
+                                              invalid_value_treatment='return_invalid',
+                                              missing_value_replacement=None,
+                                              missing_value_treatment='as_is',
+                                              missing_values=None,
+                                              with_data=True,
+                                              with_statistics=True),
+                            LabelBinarizer(neg_label=0, pos_label=1,
+                                           sparse_output=False)]),
+                          (['Employ...
+                                            invalid_value_treatment='return_invalid',
+                                            low_value=None,
+                                            missing_value_replacement=None,
+                                            missing_value_treatment='as_is',
+                                            missing_values=None,
+                                            outlier_treatment='as_is',
+                                            with_data=True,
+                                            with_statistics=True)),
+                          (['Income', 'Hours'],
+                           Alias(name='Hourly_Income', prefit=True,
+                                 transformer=ExpressionTransformer(expr='X[0] '
+                                                                        '/ '
+                                                                        '(X[1] '
+                                                                        '* '
+                                                                        '52.0)')))],
+                input_df=False, sparse=False)),
+       ('stackingestimator', StackingEstimator(estimator=GaussianNB(priors=None, var_smoothing=1e-09))),
+       ('robustscaler', RobustScaler(copy=True, quantile_range=(25.0, 75.0), with_centering=True,
+             with_scaling=True)),
+       ('logisticregression', LogisticRegression(C=15.0, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=None, penalty='l1',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False))])</Extension>
+	</MiningBuildTask>
+	<DataDictionary>
+		<DataField name="Adjusted" optype="categorical" dataType="integer">
+			<Value value="0"/>
+			<Value value="1"/>
+		</DataField>
+		<DataField name="Education" optype="categorical" dataType="string">
+			<Value value="Associate"/>
+			<Value value="Bachelor"/>
+			<Value value="College"/>
+			<Value value="Doctorate"/>
+			<Value value="HSgrad"/>
+			<Value value="Master"/>
+			<Value value="Preschool"/>
+			<Value value="Professional"/>
+			<Value value="Vocational"/>
+			<Value value="Yr10"/>
+			<Value value="Yr11"/>
+			<Value value="Yr12"/>
+			<Value value="Yr1t4"/>
+			<Value value="Yr5t6"/>
+			<Value value="Yr7t8"/>
+			<Value value="Yr9"/>
+		</DataField>
+		<DataField name="Employment" optype="categorical" dataType="string">
+			<Value value="Consultant"/>
+			<Value value="PSFederal"/>
+			<Value value="PSLocal"/>
+			<Value value="PSState"/>
+			<Value value="Private"/>
+			<Value value="SelfEmp"/>
+			<Value value="Volunteer"/>
+		</DataField>
+		<DataField name="Marital" optype="categorical" dataType="string">
+			<Value value="Absent"/>
+			<Value value="Divorced"/>
+			<Value value="Married"/>
+			<Value value="Married-spouse-absent"/>
+			<Value value="Unmarried"/>
+			<Value value="Widowed"/>
+		</DataField>
+		<DataField name="Occupation" optype="categorical" dataType="string">
+			<Value value="Cleaner"/>
+			<Value value="Clerical"/>
+			<Value value="Executive"/>
+			<Value value="Farming"/>
+			<Value value="Home"/>
+			<Value value="Machinist"/>
+			<Value value="Military"/>
+			<Value value="Professional"/>
+			<Value value="Protective"/>
+			<Value value="Repair"/>
+			<Value value="Sales"/>
+			<Value value="Service"/>
+			<Value value="Support"/>
+			<Value value="Transport"/>
+		</DataField>
+		<DataField name="Age" optype="continuous" dataType="double">
+			<Interval closure="closedClosed" leftMargin="17.0" rightMargin="83.0"/>
+		</DataField>
+		<DataField name="Hours" optype="continuous" dataType="double">
+			<Interval closure="closedClosed" leftMargin="1.0" rightMargin="99.0"/>
+		</DataField>
+		<DataField name="Income" optype="continuous" dataType="double">
+			<Interval closure="closedClosed" leftMargin="609.72" rightMargin="481259.5"/>
+		</DataField>
+	</DataDictionary>
+	<TransformationDictionary/>
+	<MiningModel functionName="classification">
+		<MiningSchema>
+			<MiningField name="Adjusted" usageType="target"/>
+			<MiningField name="Education" missingValueTreatment="asIs"/>
+			<MiningField name="Employment" missingValueTreatment="asIs"/>
+			<MiningField name="Marital" missingValueTreatment="asIs"/>
+			<MiningField name="Occupation" missingValueTreatment="asIs"/>
+			<MiningField name="Age" missingValueTreatment="asIs"/>
+			<MiningField name="Hours" missingValueTreatment="asIs"/>
+			<MiningField name="Income" missingValueTreatment="asIs"/>
+		</MiningSchema>
+		<ModelStats>
+			<UnivariateStats field="Education">
+				<Counts totalFreq="1899" missingFreq="0" invalidFreq="0"/>
+				<DiscrStats>
+					<Array type="string">Associate Bachelor College Doctorate HSgrad Master Preschool Professional Vocational Yr10 Yr11 Yr12 Yr1t4 Yr5t6 Yr7t8 Yr9</Array>
+					<Array type="int">67 332 418 24 633 98 6 23 81 54 65 15 5 21 32 25</Array>
+				</DiscrStats>
+			</UnivariateStats>
+			<UnivariateStats field="Employment">
+				<Counts totalFreq="1899" missingFreq="0" invalidFreq="0"/>
+				<DiscrStats>
+					<Array type="string">Consultant PSFederal PSLocal PSState Private SelfEmp Volunteer</Array>
+					<Array type="int">148 69 119 72 1411 79 1</Array>
+				</DiscrStats>
+			</UnivariateStats>
+			<UnivariateStats field="Marital">
+				<Counts totalFreq="1899" missingFreq="0" invalidFreq="0"/>
+				<DiscrStats>
+					<Array type="string">Absent Divorced Married Married-spouse-absent Unmarried Widowed</Array>
+					<Array type="int">633 256 878 21 64 47</Array>
+				</DiscrStats>
+			</UnivariateStats>
+			<UnivariateStats field="Occupation">
+				<Counts totalFreq="1899" missingFreq="0" invalidFreq="0"/>
+				<DiscrStats>
+					<Array type="string">Cleaner Clerical Executive Farming Home Machinist Military Professional Protective Repair Sales Service Support Transport</Array>
+					<Array type="int">91 232 289 58 5 139 1 247 40 225 206 210 49 107</Array>
+				</DiscrStats>
+			</UnivariateStats>
+			<UnivariateStats field="Age">
+				<Counts totalFreq="1899" missingFreq="0" invalidFreq="0"/>
+				<NumericInfo minimum="17.0" maximum="83.0" mean="38.30279094260137" standardDeviation="13.01032310200397" median="37.0" interQuartileRange="19.0"/>
+			</UnivariateStats>
+			<UnivariateStats field="Hours">
+				<Counts totalFreq="1899" missingFreq="0" invalidFreq="0"/>
+				<NumericInfo minimum="1.0" maximum="99.0" mean="40.56714060031596" standardDeviation="11.656262333704198" median="40.0" interQuartileRange="5.0"/>
+			</UnivariateStats>
+			<UnivariateStats field="Income">
+				<Counts totalFreq="1899" missingFreq="0" invalidFreq="0"/>
+				<NumericInfo minimum="609.72" maximum="481259.5" mean="84404.87069510261" standardDeviation="69670.62788525567" median="59534.87" interQuartileRange="79343.92"/>
+			</UnivariateStats>
+		</ModelStats>
+		<LocalTransformations>
+			<DerivedField name="Hourly_Income" optype="continuous" dataType="double">
+				<Apply function="/">
+					<FieldRef field="Income"/>
+					<Apply function="*">
+						<FieldRef field="Hours"/>
+						<Constant dataType="double">52.0</Constant>
+					</Apply>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="Employment=Private" optype="continuous" dataType="double">
+				<NormDiscrete field="Employment" value="Private"/>
+			</DerivedField>
+		</LocalTransformations>
+		<Segmentation multipleModelMethod="modelChain">
+			<Segment id="1">
+				<True/>
+				<NaiveBayesModel threshold="0.0" functionName="classification">
+					<MiningSchema>
+						<MiningField name="Hourly_Income"/>
+						<MiningField name="Employment=Private"/>
+						<MiningField name="Age"/>
+						<MiningField name="Hours"/>
+						<MiningField name="Income"/>
+						<MiningField name="Education"/>
+						<MiningField name="Employment"/>
+						<MiningField name="Marital"/>
+						<MiningField name="Occupation"/>
+					</MiningSchema>
+					<Output>
+						<OutputField name="probability(stack(47), 0)" optype="continuous" dataType="double" feature="probability" value="0" isFinalResult="false"/>
+						<OutputField name="probability(stack(47), 1)" optype="continuous" dataType="double" feature="probability" value="1" isFinalResult="false"/>
+						<OutputField name="stack(47)" optype="categorical" dataType="integer" feature="predictedValue"/>
+					</Output>
+					<LocalTransformations>
+						<DerivedField name="Education=Associate" optype="continuous" dataType="double">
+							<NormDiscrete field="Education" value="Associate"/>
+						</DerivedField>
+						<DerivedField name="Education=Bachelor" optype="continuous" dataType="double">
+							<NormDiscrete field="Education" value="Bachelor"/>
+						</DerivedField>
+						<DerivedField name="Education=College" optype="continuous" dataType="double">
+							<NormDiscrete field="Education" value="College"/>
+						</DerivedField>
+						<DerivedField name="Education=Doctorate" optype="continuous" dataType="double">
+							<NormDiscrete field="Education" value="Doctorate"/>
+						</DerivedField>
+						<DerivedField name="Education=HSgrad" optype="continuous" dataType="double">
+							<NormDiscrete field="Education" value="HSgrad"/>
+						</DerivedField>
+						<DerivedField name="Education=Master" optype="continuous" dataType="double">
+							<NormDiscrete field="Education" value="Master"/>
+						</DerivedField>
+						<DerivedField name="Education=Preschool" optype="continuous" dataType="double">
+							<NormDiscrete field="Education" value="Preschool"/>
+						</DerivedField>
+						<DerivedField name="Education=Professional" optype="continuous" dataType="double">
+							<NormDiscrete field="Education" value="Professional"/>
+						</DerivedField>
+						<DerivedField name="Education=Vocational" optype="continuous" dataType="double">
+							<NormDiscrete field="Education" value="Vocational"/>
+						</DerivedField>
+						<DerivedField name="Education=Yr10" optype="continuous" dataType="double">
+							<NormDiscrete field="Education" value="Yr10"/>
+						</DerivedField>
+						<DerivedField name="Education=Yr11" optype="continuous" dataType="double">
+							<NormDiscrete field="Education" value="Yr11"/>
+						</DerivedField>
+						<DerivedField name="Education=Yr12" optype="continuous" dataType="double">
+							<NormDiscrete field="Education" value="Yr12"/>
+						</DerivedField>
+						<DerivedField name="Education=Yr1t4" optype="continuous" dataType="double">
+							<NormDiscrete field="Education" value="Yr1t4"/>
+						</DerivedField>
+						<DerivedField name="Education=Yr5t6" optype="continuous" dataType="double">
+							<NormDiscrete field="Education" value="Yr5t6"/>
+						</DerivedField>
+						<DerivedField name="Education=Yr7t8" optype="continuous" dataType="double">
+							<NormDiscrete field="Education" value="Yr7t8"/>
+						</DerivedField>
+						<DerivedField name="Education=Yr9" optype="continuous" dataType="double">
+							<NormDiscrete field="Education" value="Yr9"/>
+						</DerivedField>
+						<DerivedField name="Employment=Consultant" optype="continuous" dataType="double">
+							<NormDiscrete field="Employment" value="Consultant"/>
+						</DerivedField>
+						<DerivedField name="Employment=PSFederal" optype="continuous" dataType="double">
+							<NormDiscrete field="Employment" value="PSFederal"/>
+						</DerivedField>
+						<DerivedField name="Employment=PSLocal" optype="continuous" dataType="double">
+							<NormDiscrete field="Employment" value="PSLocal"/>
+						</DerivedField>
+						<DerivedField name="Employment=PSState" optype="continuous" dataType="double">
+							<NormDiscrete field="Employment" value="PSState"/>
+						</DerivedField>
+						<DerivedField name="Employment=SelfEmp" optype="continuous" dataType="double">
+							<NormDiscrete field="Employment" value="SelfEmp"/>
+						</DerivedField>
+						<DerivedField name="Employment=Volunteer" optype="continuous" dataType="double">
+							<NormDiscrete field="Employment" value="Volunteer"/>
+						</DerivedField>
+						<DerivedField name="Marital=Absent" optype="continuous" dataType="double">
+							<NormDiscrete field="Marital" value="Absent"/>
+						</DerivedField>
+						<DerivedField name="Marital=Divorced" optype="continuous" dataType="double">
+							<NormDiscrete field="Marital" value="Divorced"/>
+						</DerivedField>
+						<DerivedField name="Marital=Married" optype="continuous" dataType="double">
+							<NormDiscrete field="Marital" value="Married"/>
+						</DerivedField>
+						<DerivedField name="Marital=Married-spouse-absent" optype="continuous" dataType="double">
+							<NormDiscrete field="Marital" value="Married-spouse-absent"/>
+						</DerivedField>
+						<DerivedField name="Marital=Unmarried" optype="continuous" dataType="double">
+							<NormDiscrete field="Marital" value="Unmarried"/>
+						</DerivedField>
+						<DerivedField name="Marital=Widowed" optype="continuous" dataType="double">
+							<NormDiscrete field="Marital" value="Widowed"/>
+						</DerivedField>
+						<DerivedField name="Occupation=Cleaner" optype="continuous" dataType="double">
+							<NormDiscrete field="Occupation" value="Cleaner"/>
+						</DerivedField>
+						<DerivedField name="Occupation=Clerical" optype="continuous" dataType="double">
+							<NormDiscrete field="Occupation" value="Clerical"/>
+						</DerivedField>
+						<DerivedField name="Occupation=Executive" optype="continuous" dataType="double">
+							<NormDiscrete field="Occupation" value="Executive"/>
+						</DerivedField>
+						<DerivedField name="Occupation=Farming" optype="continuous" dataType="double">
+							<NormDiscrete field="Occupation" value="Farming"/>
+						</DerivedField>
+						<DerivedField name="Occupation=Home" optype="continuous" dataType="double">
+							<NormDiscrete field="Occupation" value="Home"/>
+						</DerivedField>
+						<DerivedField name="Occupation=Machinist" optype="continuous" dataType="double">
+							<NormDiscrete field="Occupation" value="Machinist"/>
+						</DerivedField>
+						<DerivedField name="Occupation=Military" optype="continuous" dataType="double">
+							<NormDiscrete field="Occupation" value="Military"/>
+						</DerivedField>
+						<DerivedField name="Occupation=Professional" optype="continuous" dataType="double">
+							<NormDiscrete field="Occupation" value="Professional"/>
+						</DerivedField>
+						<DerivedField name="Occupation=Protective" optype="continuous" dataType="double">
+							<NormDiscrete field="Occupation" value="Protective"/>
+						</DerivedField>
+						<DerivedField name="Occupation=Repair" optype="continuous" dataType="double">
+							<NormDiscrete field="Occupation" value="Repair"/>
+						</DerivedField>
+						<DerivedField name="Occupation=Sales" optype="continuous" dataType="double">
+							<NormDiscrete field="Occupation" value="Sales"/>
+						</DerivedField>
+						<DerivedField name="Occupation=Service" optype="continuous" dataType="double">
+							<NormDiscrete field="Occupation" value="Service"/>
+						</DerivedField>
+						<DerivedField name="Occupation=Support" optype="continuous" dataType="double">
+							<NormDiscrete field="Occupation" value="Support"/>
+						</DerivedField>
+						<DerivedField name="Occupation=Transport" optype="continuous" dataType="double">
+							<NormDiscrete field="Occupation" value="Transport"/>
+						</DerivedField>
+					</LocalTransformations>
+					<BayesInputs>
+						<BayesInput fieldName="Education=Associate">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.03168044077134986" variance="4.884673180369648"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.04697986577181208" variance="4.898769147909641"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Education=Bachelor">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.1322314049586777" variance="4.968742650427095"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.3131991051454139" variance="5.069101815607291"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Education=College">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.23484848484848486" variance="5.033691063938625"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.17225950782997762" variance="4.9965825597179165"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Education=Doctorate">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.006198347107438017" variance="4.860156317526339"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.03355704697986577" variance="4.886427361503623"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Education=HSgrad">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.36845730027548207" variance="5.0866929080749435"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.21923937360178972" variance="5.025169860590251"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Education=Master">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.028925619834710745" variance="4.882085318277654"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.12527964205816555" variance="4.96358104326971"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Education=Preschool">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.004132231404958678" variance="4.8581115459943405"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.0" variance="4.853996389925766"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Education=Professional">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.0048209366391184574" variance="4.8587940851348055"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.035794183445190156" variance="4.888509349802448"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Education=Vocational">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.046143250688705235" variance="4.898010441030349"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.03131991051454139" variance="4.884335363645668"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Education=Yr10">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.03443526170798898" variance="4.887245864384858"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.008948545861297539" variance="4.862864859314032"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Education=Yr11">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.04269972451790634" variance="4.894872847969768"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.006711409395973154" variance="4.860662756305659"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Education=Yr12">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.009641873278236915" variance="4.8635452974836895"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.0022371364653243847" variance="4.856228521611526"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Education=Yr1t4">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.003443526170798898" variance="4.857428058224076"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.0" variance="4.853996389925766"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Education=Yr5t6">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.013774104683195593" variance="4.867580768649138"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.0022371364653243847" variance="4.856228521611526"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Education=Yr7t8">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.02203856749311295" variance="4.87554925896173"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.0" variance="4.853996389925766"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Education=Yr9">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.01652892561983471" variance="4.870252110163455"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.0022371364653243847" variance="4.856228521611526"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Employment=Consultant">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.0743801652892562" variance="4.9228441462265655"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.0894854586129754" variance="4.935474201235566"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Employment=PSFederal">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.03443526170798898" variance="4.887245864384858"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.042505592841163314" variance="4.89469525734415"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Employment=PSLocal">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.06060606060606061" variance="4.91092935594964"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.06935123042505593" variance="4.918538027189352"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Employment=PSState">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.0337465564738292" variance="4.8866041163257545"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.05145413870246085" variance="4.902803000238615"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Employment=Private">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.7658402203856749" variance="5.033325367151063"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.668903803131991" variance="5.0754678952133165"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Employment=SelfEmp">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.030303030303030304" variance="4.8833811465832495"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.07829977628635347" variance="4.926165311245626"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Employment=Volunteer">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="6.887052341597796E-4" variance="4.854684620845026"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.0" variance="4.853996389925766"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Marital=Absent">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.41597796143250687" variance="5.096936686960732"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.06487695749440715" variance="4.914664327806443"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Marital=Divorced">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.162534435261708" variance="4.990113382541632"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.0447427293064877" variance="4.89673720740646"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Marital=Married">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.3381542699724518" variance="5.07780234959762"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.8657718120805369" variance="4.970207371413085"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Marital=Married-spouse-absent">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.013085399449035813" variance="4.866910561696061"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.0044742729306487695" variance="4.8584506437381565"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Marital=Unmarried">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.040633608815427" variance="4.892978908575828"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.011185682326621925" variance="4.865056952763275"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Marital=Widowed">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.029614325068870524" variance="4.88273370674535"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.008948545861297539" variance="4.862864859314032"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Occupation=Cleaner">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.05853994490358127" variance="4.909109409680032"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.013422818791946308" variance="4.867239036653391"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Occupation=Clerical">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.13636363636363635" variance="4.971764984967092"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.07606263982102908" variance="4.924273504570252"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Occupation=Executive">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.10606060606060606" variance="4.94880814382843"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.30201342281879195" variance="5.064797705181837"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Occupation=Farming">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.03581267217630854" variance="4.888526514613667"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.013422818791946308" variance="4.867239036653391"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Occupation=Home">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.003443526170798898" variance="4.857428058224076"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.0" variance="4.853996389925766"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Occupation=Machinist">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.08333333333333333" variance="4.930385278814653"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.040268456375838924" variance="4.892643297722712"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Occupation=Military">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="6.887052341597796E-4" variance="4.854684620845026"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.0" variance="4.853996389925766"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Occupation=Professional">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.09986225895316804" variance="4.943886178115704"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.22818791946308725" variance="5.030114582799961"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Occupation=Protective">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.01721763085399449" variance="4.870917573967536"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.03355704697986577" variance="4.886427361503623"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Occupation=Repair">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.12190082644628099" variance="4.961037404883764"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.10738255033557047" variance="4.949847928144765"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Occupation=Sales">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.10950413223140495" variance="4.951509367181416"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.10514541387024609" variance="4.948086245738066"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Occupation=Service">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.13980716253443526" variance="4.974257509764274"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.015659955257270694" variance="4.869411110984377"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Occupation=Support">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.024104683195592287" variance="4.877520037369398"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.03131991051454139" variance="4.884335363645668"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Occupation=Transport">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="0.06336088154269973" variance="4.913342670158596"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="0.03355704697986577" variance="4.886427361503623"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Age">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="36.535812672176306" variance="178.4236504815556"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="44.04250559284117" variance="117.06471762870892"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Hours">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="39.19146005509642" variance="138.15205018103018"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="45.03579418344519" variance="122.95562344376228"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Income">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="92021.72235537197" variance="4.828415833481773E9"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="59662.882751677855" variance="4.1364682792555103E9"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+						<BayesInput fieldName="Hourly_Income">
+							<TargetValueStats>
+								<TargetValueStat value="0">
+									<GaussianDistribution mean="54.96275039741089" variance="4115.998817699634"/>
+								</TargetValueStat>
+								<TargetValueStat value="1">
+									<GaussianDistribution mean="34.62614266780795" variance="8610.954128153277"/>
+								</TargetValueStat>
+							</TargetValueStats>
+						</BayesInput>
+					</BayesInputs>
+					<BayesOutput>
+						<TargetValueCounts>
+							<TargetValueCount value="0" count="1452"/>
+							<TargetValueCount value="1" count="447"/>
+						</TargetValueCounts>
+					</BayesOutput>
+				</NaiveBayesModel>
+			</Segment>
+			<Segment id="2">
+				<True/>
+				<RegressionModel functionName="classification" normalizationMethod="logit">
+					<MiningSchema>
+						<MiningField name="Adjusted" usageType="target"/>
+						<MiningField name="probability(stack(47), 0)"/>
+						<MiningField name="Education"/>
+						<MiningField name="Employment"/>
+						<MiningField name="Marital"/>
+						<MiningField name="Occupation"/>
+						<MiningField name="probability(stack(47), 1)"/>
+						<MiningField name="stack(47)"/>
+						<MiningField name="Employment=Private"/>
+						<MiningField name="Age"/>
+						<MiningField name="Hours"/>
+						<MiningField name="Income"/>
+						<MiningField name="Hourly_Income"/>
+					</MiningSchema>
+					<Output>
+						<OutputField name="probability(0)" optype="continuous" dataType="double" feature="probability" value="0"/>
+						<OutputField name="probability(1)" optype="continuous" dataType="double" feature="probability" value="1"/>
+					</Output>
+					<LocalTransformations>
+						<DerivedField name="robust_scaler(probability(stack(47), 1))" optype="continuous" dataType="double">
+							<Apply function="/">
+								<Apply function="-">
+									<FieldRef field="probability(stack(47), 1)"/>
+									<Constant dataType="double">0.811141500059951</Constant>
+								</Apply>
+								<Constant dataType="double">0.280979808929946</Constant>
+							</Apply>
+						</DerivedField>
+						<DerivedField name="robust_scaler(stack(47))" optype="continuous" dataType="double">
+							<Apply function="/">
+								<Apply function="-">
+									<FieldRef field="stack(47)"/>
+									<Constant dataType="double">0.18885849994005488</Constant>
+								</Apply>
+								<Constant dataType="double">0.2809798089299558</Constant>
+							</Apply>
+						</DerivedField>
+						<DerivedField name="robust_scaler(Employment=Private)" optype="continuous" dataType="double">
+							<Apply function="-">
+								<FieldRef field="Employment=Private"/>
+								<Constant dataType="double">1.0</Constant>
+							</Apply>
+						</DerivedField>
+						<DerivedField name="robust_scaler(Age)" optype="continuous" dataType="double">
+							<Apply function="/">
+								<Apply function="-">
+									<FieldRef field="Age"/>
+									<Constant dataType="double">37.0</Constant>
+								</Apply>
+								<Constant dataType="double">19.0</Constant>
+							</Apply>
+						</DerivedField>
+						<DerivedField name="robust_scaler(Hours)" optype="continuous" dataType="double">
+							<Apply function="/">
+								<Apply function="-">
+									<FieldRef field="Hours"/>
+									<Constant dataType="double">40.0</Constant>
+								</Apply>
+								<Constant dataType="double">5.0</Constant>
+							</Apply>
+						</DerivedField>
+						<DerivedField name="robust_scaler(Income)" optype="continuous" dataType="double">
+							<Apply function="/">
+								<Apply function="-">
+									<FieldRef field="Income"/>
+									<Constant dataType="double">59534.87</Constant>
+								</Apply>
+								<Constant dataType="double">79343.92</Constant>
+							</Apply>
+						</DerivedField>
+						<DerivedField name="robust_scaler(Hourly_Income)" optype="continuous" dataType="double">
+							<Apply function="/">
+								<Apply function="-">
+									<FieldRef field="Hourly_Income"/>
+									<Constant dataType="double">28.613153846153846</Constant>
+								</Apply>
+								<Constant dataType="double">45.43242094017095</Constant>
+							</Apply>
+						</DerivedField>
+					</LocalTransformations>
+					<RegressionTable intercept="-3.059737198329255" targetCategory="1">
+						<NumericPredictor name="probability(stack(47), 0)" coefficient="-1.5261681851271998"/>
+						<NumericPredictor name="robust_scaler(probability(stack(47), 1))" coefficient="-0.49864647508569865"/>
+						<NumericPredictor name="robust_scaler(stack(47))" coefficient="0.5116963687897527"/>
+						<NumericPredictor name="robust_scaler(Employment=Private)" coefficient="0.13163021454970555"/>
+						<NumericPredictor name="robust_scaler(Age)" coefficient="0.30714419782014896"/>
+						<NumericPredictor name="robust_scaler(Hours)" coefficient="0.1340246194357767"/>
+						<NumericPredictor name="robust_scaler(Income)" coefficient="0.3843241267175202"/>
+						<NumericPredictor name="robust_scaler(Hourly_Income)" coefficient="-0.04368655327555464"/>
+						<CategoricalPredictor name="Education" value="Associate" coefficient="1.0920423679067315"/>
+						<CategoricalPredictor name="Education" value="Bachelor" coefficient="1.1741635604622156"/>
+						<CategoricalPredictor name="Education" value="College" coefficient="0.2919277864124209"/>
+						<CategoricalPredictor name="Education" value="Doctorate" coefficient="2.150365356563455"/>
+						<CategoricalPredictor name="Education" value="HSgrad" coefficient="0.05730575363806978"/>
+						<CategoricalPredictor name="Education" value="Master" coefficient="1.6715879997426877"/>
+						<CategoricalPredictor name="Education" value="Preschool" coefficient="-1.7186210664084094"/>
+						<CategoricalPredictor name="Education" value="Professional" coefficient="2.843547798060159"/>
+						<CategoricalPredictor name="Education" value="Yr10" coefficient="-0.4007567706186714"/>
+						<CategoricalPredictor name="Education" value="Yr11" coefficient="-0.4119040398675241"/>
+						<CategoricalPredictor name="Education" value="Yr12" coefficient="-0.48517621275888767"/>
+						<CategoricalPredictor name="Education" value="Yr1t4" coefficient="-3.35107274813508"/>
+						<CategoricalPredictor name="Education" value="Yr5t6" coefficient="-1.2158290271885575"/>
+						<CategoricalPredictor name="Education" value="Yr7t8" coefficient="-4.4104664056331275"/>
+						<CategoricalPredictor name="Education" value="Yr9" coefficient="-1.724059345883535"/>
+						<CategoricalPredictor name="Employment" value="Consultant" coefficient="-0.11484971595194804"/>
+						<CategoricalPredictor name="Employment" value="PSLocal" coefficient="-0.11534374058627843"/>
+						<CategoricalPredictor name="Employment" value="SelfEmp" coefficient="0.00871544951427548"/>
+						<CategoricalPredictor name="Employment" value="Volunteer" coefficient="-3.3766601522504955"/>
+						<CategoricalPredictor name="Marital" value="Absent" coefficient="-0.5556071142424145"/>
+						<CategoricalPredictor name="Marital" value="Divorced" coefficient="-0.7366213628772704"/>
+						<CategoricalPredictor name="Marital" value="Married" coefficient="1.973613774397841"/>
+						<CategoricalPredictor name="Marital" value="Married-spouse-absent" coefficient="-0.17667662252582614"/>
+						<CategoricalPredictor name="Marital" value="Widowed" coefficient="-0.4655381943438828"/>
+						<CategoricalPredictor name="Occupation" value="Cleaner" coefficient="-0.9823660308720499"/>
+						<CategoricalPredictor name="Occupation" value="Clerical" coefficient="0.3012967008856186"/>
+						<CategoricalPredictor name="Occupation" value="Executive" coefficient="0.6579234019755166"/>
+						<CategoricalPredictor name="Occupation" value="Farming" coefficient="-0.8662689733986518"/>
+						<CategoricalPredictor name="Occupation" value="Home" coefficient="-0.18468514438147096"/>
+						<CategoricalPredictor name="Occupation" value="Machinist" coefficient="-0.5239750221973974"/>
+						<CategoricalPredictor name="Occupation" value="Professional" coefficient="0.2377546978557571"/>
+						<CategoricalPredictor name="Occupation" value="Protective" coefficient="0.9781400101113612"/>
+						<CategoricalPredictor name="Occupation" value="Repair" coefficient="-0.25809782486088273"/>
+						<CategoricalPredictor name="Occupation" value="Service" coefficient="-1.3269105023608032"/>
+						<CategoricalPredictor name="Occupation" value="Support" coefficient="0.3506991232157217"/>
+						<CategoricalPredictor name="Occupation" value="Transport" coefficient="-0.7372548812522263"/>
+					</RegressionTable>
+					<RegressionTable intercept="0.0" targetCategory="0"/>
+				</RegressionModel>
+			</Segment>
+		</Segmentation>
+	</MiningModel>
+</PMML>

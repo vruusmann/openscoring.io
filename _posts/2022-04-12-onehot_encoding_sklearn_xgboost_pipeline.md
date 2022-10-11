@@ -275,6 +275,6 @@ Memory usage:
 
 ### Resources
 
-* "Audit" dataset: [`audit.csv`]({{ site.baseurl }}/assets/data/audit.csv)
-* "Audit-NA" dataset: [`audit-NA.csv`]({{ site.baseurl }}/assets/data/audit-NA.csv)
-* Python scripts: [`measure.py`]({{ site.baseurl }}/assets/2022-04-12/measure.py), [`train.py`]({{ site.baseurl }}/assets/2022-04-12/train.py) and [`util.py`]({{ site.baseurl }}/assets/2022-04-12/util.py)
+* "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
+* "Audit-NA" dataset: [`audit-NA.csv`]({{ "/resources/data/audit-NA.csv" | absolute_url }})
+* Python scripts: [`measure.py`]({{ "/resources/2022-04-12/measure.py" | absolute_url }}), [`train.py`]({{ "/resources/2022-04-12/train.py" | absolute_url }}) and [`util.py`]({{ "/resources/2022-04-12/util.py" | absolute_url }})

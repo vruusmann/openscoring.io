@@ -161,6 +161,6 @@ Prediction columns are appended to the input dataset. Depending on the setting o
 
 ### Resources
 
-* "Audit" dataset: [`audit.csv`]({{ site.baseurl }}/assets/data/audit.csv)
-* R script: [`train.R`]({{ site.baseurl }}/assets/2019-02-09/train.R)
-* Scala script: [`deploy.scala`]({{ site.baseurl }}/assets/2019-02-09/deploy.scala)
+* "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
+* R script: [`train.R`]({{ "/resources/2019-02-09/train.R" | absolute_url }})
+* Scala script: [`deploy.scala`]({{ "/resources/2019-02-09/deploy.scala" | absolute_url }})

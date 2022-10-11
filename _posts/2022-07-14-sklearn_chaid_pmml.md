@@ -267,6 +267,6 @@ df_pred.to_csv("output.csv", sep = "\t", index = False)
 
 ### Resources
 
-* "Audit" dataset: [`audit.csv`]({{ site.baseurl }}/assets/data/audit.csv)
-* "Audit-NA" dataset: [`audit-NA.csv`]({{ site.baseurl }}/assets/data/audit-NA.csv)
-* Python scripts: [`train-iris.py`]({{ site.baseurl }}/assets/2022-07-14/train-iris.py), [`train-audit.py`]({{ site.baseurl }}/assets/2022-07-14/train-audit.py) and [`predict.py`]({{ site.baseurl }}/assets/2022-07-14/predict.py)
+* "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
+* "Audit-NA" dataset: [`audit-NA.csv`]({{ "/resources/data/audit-NA.csv" | absolute_url }})
+* Python scripts: [`train-iris.py`]({{ "/resources/2022-07-14/train-iris.py" | absolute_url }}), [`train-audit.py`]({{ "/resources/2022-07-14/train-audit.py" | absolute_url }}) and [`predict.py`]({{ "/resources/2022-07-14/predict.py" | absolute_url }})

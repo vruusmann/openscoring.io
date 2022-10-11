@@ -236,4 +236,4 @@ No matter if the "Employment" column contains an invalid value or a missing valu
 
 ### Resources
 
-* "Audit" dataset: [`audit.csv`]({{ site.baseurl }}/assets/data/audit.csv)
+* "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})

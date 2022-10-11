@@ -143,5 +143,5 @@ For example, the initial domain decorator steps (eg. `ContinuousDomain` and `Cat
 
 ### Resources
 
-* "Audit" dataset: [`audit.csv`]({{ site.baseurl }}/assets/data/audit.csv)
-* Python script: [`train.py`]({{ site.baseurl }}/assets/2020-10-24/train.py)
+* "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
+* Python script: [`train.py`]({{ "/resources/2020-10-24/train.py" | absolute_url }})

@@ -112,4 +112,4 @@ The above Java source code specifies both parameters as 1.e-6 (that is, one part
 
 ### Resources
 
-* Demo Apache Maven project: [`DecisionTreeIris.zip`]({{ site.baseurl }}/assets/2014-05-12/DecisionTreeIris.zip)
+* Demo Apache Maven project: [`DecisionTreeIris.zip`]({{ "/resources/2014-05-12/DecisionTreeIris.zip" | absolute_url }})

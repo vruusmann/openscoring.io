@@ -145,7 +145,7 @@ The hour of day has been incremented by three hours (representing the time zone 
 The `sklearn2pmml` package provides domain decorators and transformers for working with pre-processed temporal values.
 
 Domain decorators are meant for declaring the type and behaviour of individual features.
-They were discussed in full detail in an earlier blog post about [extending Scikit-Learn with feature specifications]({{ site.baseurl }}{% post_url 2020-02-23-sklearn_feature_specification_pmml %}).
+They were discussed in full detail in an earlier blog post about [extending Scikit-Learn with feature specifications]({% post_url 2020-02-23-sklearn_feature_specification_pmml %}).
 
 The `sklearn2pmml.decoration` module provides three domain decorators:
 
@@ -211,4 +211,4 @@ print(hour_of_day)
 
 ### Resources
 
-* Python script: [`train.py`]({{ site.baseurl }}/assets/2020-03-08/train.py)
+* Python script: [`train.py`]({{ "/resources/2020-03-08/train.py" | absolute_url }})

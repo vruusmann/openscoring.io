@@ -83,7 +83,7 @@ XGBoost does not have such capabilities, and therefore expects categorical featu
 
 The "homogenisation" of LightGBM and XGBoost estimators is possible by enforcing the binarization of categorical features.
 However, this reduces the predictive performance of LightGBM.
-For more information, please refer to the blog post about [converting Scikit-Learn based LightGBM pipelines to PMML documents]({{ site.baseurl }}{% post_url 2019-04-07-converting_sklearn_lightgbm_pipeline_pmml %}).
+For more information, please refer to the blog post about [converting Scikit-Learn based LightGBM pipelines to PMML documents]({{ "" | absolute_url }}{% post_url 2019-04-07-converting_sklearn_lightgbm_pipeline_pmml %}).
 
 The solution is to perform feature engineering for each child estimator (and in the passthrough mode, also for the parent estimator) separately:
 
@@ -237,6 +237,6 @@ sklearn2pmml(pipeline, "StackingEnsemble.pmml")
 
 ### Resources
 
-* "Auto" dataset: [`auto.csv`]({{ site.baseurl }}/assets/data/auto.csv)
-* "Audit-NA" dataset: [`audit-NA.csv`]({{ site.baseurl }}/assets/data/audit-NA.csv)
-* Python scripts: [`train-regression.py`]({{ site.baseurl }}/assets/2020-01-02/train-regression.py) and [`train-classification.py`]({{ site.baseurl }}/assets/2020-01-02/train-classification.py)
+* "Auto" dataset: [`auto.csv`]({{ "/resources/data/auto.csv" | absolute_url }})
+* "Audit-NA" dataset: [`audit-NA.csv`]({{ "/resources/data/audit-NA.csv" | absolute_url }})
+* Python scripts: [`train-regression.py`]({{ "/resources/2020-01-02/train-regression.py" | absolute_url }}) and [`train-classification.py`]({{ "/resources/2020-01-02/train-classification.py" | absolute_url }})

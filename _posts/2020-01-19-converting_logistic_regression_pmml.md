@@ -260,6 +260,6 @@ pmmlBuilder.buildFile("PySparkAudit.pmml")
 
 ### Resources
 
-* "Audit" dataset: [`audit.csv`]({{ site.baseurl }}/assets/data/audit.csv)
-* R script: [`train.R`]({{ site.baseurl }}/assets/2020-01-19/train.R)
-* Python scripts: [`train-sklearn.py`]({{ site.baseurl }}/assets/2020-01-19/train-sklearn.py) and [`train-pyspark.py`]({{ site.baseurl }}/assets/2020-01-19/train-pyspark.py)
+* "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
+* R script: [`train.R`]({{ "/resources/2020-01-19/train.R" | absolute_url }})
+* Python scripts: [`train-sklearn.py`]({{ "/resources/2020-01-19/train-sklearn.py" | absolute_url }}) and [`train-pyspark.py`]({{ "/resources/2020-01-19/train-pyspark.py" | absolute_url }})

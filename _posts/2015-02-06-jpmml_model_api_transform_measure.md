@@ -161,7 +161,7 @@ public class Main {
 }
 ```
 
-Memory measurements are performed on the already familiar PMML document [`RandomForestIris.pmml`]({{ site.baseurl }}/assets/2014-04-10/RandomForestIris.pmml).
+Memory measurements are performed on the already familiar PMML document [`RandomForestIris.pmml`]({{ "/resources/2014-04-10/RandomForestIris.pmml" | absolute_url }}).
 
 The results in "non-transforming mode":
 
