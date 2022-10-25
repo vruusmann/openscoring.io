@@ -2,18 +2,20 @@
 layout: default
 title: "Home"
 keywords: 
-description: "TODO: write page description"
+description: "TODO"
 ---
 
 
 <section class="hero">
   <div>
     <a name="hero" id="hero" class="anchor"></a>
-    <h1>Quick and Easy Deployment of Machine Learning (ML) Models</h1>
-    <p class="mb-8 lg:mb-6">A standards-based, open-source software suite for moving Apache Spark, R and Scikit-Learn models from «lab» to «factory»</p>
-    <div class="hero__cta mb-16 lg:mb-0">
+    <h1>Standards-based, Open-source Middleware for Predictive Analytics Applications</h1>
+    <p class="mb-8 lg:mb-6">Convert your fitted <em>Apache Spark</em>, <em>R</em> or <em>Scikit-Learn</em> pipelines into the standardized <a href="https://dmg.org/pmml/v4-4-1/GeneralStructure.html">Predictive Model Markup Language</a> (PMML) representation, and make quick and dependable predictions in your Java/JVM application</p>
 
-      <a href="/#why-pmml" class="btn btn--outline text-lg lg:text-sm">OUR APPROACH</a>
+    <p><em>Standardization enables automation</em>, which in turn enables higher efficiency and higher quality business processes.</p>
+
+    <div class="hero__cta mb-16 lg:mb-0">
+      <a href="/#why-choose-jpmml-openscoring" class="btn btn--outline text-lg lg:text-sm">OUR REASONING</a>
     </div>
   </div>
   <div>
@@ -22,61 +24,88 @@ description: "TODO: write page description"
 </section>
 
 <section class="flex flex-column lg:flex-row md:gap-4 mt-26">
-  <a name="why-pmml" id="why-pmml" class="anchor"></a>
+  <a name="why-choose-jpmml-openscoring" id="why-choose-jpmml-openscoring" class="anchor"></a>
   <div class="w-full lg:w-1/2 mb-8">
-    <h2>Why PMML?</h2>
+    <h2>Why choose (J)PMML by Openscoring.IO?</h2>
     <details class="accordion">
       <summary>
-        <img src="assets/images/fox.svg" alt="" width="36" height="36" loading="lazy"> ML vs AI
+        <img src="assets/images/font.svg" alt="" width="36" height="36" loading="lazy">
+        The gold standard
       </summary>
       <div>
+        <p>
+        PMML embodies decades' worth of knowledge and best practices in the Tabular ML field.
+        Do not dismiss it, build on it!
+        </p>
+
         <ul>
-          <li>Machine learning (ML) deals with small- and medium-size statistical and data mining models, whose inner workings can be easily reasoned. In contrast, Artificial Intelligence (AI) deals with unfathomable neural networks</li>
-          <li>ML is applicable to business problems that are based on structured datasets (spreadsheets, relational databases). AI is applicable to large unstructured datasets (media collections)</li>
-          <li>Statistics/ML may not sound as cool as deep learning/AI, but its economic impact is way higher</li>
+          <li>Joint effort. PMML is developed and maintained by the <a href="https://dmg.org/">Data Mining Group</a> (DMG), which is an independent consortium between major statistics and data mining software vendors.</li>
+          <li>Backwards- and forwards-compatible. PMML version changes are incremental/evolutionary. Any PMML model that has been generated since early 2000s can be put into production today.</li>
+          <li>No challengers. PMML outsmarts and outdoes alternative Tabular ML standardization efforts, whether commercial or (F)OSS.</li>
         </ul>
       </div>
     </details>
 
     <details class="accordion">
       <summary>
-        <img src="assets/images/layouts.svg" alt="" width="36" height="42" loading="lazy">
-        The simplest thing that works
+        <img src="assets/images/selection.svg" alt="" width="36" height="42" loading="lazy">
+        The &#8220;less code, less coding&#8221; approach
       </summary>
       <div>
+        <p>
+        PMML is designed around human-oriented data structures (as opposed to computer-executable code).
+        By eliminating the code component, PMML eliminates the need for coding roles and coding activities within the organization.
+        The data science team and the application development team can focus on their core competencies; there is no need for extra hybrid teams (&#8220;MLOps&#8221; or &#8220;DevOps&#8221;), extra inter-team communication.
+        </p>
+
         <ul>
-          <li>ML models &#8220;at rest&#8221; can be captured and systematized using very simple data structures</li>
-          <li><a href="https://www.dmg.org/" target="_blank" rel="noopener">The Data Mining Group (DMG)</a> is an independent vendor led consortium that works on the standardization of ML model data structures</li>
-          <li>DMG released the <a href="https://dmg.org/pmml/v4-4-1/GeneralStructure.html">Predictive Model Markup Language (PMML)</a> in its current form (the 3.0+ schema version) in 2004, and has been continuously updating and maintaining it since then. DMG has also released the <a href="https://dmg.org/pfa/index.html">Portable Format for Analytics (PFA)</a>, but its uptake has been negligible due to technical complexity</li>
+          <li>Functionally complete. PMML captures all of feature engineering, modelling and decision engineering.</li>
+          <li>Reductionist. PMML promotes a one &mdash; <em>the best</em> &mdash; way of conceptualizing things. For example, all linear models collapse into a singular <a href="https://dmg.org/pmml/v4-4-1/Regression.html">PMML &#8220;regression table&#8221; data structure</a>, all decision tree models collapse into a singular <a href="https://dmg.org/pmml/v4-4-1/TreeModel.html">PMML &#8220;tree&#8221; data structure</a>, etc.
+          Less to learn and remember.</li>
+          <li>Auditable and verifiable. PMML holds ample metadata for quality assurance and quality control purposes. A PMML model is a fully self-contained and self-informed artifact, which takes active part in ensuring that its predictions are reliable and correct.</li>
+          <li>Explainable. PMML operates at high, real-world abstraction level. The inner workings of a PMML model are easily approachable even for non-experts.</li>
+          <li>Stable and secure. PMML models do not require any maintenance while in storage. PMML models cannot be attacked or breached while in production.</li>
         </ul>
       </div>
     </details>
 
     <details class="accordion">
       <summary>
-        <img src="assets/images/selection.svg" alt="" width="36" height="36" loading="lazy">
-        Stable, high-level, extensible representation
+        <img src="assets/images/layouts.svg" alt="" width="36" height="36" loading="lazy">
+        Full software stack
       </summary>
       <div>
+        <p>
+        The <a href="https://github.com/jpmml">Java API for PMML</a> (JPMML) software project provides a right Java-based tool for every PMML job.
+        End user-facing components are equipped with command-line and/or REST interface, which enables integration with alternative application platforms.
+        </p>
+
         <ul>
-          <li>PMML uses high-level data structures, which abstract away all medium- and low-level data structures used by popular ML frameworks and application</li>
-          <li>For example, PMML defines singular tree and regression table data structures that can capture the entirety of decision tree, linear regression and logistic regression models in everyday use (Apache Spark, R, Scikit-Learn, LightGBM, XGBoost, etc)</li>
-          <li>PMML data structures can be extended by adding new elements and attributes to them. The evolution of data structures is carried out both in backwards- and forwards-compatible manner</li>
-          <li>Any PMML document generated in the past 15 years is valid and usable today, and will likely be 15 years into the future</li>
+          <li>Layered library architecture. Specialized, high-level APIs are derived from common low-level APIs. Simple and minimalistic dependency graph. Automatic assembly of 5 to 10 MB application-oriented library sets.</li>
+          <li>Pure Java. The same library set works on any Java SE 8/11 compatible Java VM.</li>
+          <li>Most efficient conversion. JPMML converters support most common Tabular ML frameworks, model and transformation types. They perform deep examinations and analyses on the incoming pipeline object in order to come up with the best encoding plan. Sub-optimal encodings (by lesser PMML converters) are difficult to correct after the fact, and will degrade the deployment experience significantly.</li>
+          <li>Most efficient evaluation. JPMML evaluators are among the smallest and fastest general-purpose scoring engines for the Java/JVM platform. They challenge the performance of any Tabular ML framework (with or without hardware acceleration) in real-time scoring scenarios.</li>
+          <li>End-to-end reproducibility guarantee. JPMML predictions always match the original Tabular ML framework predictions, as proven by extensive integration tests.</li>
         </ul>
       </div>
     </details>
 
     <details class="accordion">
       <summary>
-        <img src="assets/images/font.svg" alt="" width="36" height="27" loading="lazy">
-        Humans and machines on equal footing
+        <img src="assets/images/fox.svg" alt="" width="36" height="27" loading="lazy">
+        Vendor backing and support
       </summary>
       <div>
+        <p>
+        In the long run, you get what you paid for.
+        The choice is between upfront, fixed monetary costs vs. after-the-fact, indeterminate business costs.
+        </p>
+
         <ul>
-          <li>PMML data structures balance expressiveness with executability</li>
-          <li>A PMML document can be worked on (analyzed, executed) manually, or using a wide variety of tools from open-source and proprietary vendors. The default data format for PMML documents is XML, but they can equally well be stored in alternative text (JSON, YAML) or binary data formats</li>
-          <li>Openscoring has established itself as the most innovative and most capable vendor of PMML tools</li>
+          <li>Commitment. Openscoring.IO is the only pure-PMML company in existence today.</li>
+          <li>Longevity and reliability. Openscoring IO has over eight years of public track record. Openscoring.IO will be there for the entirety of your software project, your business venture.</li>
+          <li>Proof of work. Openscoring.IO conducts original research, and is known for delivering many &#8220;Firsts&#8221; and &#8220;Bests&#8221; in the field.</li>
+          <li>Always online.</li>
         </ul>
       </div>
     </details>
