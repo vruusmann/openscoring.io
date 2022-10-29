@@ -120,215 +120,11 @@ description: "TODO"
 <section class="mt-24">
   <a id="products" name="products" class="anchor"></a>
   <h2 class="text-center mb-4">Products</h2>
-  <p class="text-center">Openscoring software has been grouped into three product verticals:</p>
+  <p class="text-center">Openscoring.IO software is grouped into three product verticals:</p>
 
   <div class="tabs">
-    <input type="radio" name="tab" id="tab__1" checked>
-    <label for="tab__1">Model evaluation</label>
-    <div class="tab">
-      <div class="grid grid-columns-1 lg:grid-columns-3 lg:gap-26">
-        <div class="w-full lg:col-span-2 order-1 lg:order-0">
-          <p>Building a model evaluator instance from a PMML XML file:</p>
-
-{% highlight java %}
-import java.io.File;
-import org.jpmml.evaluator.Evaluator;
-import org.jpmml.evaluator.LoadingModelEvaluatorBuilder;
-
-Evaluator evaluator = new LoadingModelEvaluatorBuilder()
-    .load(new File("LogisticRegression.pmml"))
-    .build();
-{% endhighlight %}
-            
-          <p>Doing the same, plus transpiling PMML XML markup to Java PMML API-backed Java bytecode for 5-15x performance improvement:</p>
-        </div>
-
-        <div class="w-full">
-          <h3>Data science packages</h3>
-
-          <ul class="list-none mb-8">
-            <li>
-              <a href="https://github.com/jpmml/jpmml-evaluator-python" target="_blank">JPMML-Evaluator for Python</a>
-            </li>
-          </ul>
-
-          <h3>Data engineering libraries</h3>
-          <ul class="list-none mb-8">
-            <li>
-              <a href="https://github.com/jpmml/jpmml-transpiler" target="_blank">JPMML-Transpiler</a>
-            </li>
-            <li>
-              <a href="https://github.com/jpmml/jpmml-evaluator" target="_blank">JPMML-Evaluator</a>
-            </li>
-          </ul>
-          
-          <h3>Big Data framework integrations</h3>
-
-          <ul class="list-none mb-8">
-            <li>
-              <a href="https://github.com/jpmml/jpmml-evaluator-hive" target="_blank">PMML functions for Apache Hive</a>
-            </li>
-            <li>
-              <a href="https://github.com/jpmml/jpmml-evaluator-pig" target="_blank">PMML functions for Apache Pig</a>
-            </li>
-            <li>
-              <a href="https://github.com/jpmml/jpmml-evaluator-spark" target="_blank">PMML functions for Apache Spark</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="w-full">
-        <input type="checkbox" id="tab__1__read_more" class="read-more">
-        <div class="read-more__button">
-          <label for="tab__1__read_more">Learn more</label>
-        </div>
-        <div class="read-more__content">
-
-{% highlight java %}
-import org.jpmml.transpiler.FileTranspiler;
-import org.jpmml.transpiler.Transpiler;
-import org.jpmml.transpiler.TranspilerTransformer;
-
-LoadingModelEvaluatorBuilder evaluatorBuilder = new LoadingModelEvaluatorBuilder()
-    .load(new File("XGBoost.pmml"));
-
-try {
-    Transpiler transpiler = new FileTranspiler(null, new File("XGBoost.pmml.jar"));
-
-    evaluatorBuilder = evaluatorBuilder
-        .transform(new TranspilerTransformer(transpiler));
-} catch(IOException ioe) {
-  // Ignored - the buildable evaluator shall fall back to the default evaluation mode
-}
-
-Evaluator evaluator = evaluatorBuilder.build();
-{% endhighlight %}
-
-      <p>Using the embedded verification dataset for self-testing and overall warm-up:</p>
-
-{% highlight java %}
-evaluator.verify();
-{% endhighlight %}
-
-      <p>Evaluating data records:</p>
-
-{% highlight java %}
-import org.jpmml.evaluator.EvaluatorUtil;
-import org.jpmml.evaluator.FieldValue;
-import org.jpmml.evaluator.InputField;
-import org.jpmml.evaluator.OutputField;
-import org.jpmml.evaluator.TargetField;
-
-Map<String, Object> userArguments = readArguments();
-
-Map<FieldName, FieldValue> pmmlArguments = new HashMap<>();
-    List
-    <? extends InputField> inputFields = evaluator.getInputFields();
-for(InputField inputField : inputFields){
-    Object userValue = userArguments.get((inputField.getName()).getValue());
-    // Transform an arbitrary Java primitive value to a known-good PMML argument value
-    FieldValue pmmlValue = inputField.prepare(userValue);
-    pmmlArguments.put(inputField.getName(), pmmlValue);
-}
-
-// Evaluate
-Map<FieldName, ?> pmmlResults = evaluator.evaluate(pmmlArguments);
-
-    Map<String, Object> userResults = new HashMap<>();
-        // Primary result(s) (eg. y)
-        List
-        <? extends TargetField> targetFields = evaluator.getTargetFields();
-for(TargetField targetField : targetFields){
-    Object targetValue = pmmlResults.get(targetField.getName());
-    // Transform a PMML result value to a Java primitive value
-    targetValue = EvaluatorUtil.decode(targetValue);
-    userResults.put((targetField.getName()).getValue(), targetValue);
-}
-// Secondary results (eg. probability(y), affinity(y), entityId(y))
-List<? extends OutputField> outputFields = evaluator.getOutputFields();
-for(OutputField outputField : outputFields){
-    Object outputValue = pmmlResults.get(outputField.getName());
-    userResults.put((outputField.getName()).getValue(), outputValue);
-}
-
-writeResults(userResults);
-{% endhighlight %}
-        </div>
-      </div>
-    </div>
-
-    <input type="radio" name="tab" id="tab__2">
-    <label for="tab__2">Openscoring</label>
-    <div class="tab">
-      <div class="grid grid-columns-1 lg:grid-columns-3 lg:gap-26">
-        <div class="lg:col-span-2 order-1 lg:order-0">
-          <p>Running the Openscoring server application:</p>
-
-{% highlight text %}
-$ java -jar openscoring-server-executable-${version}.jar
-{% endhighlight %}
-
-          <p>Deploying a model from a PMML XML file, using it for evaluation (batch mode), and undeploying:</p>
-
-{% highlight text %}
-$ curl -X PUT --data-binary @LogisticRegression.pmml -H "Content-type: text/xml" http://localhost:8080/openscoring/model/MyAuditModel
-$ curl -X POST --data-binary @Audit.csv -H "Content-type: text/plain; charset=UTF-8" http://localhost:8080/openscoring/model/MyAuditModel/csv > Audit-results.csv
-$ curl -X DELETE http://localhost:8080/openscoring/model/MyAuditModel
-{% endhighlight %}
-
-          <p>Doing the same using the Openscoring-Python client library:</p>
-
-{% highlight python %}
-from openscoring import Openscoring
-
-os = Openscoring(base_url = "http://localhost:8080/openscoring")
-
-os.deployFile("MyAuditModel", "LogisticRegression.pmml")
-os.evaluateCsvFile("MyAuditModel", "Audit.csv", "Audit-results.csv")
-os.undeploy("MyAuditModel")
-{% endhighlight %}
-
-          <p><a href="https://www.papis.io/2018">PAPIs 2018</a> tool demonstration: <a href="https://github.com/openscoring/papis.io">"Putting five ML models to production in five minutes"</a></p>
-        </div>
-
-        <div>
-          <h3>Client libraries</h3>
-
-          <ul class="list-none mb-8">
-            <li>
-              <a href="https://github.com/openscoring/openscoring-python" target="_blank">Openscoring-Python</a>
-            </li>
-            <li>
-              <a href="https://github.com/openscoring/openscoring-r" target="_blank">Openscoring-R</a>
-            </li>
-          </ul>
-          
-          <h3>Server application</h3>
-
-          <ul class="list-none mb-8">
-            <li>
-              <a href="https://github.com/openscoring/openscoring" target="_blank">Openscoring REST web service</a>
-            </li>
-          </ul>
-
-          <h3>Application platform integrations</h3>
-
-          <ul class="list-none mb-8">
-            <li>
-              <a href="https://github.com/openscoring/openscoring-docker" target="_blank">Openscoring for Docker</a>
-            </li>
-            <li>
-              <a href="https://github.com/openscoring/openscoring-elastic-beanstalk" target="_blank">Openscoring for AWS Elastic
-                Beanstalk</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <input type="radio" name="tab" id="tab__3">
-    <label for="tab__3">Model conversion</label>
+    <input type="radio" name="tab" id="tab__1" checked="true">
+    <label for="tab__1">Model conversion</label>
     <div class="tab">
       <div class="grid grid-columns-1 lg:grid-columns-3 lg:gap-26">
         <div class="lg:col-span-2 order-1 lg:order-0">
@@ -453,6 +249,210 @@ pmmlBuilder.buildFile(new File("LogisticRegression.pmml"))
             </li>
             <li>
               <a href="https://github.com/jpmml/jpmml-model" target="_blank">JPMML-Model</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <input type="radio" name="tab" id="tab__2">
+    <label for="tab__2">Model scoring</label>
+    <div class="tab">
+      <div class="grid grid-columns-1 lg:grid-columns-3 lg:gap-26">
+        <div class="w-full lg:col-span-2 order-1 lg:order-0">
+          <p>Building a model evaluator instance from a PMML XML file:</p>
+
+{% highlight java %}
+import java.io.File;
+import org.jpmml.evaluator.Evaluator;
+import org.jpmml.evaluator.LoadingModelEvaluatorBuilder;
+
+Evaluator evaluator = new LoadingModelEvaluatorBuilder()
+    .load(new File("LogisticRegression.pmml"))
+    .build();
+{% endhighlight %}
+            
+          <p>Doing the same, plus transpiling PMML XML markup to Java PMML API-backed Java bytecode for 5-15x performance improvement:</p>
+        </div>
+
+        <div class="w-full">
+          <h3>Data science packages</h3>
+
+          <ul class="list-none mb-8">
+            <li>
+              <a href="https://github.com/jpmml/jpmml-evaluator-python" target="_blank">JPMML-Evaluator for Python</a>
+            </li>
+          </ul>
+
+          <h3>Data engineering libraries</h3>
+          <ul class="list-none mb-8">
+            <li>
+              <a href="https://github.com/jpmml/jpmml-transpiler" target="_blank">JPMML-Transpiler</a>
+            </li>
+            <li>
+              <a href="https://github.com/jpmml/jpmml-evaluator" target="_blank">JPMML-Evaluator</a>
+            </li>
+          </ul>
+          
+          <h3>Big Data framework integrations</h3>
+
+          <ul class="list-none mb-8">
+            <li>
+              <a href="https://github.com/jpmml/jpmml-evaluator-hive" target="_blank">PMML functions for Apache Hive</a>
+            </li>
+            <li>
+              <a href="https://github.com/jpmml/jpmml-evaluator-pig" target="_blank">PMML functions for Apache Pig</a>
+            </li>
+            <li>
+              <a href="https://github.com/jpmml/jpmml-evaluator-spark" target="_blank">PMML functions for Apache Spark</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="w-full">
+        <input type="checkbox" id="tab__2__read_more" class="read-more">
+        <div class="read-more__button">
+          <label for="tab__2__read_more">Learn more</label>
+        </div>
+        <div class="read-more__content">
+
+{% highlight java %}
+import org.jpmml.transpiler.FileTranspiler;
+import org.jpmml.transpiler.Transpiler;
+import org.jpmml.transpiler.TranspilerTransformer;
+
+LoadingModelEvaluatorBuilder evaluatorBuilder = new LoadingModelEvaluatorBuilder()
+    .load(new File("XGBoost.pmml"));
+
+try {
+    Transpiler transpiler = new FileTranspiler(null, new File("XGBoost.pmml.jar"));
+
+    evaluatorBuilder = evaluatorBuilder
+        .transform(new TranspilerTransformer(transpiler));
+} catch(IOException ioe) {
+  // Ignored - the buildable evaluator shall fall back to the default evaluation mode
+}
+
+Evaluator evaluator = evaluatorBuilder.build();
+{% endhighlight %}
+
+      <p>Using the embedded verification dataset for self-testing and overall warm-up:</p>
+
+{% highlight java %}
+evaluator.verify();
+{% endhighlight %}
+
+      <p>Evaluating data records:</p>
+
+{% highlight java %}
+import org.jpmml.evaluator.EvaluatorUtil;
+import org.jpmml.evaluator.FieldValue;
+import org.jpmml.evaluator.InputField;
+import org.jpmml.evaluator.OutputField;
+import org.jpmml.evaluator.TargetField;
+
+Map<String, Object> userArguments = readArguments();
+
+Map<FieldName, FieldValue> pmmlArguments = new HashMap<>();
+    List
+    <? extends InputField> inputFields = evaluator.getInputFields();
+for(InputField inputField : inputFields){
+    Object userValue = userArguments.get((inputField.getName()).getValue());
+    // Transform an arbitrary Java primitive value to a known-good PMML argument value
+    FieldValue pmmlValue = inputField.prepare(userValue);
+    pmmlArguments.put(inputField.getName(), pmmlValue);
+}
+
+// Evaluate
+Map<FieldName, ?> pmmlResults = evaluator.evaluate(pmmlArguments);
+
+    Map<String, Object> userResults = new HashMap<>();
+        // Primary result(s) (eg. y)
+        List
+        <? extends TargetField> targetFields = evaluator.getTargetFields();
+for(TargetField targetField : targetFields){
+    Object targetValue = pmmlResults.get(targetField.getName());
+    // Transform a PMML result value to a Java primitive value
+    targetValue = EvaluatorUtil.decode(targetValue);
+    userResults.put((targetField.getName()).getValue(), targetValue);
+}
+// Secondary results (eg. probability(y), affinity(y), entityId(y))
+List<? extends OutputField> outputFields = evaluator.getOutputFields();
+for(OutputField outputField : outputFields){
+    Object outputValue = pmmlResults.get(outputField.getName());
+    userResults.put((outputField.getName()).getValue(), outputValue);
+}
+
+writeResults(userResults);
+{% endhighlight %}
+        </div>
+      </div>
+    </div>
+
+    <input type="radio" name="tab" id="tab__3">
+    <label for="tab__3">Model RESTful scoring</label>
+    <div class="tab">
+      <div class="grid grid-columns-1 lg:grid-columns-3 lg:gap-26">
+        <div class="lg:col-span-2 order-1 lg:order-0">
+          <p>Running the Openscoring server application:</p>
+
+{% highlight text %}
+$ java -jar openscoring-server-executable-${version}.jar
+{% endhighlight %}
+
+          <p>Deploying a model from a PMML XML file, using it for evaluation (batch mode), and undeploying:</p>
+
+{% highlight text %}
+$ curl -X PUT --data-binary @LogisticRegression.pmml -H "Content-type: text/xml" http://localhost:8080/openscoring/model/MyAuditModel
+$ curl -X POST --data-binary @Audit.csv -H "Content-type: text/plain; charset=UTF-8" http://localhost:8080/openscoring/model/MyAuditModel/csv > Audit-results.csv
+$ curl -X DELETE http://localhost:8080/openscoring/model/MyAuditModel
+{% endhighlight %}
+
+          <p>Doing the same using the Openscoring-Python client library:</p>
+
+{% highlight python %}
+from openscoring import Openscoring
+
+os = Openscoring(base_url = "http://localhost:8080/openscoring")
+
+os.deployFile("MyAuditModel", "LogisticRegression.pmml")
+os.evaluateCsvFile("MyAuditModel", "Audit.csv", "Audit-results.csv")
+os.undeploy("MyAuditModel")
+{% endhighlight %}
+
+          <p><a href="https://www.papis.io/2018">PAPIs 2018</a> tool demonstration: <a href="https://github.com/openscoring/papis.io">"Putting five ML models to production in five minutes"</a></p>
+        </div>
+
+        <div>
+          <h3>Client libraries</h3>
+
+          <ul class="list-none mb-8">
+            <li>
+              <a href="https://github.com/openscoring/openscoring-python" target="_blank">Openscoring-Python</a>
+            </li>
+            <li>
+              <a href="https://github.com/openscoring/openscoring-r" target="_blank">Openscoring-R</a>
+            </li>
+          </ul>
+          
+          <h3>Server application</h3>
+
+          <ul class="list-none mb-8">
+            <li>
+              <a href="https://github.com/openscoring/openscoring" target="_blank">Openscoring REST web service</a>
+            </li>
+          </ul>
+
+          <h3>Application platform integrations</h3>
+
+          <ul class="list-none mb-8">
+            <li>
+              <a href="https://github.com/openscoring/openscoring-docker" target="_blank">Openscoring for Docker</a>
+            </li>
+            <li>
+              <a href="https://github.com/openscoring/openscoring-elastic-beanstalk" target="_blank">Openscoring for AWS Elastic
+                Beanstalk</a>
             </li>
           </ul>
         </div>
