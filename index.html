@@ -2,7 +2,7 @@
 layout: default
 title: "Home"
 keywords: 
-description: "TODO"
+description: "Java PMML API overview, licensing and support"
 ---
 
 
@@ -10,12 +10,12 @@ description: "TODO"
   <div>
     <a name="hero" id="hero" class="anchor"></a>
     <h1>Standards-based, Open-source Middleware for Predictive Analytics Applications</h1>
-    <p class="mb-8 lg:mb-6">Convert your fitted <em>Apache Spark</em>, <em>R</em> or <em>Scikit-Learn</em> pipelines into the standardized <a href="https://dmg.org/pmml/v4-4-1/GeneralStructure.html">Predictive Model Markup Language</a> (PMML) representation, and make quick and dependable predictions in your Java/JVM application</p>
+    <p class="mb-8 lg:mb-6">Convert your fitted <em>Scikit-Learn</em>, <em>R</em> or <em>Apache Spark</em> pipelines into the standardized <a href="https://dmg.org/pmml/v4-4-1/GeneralStructure.html">Predictive Model Markup Language</a> (PMML) representation, and make quick and dependable predictions in your Java/JVM application.</p>
 
     <p><em>Standardization enables automation</em>, which in turn enables higher efficiency and higher quality business processes.</p>
 
     <div class="hero__cta mb-16 lg:mb-0">
-      <a href="/#why-choose-jpmml-openscoring" class="btn btn--outline text-lg lg:text-sm">OUR REASONING</a>
+      <a href="/#products" class="btn btn--outline text-lg lg:text-sm">GET STARTED NOW!</a>
     </div>
   </div>
   <div>
@@ -128,71 +128,58 @@ description: "TODO"
     <div class="tab">
       <div class="grid grid-columns-1 lg:grid-columns-3 lg:gap-26">
         <div class="lg:col-span-2 order-1 lg:order-0">
-          <p id="scikit-learn">Scikit-Learn</p>
+          <p>Model conversion involves translating a fitted pipeline or model object from the original Tabular ML representation into the PMML representation, and saving it as a PMML document.</p>
+
+          <h3 id="scikit-learn">Scikit-Learn</h3>
+          <p>Install and import the SkLearn2PMML package.
+          Replace usages of the <code>sklearn.pipeline.Pipeline</code> class with the <code>sklearn2pmml.pipeline.PMMLPipeline</code> class.
+          Fit as usual. Export the fitted <code>PMMLPipeline</code> object into a PMML XML file using the <code>sklearn2pmml.sklearn2pmml(obj, path)</code> utility function:</p>
 
 {% highlight python %}
-from sklearn.compose import ColumnTransformer
-from sklearn.linear_model import LogisticRegression
-from sklearn.preprocessing import OneHotEncoder
 from sklearn2pmml import sklearn2pmml
 from sklearn2pmml.pipeline import PMMLPipeline
 
-import pandas
+pipeline = PMMLPipeline([...])
+pipeline.fit(X, y)
 
-df = pandas.read_csv("Audit.csv")
+# Enable automated QA
+pipeline.verify(X.sample(100))
 
-pipeline = PMMLPipeline([
-  ("transformer", ColumnTransformer([
-      ("continuous", "passthrough", ["Age", "Hours", "Income"]),
-      ("categorical", OneHotEncoder(), ["Employment", "Education", "Marital", "Occupation", "Gender", "Deductions"])
-  ])),
-  ("classifier", LogisticRegression(multi_class = "ovr"))
-])
-pipeline.fit(df, df["Adjusted"])
-pipeline.verify(df.sample(10))
-
-sklearn2pmml(pipeline, "LogisticRegression.pmml")
+sklearn2pmml(pipeline, "MyPipeline.pmml.xml")
 {% endhighlight %}
 
-          <p id="r">R</p>
+          <h3 id="r">R</h3>
+          <p>Install and import the R2PMML package.
+          Fit as usual. Export the fitted model object into a PMML XML file using the <code>r2pmml::r2pmml(obj, path)</code> utility function:</p>
 
-{% highlight r %}
-library("dplyr")
+{% highlight R %}
 library("r2pmml")
 
-df = read.csv("Audit.csv")
-df$Adjusted = as.factor(df$Adjusted)
+glm.obj = glm(y ~ ., data = df)
 
-audit.glm = glm("Adjusted ~ .", data = df, family = "binomial")
-audit.glm = verify(audit.glm, newdata = sample_n(df, 10))
+# Enable automated QA
+glm.obj = r2pmml::verify(glm.obj, newdata = sample_n(df, 100))
 
-r2pmml(audit.glm, "LogisticRegression.pmml")
+r2pmml::r2pmml(glm.obj, "MyPipeline.pmml.xml")
 {% endhighlight %}
 
-          <p id="apache-spark">Apache Spark</p>
-              
+          <h3 id="apache-spark">Apache Spark</h3>
+          <p>Install and import the JPMML-SparkML library.
+          Fit as usual. Construct an <code>org.jpmml.sparkml.PMMLBuilder</code> object based on the dataset schema and the fitted pipeline model object, customize it, and export into a PMML XML file using the <code>PMMLBuilder#buildFile(File)</code> builder method:</p>
+
 {% highlight scala %}
-import java.io.File
-import org.apache.spark.ml.Pipeline
-import org.apache.spark.ml.classification.LogisticRegression
-import org.apache.spark.ml.feature.RFormula
 import org.jpmml.sparkml.PMMLBuilder
-import org.jpmml.sparkml.model.HasPredictionModelOptions;
 
-val df = spark.read.format("csv").option("header", "true").option("inferSchema", "true").load("Audit.csv")
-
-val rFormula = new RFormula().setFormula("Adjusted ~ .")
-val lr = new LogisticRegression().setLabelCol(rFormula.getLabelCol).setFeaturesCol(rFormula.getFeaturesCol)
-val pipeline = new Pipeline().setStages(Array(rFormula, lr))
-
+val pipeline = new Pipeline().setStages(...)
 val pipelineModel = pipeline.fit(df)
 
-val pmmlBuilder = new PMMLBuilder(df.schema, pipelineModel).putOption(HasPredictionModelOptions.OPTION_KEEP_PREDICTIONCOL, false).verify(df.sample(false, 0.01).limit(10))
+var pmmlBuilder = new PMMLBuilder(df.schema, pipelineModel)
 
-pmmlBuilder.buildFile(new File("LogisticRegression.pmml"))
+// Enable automated QA
+pmmlBuilder = pmmlBuilder.verify(df.sample(false, 0.01).limit(100))
+
+pmmlBuilder.buildFile(new File("MyPipeline.pmml.xml"))
 {% endhighlight %}
-
-          <p>The <a href="https://raw.githubusercontent.com/jpmml/jpmml-sklearn/master/src/test/resources/csv/Audit.csv">Audit</a> dataset (binary target; three continuous and six categorical features)</p>
         </div>
 
         <div>
@@ -200,20 +187,20 @@ pmmlBuilder.buildFile(new File("LogisticRegression.pmml"))
 
           <ul class="list-none mb-8">
             <li>
-              <bdo href="https://github.com/jpmml/sklearn2pmml" target="_blank">SkLearn-to-PMML</bdo>
+              <a href="https://github.com/jpmml/sklearn2pmml" target="_blank">SkLearn2PMML</a>
             </li>
             <li>
-              <a href="https://github.com/jpmml/r2pmml" target="_blank">R-to-PMML</a>
+              <a href="https://github.com/jpmml/r2pmml" target="_blank">R2PMML</a>
             </li>
             <li>
-              <a href="https://github.com/jpmml/pyspark2pmml" target="_blank">PySpark-to-PMML</a>
+              <a href="https://github.com/jpmml/pyspark2pmml" target="_blank">PySpark2PMML</a>
             </li>
             <li>
-              <a href="https://github.com/jpmml/sparklyr2pmml" target="_blank">Sparklyr-to-PMML</a>
+              <a href="https://github.com/jpmml/sparklyr2pmml" target="_blank">Sparklyr2PMML</a>
             </li>
           </ul>
 
-          <h3>Data engineering libraries</h3>
+          <h3>Data application engineering libraries</h3>
 
           <ul class="list-none mb-8">
             <li>
@@ -229,9 +216,6 @@ pmmlBuilder.buildFile(new File("LogisticRegression.pmml"))
               <a href="https://github.com/jpmml/jpmml-h2o" target="_blank">JPMML-H2O</a>
             </li>
             <li>
-              <a href="https://github.com/jpmml/jpmml-python" target="_blank">JPMML-Python</a>
-            </li>
-            <li>
               <a href="https://github.com/jpmml/jpmml-lightgbm" target="_blank">JPMML-LightGBM</a>
             </li>
             <li>
@@ -243,6 +227,7 @@ pmmlBuilder.buildFile(new File("LogisticRegression.pmml"))
           </ul>
 
           <h3>PMML engineering libraries</h3>
+
           <ul class="list-none mb-8">
             <li>
               <a href="https://github.com/jpmml/jpmml-converter" target="_blank">JPMML-Converter</a>
@@ -253,6 +238,17 @@ pmmlBuilder.buildFile(new File("LogisticRegression.pmml"))
           </ul>
         </div>
       </div>
+
+      <!--
+      <div class="w-full">
+        <input type="checkbox" id="tab__1__read_more" class="read-more">
+        <div class="read-more__button">
+          <label for="tab__1__read_more">Learn more</label>
+        </div>
+        <div class="read-more__content">
+        </div>
+      </div>
+      -->
     </div>
 
     <input type="radio" name="tab" id="tab__2">
@@ -260,19 +256,64 @@ pmmlBuilder.buildFile(new File("LogisticRegression.pmml"))
     <div class="tab">
       <div class="grid grid-columns-1 lg:grid-columns-3 lg:gap-26">
         <div class="w-full lg:col-span-2 order-1 lg:order-0">
-          <p>Building a model evaluator instance from a PMML XML file:</p>
+          <p>Model scoring involves loading a PMML object from a PMML document, and making predictions for new data records.
+          The scoring component resides in the application space, right between &#8220;data source&#8221; and &#8220;data sink&#8221; components, which makes the workflow most suitable for real-time prediction (sub-microsecond turnaround times).</p>
+
+          <h3 id="java">Java</h3>
+          <p>Install and import the JPMML-Evaluator library.
+          Build an <code>org.jpmml.evaluator.Evaluator</code> object based on a PMML XML file.
+          Verify the state of the evaluator using the previously embedded dataset of tricky data records:</p>
 
 {% highlight java %}
-import java.io.File;
 import org.jpmml.evaluator.Evaluator;
 import org.jpmml.evaluator.LoadingModelEvaluatorBuilder;
 
 Evaluator evaluator = new LoadingModelEvaluatorBuilder()
-    .load(new File("LogisticRegression.pmml"))
+    .load(new File("MyPipeline.pmml.xml"))
     .build();
+
+// Perform automated QA
+evaluator.verify();
 {% endhighlight %}
-            
-          <p>Doing the same, plus transpiling PMML XML markup to Java PMML API-backed Java bytecode for 5-15x performance improvement:</p>
+
+          <p>Score new data records.
+          The ordering of dictionary entries is not significant, because in PMML fields are identified by name, not by position:</p>
+{% highlight java %}
+Map<String, Object> arguments = new HashMap<String, Object>();
+arguments.put("temperature", 75);
+arguments.put("humidity", 55.0);
+arguments.put("windy", false);
+arguments.put("outlook", "overcast");
+
+Map<String, ?> results = evaluator.evaluate(arguments);
+String whatIdo = (String)results.get("whatIdo");
+{% endhighlight %}
+
+          <h3 id="python">Python</h3>
+          <p>Install and import the JPMML-Evaluator-Python package.
+          Establish Python-to-Java connectivity by launching a JPype, PyJNIus or Py4J backend.
+          Load, verify and score. The Python API is designed after the Java API.</p>
+
+{% highlight python %}
+from jpmml_evaluator import LoadingModelEvaluatorBuilder
+
+evaluator = LoadingModelEvaluatorBuilder(backend = ...) \
+  .loadFile("MyPipeline.pmml.xml") \
+  .build()
+
+# Perform automated QA
+evaluator.verify()
+
+arguments = {
+  "temperature" : 75,
+  "humidity": 55.0,
+  "windy" : False,
+  "outlook" : "overcast"
+}
+
+results = evaluator.evaluate(arguments)
+whatIdo = results["whatIdo"]
+{% endhighlight %}
         </div>
 
         <div class="w-full">
@@ -280,11 +321,17 @@ Evaluator evaluator = new LoadingModelEvaluatorBuilder()
 
           <ul class="list-none mb-8">
             <li>
-              <a href="https://github.com/jpmml/jpmml-evaluator-python" target="_blank">JPMML-Evaluator for Python</a>
+              <a href="https://github.com/jpmml/jpmml-evaluator-python" target="_blank">JPMML-Evaluator-Python</a>
+            </li>
+            <li>
+              <a target="_blank">JPMML-Evaluator-R</a>
+            </li>
+            <li>
+              <a href="https://github.com/jpmml/jpmml-evaluator-spark" target="_blank">JPMML-Evaluator-Spark</a>
             </li>
           </ul>
 
-          <h3>Data engineering libraries</h3>
+          <h3>Data application engineering libraries</h3>
           <ul class="list-none mb-8">
             <li>
               <a href="https://github.com/jpmml/jpmml-transpiler" target="_blank">JPMML-Transpiler</a>
@@ -293,99 +340,14 @@ Evaluator evaluator = new LoadingModelEvaluatorBuilder()
               <a href="https://github.com/jpmml/jpmml-evaluator" target="_blank">JPMML-Evaluator</a>
             </li>
           </ul>
-          
-          <h3>Big Data framework integrations</h3>
+
+          <h3>PMML engineering libraries</h3>
 
           <ul class="list-none mb-8">
             <li>
-              <a href="https://github.com/jpmml/jpmml-evaluator-hive" target="_blank">PMML functions for Apache Hive</a>
-            </li>
-            <li>
-              <a href="https://github.com/jpmml/jpmml-evaluator-pig" target="_blank">PMML functions for Apache Pig</a>
-            </li>
-            <li>
-              <a href="https://github.com/jpmml/jpmml-evaluator-spark" target="_blank">PMML functions for Apache Spark</a>
+              <a href="https://github.com/jpmml/jpmml-model" target="_blank">JPMML-Model</a>
             </li>
           </ul>
-        </div>
-      </div>
-
-      <div class="w-full">
-        <input type="checkbox" id="tab__2__read_more" class="read-more">
-        <div class="read-more__button">
-          <label for="tab__2__read_more">Learn more</label>
-        </div>
-        <div class="read-more__content">
-
-{% highlight java %}
-import org.jpmml.transpiler.FileTranspiler;
-import org.jpmml.transpiler.Transpiler;
-import org.jpmml.transpiler.TranspilerTransformer;
-
-LoadingModelEvaluatorBuilder evaluatorBuilder = new LoadingModelEvaluatorBuilder()
-    .load(new File("XGBoost.pmml"));
-
-try {
-    Transpiler transpiler = new FileTranspiler(null, new File("XGBoost.pmml.jar"));
-
-    evaluatorBuilder = evaluatorBuilder
-        .transform(new TranspilerTransformer(transpiler));
-} catch(IOException ioe) {
-  // Ignored - the buildable evaluator shall fall back to the default evaluation mode
-}
-
-Evaluator evaluator = evaluatorBuilder.build();
-{% endhighlight %}
-
-      <p>Using the embedded verification dataset for self-testing and overall warm-up:</p>
-
-{% highlight java %}
-evaluator.verify();
-{% endhighlight %}
-
-      <p>Evaluating data records:</p>
-
-{% highlight java %}
-import org.jpmml.evaluator.EvaluatorUtil;
-import org.jpmml.evaluator.FieldValue;
-import org.jpmml.evaluator.InputField;
-import org.jpmml.evaluator.OutputField;
-import org.jpmml.evaluator.TargetField;
-
-Map<String, Object> userArguments = readArguments();
-
-Map<FieldName, FieldValue> pmmlArguments = new HashMap<>();
-    List
-    <? extends InputField> inputFields = evaluator.getInputFields();
-for(InputField inputField : inputFields){
-    Object userValue = userArguments.get((inputField.getName()).getValue());
-    // Transform an arbitrary Java primitive value to a known-good PMML argument value
-    FieldValue pmmlValue = inputField.prepare(userValue);
-    pmmlArguments.put(inputField.getName(), pmmlValue);
-}
-
-// Evaluate
-Map<FieldName, ?> pmmlResults = evaluator.evaluate(pmmlArguments);
-
-    Map<String, Object> userResults = new HashMap<>();
-        // Primary result(s) (eg. y)
-        List
-        <? extends TargetField> targetFields = evaluator.getTargetFields();
-for(TargetField targetField : targetFields){
-    Object targetValue = pmmlResults.get(targetField.getName());
-    // Transform a PMML result value to a Java primitive value
-    targetValue = EvaluatorUtil.decode(targetValue);
-    userResults.put((targetField.getName()).getValue(), targetValue);
-}
-// Secondary results (eg. probability(y), affinity(y), entityId(y))
-List<? extends OutputField> outputFields = evaluator.getOutputFields();
-for(OutputField outputField : outputFields){
-    Object outputValue = pmmlResults.get(outputField.getName());
-    userResults.put((outputField.getName()).getValue(), outputValue);
-}
-
-writeResults(userResults);
-{% endhighlight %}
         </div>
       </div>
     </div>
@@ -395,37 +357,53 @@ writeResults(userResults);
     <div class="tab">
       <div class="grid grid-columns-1 lg:grid-columns-3 lg:gap-26">
         <div class="lg:col-span-2 order-1 lg:order-0">
-          <p>Running the Openscoring server application:</p>
+          <p>Turn any PMML document into a RESTful web service, and interact with it from any application, anywhere!
+          The workflow is subject to network latency, and is therefore more suitable for less time-sensitive tasks such as web form prediction and batch prediction (tens to hundreds of milliseconds turnaround times).</p>
+
+          <h3 id="server">Server-side</h3>
+          <p>Download and run the Openscoring server executable JAR file:</p>
 
 {% highlight text %}
 $ java -jar openscoring-server-executable-${version}.jar
 {% endhighlight %}
 
-          <p>Deploying a model from a PMML XML file, using it for evaluation (batch mode), and undeploying:</p>
+
+          <h3 id="client">Client-side</h3>
+          <p>Performing a full deploy-score-undeploy workflow using a command-line cURL application:</p>
 
 {% highlight text %}
-$ curl -X PUT --data-binary @LogisticRegression.pmml -H "Content-type: text/xml" http://localhost:8080/openscoring/model/MyAuditModel
-$ curl -X POST --data-binary @Audit.csv -H "Content-type: text/plain; charset=UTF-8" http://localhost:8080/openscoring/model/MyAuditModel/csv > Audit-results.csv
-$ curl -X DELETE http://localhost:8080/openscoring/model/MyAuditModel
+$ curl -X PUT --data-binary MyPipeline.pmml.xml -H "Content-type: text/xml" http://localhost:8080/openscoring/model/MyPipeline
+$ curl -X POST --data-binary @MyNewData.csv -H "Content-type: text/plain; charset=UTF-8" http://localhost:8080/openscoring/model/MyPipeline/csv > MyNewData-results.csv
+$ curl -X DELETE http://localhost:8080/openscoring/model/MyPipeline
 {% endhighlight %}
 
-          <p>Doing the same using the Openscoring-Python client library:</p>
+          <p>Doing the same using the Openscoring-Python package:</p>
 
 {% highlight python %}
 from openscoring import Openscoring
 
 os = Openscoring(base_url = "http://localhost:8080/openscoring")
 
-os.deployFile("MyAuditModel", "LogisticRegression.pmml")
-os.evaluateCsvFile("MyAuditModel", "Audit.csv", "Audit-results.csv")
-os.undeploy("MyAuditModel")
+os.deployFile("MyPipeline", "MyPipeline.pmml.xml")
+os.evaluateCsvFile("MyPipeline", "MyNewData.csv", "MyNewData-results.csv")
+os.undeploy("MyPipeline")
 {% endhighlight %}
 
-          <p><a href="https://www.papis.io/2018">PAPIs 2018</a> tool demonstration: <a href="https://github.com/openscoring/papis.io">"Putting five ML models to production in five minutes"</a></p>
+          <p>Doing the same using the Openscoring-R package:</p>
+
+{% highlight R %}
+library("openscoring")
+
+os = new("Openscoring", base_url = "http://localhost:8080/openscoring")
+
+deployFile(os, "MyPipeline", "MyPipeline.pmml.xml")
+evaluateCsvFile(os, "MyPipeline", "MyNewData.csv", "MyNewData-results.csv")
+undeploy(os, "MyPipeline")
+{% endhighlight %}
         </div>
 
         <div>
-          <h3>Client libraries</h3>
+          <h3>Client packages</h3>
 
           <ul class="list-none mb-8">
             <li>
@@ -435,24 +413,12 @@ os.undeploy("MyAuditModel")
               <a href="https://github.com/openscoring/openscoring-r" target="_blank">Openscoring-R</a>
             </li>
           </ul>
-          
+
           <h3>Server application</h3>
 
           <ul class="list-none mb-8">
             <li>
               <a href="https://github.com/openscoring/openscoring" target="_blank">Openscoring REST web service</a>
-            </li>
-          </ul>
-
-          <h3>Application platform integrations</h3>
-
-          <ul class="list-none mb-8">
-            <li>
-              <a href="https://github.com/openscoring/openscoring-docker" target="_blank">Openscoring for Docker</a>
-            </li>
-            <li>
-              <a href="https://github.com/openscoring/openscoring-elastic-beanstalk" target="_blank">Openscoring for AWS Elastic
-                Beanstalk</a>
             </li>
           </ul>
         </div>
@@ -486,7 +452,7 @@ os.undeploy("MyAuditModel")
               BSD 3-Clause License
             </td>
           </tr>
-  
+
           <tr>
             <td class="term">Attribute 1</td>
             <td>
@@ -497,7 +463,7 @@ os.undeploy("MyAuditModel")
               <div class="good">Good</div>
             </td>
           </tr>
-  
+
           <tr>
             <td class="term">Attribute 2</td>
             <td>
@@ -508,7 +474,7 @@ os.undeploy("MyAuditModel")
               <div class="good">Good</div>
             </td>
           </div>
-  
+
           <tr>
             <td class="term">Attribute 3</div>
             <td>
@@ -519,7 +485,7 @@ os.undeploy("MyAuditModel")
               <div class="excellent">Excellent</div>
             </td>
           </div>
-  
+
           <tr>
             <td class="term">Attribute 4</td>
             <td>
@@ -530,7 +496,7 @@ os.undeploy("MyAuditModel")
               <div class="good">Good</div>
             </td>
           </div>
-  
+
           <tr>
             <td class="term">Attribute 5</td>
             <td>
@@ -564,7 +530,7 @@ os.undeploy("MyAuditModel")
       <div class="description">{{ post.description }}</div>
     </div>
     {% endfor %}
-  
+
     <a href="/blog/index.html" class="btn w-full lg:w-5/6 mt-6 py-4 text-sm">READ MORE POSTS</a>
   </div>
 </section>
@@ -587,7 +553,7 @@ os.undeploy("MyAuditModel")
     </p>
     <p>Other exciting opportunities? Contact privately.</p>
   </div>
-  
+
   <a class="btn lg:px-12 uppercase" href="mailto:villu@openscoring.io">Send a message: villu@openscoring.io</a>
 </section>
 
