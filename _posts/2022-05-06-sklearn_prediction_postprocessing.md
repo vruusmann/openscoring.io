@@ -38,7 +38,7 @@ Its output is a 2-D Numpy array, where the leftmost column(s) correspond to the 
 ``` python
 import numpy
 
-def predict_transforme(X):
+def predict_transform(X):
   yt = self.predict(X)
   yt_postproc = self.predict_transformer.transform(yt)
   return numpy.hstack((yt, yt_postproc))
