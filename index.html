@@ -519,28 +519,6 @@ undeploy(os, "MyPipeline")
   </div>
 </section>
 
-<section class="news">
-  <a name="news" id="news" class="anchor"></a>
-  <div class="background"></div>
-
-  <div class="title">
-    <span>News</span>
-    <span class="subtitle">All blog posts</span>
-  </div>
-
-  <div class="items">
-    {% for post in site.posts limit: 3 %}
-    <div class="item">
-      <div class="title">{{ post.title }}</div>
-      <div class="date">{{ post.date | date: "%m.%d.%Y" }}</div>
-      <div class="description">{{ post.description }}</div>
-    </div>
-    {% endfor %}
-
-    <a href="/blog/index.html" class="btn w-full lg:w-5/6 mt-6 py-4 text-sm">READ MORE POSTS</a>
-  </div>
-</section>
-
 <section class="consulting">
   <a name="consulting" id="consulting" class="anchor"></a>
   <div class="contact">
@@ -590,5 +568,29 @@ undeploy(os, "MyPipeline")
         Seven days a week
       </div>
     </div>
+  </div>
+</section>
+
+<section class="news">
+  <a name="news" id="news" class="anchor"></a>
+  <div class="background"></div>
+
+  <div class="title">
+    <span>News</span>
+    <span class="subtitle">Latest blog posts</span>
+  </div>
+
+  <div class="items">
+    {% for post in site.posts limit: 3 %}
+    <div class="item">
+      <div class="title"><a href="{{ post.url }}">{{ post.title }}</a></div>
+      <div class="date">{{ post.date | date: "%m.%d.%Y" }}</div>
+      <!--
+      <div class="description">{{ post.description }}</div>
+      -->
+    </div>
+    {% endfor %}
+
+    <a href="/blog" class="btn uppercase w-full lg:w-5/6 mt-6 py-4 text-sm">All blog posts</a>
   </div>
 </section>
