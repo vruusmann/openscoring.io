@@ -10,12 +10,14 @@
 
   & table {
     width: 100%;
+    border: 0px;
   }
 
   & td {
     width: 30%;
-    padding-top: 1.4rem;
-    padding-bottom: 1.4rem;
+    border: 0px;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
     font-size: 1rem;
     line-height: 1.2;
   }

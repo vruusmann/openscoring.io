@@ -140,7 +140,10 @@
   .lg\:w-5\/6 {width: calc((100% / 6) * 5)}
 }
 
-.list-none {list-style-type: none}
+.list-none {
+  list-style-type: none;
+  margin-left: 0rem;
+}
 
 .text-sm {font-size: 0.75rem}
 .text-nm {font-size: 1rem}

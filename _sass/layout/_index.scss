@@ -6,3 +6,42 @@
 @import '../layout/footer';
 
 @import '../layout/syntax';
+
+code, kbd, pre, samp {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+main code {
+  padding: 2px 4px;
+  border-radius: 6px;
+  background-color: rgba(175, 184, 193, 0.2);
+}
+
+pre code {
+  padding: 0px;
+  background-color: var(--white);
+}
+
+pre {
+  overflow: auto;
+  -ms-overflow-style: scrollbar;
+}
+
+.post {
+
+  table, th, td {
+    border: 0.1rem solid var(--clr-primary-700);
+    margin-bottom: 2rem;
+  }
+
+  th, td {
+    padding-top: 0.2rem;
+    padding-right: 0.5rem;
+    padding-bottom: 0.2rem;
+    padding-left: 0.5rem;
+  }
+
+  th {
+    font-weight: 600;
+  }
+}

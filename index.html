@@ -5,14 +5,13 @@ keywords:
 description: "Java PMML API overview, licensing and support"
 ---
 
-
 <section class="hero">
   <div>
     <a name="hero" id="hero" class="anchor"></a>
     <h1>Standards-based, Open-source Middleware for Predictive Analytics Applications</h1>
-    <p class="mb-8 lg:mb-6">Convert your fitted <em>Scikit-Learn</em>, <em>R</em> or <em>Apache Spark</em> pipelines into the standardized <a href="https://dmg.org/pmml/v4-4-1/GeneralStructure.html" class="semibold" target="_blank">Predictive Model Markup Language</a> (PMML) representation, and make quick and dependable predictions in your Java/JVM application.</p>
+    <p class="mb-8 lg:mb-6">Convert your fitted <span class="semibold">Scikit-Learn</span>, <span class="semibold">R</span> or <span class="semibold">Apache Spark</span> models and pipelines into the standardized <a href="https://dmg.org/pmml/v4-4-1/GeneralStructure.html" class="semibold" target="_blank">Predictive Model Markup Language</a> (PMML) representation, and make quick and dependable predictions in your <span class="semibold">Java/JVM</span> application.</p>
 
-    <p><em>Standardization enables automation</em>, which in turn enables higher efficiency and higher quality business processes.</p>
+    <p><span class="semibold">Standardization enables automation</span>, which in turn enables higher efficiency and higher quality business processes.</p>
 
     <div class="hero__cta mb-16 lg:mb-0">
       <a href="/#products" class="btn btn--outline text-lg lg:text-sm">GET STARTED NOW!</a>
@@ -128,7 +127,7 @@ description: "Java PMML API overview, licensing and support"
     <div class="tab">
       <div class="grid grid-columns-1 lg:grid-columns-3 lg:gap-26">
         <div class="lg:col-span-2 order-1 lg:order-0">
-          <p>Model conversion involves translating a fitted pipeline or model object from the original Tabular ML representation into the PMML representation, and saving it as a PMML document.</p>
+          <p>Model conversion involves translating a fitted model or pipeline object from the original Tabular ML representation into the PMML representation, and saving it as a PMML document.</p>
 
           <h3 id="scikit-learn">Scikit-Learn</h3>
           <p>Install and import the SkLearn2PMML package.
@@ -165,7 +164,7 @@ r2pmml::r2pmml(glm.obj, "MyPipeline.pmml.xml")
 
           <h3 id="apache-spark">Apache Spark</h3>
           <p>Install and import the JPMML-SparkML library.
-          Fit as usual. Construct an <code>org.jpmml.sparkml.PMMLBuilder</code> object based on the dataset schema and the fitted pipeline model object, customize it, and export into a PMML XML file using the <code>PMMLBuilder#buildFile(File)</code> builder method:</p>
+          Fit as usual. Construct an <code>org.jpmml.sparkml.PMMLBuilder</code> object based on the <code>DataFrame</code> schema and the fitted <code>PipelineModel</code> object, customize it, and export into a PMML XML file using the <code>PMMLBuilder#buildFile(File)</code> builder method:</p>
 
 {% highlight scala %}
 import org.jpmml.sparkml.PMMLBuilder
@@ -183,9 +182,9 @@ pmmlBuilder.buildFile(new File("MyPipeline.pmml.xml"))
         </div>
 
         <div>
-          <h3>Data science packages</h3>
+          <h3>Data science packages:</h3>
 
-          <ul class="list-none mb-8">
+          <ul class="mb-8">
             <li>
               <a href="https://github.com/jpmml/sklearn2pmml" target="_blank">SkLearn2PMML</a>
             </li>
@@ -200,9 +199,9 @@ pmmlBuilder.buildFile(new File("MyPipeline.pmml.xml"))
             </li>
           </ul>
 
-          <h3>Data application engineering libraries</h3>
+          <h3>Data application engineering libraries:</h3>
 
-          <ul class="list-none mb-8">
+          <ul class="mb-8">
             <li>
               <a href="https://github.com/jpmml/jpmml-sklearn" target="_blank">JPMML-SkLearn</a>
             </li>
@@ -226,9 +225,9 @@ pmmlBuilder.buildFile(new File("MyPipeline.pmml.xml"))
             </li>
           </ul>
 
-          <h3>PMML engineering libraries</h3>
+          <h3>PMML engineering libraries:</h3>
 
-          <ul class="list-none mb-8">
+          <ul class="mb-8">
             <li>
               <a href="https://github.com/jpmml/jpmml-converter" target="_blank">JPMML-Converter</a>
             </li>
@@ -317,9 +316,9 @@ whatIdo = results["whatIdo"]
         </div>
 
         <div class="w-full">
-          <h3>Data science packages</h3>
+          <h3>Data science packages:</h3>
 
-          <ul class="list-none mb-8">
+          <ul class="mb-8">
             <li>
               <a href="https://github.com/jpmml/jpmml-evaluator-python" target="_blank">JPMML-Evaluator-Python</a>
             </li>
@@ -331,8 +330,8 @@ whatIdo = results["whatIdo"]
             </li>
           </ul>
 
-          <h3>Data application engineering libraries</h3>
-          <ul class="list-none mb-8">
+          <h3>Data application engineering libraries:</h3>
+          <ul class="mb-8">
             <li>
               <a href="https://github.com/jpmml/jpmml-transpiler" target="_blank">JPMML-Transpiler</a>
             </li>
@@ -341,9 +340,9 @@ whatIdo = results["whatIdo"]
             </li>
           </ul>
 
-          <h3>PMML engineering libraries</h3>
+          <h3>PMML engineering libraries:</h3>
 
-          <ul class="list-none mb-8">
+          <ul class="mb-8">
             <li>
               <a href="https://github.com/jpmml/jpmml-model" target="_blank">JPMML-Model</a>
             </li>
@@ -403,9 +402,9 @@ undeploy(os, "MyPipeline")
         </div>
 
         <div>
-          <h3>Client packages</h3>
+          <h3>Client packages:</h3>
 
-          <ul class="list-none mb-8">
+          <ul class="mb-8">
             <li>
               <a href="https://github.com/openscoring/openscoring-python" target="_blank">Openscoring-Python</a>
             </li>
@@ -414,9 +413,9 @@ undeploy(os, "MyPipeline")
             </li>
           </ul>
 
-          <h3>Server application</h3>
+          <h3>Server application:</h3>
 
-          <ul class="list-none mb-8">
+          <ul class="mb-8">
             <li>
               <a href="https://github.com/openscoring/openscoring" target="_blank">Openscoring REST web service</a>
             </li>
@@ -442,7 +441,7 @@ undeploy(os, "MyPipeline")
       <p>If the terms and conditions of AGPL-v3 are not acceptable, then it is possible to enter into a licensing agreement with Openscoring.IO, which re-licenses the desired parts of the JPMML software project from AGPL-v3 to BSD 3-Clause License.
       The re-licensing process is simple and straightforward. Please initiate it by clicking the button below:</p>
 
-      <a href="mailto:info@openscoring.io?subject=Request%20for%20BSD%203-Clause%20License" class="btn uppercase">Request for BSD 3-Clause License</a>
+      <a href="mailto:info@openscoring.io?subject=Request%20for%20BSD%203-Clause%20License" class="btn">Request for BSD 3-Clause License</a>
     </div>
 
     <div class="md:w-1/2">
@@ -451,66 +450,66 @@ undeploy(os, "MyPipeline")
           <tr>
             <td class="term"></td>
             <td>
-              AGPL-v3
+              <u>AGPL-v3</u>
             </td>
             <td class="separator"></td>
             <td>
-              BSD 3-Clause License
+              <u>BSD 3-Clause License</u>
             </td>
           </tr>
 
           <tr>
             <td class="term">Type:</td>
             <td>
-              <div>Protective (copyleft)</div>
+              <div class="bad">Protective (copyleft)</div>
             </td>
             <td class="separator"></td>
             <td>
-              <div>Permissive (copyright)</div>
+              <div class="good">Permissive (copyright)</div>
             </td>
           </tr>
 
           <tr>
             <td class="term">Can use commercially:</td>
             <td>
-              <div>Yes</div>
+              <div class="average">Yes</div>
             </td>
             <td class="separator"></td>
             <td>
-              <div>Yes</div>
+              <div class="average">Yes</div>
             </td>
           </tr>
 
           <tr>
             <td class="term">Can modify and distribute:</td>
             <td>
-              <div>Yes</div>
+              <div class="average">Yes</div>
             </td>
             <td class="separator"></td>
             <td>
-              <div>Yes</div>
+              <div class="average">Yes</div>
             </td>
           </tr>
 
           <tr>
             <td class="term">Must disclose source form to end users:</td>
             <td>
-              <div class="bad">Yes</div>
+              <div class="disastrous">Yes</div>
             </td>
             <td class="separator"></td>
             <td>
-              <div class="good">No</div>
+              <div class="excellent">No</div>
             </td>
           </tr>
 
           <tr>
             <td class="term">Can sublicense:</td>
             <td>
-              <div class="bad">No</div>
+              <div class="disastrous">No</div>
             </td>
             <td class="separator"></td>
             <td>
-              <div class="good">Yes</div>
+              <div class="excellent">Yes</div>
             </td>
           </tr>
         </table>
@@ -531,7 +530,7 @@ undeploy(os, "MyPipeline")
 
   <h2 class="title">Further assistance and discussion</h2>
 
-  <p class="subtitle">Openscoring.IO sells software, but provides free support services.</p>
+  <p class="subtitle">Openscoring.IO sells software, but provides support services for free.</p>
 
   <div class="description">
     <p>Technical questions, feature requests, bug reports, etc. about specific products?<br/>
@@ -591,6 +590,6 @@ undeploy(os, "MyPipeline")
     </div>
     {% endfor %}
 
-    <a href="/blog" class="btn uppercase w-full lg:w-5/6 mt-6 py-4 text-sm">All blog posts</a>
+    <a href="/blog" class="btn w-full lg:w-5/6 mt-6 py-4 text-sm">All blog posts</a>
   </div>
 </section>
