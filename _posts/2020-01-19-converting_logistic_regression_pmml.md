@@ -2,13 +2,13 @@
 layout: post
 title: "Converting logistic regression models to PMML documents"
 author: vruusmann
-keywords: r scikit-learn apache-spark pyspark r2pmml sklearn2pmml pyspark2pmml
+keywords: scikit-learn r apache-spark pyspark sklearn2pmml r2pmml pyspark2pmml
 ---
 
 Logistic regression is often the go-to algorithm for binary classification problems.
 
 This blog post demonstrates how to perform feature engineering and train a logistic regression model in a way that allows for quick productionization using the Predective Model Markup Language (PMML) standard.
-The same workflow is implemented using R, Scikit-Learn and Apache Spark frameworks to demostrate their particularities.
+The same workflow is implemented using Scikit-Learn, R and Apache Spark frameworks to demostrate their particularities.
 
 Summary of the workflow:
 
@@ -20,91 +20,6 @@ Summary of the workflow:
 * Training a model using the transformed dataset.
 * Enhancing the model with verification data.
 * Converting the model to a PMML document using JPMML family conversion tools and libraries.
-
-### R
-
-R follows functional programming paradigm.
-The built-in `stats` package provides a [`glm()`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/glm) function for training generalized linear models.
-The logistic regression mode is activated by setting the `family` argument to binomial value (either as a string literal or a [`family`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/family) object).
-
-If the goal is to perform feature engineering in a PMML compatible manner, then the `glm()` function must be called using "formula interface".
-Simple formulas can be specified inline (eg. `glm(Adjusted ~ ., family = "binomial", data = audit.df)`).
-Complex formulas should be assembled step by step from stringified terms, and then compiled into a standalone [`formula`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/formula) object:
-
-``` r
-audit.terms = c("Adjusted ~ .")
-
-# Feature engineering
-audit.terms = c(audit.terms, ...)
-
-audit.formula = as.formula(paste(audit.terms, collapse = " "))
-
-audit.glm = glm(formula = audit.formula, family = binomial(link = "logit"), data = audit.df)
-```
-
-Feature engineering is possible by embedding R function calls into model formulae.
-The portability of model formulae can be improved by using fully-qualified function names (ie. `<namespace>::<name>()` instead of `<name>()`).
-
-If the model will be used only in R environment, then it is possible to use any R language operator or function.
-However, if the model needs to be converted to the PMML representation, then it is possible to use only those constructs that are recognized and supported by the conversion tool.
-
-Continuous features can be manipulated using arithmetic operators and functions:
-
-``` r
-# ?I
-audit.terms = c(audit.terms, "+ I(log(Income)) - Income")
-```
-
-Most R's algorithms detect column data types, and treat continuous (eg. `numeric` and `integer`) and categorical (eg. `logical`, `factor`) features using different subroutines.
-
-The `glm()` function automatically drops the first category level of each categorical feature to fight collinearity.
-For example, a boolean feature gives rise to exactly one categorical predictor term (typically the `true` category, because `factor` levels follow the natural ordering by default).
-
-Categorical features can be regrouped using `plyr::revalue()` or `plyr::mapvalues()` functions.
-All arguments to the function call must be formatted as strings so that they could become an integral part of the `formula` object:
-
-``` r
-# Declare the replacement table as a named vector
-employment.newlevels = c(
-  "Consultant" = "Private",
-  "Private" = "Private",
-  "PSFederal" = "Public",
-  "PSLocal" = "Public",
-  "PSState" = "Public",
-  "SelfEmp" = "Private",
-  "Volunteer" = "Other"
-)
-
-# Format the named vector as a string
-# Escape both names and values using the `shQuote()` function
-employment.newlevels.str = paste("c(", paste(lapply(names(employment.newlevels), function(x){ paste(shQuote(x), "=", shQuote(employment.newlevels[[x]])) }), collapse = ", "), ")", sep = "")
-print(employment.newlevels.str)
-
-# ?plyr::revalue
-audit.terms = c(audit.terms, paste("+ plyr::revalue(Employment, replace = ", employment.newlevels.str, ") - Employment", sep = ""))
-```
-
-Feature interactions (between all feature types) can declared using the `:` operator:
-
-``` r
-# ?interaction()
-audit.terms = c(audit.terms, "+ Gender:Marital")
-```
-
-The logistic regression model together with the embedded formula is converted to the PMML representation using the [`r2pmml`](https://github.com/jpmml/r2pmml) package.
-The legacy `pmml` package supports model formulae only partially, and should be avoided.
-
-Right before the conversion, the logistic regression model object is enhanced with verification data using the `r2pmml::verify.glm()` function.
-The `audit.glm` variable is re-assigned, because this function returns a modified copy of the input (rather than modifying the input in place).
-
-``` r
-library("dplyr")
-library("r2pmml")
-
-audit.glm = r2pmml::verify(audit.glm, newdata = dplyr::sample_n(audit.df, 10))
-
-r2pmml::r2pmml(audit.glm, "RExpAudit.pmml")
-```
 
 ### Scikit-Learn
 
@@ -196,6 +111,91 @@ pipeline.fit(df_X, df_y)
 pipeline.verify(df_X.sample(n = 10))
 
 sklearn2pmml(pipeline, "SkLearnAudit.pmml")
+```
+
+### R
+
+R follows functional programming paradigm.
+The built-in `stats` package provides a [`glm()`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/glm) function for training generalized linear models.
+The logistic regression mode is activated by setting the `family` argument to binomial value (either as a string literal or a [`family`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/family) object).
+
+If the goal is to perform feature engineering in a PMML compatible manner, then the `glm()` function must be called using "formula interface".
+Simple formulas can be specified inline (eg. `glm(Adjusted ~ ., family = "binomial", data = audit.df)`).
+Complex formulas should be assembled step by step from stringified terms, and then compiled into a standalone [`formula`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/formula) object:
+
+``` r
+audit.terms = c("Adjusted ~ .")
+
+# Feature engineering
+audit.terms = c(audit.terms, ...)
+
+audit.formula = as.formula(paste(audit.terms, collapse = " "))
+
+audit.glm = glm(formula = audit.formula, family = binomial(link = "logit"), data = audit.df)
+```
+
+Feature engineering is possible by embedding R function calls into model formulae.
+The portability of model formulae can be improved by using fully-qualified function names (ie. `<namespace>::<name>()` instead of `<name>()`).
+
+If the model will be used only in R environment, then it is possible to use any R language operator or function.
+However, if the model needs to be converted to the PMML representation, then it is possible to use only those constructs that are recognized and supported by the conversion tool.
+
+Continuous features can be manipulated using arithmetic operators and functions:
+
+``` r
+# ?I
+audit.terms = c(audit.terms, "+ I(log(Income)) - Income")
+```
+
+Most R's algorithms detect column data types, and treat continuous (eg. `numeric` and `integer`) and categorical (eg. `logical`, `factor`) features using different subroutines.
+
+The `glm()` function automatically drops the first category level of each categorical feature to fight collinearity.
+For example, a boolean feature gives rise to exactly one categorical predictor term (typically the `true` category, because `factor` levels follow the natural ordering by default).
+
+Categorical features can be regrouped using `plyr::revalue()` or `plyr::mapvalues()` functions.
+All arguments to the function call must be formatted as strings so that they could become an integral part of the `formula` object:
+
+``` r
+# Declare the replacement table as a named vector
+employment.newlevels = c(
+  "Consultant" = "Private",
+  "Private" = "Private",
+  "PSFederal" = "Public",
+  "PSLocal" = "Public",
+  "PSState" = "Public",
+  "SelfEmp" = "Private",
+  "Volunteer" = "Other"
+)
+
+# Format the named vector as a string
+# Escape both names and values using the `shQuote()` function
+employment.newlevels.str = paste("c(", paste(lapply(names(employment.newlevels), function(x){ paste(shQuote(x), "=", shQuote(employment.newlevels[[x]])) }), collapse = ", "), ")", sep = "")
+print(employment.newlevels.str)
+
+# ?plyr::revalue
+audit.terms = c(audit.terms, paste("+ plyr::revalue(Employment, replace = ", employment.newlevels.str, ") - Employment", sep = ""))
+```
+
+Feature interactions (between all feature types) can declared using the `:` operator:
+
+``` r
+# ?interaction()
+audit.terms = c(audit.terms, "+ Gender:Marital")
+```
+
+The logistic regression model together with the embedded formula is converted to the PMML representation using the [`r2pmml`](https://github.com/jpmml/r2pmml) package.
+The legacy `pmml` package supports model formulae only partially, and should be avoided.
+
+Right before the conversion, the logistic regression model object is enhanced with verification data using the `r2pmml::verify.glm()` function.
+The `audit.glm` variable is re-assigned, because this function returns a modified copy of the input (rather than modifying the input in place).
+
+``` r
+library("dplyr")
+library("r2pmml")
+
+audit.glm = r2pmml::verify(audit.glm, newdata = dplyr::sample_n(audit.df, 10))
+
+r2pmml::r2pmml(audit.glm, "RExpAudit.pmml")
 ```
 
 ### Apache Spark
