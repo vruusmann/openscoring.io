@@ -65,8 +65,8 @@ from sklearn2pmml.postprocessing import BusinessDecisionTransformer
 from sklearn2pmml.preprocessing import ExpressionTransformer
 
 binary_decisions = [
-	("yes", "Auditing is needed"),
-	("no", "Auditing is not needed")
+  ("yes", "Auditing is needed"),
+  ("no", "Auditing is not needed")
 ]
 
 pipeline = PMMLPipeline([...]
@@ -88,17 +88,17 @@ from sklearn2pmml.postprocessing import BusinessDecisionTransformer
 from sklearn2pmml.preprocessing import CutTransformer, ExpressionTransformer
 
 graded_decisions = [
-	("no", "Auditing is not needed"),
-	("no over yes", "Audit in last order"),
-	("yes over no", "Audit in first order"),
-	("yes", "Auditing is needed"),
+  ("no", "Auditing is not needed"),
+  ("no over yes", "Audit in last order"),
+  ("yes over no", "Audit in first order"),
+  ("yes", "Auditing is needed"),
 ]
 
 event_proba_quantiles = [0.0, 0.1363, 0.5238, 0.7826, 1.0]
 
 predict_proba_transformer = Pipeline([
-	("selector", ExpressionTransformer("X[1]")),
-	("decider", Alias(BusinessDecisionTransformer(CutTransformer(bins = event_proba_quantiles, labels = [key for key, value in graded_decisions]), "Is auditing necessary?", graded_decisions, prefit = True), "graded decision", prefit = True))
+  ("selector", ExpressionTransformer("X[1]")),
+  ("decider", Alias(BusinessDecisionTransformer(CutTransformer(bins = event_proba_quantiles, labels = [key for key, value in graded_decisions]), "Is auditing necessary?", graded_decisions, prefit = True), "graded decision", prefit = True))
 ])
 
 pipeline = PMMLPipeline([...]
