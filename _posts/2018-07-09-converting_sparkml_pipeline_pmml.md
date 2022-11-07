@@ -198,15 +198,15 @@ The JPMML ecosystem now includes Python and R wrapper libraries for the JPMML-Sp
 
 ##### PySpark
 
-The [`pyspark2pmml`](https://github.com/jpmml/pyspark2pmml) package works with the official [PySpark](https://spark.apache.org/docs/latest/api/python/pyspark.html) interface.
+The [`pyspark2pmml`](https://github.com/jpmml/pyspark2pmml) package works with the official [PySpark](https://spark.apache.org/docs/latest/api/python/index.html) interface.
 
 The `pyspark2pmml.PMMLBuilder` Python class is effectively an API clone (in terms of the assortment and signatures of its methods) of the `org.jpmml.sparkml.PMMLBuilder` Java class.
 
 The only noteworthy difference is that it has a three-argument constructor (instead of a two-argument one):
 
-1. Apache Spark connection in the form of a [`pyspark.SparkContext`](https://spark.apache.org/docs/latest/api/python/pyspark.html#pyspark.SparkContext) object.
-2. Training dataset in the form of a [`pyspark.sql.DataFrame`](https://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame) object.
-3. Fitted pipeline in the form of a [`pyspark.ml.PipelineModel`](https://spark.apache.org/docs/latest/api/python/pyspark.ml.html#pyspark.ml.PipelineModel) object.
+1. Apache Spark connection in the form of a [`pyspark.SparkContext`](https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.SparkContext.html) object.
+2. Training dataset in the form of a [`pyspark.sql.DataFrame`](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/dataframe.html) object.
+3. Fitted pipeline in the form of a [`pyspark.ml.PipelineModel`](https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.ml.PipelineModel.html) object.
 
 The Apache Spark connection is typically available in PySpark session as the `sc` variable. The `SparkContext` class has an `_jvm` attribute, which gives Python (power-)users direct access to JPMML-SparkML functionality via the Py4J gateway.
 

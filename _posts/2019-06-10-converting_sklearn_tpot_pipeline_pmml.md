@@ -173,7 +173,7 @@ sklearn2pmml(pmml_pipeline, "TPOTAudit.pmml", with_repr = True)
 
 The [JPMML-SkLearn](https://github.com/jpmml/jpmml-sklearn) library (that powers the `sklearn2pmml` package) must recognize and support all pipeline steps for the conversion to succeed.
 
-The list of [supported Scikit-Learn and third-party library transformers and estimators](https://github.com/jpmml/jpmml-sklearn/blob/master/src/main/resources/META-INF/sklearn2pmml.properties) is long and keeps growing longer with each new release.
+The list of [supported Scikit-Learn and third-party library transformers and estimators](https://github.com/jpmml/jpmml-sklearn/blob/master/pmml-sklearn/src/main/resources/META-INF/sklearn2pmml.properties) is long and keeps growing longer with each new release.
 However, there is still a fair chance that TPOT wants to use some unsupported classes here and there.
 It can be frustrating to see great compute efforts go to waste only because the JPMML-SkLearn library rejects one pipeline step out of hundreds.
 
