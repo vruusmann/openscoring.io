@@ -107,12 +107,14 @@
     }
 
     & > input[type="radio"]:checked + label:hover {
-      background-color: var(--clr-white);
+      /*background-color: var(--clr-white);
       border-color: var(--clr-primary-300);
-      color: var(--clr-primary-300);
+      color: var(--clr-primary-300);*/
+      border-color: var(--clr-primary-500);
 
       &::after {
-        background-color: var(--clr-primary-300);
+        /*background-color: var(--clr-primary-300);*/
+        background-color: inherit;
       }
     }
   }
