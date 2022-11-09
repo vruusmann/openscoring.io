@@ -78,3 +78,24 @@
     --_border: #10B4F2;
   }
 }
+
+@media (max-width: 413px) {
+  .licensing_chart {
+    & td {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .licensing_chart {
+    & td {
+      width: auto;
+      font-size: 0.6rem;
+    }
+    
+    & td.separator {
+      width: 0px;
+    }
+  }
+}
