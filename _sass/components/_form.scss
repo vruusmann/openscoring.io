@@ -1,0 +1,46 @@
+.form--request {
+  
+  & div {
+    position: relative;
+  }
+
+  & span {
+    position: relative;
+  }
+
+  & p {
+    position: relative;
+  }
+
+  & li {
+    position: relative;
+  }
+  
+  & input {
+    background: #fff;
+    line-height: 1;
+    width: 100%;
+    padding: 1.5rem 2.3rem 1.4rem;
+    border: .2rem solid #0fb4f2;
+    border-radius: .5rem
+  }
+  
+  & textarea {
+    background: #fff;
+    line-height: 1;
+    width: 100%;
+    padding: 1.5rem 2.3rem 1.4rem;
+    border: .2rem solid #0fb4f2;
+    border-radius: .5rem
+  }
+  
+  & select {
+    background: #fff;
+    line-height: 1;
+    width: 100%;
+    padding: 1.5rem 2.3rem 1.4rem;
+    border: .2rem solid #0fb4f2;
+    border-radius: .5rem
+  }
+  
+}
