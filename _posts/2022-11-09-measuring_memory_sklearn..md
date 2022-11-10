@@ -2,13 +2,13 @@
 layout: post
 title: "Measuring the memory consumption of Scikit-Learn models"
 author: vruusmann
-keywords: scikit-learn memory
+keywords: scikit-learn sklearn2pmml memory
 ---
 
 The size of Python objects has two components - the size of the instance state, plus the size of the Python system overhead state.
 
 The size of the instance state (in bytes) can be measured using the `__sizeof__()` method.
-This method was introduced in Python 2.6, and should have canonical implementations available for all built-in types by now. However, the same cannot be said about many popular extension packages.
+This method was introduced in Python 2.6, and should have canonical implementations available for all built-in types by now. Sadly, popular extension packages have been rather slow in adopting it.
 
 The size of the Python system overhead state cannot be measured directly.
 It can be calculated by measuring the total size of a Python object using the [`sys.getsizeof(obj)`](https://docs.python.org/3/library/sys.html#sys.getsizeof) function, and then subtracting the size of the instance state from it.
@@ -36,11 +36,11 @@ estimator.fit(X, y)
 print("Final fitted state: {} B".format(estimator.__sizeof__()))
 ```
 
-The most telling thing is that the reported size of the `estimator` object does not change after it has been fitted.
+The most damning evidence is that the reported size of the `estimator` object does not change after it has been fitted.
 
 ### Scikit-Learn estimator instance state
 
-Scikit-Learn estimator types actually have two instance states:
+Scikit-Learn estimator types can exist in two instance states:
 
 1. Initial state. Contains learning instructions.
 2. Final fitted state. Contains initial learning instruction, a defensive copy of "employed" learning instructions, plus the full specification of the newly-learned function.
@@ -102,7 +102,7 @@ def sklearn_sizeof(obj):
 print("Instance state: {} B".format(sklearn_sizeof(estimator)))
 ```
 
-Unfortunately, closer inspection of `RandomForestRegressor` attributes reveals several issues and irregularities:
+Unfortunately, closer inspection of `RandomForestRegressor` attributes reveals serious issues and irregularities:
 
 | Attribute | `type(v)` | `v.__sizeof__()` |
 |-----------|-----------|------------------|
@@ -135,24 +135,21 @@ Unfortunately, closer inspection of `RandomForestRegressor` attributes reveals s
 | `warm_start` | `bool` | 24 |
 
 First, nested estimator objects (`base_estimator` and `base_estimator_` attributes) still contribute a constant value of 24 or 32 bytes.
-Second, built-in iterable types such as `list` and `tuple` appear to mis-represent their in-memory size. The situation is understandable for a list of estimator objects (the `estimators_` attribute) but defies all expectations for a list of Python strings (the `_required_parameters` attribute).
-Third, non-Python objects (eg. CPython and NumPy types) contribute fixed values around one hundred bytes each.
+Second, built-in iterable types such as `list` and `tuple` appear to mis-represent their in-memory size. The situation is understandable for a list of estimator objects (the `estimators_` attribute) but defies all expectations for a list of Python strings (the `_required_parameters` attribute) or a tuple of Python strings (the `estimator_params` attribute).
+Third, non-Python objects (eg. CPython and NumPy types) contribute constant values of around one hundred bytes.
 
 The solution is to define a custom "sizeof" function, and apply it (recursively-) to all objects in the object graph.
 
 ``` python
 import numpy
 
-def _qualname(clazz):
-  return ".".join([clazz.__module__, clazz.__name__])
-
 def deep_sklearn_sizeof(obj, verbose = True):
-  # Primitive-valued attributes
+  # Primitive type values
   if obj is None:
     return obj.__sizeof__()
   elif isinstance(obj, (int, float, str, bool, numpy.int64, numpy.float32, numpy.float64)):
     return obj.__sizeof__()
-  # Iterable attributes
+  # Iterables
   elif isinstance(obj, list):
     sum = [].__sizeof__() # Empty list
     for v in obj:
@@ -165,13 +162,15 @@ def deep_sklearn_sizeof(obj, verbose = True):
       v_sizeof = deep_sklearn_sizeof(v, verbose = False)
       sum += v_sizeof
     return sum
-  # Numpy ndarray-valued attributes
+  # Numpy ndarrays
   elif isinstance(obj, numpy.ndarray):
-    sum = obj.__sizeof__() # Array container
+    sum = obj.__sizeof__() # Array header
     sum += (obj.size * obj.itemsize) # Array content
     return sum
+  # Reference type values
   else:
-    qualname = _qualname(obj.__class__)
+    clazz = obj.__class__
+    qualname = ".".join([clazz.__module__, clazz.__name__])
     # Restrict the circle of competence to Scikit-Learn classes
     if not (qualname.startswith("_abc.") or qualname.startswith("sklearn.")):
       raise ValueError(qualname)
@@ -213,6 +212,17 @@ Inside the object graph, there are 2 decision tree objects in the initial state,
 
 The in-memory size of fitted decision tree objects ranges from ~805'000 bytes to ~820'000 bytes.
 The variance stems from the fact that the training data was randomly generated. All the trees are close to fully grown, but some branches of some trees have hit early stopping criteria, leading to small variations in node counts.
+
+### Update
+
+The `deep_sklearn_sizeof(obj, verbose)` utility function has been refactored, and made available in the [`sklearn2pmml`](https://github.com/jpmml/sklearn2pmml) package version 0.87.1 as the `sklearn2pmml.util.deep_sizeof(obj, with_overhead, verbose)` utility function:
+
+``` python
+from sklearn2pmml.util import deep_sizeof
+
+memory_size = deep_sizeof(estimator, with_overhead = True, verbose = True)
+print(memory_size)
+```
 
 ### Resources
 

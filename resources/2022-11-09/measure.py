@@ -29,16 +29,13 @@ def get_instance_attrs(obj):
 	names = [name for name in names if is_instance_attr(obj, name)]
 	return names
 
-def _qualname(clazz):
-	return ".".join([clazz.__module__, clazz.__name__])
-
-def deep_sklearn_sizeof(obj, verbose = True):
-	# Primitive-valued attributes
+def deep_sklearn_sizeof(obj, verbose = False):
+	# Primitive type values
 	if obj is None:
 		return obj.__sizeof__()
 	elif isinstance(obj, (int, float, str, bool, numpy.int64, numpy.float32, numpy.float64)):
 		return obj.__sizeof__()
-	# Iterable attributes
+	# Iterables
 	elif isinstance(obj, list):
 		sum = [].__sizeof__() # Empty list
 		for v in obj:
@@ -51,13 +48,15 @@ def deep_sklearn_sizeof(obj, verbose = True):
 			v_sizeof = deep_sklearn_sizeof(v, verbose = False)
 			sum += v_sizeof
 		return sum
-	# Numpy ndarray-valued attributes
+	# Numpy ndarrays
 	elif isinstance(obj, numpy.ndarray):
-		sum = obj.__sizeof__() # Array container
+		sum = obj.__sizeof__() # Array header
 		sum += (obj.size * obj.itemsize) # Array content
 		return sum
+	# Reference type values
 	else:
-		qualname = _qualname(obj.__class__)
+		clazz = obj.__class__
+		qualname = ".".join([clazz.__module__, clazz.__name__])
 		# Restrict the circle of competence to Scikit-Learn classes
 		if not (qualname.startswith("_abc.") or qualname.startswith("sklearn.")):
 			raise ValueError(qualname)
@@ -92,4 +91,4 @@ else:
 	raise ValueError()
 
 print("Tree state:")
-print("{} B\n".format(deep_sklearn_sizeof(tree)))
+print("{} B\n".format(deep_sklearn_sizeof(tree, verbose = True)))
