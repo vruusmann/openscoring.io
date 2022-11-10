@@ -46,7 +46,7 @@
     border-radius: .5rem
   }
   
-  & > .btn {
+  & .btn {
     display: inline-block;
     padding-top: 1.5rem;
     padding-right: 1.5rem;
@@ -63,12 +63,12 @@
     transition: all 0.1s ease-in-out
   }
   
-  & > .btn:hover {
+  & .btn:hover {
     background-color: var(--clr-primary-300);
     border-color: var(--clr-primary-300)
   }
   
-  & > .btn:active {
+  & .btn:active {
     background-color: var(--clr-purple-300);
     border-color: var(--clr-purple-300)
   }
