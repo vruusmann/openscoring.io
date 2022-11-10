@@ -18,20 +18,23 @@
   
   & input {
     background: #fff;
+    font-size: 0.8rem;
     line-height: 1;
     width: 100%;
     padding: 1.5rem 2.3rem 1.4rem;
-    border: .2rem solid #0fb4f2;
+    border: .1rem solid #0fb4f2;
     border-radius: .5rem
   }
   
   & textarea {
     background: #fff;
-    line-height: 1;
+    font-size: 0.8rem;
+    line-height: 1.4;
     width: 100%;
     padding: 1.5rem 2.3rem 1.4rem;
     border: .2rem solid #0fb4f2;
-    border-radius: .5rem
+    border-radius: .5rem;
+    min-height: 20rem
   }
   
   & select {
@@ -41,6 +44,33 @@
     padding: 1.5rem 2.3rem 1.4rem;
     border: .2rem solid #0fb4f2;
     border-radius: .5rem
+  }
+  
+  & btn {
+    display: inline-block;
+    padding-top: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    background-color: var(--clr-primary-500);
+    border: solid 1px var(--clr-primary-500);
+    border-radius: 10px;
+    color: var(--clr-white);
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.1s ease-in-out
+  }
+  
+  & btn:hover {
+    background-color: var(--clr-primary-300);
+    border-color: var(--clr-primary-300)
+  }
+  
+  & btn:active {
+    background-color: var(--clr-purple-300);
+    border-color: var(--clr-purple-300)
   }
   
 }
