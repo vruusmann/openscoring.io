@@ -5,6 +5,30 @@ title: "Request form"
 
 <h1>{{ page.title }}</h1>
 
-<div class="pt5 text-center" style="height:55vh">
-  <div>Request form coming soon...</div>
+<div>
+  <div class="w-full mb-6">Use request form below.</div>
+
+  <form action="#" id="requestForm" method="post" class="form--request" novalidate>
+		
+    <div class="grid grid-columns-1 lg:grid-columns-3 lg:gap-4 mb-4">
+      <div class="lg:col-span-2 order-1 lg:order-0">
+        <input type="text" name="yourName" id="yourName" value="" class="form-control requiredField" placeholder="Your name *">
+      </div>
+      <div class="lg:col-span-2 order-2 lg:order-0">
+        <input type="email" name="email" id="email" value="" class="form-control requiredField email" placeholder="Your E-mail *">
+      </div>
+    </div>
+        
+    <div class="grid grid-columns-1 lg:grid-columns-3 lg:gap-4 mb-4">		
+      <div class="lg:col-span-2">
+        <textarea name="comments" id="commentsText" rows="7" class="form-control requiredField" placeholder="Your request *"></textarea>
+      </div>
+    </div>
+		
+		<div class="grid grid-columns-3">
+			<input type="submit" name="submit" value="Send request" class="btn">
+		</div>
+		
+  </form>
+  
 </div>
