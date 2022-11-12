@@ -14,7 +14,7 @@ sitemap:
 <ul class="posts">
   {% for post in site.posts %}
   <li class="post__item">
-    <div class="post__date">{{ post.date | date: "%m.%d.%Y" }}</div>
+    <div class="post__date">{{ post.date | date: '%Y-%m-%d' }}</div>
     <a class="post__title" href="{{ post.url }}">{{ post.title }}</a>
     <div class="post__description">{{ post.description }}</div>
   </li>

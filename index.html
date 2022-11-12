@@ -590,7 +590,7 @@ undeploy(os, "MyPipeline")
     {% for post in site.posts limit: 3 %}
     <div class="item">
       <div class="title"><a href="{{ post.url }}" class="semibold">{{ post.title }}</a></div>
-      <div class="date">{{ post.date | date: "%m.%d.%Y" }}</div>
+      <div class="date">{{ post.date | date: '%Y-%m-%d' }}</div>
       <!--
       <div class="description">{{ post.description }}</div>
       -->
