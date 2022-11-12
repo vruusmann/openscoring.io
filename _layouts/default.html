@@ -45,17 +45,13 @@
 </head>
 
 <body>
-  {% unless page.header == false %}
-    {% include header.html %}
-  {% endunless %}
+  {% unless page.header == false %}{% include header.html %}{% endunless %}
 
   <main class="container mt-26">
     {{ content }}
   </main>
 
-  {% unless page.footer == false %}
-    {% include footer.html %}
-  {% endunless %}
+  {% unless page.footer == false %}{% include footer.html %}{% endunless %}
 
   <script>
     var sc_project = 11704106;
