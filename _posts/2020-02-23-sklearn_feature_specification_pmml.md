@@ -24,14 +24,14 @@ The Predictive Model Markup Language (PMML) defines data structures for represen
 
 Every model element holds the description of its data interface:
 
-* Functional description of feature domains - the [`MiningSchema`](http://dmg.org/pmml/v4-4-1/MiningSchema.html) element.
-* Functional description of the prediction range - [`Targets`](http://dmg.org/pmml/v4-4-1/Targets.html) and [`Output`](http://dmg.org/pmml/v4-4-1/Output.html) elements.
-* Simple statistics about feature domains - the [`ModelStats`](http://dmg.org/pmml/v4-4-1/Statistics.html) element.
-* Complex statistics about feature domains partitioned by the prediction range - the [`ModelExplanation`](http://dmg.org/pmml/v4-4-1/ModelExplanation.html) element.
+* Functional description of feature domains - the [`MiningSchema`](https://dmg.org/pmml/v4-4-1/MiningSchema.html#xsdElement_MiningSchema) element.
+* Functional description of the prediction range - [`Targets`](https://dmg.org/pmml/v4-4-1/Targets.html#xsdElement_Targets) and [`Output`](https://dmg.org/pmml/v4-4-1/Output.html#xsdElement_Output) elements.
+* Simple statistics about feature domains - the [`ModelStats`](https://dmg.org/pmml/v4-4-1/Statistics.html#xsdElement_ModelStats) element.
+* Complex statistics about feature domains partitioned by the prediction range - the [`ModelExplanation`](https://dmg.org/pmml/v4-4-1/ModelExplanation.html#xsdElement_ModelExplanation) element.
 
 Value preparation is a two stage process.
 
-In the first stage, the user value is converted to a PMML value according to the [`DataField`](http://dmg.org/pmml/v4-4-1/DataDictionary.html) element.
+In the first stage, the user value is converted to a PMML value according to the [`DataField`](https://dmg.org/pmml/v4-4-1/DataDictionary.html#xsdElement_DataField) element.
 
 The user value is cast or parsed into the correct data type, restricted to the correct operational type (one of continuous, categorical or ordinal), and assigned to the value space (one of valid, invalid or missing).
 The resulting PMML value can be regarded as a value in a three-dimensional space `<data type>-<operational type>-<value space type>`.
@@ -60,12 +60,12 @@ Value conversions:
 | `null` | `integer-categorical-missing` | Missing value |
 | `java.math.BigDecimal("-999.000")` | `integer-categorical-missing` | Castable without loss of precision, listed as missing |
 
-In the second stage, the PMML value undergoes one or more value space-dependent treatments according to the [`MiningField`](http://dmg.org/pmml/v4-4-1/MiningSchema.html) element.
+In the second stage, the PMML value undergoes one or more value space-dependent treatments according to the [`MiningField`](https://dmg.org/pmml/v4-4-1/MiningSchema.html#xsdElement_MiningField) element.
 
 **Valid values pass by default**.
-The domain of continuous values can be restricted by changing the value of the [`outliers`](http://dmg.org/pmml/v4-4-1/MiningSchema.html#xsdType_OUTLIER-TREATMENT-METHOD) attribute from `asIs` to `asMissingValues` or `asExtremeValues`, plus adding `lowValue` and `highValue` attributes.
+The domain of continuous values can be restricted by changing the value of the [`outliers`](https://dmg.org/pmml/v4-4-1/MiningSchema.html#xsdType_OUTLIER-TREATMENT-METHOD) attribute from `asIs` to `asMissingValues` or `asExtremeValues`, plus adding `lowValue` and `highValue` attributes.
 
-**Invalid values _do not_ pass by default**, because the default value of the [`invalidValueTreatment`](http://dmg.org/pmml/v4-4-1/MiningSchema.html#xsdType_INVALID-VALUE-TREATMENT-METHOD) attribute is `returnInvalid`.
+**Invalid values _do not_ pass by default**, because the default value of the [`invalidValueTreatment`](https://dmg.org/pmml/v4-4-1/MiningSchema.html#xsdType_INVALID-VALUE-TREATMENT-METHOD) attribute is `returnInvalid`.
 
 The behaviour where the model actively refuses to compute a prediction can be surprising to Scikit-Learn users.
 However, this should be seen as a feature, not a bug, because the objetive is to inform upstream agents about data correctness and/or consistency issues (eg. feature drift) and prevent downstream agents from taking action on dubious results.
@@ -79,7 +79,7 @@ Invalid values may be replaced with a predefined valid value by changing the val
 Alternatively, they may be replaced with a missing value by changing the value of the `invalidValueTreatment` attribute to `asMissing`.
 
 **Missing values pass by default**.
-By analogy with invalid value treatment, missing values can be rejected by changing the value of the [`missingValueTreatment`](http://dmg.org/pmml/v4-4-1/MiningSchema.html#xsdType_MISSING-VALUE-TREATMENT-METHOD) attribute to `(x-)returnInvalid`, or replaced with a predefined valid value by adding the `missingValueReplacement` attribute.
+By analogy with invalid value treatment, missing values can be rejected by changing the value of the [`missingValueTreatment`](https://dmg.org/pmml/v4-4-1/MiningSchema.html#xsdType_MISSING-VALUE-TREATMENT-METHOD) attribute to `(x-)returnInvalid`, or replaced with a predefined valid value by adding the `missingValueReplacement` attribute.
 
 **Important**: The IEEE 754 constant NaN ("Not a Number") is assigned to invalid value space (not to missing value space).
 

@@ -120,7 +120,7 @@ sklearn2pmml(pipeline, "LogisticRegressionAudit.pmml")
 
 ### PMML
 
-The [`MiningField`](http://dmg.org/pmml/v4-4-1/MiningSchema.html) element specifies an `importance` attribute for recording field importance values.
+The [`MiningField`](https://dmg.org/pmml/v4-4-1/MiningSchema.html#xsdElement_MiningField) element specifies an `importance` attribute for recording field importance values.
 
 The PMML term "field" is incompatible with the Scikit-Learn term "feature".
 The former corresponds to **raw feature** (data before the first pre-processing step), whereas the latter corresponds to **fully-developed feature** (data after the last pre-processing step).
@@ -129,7 +129,7 @@ They are functionally equivalent only when the pipeline does not contain any dat
 Thanks to the relative nature of Scikit-Learn feature importances it is possible to reduce them to PMML field importances via simple summation.
 If a feature is derived from two or more columns, then its importance value is split between them in equal proportions.
 
-The JPMML family of conversion tools and libraries preserves native feature importance information by attaching an `X-FeatureImportances` extension element to the [`MiningSchema`](http://dmg.org/pmml/v4-4-1/MiningSchema.html) element. 
+The JPMML family of conversion tools and libraries preserves native feature importance information by attaching an `X-FeatureImportances` extension element to the [`MiningSchema`](https://dmg.org/pmml/v4-4-1/MiningSchema.html#xsdElement_MiningSchema) element. 
 This extension element contains a table of feature names mapped to their importance values.
 In the table header, there is a quick summary (the number and the sum of non-zero importance values, extreme non-zero importance values, etc.) to facilitate data parsing and interpreration.
 

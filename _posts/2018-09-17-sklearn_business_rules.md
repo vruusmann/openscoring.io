@@ -42,14 +42,14 @@ There are many third-party business rules solutions available for the Python pla
 ### PMML perspective
 
 The PMML specification provides two model elements for representing business rules models.
-The [`TreeModel`](http://dmg.org/pmml/v4-4-1/TreeModel.html) element can be used if the decision path is well determined (ie. unique), which means that a data record can and shall be matched by a single business rule only.
-The [`RuleSetModel`](http://dmg.org/pmml/v4-4-1/RuleSet.html) element can be used to address any conceivable decisioning strategy. For example, evaluating a data record against a collection of business rules, and computing the decision by applying some aggregation function (eg. a weighted sum) over the matched business rules.
+The [`TreeModel`](https://dmg.org/pmml/v4-4-1/TreeModel.html#xsdElement_TreeModel) element can be used if the decision path is well determined (ie. unique), which means that a data record can and shall be matched by a single business rule only.
+The [`RuleSetModel`](https://dmg.org/pmml/v4-4-1/RuleSet.html#xsdElement_RuleSetModel) element can be used to address any conceivable decisioning strategy. For example, evaluating a data record against a collection of business rules, and computing the decision by applying some aggregation function (eg. a weighted sum) over the matched business rules.
 
 A predicate is simply a boolean expression. The PMML specification provides three categories of predicate elements:
 
-* Constant predicates. The [`True`](http://dmg.org/pmml/v4-4-1/TreeModel.html#xsdElement_True) element and the [`False`](http://dmg.org/pmml/v4-4-1/TreeModel.html#xsdElement_False) element.
-* Primary predicates (`<Field> <Operator> <Value>`). The [`SimplePredicate`](http://dmg.org/pmml/v4-4-1/TreeModel.html#xsdElement_SimplePredicate) element implements comparison expressions (`equal`, `notEqual`, `lessThan`, `lessOrEqual`, `greaterOrEqual` and `greaterThan` operators) and missingness checks (`isMissing` and `isNotMissing` operators). The [`SimpleSetPredicate`](http://dmg.org/pmml/v4-4-1/TreeModel.html#xsdElement_SimpleSetPredicate) element implements set membership expressions (`isIn` and `isNotIn` operators).
-* Secondary predicate (`<Predicate> <Operator> <Predicate>`). The [`CompoundPredicate`](http://dmg.org/pmml/v4-4-1/TreeModel.html#xsdElement_CompoundPredicate) element implements boolean logic expressions (`and`, `or`, `xor` and `surrogate` operators).
+* Constant predicates. The [`True`](https://dmg.org/pmml/v4-4-1/TreeModel.html#xsdElement_True) element and the [`False`](https://dmg.org/pmml/v4-4-1/TreeModel.html#xsdElement_False) element.
+* Primary predicates (`<Field> <Operator> <Value>`). The [`SimplePredicate`](https://dmg.org/pmml/v4-4-1/TreeModel.html#xsdElement_SimplePredicate) element implements comparison expressions (`equal`, `notEqual`, `lessThan`, `lessOrEqual`, `greaterOrEqual` and `greaterThan` operators) and missingness checks (`isMissing` and `isNotMissing` operators). The [`SimpleSetPredicate`](https://dmg.org/pmml/v4-4-1/TreeModel.html#xsdElement_SimpleSetPredicate) element implements set membership expressions (`isIn` and `isNotIn` operators).
+* Secondary predicate (`<Predicate> <Operator> <Predicate>`). The [`CompoundPredicate`](https://dmg.org/pmml/v4-4-1/TreeModel.html#xsdElement_CompoundPredicate) element implements boolean logic expressions (`and`, `or`, `xor` and `surrogate` operators).
 
 The expressive power of primary predicates seems rather limiting at first glance. For example, they require the right-hand side of the expression to be a value literal (rather than another field reference or expression/predicate), which rules out direct comparisons between fields (`<Field> <Operator> <Field>`). The workaround is to extract such complex logic into a standalone `DerivedField` element, and re-express the primary predicate in terms of this derived field and its possible value range. For example, a comparison expression `x1 < x2` can be re-expressed as `(x1 - x2) < 0` or `(x1 / x2) < 1`.
 
@@ -123,7 +123,7 @@ pipeline.fit(iris_X, iris_y)
 sklearn2pmml(pipeline, "RuleSetIris-simple.pmml")
 ```
 
-The PMML representation of the "core" of this model as a [`RuleSet`](http://dmg.org/pmml/v4-4-1/RuleSet.html#xsdElement_RuleSet) element:
+The PMML representation of the "core" of this model as a [`RuleSet`](https://dmg.org/pmml/v4-4-1/RuleSet.html#xsdElement_RuleSet) element:
 
 ``` xml
 <RuleSet defaultScore="virginica" defaultConfidence="1.0">

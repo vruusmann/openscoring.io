@@ -51,7 +51,7 @@ Decision trees can be ensembled either via bagging (random forest) or boosting (
 
 ### PMML
 
-The Predictive Model Markup Language (PMML) provides a [`TextIndex`](http://dmg.org/pmml/v4-4-1/Transformations.html#xsdElement_TextIndex) element for representing TF(-IDF) operations.
+The Predictive Model Markup Language (PMML) provides a [`TextIndex`](https://dmg.org/pmml/v4-4-1/Transformations.html#xsdElement_TextIndex) element for representing TF(-IDF) operations.
 In brief, this tranformation takes a string input value, normalizes it, and then counts the occurrences of the specified term.
 Term matching can be strict or fuzzy.
 
@@ -99,7 +99,7 @@ countvectorizer = CountVectorizer(tokenizer = Matcher(word_re = "\w+"))
 
 Another difference between TF(-IDF) workflows is that PMML performs text normalization (precedes tokenization) whereas Scikit-Learn performs token normalization (follows tokenization).
 
-Text normalization is activated by adding one or more [`TextIndexNormalization`](http://dmg.org/pmml/v4-4-1/Transformations.html#xsdElement_TextIndexNormalization) child elements to the `TextIndex` element.
+Text normalization is activated by adding one or more [`TextIndexNormalization`](https://dmg.org/pmml/v4-4-1/Transformations.html#xsdElement_TextIndexNormalization) child elements to the `TextIndex` element.
 Again, the rules must be expressed in the form of regular expressions.
 
 The JPMML-SkLearn library currently uses a single `TextIndexNormalization` element for encoding the removal of stop words.

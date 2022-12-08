@@ -239,8 +239,8 @@ The dataset is a loose collection of columns. Each stage pulls in a subset of ex
 Created columns stay in place until replaced or removed.
 
 Logistic regression models can be represented using two different PMML model elements.
-The [`GeneralRegressionModel`](http://dmg.org/pmml/v4-4-1/GeneralRegression.html) element is more flexible (eg. contrast matrices, parameterizable link functions), but is encoded in a matrix-oriented way that is rather difficult to parse and follow for humans.
-The [`RegressionModel`](http://dmg.org/pmml/v4-4-1/Regression.html) elements loses in functionality but makes it up in human-friendliness.
+The [`GeneralRegressionModel`](https://dmg.org/pmml/v4-4-1/GeneralRegression.html#xsdElement_GeneralRegressionModel) element is more flexible (eg. contrast matrices, parameterizable link functions), but is encoded in a matrix-oriented way that is rather difficult to parse and follow for humans.
+The [`RegressionModel`](https://dmg.org/pmml/v4-4-1/Regression.html#xsdElement_RegressionModel) elements loses in functionality but makes it up in human-friendliness.
 
 The JPMML-SparkML library allows the end user to choose between them by setting the value of the `org.jpmml.sparkml.model.HasRegressionTableOptions#OPTION_REPRESENTATION` conversion option to `GeneralRegressionModel` or `RegressionModel` string literals, respectively.
 

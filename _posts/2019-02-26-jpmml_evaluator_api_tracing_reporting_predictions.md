@@ -82,7 +82,7 @@ A reporting `OutputField` element has the following attributes:
 
 * `name` - The name of the output field. A good convention is to wrap the name of the base output field as `reporting(<output field name>)`.
 * `dataType` and `optype` - Fixed as `string` and `categorical`, respectively.
-* [`feature`](http://dmg.org/pmml/v4-4-1/Output.html#xsdType_RESULT-FEATURE) - Fixed as `x-report`. The "x-" prefix to the attribute value indicates that this is a vendor extension.
+* [`feature`](https://dmg.org/pmml/v4-4-1/Output.html#xsdType_RESULT-FEATURE) - Fixed as `x-report`. The "x-" prefix to the attribute value indicates that this is a vendor extension.
 * `x-reportField` - The name of the base output field. Again, the "x-" prefix to the attribute name indicates that this is a vendor extension.
 
 For example, enhancing a binary classification model to extract probability calculation reports for the "event" and "no-event" target categories:

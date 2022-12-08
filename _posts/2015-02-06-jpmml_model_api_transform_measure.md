@@ -5,7 +5,7 @@ author: vruusmann
 keywords: jpmml-model memory optimization
 ---
 
-Java (programming language-) agent is a JVM service that is based on the [Java Instrumentation API](https://docs.oracle.com/javase/7/docs/api/java/lang/instrument/package-summary.html). Java agents are loaded into the JVM and activated before any application code is loaded. Therefore, Java agents have the unique ability to monitor and/or control the complete life-cycle of Java applications. This is typically achieved by modifying the definitions of Java class files.
+Java (programming language-) agent is a JVM service that is based on the [Java Instrumentation API](https://docs.oracle.com/javase/8/docs/api/java/lang/instrument/package-summary.html). Java agents are loaded into the JVM and activated before any application code is loaded. Therefore, Java agents have the unique ability to monitor and/or control the complete life-cycle of Java applications. This is typically achieved by modifying the definitions of Java class files.
 
 ### SAX Locator information
 

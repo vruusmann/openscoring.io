@@ -175,7 +175,7 @@ The `PMMLBuilder` class exposes the following mutator methods:
 
 Every conversion operation raises concern, whether the JPMML-SparkML library was doing a good job or not. Say, the conversion operation appears to have succeeded (ie. there were no exceptions thrown, and no warning- or error-level log messages emitted), but how to be sure that the PMML representation of the fitted pipeline shall be making exactly the same predictions as the Apache Spark representation did?
 
-The PMML specification addresses this condundrum with the [model verification](http://dmg.org/pmml/v4-4-1/ModelVerification.html) mechanism.
+The PMML specification addresses this condundrum with the [model verification](https://dmg.org/pmml/v4-4-1/ModelVerification.html) mechanism.
 In brief, it is possible to embed a verification data into models. The verification dataset has two column groups - the inputs, and the predictions that the original ML framework made when those inputs were fed into it.
 PMML engines are expected to perform self-checks using the verification data before commissioning the model. If the live predictions made by the PMML engine agree with the stored predictions of the original ML framework (within the defined acceptability criteria), then that is a strong indication that everything is going favourably.
 Next to most common cases, the verification dataset should aim to include all sorts of fringe cases (eg. missing, outlier, invalid values) in order to increase the confidence.
