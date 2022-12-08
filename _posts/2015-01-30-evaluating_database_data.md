@@ -76,7 +76,7 @@ The CSV document must conform to the following rules:
 
 The evaluation is handled by the Openscoring web service over the CSV evaluation REST API endpoint. In brief, this REST API endpoint is bound to the HTTP POST method. The request body is a CSV document with model arguments. The request is processed synchronously. For better responsiveness, application clients can perform the evaluation in parallel, where one big request is split into several smaller requests. The response body is another CSV document with model results.
 
-Database engines typically do not advertise HTTP client functionality as their core competency. It becomes a one-time responsibility for SQL developers to find and install a suitable database extension for this purpose. In this exercise, the HTTP client functionality is provided by the [cURL](https://curl.haxx.se/) command-line application, which is executed from within PostgreSQL database using the [PL/sh](https://github.com/petere/plsh) procedural language.
+Database engines typically do not advertise HTTP client functionality as their core competency. It becomes a one-time responsibility for SQL developers to find and install a suitable database extension for this purpose. In this exercise, the HTTP client functionality is provided by the [cURL](https://curl.se/) command-line application, which is executed from within PostgreSQL database using the [PL/sh](https://github.com/petere/plsh) procedural language.
 
 Activating the PL/sh extension and creating two shell-backed SQL functions `evaluate_iris()` and `clean_iris()`:
 

@@ -17,7 +17,7 @@ If a Java SE 9 (or newer) application wants to use JAXB runtime functionality, t
 
 The second option is seen as cleaner and safer. Meddling with Java/JVM startup options just to please one application is bad style. Furthermore, there remains uncertainty about the JAXB runtime version, and if all transitive dependencies (internal APIs for power users) are available and sufficiently up to date.
 
-The JPMML-Model library declares a compile-time dependency ("provided" Apache Maven scope) on [GlassFish Metro](https://metro.java.net) and [EclipseLink MOXy](https://www.eclipse.org/eclipselink) runtimes.
+The JPMML-Model library declares a compile-time dependency ("provided" Apache Maven scope) on [GlassFish Metro](https://javaee.github.io/metro/) and [EclipseLink MOXy](https://www.eclipse.org/eclipselink/) runtimes.
 
 If a Java application declares a run-time dependency ("compile" and "runtime" Apache Maven scopes) only on the JPMML-Model library, then it is limited to the first deployment scenario.
 However, if the Java application declares a run-time dependency on the JPMML-Model library **plus** one or more JAXB runtimes, then it can follow either development scenario.

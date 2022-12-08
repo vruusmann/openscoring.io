@@ -15,7 +15,7 @@ They are not designed to independently discover non-linearities along individual
 Second, filtering down the feature space.
 Specialized LR algorithms can prioritize and eliminate dimensions using regularization. However, the most common ones estimate coefficients for all dimensions of the feature space.
 
-Facebook Research has demonstrated how feature engineering can be automated using a gradient boosted decision tree (GBDT) model: [Practical Lessons from Predicting Clicks on Ads at Facebook](https://research.fb.com/publications/practical-lessons-from-predicting-clicks-on-ads-at-facebook/)
+Facebook Research has demonstrated how feature engineering can be automated using a gradient boosted decision tree (GBDT) model: [Practical Lessons from Predicting Clicks on Ads at Facebook](https://research.facebook.com/publications/practical-lessons-from-predicting-clicks-on-ads-at-facebook/)
 
 The idea is to train a GBDT model on a raw feature space and collect and examine the "decision paths" of its member decision tree models.
 A decision path which operates on a single feature can be regarded as a non-linear transformation on it (eg. binning a continuous feature to a pseudo-categorical feature). A decision path which operates on multiple features can be regarded as an interaction between them.
