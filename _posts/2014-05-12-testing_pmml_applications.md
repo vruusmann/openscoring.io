@@ -5,7 +5,7 @@ author: vruusmann
 keywords: jpmml-evaluator testing
 ---
 
-The [JPMML-Evaluator](https://github.com/jpmml/jpmml-evaluator) library aims to provide high quality service to its users. The main module contains unit tests that ensure compliance with the PMML specification. Additionally, there are several support modules that contain integration tests that ensure interoperability with popular third-party PMML converters such as [R/Rattle](https://rattle.togaware.com/), [KNIME](https://knime.com/) and [RapidMiner](https://rapidminer.com/).
+The [JPMML-Evaluator](https://github.com/jpmml/jpmml-evaluator) library aims to provide high quality service to its users. The main module contains unit tests that ensure compliance with the PMML specification. Additionally, there are several support modules that contain integration tests that ensure interoperability with popular third-party PMML converters such as [R/Rattle](https://rattle.togaware.com/), KNIME and RapidMiner.
 
 However, there can never be too much testing. Application developers are encouraged to create and maintain custom integration test modules that replicate models and datasets from their production environments. Such integration tests lower the risk of change. They make it more secure to update and upgrade the ML framework and the PMML layer on top of it.
 
