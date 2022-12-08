@@ -27,14 +27,14 @@ feature_eng_pipeline = Pipeline([
 Xt = feature_eng_pipeline.fit_transform(X)
 Xt = Xt.astype(float)
 
-from sklearn2pmml import make_tpot_pmml_config
+from sklearn2pmml.tpot import make_pmml_config
 from tpot.config import classifier_config_dict
 
 # Classes supported by TPOT
 tpot_config = classifier_config_dict
 
 # Union between classes supported by TPOT and SkLearn2PMML
-tpot_pmml_config = make_tpot_pmml_config(tpot_config)
+tpot_pmml_config = make_pmml_config(tpot_config)
 
 # Exclude ensemble model types
 tpot_pmml_config = { key: value for key, value in tpot_pmml_config.items() if not (key.startswith("sklearn.ensemble.") or key.startswith("xgboost.")) }

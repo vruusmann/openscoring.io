@@ -182,15 +182,15 @@ There are two built-in config dictionaries `tpot.config.classifier_config_dict` 
 
 A config dictionary can be made PMML compatible by excluding all mappings where they key is an unsupported Python class name.
 The list of supported class names can be obtained by going through all the JAR files on the `sklearn2pmml` package classpath (consisting of the JPMML-SkLearn library and its third-party plugin libraries) and collecting keys from `META-INF/sklearn2pmml.properties` property files.
-The whole procedure is conveniently implemented in the `sklearn2pmml.make_tpot_pmml_config(dict: config)` utility function.
+The whole procedure is conveniently implemented in the `sklearn2pmml.tpot.make_pmml_config(dict: config)` utility function.
 
 ``` python
-from sklearn2pmml import make_tpot_pmml_config
+from sklearn2pmml.tpot import make_pmml_config
 from tpot.config import classifier_config_dict, regressor_config_dict
 
 tpot_config = dict(classifier_config_dict)
 
-tpot_pmml_config = make_tpot_pmml_config(tpot_config)
+tpot_pmml_config = make_pmml_config(tpot_config)
 ```
 
 Expert users may drop further mappings from the config dictionary.
