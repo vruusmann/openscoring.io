@@ -43,7 +43,7 @@ The standard XGBoost-via-Python software stack stands as follows:
 
 XGBoost C++ algorithms operate with a specialized `xgboost::DMatrix` data structure only.
 
-In Python environment, the training data exists in Python-specifc data structures such as Numpy arrays or Pandas' data frames.
+In Python environment, the training data exists in Python-specifc data structures such as Pandas' data frames or Numpy arrays.
 When the Python Learning API layer passes data to the XGBoost API layer, then Python data structures get left behind into the Python environment, and a new and detached `xgboost::DMatrix` object is created in the C++ environment.
 
 Typical data flow:
@@ -229,7 +229,7 @@ The sparsity of the `X` dataset is around 28.2 percent (4'286 cells out of 8 * 1
 The sparsity of the `Xt` dataset is around 87.8 percent (78'347 cells out of 47 * 1'899 = 89'253 cells), which gives it excellent compressibility properties.
 
 An `xgboost::DMatrix` object that is constructed based on a sparse Python matrix appears to transfer data into a sparse C++ matrix as well.
-Interestingly enough, XGBoost is able to find a data layout that reduces memory usage significantly.
+Interestingly enough, XGBoost can find a data layout that reduces memory usage significantly.
 
 ### Modern workflow: model-internal OHE
 

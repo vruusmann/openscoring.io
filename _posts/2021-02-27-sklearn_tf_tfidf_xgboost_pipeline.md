@@ -60,7 +60,7 @@ Clearly, one of the two pipelines must be incorrect.
 
 The situation cannot be definitively cleared up by making more predictions, or exploring the documentation and Python source code of relevant classes and methods.
 
-Converting the pipeline to Predictive Model Markup Language (PMML) data format, and making predictions using a PMML engine provides an objective (ie. first-principles) second opinion.
+Converting the pipeline to the Predictive Model Markup Language (PMML) representation, and making predictions using a PMML engine provides an objective (ie. first-principles) second opinion.
 
 Converting using the [`sklearn2pmml`](https://github.com/jpmml/sklearn2pmml) package:
 
@@ -110,7 +110,7 @@ In plain english, these interpretations read like "I do not know if the document
 Scikit-Learn estimators typically error out when they encounter `NaN` values.
 In contrast, XGBoost estimators treat `NaN` values as special-purpose missing value indicator values, and grow missing value-aware decision trees.
 
-When comparing XGBoost estimators between the first and the second pipeline, then they are structurally different (overall vocabulary, the time and location of invoking individual terms, etc).
+When comparing XGBoost estimators between the first and the second pipeline, then they are structurally different (overall vocabulary, the time and location of invoking individual terms, etc.).
 The former incorrectly believes that it was dealing with massive amounts of missing values during training, and all its internals are thus systematically off.
 
 A data scientist may evaluate such a biased TF(-IDF) plus XGBoost pipeline with a validation dataset, and decide that its raw numeric performance is still good enough for productionization.

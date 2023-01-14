@@ -83,7 +83,7 @@ The "iris" dataset is loaded using the [`sklearn.datasets.load_iris()`](https://
 Feature data (the `Bunch.data` attribute) is renamed (eg. from "sepal length (cm)" to "Sepal.Length") and converted from a 2-D Numpy array to a `pandas.DataFrame` object in order to make name-based cell referencing possible.
 
 The business rules model type can be regarded as a pseudo-unsupervised learning method, because user-specified class labels are completely ignored during training.
-This is demonstrated by skipping target data (the `Bunch.target` attribute), and constructing a `pandas.Series` object that is entirely comprised of `None` values (as opposed to "setosa", "versicolor" or "virginica" string values).
+This is demonstrated by skipping target data (the `Bunch.target` attribute), and constructing a `pandas.Series` object that is completely filled with `None` values (as opposed to "setosa", "versicolor" or "virginica" string values).
 The `RuleSetClassifier.fit(X, y)` method would be perfecty fine to accept `y = None`. The one and only benefit of supplying `y = Series(..)` instead is about customizing the name of the target field in the resulting PMML document.
 
 ``` python
