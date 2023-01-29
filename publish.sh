@@ -5,6 +5,8 @@ export PUBLISH_DIR=../openscoring.github.io/
 rm -rf _site/
 bundle exec jekyll build
 
+tidy -xml -utf8 -imq _site/sitemap.xml
+
 # Read CNAME into memory
 cname=`cat $PUBLISH_DIR/CNAME`
 #echo $cname
