@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Training Python based XGBoost Accelerated Failure Time (AFT) models"
+title: "Training Python-based XGBoost accelerated failure time (AFT) models"
 author: vruusmann
 keywords: scikit-learn xgboost sklearn2pmml data-categorical data-missing
 ---
