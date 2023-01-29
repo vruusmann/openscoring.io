@@ -96,7 +96,7 @@ pipeline.fit(iris_X, iris_y)
 sklearn2pmml(pipeline, "CHAIDIris.pmml")
 ```
 
-The eventual type definitions of fields are easy to verify by opening the PMML document in text editor, and inspecting `DataField@optype` and `DataType@dataType` attribute values.
+The eventual type definitions of fields are easy to verify by opening the PMML document in a text editor, and inspecting `DataField@optype` and `DataType@dataType` attribute values.
 
 For example, the `/PMML/DataDictionary` element for the "CHAIDIris" model contains three field declarations - one for the target field, and two for input fields:
 
