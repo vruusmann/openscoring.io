@@ -25,9 +25,8 @@ $ bundle exec jekyll build
 
 # Deployment #
 
-Copying the contents of the newly generated `_site` directory to the GitHub deployment repository:
+Publish to GitHub pages directory:
 
 ```
-$ rm -rf ../openscoring.github.io/*
-$ cp -r _site/* ../openscoring.github.io/
+$ sh publish.sh
 ```

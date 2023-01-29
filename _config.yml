@@ -25,4 +25,5 @@ sass:
   style: compressed
 
 exclude:
+  - publish.sh
   - README.md
