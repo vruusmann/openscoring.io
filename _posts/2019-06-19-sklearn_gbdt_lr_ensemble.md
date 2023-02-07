@@ -128,8 +128,8 @@ The [LightGBM](https://github.com/microsoft/LightGBM) plugin library provides a 
 One of its major selling points is proper support for categorical features.
 If the training dataset contains a significant number of (high-cardinality-) categorical features, then the above `make_fit_gbdtlr` utility function should be tailored to maintain this information.
 
-As discussed in [a recent blog post](https://openscoring.io/blog/2019/04/07/converting_sklearn_lightgbm_pipeline_pmml/), the fit method of LightGBM estimators takes an optional `categorical_feature` fit parameter.
-The problem is passing this parameter to a `LGBMClassifier` object, which is contained in the `GBDTLRClassifier` object, which is in turn contained in the `(PMML)Pipeline` object.
+As discussed in [a recent blog post]({% post_url 2019-04-07-converting_sklearn_lightgbm_pipeline_pmml %}), the fit method of LightGBM estimators takes an optional `categorical_feature` fit parameter.
+The next challenge is about passing this parameter to a `LGBMClassifier` object, which is contained in the `GBDTLRClassifier` object, which is in turn contained in the `(PMML)Pipeline` object.
 The solution follows Scikit-Learn conventions.
 Namely, the fit method of the `GBDTLRClassifier` class also takes fit parameters, which are passed on to the correct component based on the prefix.
 

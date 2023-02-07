@@ -74,7 +74,7 @@ $ export SPARK_HOME=/opt/spark-2.3.0/
 $ $SPARK_HOME/bin/spark-shell --packages org.jpmml:jpmml-sparkml:${version}
 ```
 
-**Important**: this library JAR file is not directly usable with Apache Spark versions 2.0 through 2.2 due to the [SPARK-15526](https://issues.apache.org/jira/browse/SPARK-15526) classpath conflict.
+**Important**: This library JAR file is not directly usable with Apache Spark versions 2.0 through 2.2 due to the [SPARK-15526](https://issues.apache.org/jira/browse/SPARK-15526) classpath conflict.
 
 This classpath conflict typically manifests itself during the conversion work, in the form of some obscure `java.lang.NoSuchFieldError` or `java.lang.NoSuchMethodError`:
 

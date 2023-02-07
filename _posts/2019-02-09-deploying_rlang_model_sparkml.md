@@ -103,7 +103,7 @@ $ export SPARK_HOME=/opt/spark-2.3.0/
 $ $SPARK_HOME/bin/spark-shell --packages org.jpmml:jpmml-evaluator-spark:${version}
 ```
 
-**Important**: this library JAR file is not directly usable with Apache Spark versions 2.0 through 2.2 due to the [SPARK-15526](https://issues.apache.org/jira/browse/SPARK-15526) classpath conflict.
+**Important**: This library JAR file is not directly usable with Apache Spark versions 2.0 through 2.2 due to the [SPARK-15526](https://issues.apache.org/jira/browse/SPARK-15526) classpath conflict.
 
 The PMML engine is created as usual. With the introduction of the builder pattern (available in JPMML-Evaluator version 1.4.5 and newer), it shouldn't take more than a couple lines of boilerplate code to build an `org.jpmml.evaluator.Evaluator` object based on a PMML byte stream or file.
 
