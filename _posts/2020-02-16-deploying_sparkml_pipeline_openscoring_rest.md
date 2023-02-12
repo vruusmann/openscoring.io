@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Deploying Apache Spark ML pipeline models on Openscoring REST web service"
+title: "Deploying Apache Spark ML pipelines on Openscoring REST web service"
 author: vruusmann
 keywords: apache-spark pyspark jpmml-sparkml pyspark2pmml openscoring
 --- 
 
-This blog post is a rehash of an earlier blog post about [using Apache Spark ML pipeline models for real-time prediction]({% post_url 2016-07-04-sparkml_realtime_prediction_rest_approach %}).
+This blog post is a rehash of an earlier blog post about [using Apache Spark ML pipelines for real-time prediction]({% post_url 2016-07-04-sparkml_realtime_prediction_rest_approach %}).
 It aims to demonstrate how things have evolved over the past 3.5 years, so that the proposed approach should now be intelligible to and executable by anyone with basic Apache Spark ML (PySpark flavour) experience.
 
 The workflow has four steps:
@@ -94,7 +94,7 @@ PMMLBuilder(sc, df, pipelineModel) \
 ```
 
 The `pyspark2pmml.PMMLBuilder` Python class is a thin wrapper around the `org.jpmml.sparkml.PMMLBuilder` Java class, and "inherits" the majority of its public API methods unchanged. 
-It is possible to use `PMMLBuilder.putOption(stage: ml.PipelineStage, name, value)` and `PMMLBuilder.verify(df: sql.DataSet)` methods to configure the look and feel of PMML markup and embed model verification data, respectively, as described in an earlier blog post about [converting Apache Spark ML pipeline models to PMML documents]({% post_url 2018-07-09-converting_sparkml_pipeline_pmml %}).
+It is possible to use `PMMLBuilder.putOption(stage: ml.PipelineStage, name, value)` and `PMMLBuilder.verify(df: sql.DataSet)` methods to configure the look and feel of PMML markup and embed model verification data, respectively, as described in an earlier blog post about [converting Apache Spark ML pipelines to PMML]({% post_url 2018-07-09-converting_sparkml_pipeline_pmml %}).
 
 For demonstration purposes, disabling decision tree compaction (replaces binary splits with multi-way splits), and embedding five randomly chosen data records as model verification data:
 

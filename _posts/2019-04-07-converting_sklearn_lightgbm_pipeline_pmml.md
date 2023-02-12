@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Converting Scikit-Learn based LightGBM pipelines to PMML documents"
+title: "Converting Scikit-Learn LightGBM pipelines to PMML"
 author: vruusmann
 keywords: scikit-learn lightgbm sklearn2pmml data-categorical data-missing
 ---

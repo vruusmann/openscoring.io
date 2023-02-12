@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Extending Scikit-Learn with CHAID model type"
+title: "Extending Scikit-Learn with CHAID models"
 author: vruusmann
 keywords: CHAID jpmml-evaluator scikit-learn sklearn2pmml data-categorical data-missing
 ---

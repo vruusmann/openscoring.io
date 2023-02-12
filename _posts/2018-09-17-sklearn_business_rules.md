@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Extending Scikit-Learn with business rules (BR) model type"
+title: "Extending Scikit-Learn with business rules model"
 author: vruusmann
 keywords: scikit-learn sklearn2pmml business-rules
 ---

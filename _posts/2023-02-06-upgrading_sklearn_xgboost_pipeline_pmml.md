@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Upgrading Scikit-Learn based XGBoost pipelines"
+title: "Upgrading Scikit-Learn XGBoost pipelines"
 author: vruusmann
 keywords: scikit-learn xgboost sklearn2pmml data-categorical
 ---
@@ -80,7 +80,7 @@ This is sufficient for encoding dense datasets (ie. "on" and "off" states), but 
 **Important**: A Scikit-Learn's `OneHotEncoder` transformer and an XGBoost estimator are not compatible with one another in their default configurations.
 In brief, the `OneHotEncoder` transformer produces sparse data matrices by default, where the `1` value represents the "on" state and the omitted value represents the "off" state. However, an XGBoost estimator (mis-)interprets omitted values as the "unknown" state.
 
-The above notes have been discussed in detail in an earlier blog post about [one-hot-encoding (OHE) categorical features in Scikit-Learn based XGBoost pipelines]({% post_url 2022-04-12-onehot_encoding_sklearn_xgboost_pipeline %}).
+The above notes have been discussed in detail in an earlier blog post about [one-hot-encoding categorical features in Scikit-Learn XGBoost pipelines]({% post_url 2022-04-12-onehot_encoding_sklearn_xgboost_pipeline %}).
 
 There are two pipeline configurations that yield provably correct results:
 

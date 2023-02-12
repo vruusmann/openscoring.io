@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "JPMML-Model: Converting PMML documents between different schema versions"
+title: "JPMML-Model: Converting PMML between different schema versions"
 author: vruusmann
 keywords: jpmml-model
 ---

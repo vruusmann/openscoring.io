@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Converting Scikit-Learn based TF(-IDF) pipelines to PMML documents"
+title: "Converting Scikit-Learn TF(-IDF) pipelines to PMML"
 author: vruusmann
 keywords: scikit-learn sklearn2pmml tf-idf
 ---

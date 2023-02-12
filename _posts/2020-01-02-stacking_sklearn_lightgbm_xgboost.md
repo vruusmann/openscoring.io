@@ -83,7 +83,7 @@ XGBoost does not have such capabilities, and therefore expects categorical featu
 
 The "homogenisation" of LightGBM and XGBoost estimators is possible by enforcing the binarization of categorical features.
 However, this reduces the predictive performance of LightGBM.
-For more information, please refer to the blog post about [converting Scikit-Learn based LightGBM pipelines to PMML documents]({% post_url 2019-04-07-converting_sklearn_lightgbm_pipeline_pmml %}).
+For more information, please refer to the blog post about [converting Scikit-Learn LightGBM pipelines to PMML]({% post_url 2019-04-07-converting_sklearn_lightgbm_pipeline_pmml %}).
 
 The solution is to perform feature engineering for each child estimator (and in the passthrough mode, also for the parent estimator) separately:
 

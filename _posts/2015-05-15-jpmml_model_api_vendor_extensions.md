@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "JPMML-Model: Extending PMML documents with custom XML content"
+title: "JPMML-Model: Extending PMML with custom XML content"
 author: vruusmann
 keywords: jpmml-model mathml
 ---

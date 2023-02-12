@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Converting Scikit-Learn based Imbalanced-Learn (imblearn) pipelines to PMML documents"
+title: "Converting Scikit-Learn Imbalanced-Learn pipelines to PMML"
 author: vruusmann
 keywords: scikit-learn imbalanced-learn sklearn2pmml
 ---

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "JPMML-Model: Transforming and measuring the memory consumption of class model objects using the Java agent technology"
+title: "JPMML-Model: Transforming and measuring the memory consumption of class model objects"
 author: vruusmann
 keywords: jpmml-model memory optimization
 ---

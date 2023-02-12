@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Extending Scikit-Learn with GBDT plus LR ensemble (GBDT+LR) model type"
+title: "Extending Scikit-Learn with GBDT+LR ensemble models"
 author: vruusmann
 keywords: scikit-learn lightgbm xgboost sklearn2pmml data-categorical
 ---
@@ -30,7 +30,7 @@ For example, discovering cliffs and other anomalies in the decision space by obs
 
 ### Scikit-Learn perspective
 
-Scikit-Learn documentation dedicates a separate page to GBDT plus LR ensemble models: [Feature transformations with ensembles of trees](https://scikit-learn.org/stable/auto_examples/ensemble/plot_feature_transformation.html)
+Scikit-Learn documentation dedicates a separate page to GBDT plus LR (GBDT+LR) ensemble models: [Feature transformations with ensembles of trees](https://scikit-learn.org/stable/auto_examples/ensemble/plot_feature_transformation.html)
 
 While the concept and its implementation are discussed in great detail, there is no reusable GBDT+LR estimator available within Scikit-Learn.
 Interested parties are either expected to copy-paste the example code, or rely on third-party libraries.

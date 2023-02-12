@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Converting Apache Spark ML pipeline models to PMML documents"
+title: "Converting Apache Spark ML pipelines to PMML"
 author: vruusmann
 keywords: apache-spark pyspark jpmml-sparkml pyspark2pmml sparklyr sparklyr2pmml
 ---

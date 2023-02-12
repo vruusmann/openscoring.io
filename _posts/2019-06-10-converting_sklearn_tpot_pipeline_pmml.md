@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Converting Scikit-Learn based TPOT pipelines to PMML documents"
+title: "Converting Scikit-Learn TPOT pipelines to PMML"
 author: vruusmann
 keywords: scikit-learn tpot sklearn2pmml data-categorical automl
 ---

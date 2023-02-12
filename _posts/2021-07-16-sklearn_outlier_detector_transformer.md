@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Extending Scikit-Learn with outlier detector transformer type"
+title: "Extending Scikit-Learn with outlier detector transformer"
 author: vruusmann
 keywords: scikit-learn scikit-lego sklearn2pmml
 ---

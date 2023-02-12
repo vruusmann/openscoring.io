@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "One-hot-encoding (OHE) categorical features in Scikit-Learn based XGBoost pipelines"
+title: "One-hot-encoding categorical features in Scikit-Learn XGBoost pipelines"
 author: vruusmann
 keywords: scikit-learn xgboost sklearn2pmml data-categorical data-missing
 ---
@@ -17,7 +17,7 @@ On the other hand, XGBoost aims to be the most powerful and flexible gradient bo
 No one and no thing is perfect, though.
 Historically, the biggest pain point for XGBoost has been its sub-par support for categorical features.
 The team is well aware of this, and has committed to solving it step by step.
-All the necessary groundwork, and the first categorical encoding algorithm based on a popular one-hot-encoding scheme has been recently completed as documented in [dmlc/xgboost-6503](https://github.com/dmlc/xgboost/issues/6503).
+All the necessary groundwork, and the first categorical encoding algorithm based on a popular one-hot-encoding (OHE) scheme has been recently completed as documented in [dmlc/xgboost-6503](https://github.com/dmlc/xgboost/issues/6503).
 More sophisticated encoding schemes are expected to follow.
 
 Nevertheless, a Scikit-Learn based XGBoost pipeline is composable for any version combination of the two, for any dataset.
@@ -81,7 +81,7 @@ However, the situation can easily get out of hand when there are categorical fea
 
 The crux of the matter is encoding categorical features into (pseudo-)numeric features using Scikit-Learn transformers in order to make them acceptable for the final XGBoost estimator.
 
-The most common and robust approach is [one-hot-encoding (OHE)](https://en.wikipedia.org/wiki/One-hot), which transforms a single categorical feature into a list of binary indicator features.
+The most common and robust approach is [one-hot-encoding](https://en.wikipedia.org/wiki/One-hot), which transforms a single categorical feature into a list of binary indicator features.
 In the above example, when the `X` dataset contains categorical features, then the number of columns in `Xt` and `dmat` datasets would increase considerably (one binary indicator column per category level).
 
 Starting from XGBoost version 1.3 it is possible to replace external OHE with model-internal OHE.

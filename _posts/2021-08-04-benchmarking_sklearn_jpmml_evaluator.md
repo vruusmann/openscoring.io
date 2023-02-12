@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Benchmarking Scikit-Learn against JPMML-Evaluator in Java and Python environments"
+title: "Benchmarking Scikit-Learn against JPMML-Evaluator"
 author: vruusmann
 keywords: scikit-learn jpmml-evaluator jpmml-evaluator-python optimization
 ---

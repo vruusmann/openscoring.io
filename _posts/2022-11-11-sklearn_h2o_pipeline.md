@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Training Scikit-Learn based H2O.ai pipelines"
+title: "Training Scikit-Learn H2O.ai pipelines"
 author: vruusmann
 keywords: h2o scikit-learn sklearn2pmml data-categorical data-missing
 ---

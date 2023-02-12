@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Converting Scikit-Learn hyperparameter-tuned pipelines to PMML documents"
+title: "Converting Scikit-Learn hyperparameter-tuned pipelines to PMML"
 author: vruusmann
 keywords: scikit-learn sklearn2pmml
 ---

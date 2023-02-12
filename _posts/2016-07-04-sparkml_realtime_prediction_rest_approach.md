@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Using Apache Spark ML pipeline models for real-time prediction: the Openscoring REST web service approach"
+title: "Using Apache Spark ML pipelines for real-time prediction: the Openscoring REST web service approach"
 author: vruusmann
 keywords: apache-spark openscoring
 ---

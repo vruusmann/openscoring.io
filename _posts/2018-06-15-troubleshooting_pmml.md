@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Troubleshooting PMML documents"
+title: "Troubleshooting PMML"
 author: vruusmann
 keywords: jpmml-model testing
 ---

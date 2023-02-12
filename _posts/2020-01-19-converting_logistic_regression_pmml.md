@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Converting logistic regression models to PMML documents"
+title: "Converting logistic regression models to PMML"
 author: vruusmann
 keywords: scikit-learn r apache-spark pyspark sklearn2pmml r2pmml pyspark2pmml
 ---

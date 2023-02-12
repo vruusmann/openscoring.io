@@ -149,7 +149,7 @@ sklearn2pmml(pipeline, "DecisionTreeAudit.pmml")
 
 The input to the `apply_transformer` is a column vector for decision tree models, and a 2-D Numpy array for decision tree ensemble models.
 
-Scikit-Learn identifies decision tree nodes by 1-based integer index, which can be encoded into PMML documents using the generic entity identifiers mechanism.
+Scikit-Learn identifies decision tree nodes by 1-based integer index, which can be encoded using the PMML entity identifiers mechanism.
 
 By default, the `sklearn2pmml` package does not collect and encode node identifiers, because that would prevent it from compacting and flattening the tree data structure.
 The default behaviour is suppressed by deactivating `compact` and `flat` conversion options, and activating the `winner_id` conversion option. The `numeric` conversion option controls the encoding of categorical splits, and can toggled freely.

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Training Python-based XGBoost accelerated failure time (AFT) models"
+title: "Training Python-based XGBoost accelerated failure time models"
 author: vruusmann
 keywords: scikit-learn xgboost sklearn2pmml data-categorical data-missing
 ---
@@ -62,7 +62,7 @@ for col in cols:
 XGBoost versions 1.5 and newer can work with the canonicalized "lung" dataset as-is.
 There is no longer any technical reason for imputing missing values or encoding categorical values.
 
-In fact, this is a welcome development, as Scikit-Learn is rather inept at transforming sparse categorical features into legacy XGBoost-compatible representation, as discussed in detail in an earlier blog post about [one-hot-encoding (OHE) categorical features in Scikit-Learn based XGBoost pipelines]({% post_url 2022-04-12-onehot_encoding_sklearn_xgboost_pipeline %}).
+In fact, this is a welcome development, as Scikit-Learn is rather inept at transforming sparse categorical features into legacy XGBoost-compatible representation, as discussed in detail in an earlier blog post about [one-hot-encoding categorical features in Scikit-Learn XGBoost pipelines]({% post_url 2022-04-12-onehot_encoding_sklearn_xgboost_pipeline %}).
 
 The only data pre-processing action that is needed is casting the data type of `inst` and `sex` columns from integer to [`pandas.CategoricalDtype`](https://pandas.pydata.org/docs/reference/api/pandas.CategoricalDtype.html):
 

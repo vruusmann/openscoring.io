@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Training Scikit-Learn based TF(-IDF) plus XGBoost pipelines"
+title: "Training Scikit-Learn TF(-IDF) plus XGBoost pipelines"
 author: vruusmann
 keywords: scikit-learn xgboost mlxtend sklearn2pmml tf-idf data-missing
 ---
