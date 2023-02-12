@@ -3,7 +3,7 @@
 export PUBLISH_DIR=../openscoring.github.io/
 
 rm -rf _site/
-bundle exec jekyll build
+JEKYLL_ENV=production bundle exec jekyll build
 
 tidy -xml -utf8 -imq _site/sitemap.xml
 

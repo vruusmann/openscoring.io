@@ -2,7 +2,7 @@
 <html lang="{{ site.lang | default: "en" }}">
 
 <head>
-  {% include google_analytics.html %}
+  {% if jekyll.environment == "production" %}{% include google_analytics.html %}{% endif %}
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -55,7 +55,7 @@
 
   {% unless page.footer == false %}{% include footer.html %}{% endunless %}
 
-  {% include statcounter.html %}
+  {% if jekyll.environment == "production" %}{% include statcounter.html %}{% endif %}
 </body>
 
 </html>
