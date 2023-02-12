@@ -35,7 +35,7 @@ The scaling properties of transformer and model types can be deduced from their 
 
 Vectorized math is only possible with (floating point-) numeric features.
 If the dataset contains complex data type features (eg. categoricals, temporals, user-defined data types), then the transformation to numeric representation is likely to involve computations that are not vectorizable.
-For example, the binarization of categorical string features using one-hot-encoding involves compiling a vocabulary and performing string value lookups against it.
+For example, the binarization of categorical string features using one-hot encoding involves compiling a vocabulary and performing string value lookups against it.
 
 The prediction algorithm of many popular model types is either fully (eg. linear models, neural networks, support vector machines) or to a great degree (eg. ensemble models) expressible in terms of matrix (linar algebra) operations.
 There are only a few model types that can do without. The best example are decision trees, which rely on conditional logic instead.
@@ -88,7 +88,7 @@ Automatic data type detection and conversion results in two continuous integer f
 The cardinality of string features is low, ranging from 2 to 16 category levels.
 
 The data is pre-processed minimally, just to make it comply with Scikit-Learn base expectations.
-Continuous features are standardized in the linear model case, and left as-is in the decision tree ensemble case. Categorical features are one-hot-encoded.
+Continuous features are standardized in the linear model case, and left as-is in the decision tree ensemble case. Categorical features are one-hot encoded.
 
 ##### Modeling
 

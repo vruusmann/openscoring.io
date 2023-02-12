@@ -206,7 +206,7 @@ Its importance is obtained by summing the "Income" direct feature importance and
 
 The overall ranking of columns is "Income" > "Marital" > "Hours" > "Occupation" > "Age" > "Education" > "Employment" > "Gender".
 Numeric columns tend to precede string columns.
-This may be caused by the fact that Scikit-Learn decision tree algorithms do underperform when categorical features have been one-hot-encoded.
+This may be caused by the fact that Scikit-Learn decision tree algorithms do underperform when categorical features have been one-hot encoded.
 
 PMML documents are text based and very well structured, which allows for efficient information retrieval using command-line tools.
 

@@ -80,7 +80,7 @@ This is sufficient for encoding dense datasets (ie. "on" and "off" states), but 
 **Important**: A Scikit-Learn's `OneHotEncoder` transformer and an XGBoost estimator are not compatible with one another in their default configurations.
 In brief, the `OneHotEncoder` transformer produces sparse data matrices by default, where the `1` value represents the "on" state and the omitted value represents the "off" state. However, an XGBoost estimator (mis-)interprets omitted values as the "unknown" state.
 
-The above notes have been discussed in detail in an earlier blog post about [one-hot-encoding categorical features in Scikit-Learn XGBoost pipelines]({% post_url 2022-04-12-onehot_encoding_sklearn_xgboost_pipeline %}).
+The above notes have been discussed in detail in an earlier blog post about [one-hot encoding categorical features in Scikit-Learn XGBoost pipelines]({% post_url 2022-04-12-onehot_encoding_sklearn_xgboost_pipeline %}).
 
 There are two pipeline configurations that yield provably correct results:
 
@@ -318,9 +318,9 @@ The `max_cat_tp_onehot` attribute allows the data scientist to choose one partit
 The [default value of the `max_cat_to_onehot` tree param is 4](https://github.com/dmlc/xgboost/blob/v1.6.2/src/tree/param.h#L112-L115).
 Typical values range from 2 to 20. Setting the value to an arbitrarily large number (eg. over 10'000) will effectively disable the set-based aka optimal partitioning.
 
-Granted, one-hot-encoding does not work particularly well with medium- and high-cardinality categorical features, especially if there are second-order effects involved (eg. sets of closely related category levels).
+Granted, one-hot encoding does not work particularly well with medium- and high-cardinality categorical features, especially if there are second-order effects involved (eg. sets of closely related category levels).
 
-One-hot-encoding faces additional headwinds with decision tree models, because it identifies and isolates significant category levels one by one, leading to long and thin branch growth.
+One-hot encoding faces additional headwinds with decision tree models, because it identifies and isolates significant category levels one by one, leading to long and thin branch growth.
 For example, a member decision tree whose maximum depth is limited to 6 (the default value for the `max_depth` tree param) will be fully developed after coming in contact with a categorical feature that has six or more significant category levels.
 
 Exporting the booster object is now also possible in [Universal Binary JSON](https://ubjson.org/) (UBJSON) data format:

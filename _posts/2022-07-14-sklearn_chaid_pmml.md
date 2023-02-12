@@ -16,7 +16,7 @@ Scikit-Learn decision trees suffer from several functional issues:
 
 * Limited support for categorical features.
 All complex features must be transformed into simplified numerical features.
-The default one-hot-encoding (OHE) transformation is suitable to low-cardinality categorical features, where category levels are independent of one another. Even the most sophisticated transformations (such as the ones provided by the [`category_encoders`](https://github.com/scikit-learn-contrib/category_encoders) package) are qualitatively inferior to native categorical feature support, because every helper transformation loses or distorts information in some way.
+The default one-hot encoding transformation is suitable to low-cardinality categorical features, where category levels are independent of one another. Even the most sophisticated transformations (such as the ones provided by the [`category_encoders`](https://github.com/scikit-learn-contrib/category_encoders) package) are qualitatively inferior to native categorical feature support, because every helper transformation loses or distorts information in some way.
 * No support for missing values.
 All missing values must be replaced via imputation.
 The effectiveness of the imputation transformation decreases as the sparsity of the dataset increases. The relevance of mean or mode values is questionable if the feature is more than 20% sparse, or if it does not adhere to the normal distribution function.
@@ -132,7 +132,7 @@ Scikit-Learn provides the [`slearn.preprocessing.KBinsDiscretizer`](https://scik
 
 No matter which binning strategy is chosen, the results should be encoded using the ordinal encoding method.
 The reason for this is maintaining feature's integrity.
-Ordinal encoding yields a single categorical integer feature, whereas one-hot-encodings yield many binary indicator features. The CHAID algorithm cannot (re-)aggregate binary indicators into larger chunks based on their parent, and would therefore resort to generating CART-style binary splits (signalling if a particular category level is "on" or "off"), instead of proper CHAID-style multy-way splits.
+Ordinal encoding yields a single categorical integer feature, whereas one-hot encodings yield many binary indicator features. The CHAID algorithm cannot (re-)aggregate binary indicators into larger chunks based on their parent, and would therefore resort to generating CART-style binary splits (signalling if a particular category level is "on" or "off"), instead of proper CHAID-style multy-way splits.
 
 ``` python
 from sklearn.preprocessing import KBinsDiscretizer

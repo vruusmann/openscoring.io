@@ -82,7 +82,7 @@ The [`OneHotEncoder`](https://scikit-learn.org/stable/modules/generated/sklearn.
 These two abilities enable vastly cleaner and conciser workflows.
 
 The interaction between "Gender" and "Marital" string columns can be expressed as a one-liner.
-The list selector syntax (`["Gender", "Marital"]`) yields a two-column string array, which is first one-hot-encoded to an eight-column integer array, and then polynomially combined into a 36-column integer array.
+The list selector syntax (`["Gender", "Marital"]`) yields a two-column string array, which is first one-hot encoded to an eight-column integer array, and then polynomially combined into a 36-column integer array.
 The first eight elements correspond to raw category levels (ie. `Gender=Male, Gender=Female, Marital=Absent, ..`), and the remaining twenty eight ((8 * (8 - 1)) / 2) elements to interactions between them (ie. `Gender=Male * Gender=Female, Gender=Male * Marital=Absent, ..`).
 
 Using the [`PolynomialFeatures`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PolynomialFeatures.html) transformer for feature interactions does the job, but is far from elegance and efficiency.
@@ -90,8 +90,8 @@ The main complaint is that it lacks the concept of feature boundaries ("treat th
 For example, interaction terms which combine different category levels of the same feature (eg. `Gender=Male * Gender=Female`) are non-sensical from the real-life perspective, and risk blowing up numerical algorithms due to high collinearity with other terms.
 
 Fighting collinearity is a major issue when training unregularized (logistic-) regression models.
-A common source of highly correlated features is the binarization or one-hot-encoding of string columns.
-The `OneHotEncoder` transformer fixes this by allowing one category level to be excluded from the one-hot-encoding process.
+A common source of highly correlated features is the binarization or one-hot encoding of string columns.
+The `OneHotEncoder` transformer fixes this by allowing one category level to be excluded from the one-hot encoding process.
 Most data scientist habitually drop the first category level.
 
 The logistic regression model is associated with transformations by constructing a two-step pipeline.

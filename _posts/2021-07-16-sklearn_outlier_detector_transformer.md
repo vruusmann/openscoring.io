@@ -126,7 +126,7 @@ If the outlier detector is operated in "labelling mode" (by invoking the `predic
 For example, linear models accept a categorical integer feature, but cast it forcibly to a continuous float feature. During training, the categorical integer feature is associated with a single beta coefficient.
 Such beta coefficient lacks deeper meaning, because it suggests that the contribution and significance of outliers (ie. the `-1` category level) is the exact opposite of inliers (ie. the `+1` category level).
 
-If the categorical integer value is one-hot-encoded (similar to raw categorical features) then each category level becomes associated with a separate beta coefficient instead. More importantly, the effect of the numeric value of the categorical integer feature is eliminated.
+If the categorical integer value is one-hot encoded (similar to raw categorical features) then each category level becomes associated with a separate beta coefficient instead. More importantly, the effect of the numeric value of the categorical integer feature is eliminated.
 
 Improving the feature matrix enricher for the "labelling mode"  use case:
 

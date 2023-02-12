@@ -46,7 +46,7 @@ The answer is a definite yes. Better yet, the PMML representation of a GBDT+LR m
 
 The reduction is based on the realization that GBDT+LR is a mechanism for replacing original GBDT leaf node scores with LR coefficients (and the GBDT base score with the LR intercept).
 Scikit-Learn does not provide an API for modifying fitted decision trees.
-The workaround is to make individual leaf nodes addressable using the one-hot-encoding approach (the `OneHotEncoder.categories` attribute is a list of arrays; the size of the list equals the number of decision trees in the GBDT; the size of each array equals the number of leaf nodes in the corresponding decision tree), and then assigning a new score to each address (the `LogisticRegression.coef_` attribute is an array whose size equals the flat-mapped size of the `OneHotEncoder.categories` attribute).
+The workaround is to make individual leaf nodes addressable using the one-hot encoding approach (the `OneHotEncoder.categories` attribute is a list of arrays; the size of the list equals the number of decision trees in the GBDT; the size of each array equals the number of leaf nodes in the corresponding decision tree), and then assigning a new score to each address (the `LogisticRegression.coef_` attribute is an array whose size equals the flat-mapped size of the `OneHotEncoder.categories` attribute).
 
 The PMML representation does not need such layer of indirection, because it is possible to replace leaf node scores in place.
 
