@@ -14,13 +14,13 @@ $ bundle add jekyll
 $ bundle add webrick
 ```
 
-# Build #
+# Development #
 
 Running Jekyll:
 
 ```
 $ rm -rf _site/
-$ bundle exec jekyll build
+$ bundle exec jekyll serve
 ```
 
 # Deployment #
