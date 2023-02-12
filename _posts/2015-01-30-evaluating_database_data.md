@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Applying machine learning models to database data: the REST web service approach"
+title: "Applying ML models to database data: the REST web service approach"
 author: vruusmann
 keywords: openscoring
 ---
 
-There are three major approaches to applying machine learning models to database data:
+There are three major approaches to applying ML models to database data:
 
 1. Direct SQL execution. This is attained by converting the model from its native representation to the SQL representation. For example, there are tools like [pmml2sql](http://www.pmml2sql.com/) and KNIME (version 2.11.1 and newer) that claim to have the ability to convert most common model types from PMML to SQL. Naturally, the quality of conversion work varies considerably between different SQL dialects.
 2. Intermediated SQL execution. The model stays in its native representation. The evaluation is handled by a dedicated model evaluation engine that is tightly integrated into the database backend. For example, PostgreSQL database supports the execution of arbitrary R and Python application code via [PL/R](https://www.joeconway.com/plr/) and [PL/Py](http://python.projects.postgresql.org/) procedural languages, respectively. This approach is technically quite demanding, because it crosses SQL and application programming domains. The life of SQL end users can be made somewhat easier by (automatically-) generating an appropriate SQL wrapper function for every model.

@@ -10,7 +10,7 @@ keywords: scikit-learn lightgbm sklearn2pmml jpmml-evaluator jpmml-transpiler bu
 Most data scientists interact with LightGBM core APIs via high-level languages and APIs.
 For example, Python users can choose between a medium-level [Training API](https://lightgbm.readthedocs.io/en/latest/Python-API.html#training-api) and a high-level [Scikit-Learn API](https://lightgbm.readthedocs.io/en/latest/Python-API.html#scikit-learn-api) to meet their model training and deployment needs.
 
-The lack of Java language bindings is understandable due to Java's subdued role in the machine learning space.
+The lack of Java language bindings is understandable due to Java's subdued role in the ML space.
 The [suggested route](https://github.com/microsoft/LightGBM/issues/909) is to suck it up and work with the low-level C++ library via the Java Native Interface (JNI).
 
 This blog post details an alternative route for deploying LightGBM models on the Java/JVM platform:

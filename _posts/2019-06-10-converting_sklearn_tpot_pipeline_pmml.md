@@ -5,7 +5,7 @@ author: vruusmann
 keywords: scikit-learn tpot sklearn2pmml data-categorical automl
 ---
 
-[TPOT](http://epistasislab.github.io/tpot/) is an automated machine learning (AutoML) tool that builds classification and regression models using genetic programming.
+[TPOT](http://epistasislab.github.io/tpot/) is an AutoML tool that builds classification and regression models using genetic programming.
 
 The main promise of AutoML is to eliminate data scientist from the ML/AI loop. 
 An AutoML tool loads a dataset, and then assembles and evaluates a large number of pipelines trying to locate the global optimum.

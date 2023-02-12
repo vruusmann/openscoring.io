@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "JPMML-Evaluator: Tracing and reporting machine learning model predictions"
+title: "JPMML-Evaluator: Tracing and reporting ML model predictions"
 author: vruusmann
 keywords: jpmml-model jpmml-evaluator jpmml-evaluator-python mathml builder-pattern testing reporting
 ---

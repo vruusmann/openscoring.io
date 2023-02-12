@@ -201,7 +201,7 @@ r2pmml::r2pmml(audit.glm, "RExpAudit.pmml")
 ### Apache Spark
 
 Apache Spark allows the end user to choose between programming paradigms.
-The prevailing DataFrame-based machine learning API called Apache Spark ML is built around transformers and models that are almost identical to their Scikit-Learn namesakes.
+The prevailing DataFrame-based API called Apache Spark ML is built around transformers and models that are almost identical to their Scikit-Learn namesakes.
 In fact, it is possible to translate pipelines between these two ML frameworks with not much effort.
 
 However, solving data science problems at Apache Spark ML layer involves lot of typing, and sooner or later hits various API limits.

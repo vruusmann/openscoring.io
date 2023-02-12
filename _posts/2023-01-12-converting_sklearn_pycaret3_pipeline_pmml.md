@@ -5,7 +5,7 @@ author: vruusmann
 keywords: scikit-learn pycaret sklearn2pmml data-categorical data-missing automl
 ---
 
-[PyCaret](https://github.com/pycaret/pycaret) is another automated machine learning (AutoML) tool, which specializes in tabular and time-series data analyses.
+[PyCaret](https://github.com/pycaret/pycaret) is another AutoML tool, which specializes in tabular and time-series data analyses.
 
 The recent PyCaret upgrade from 2(.3) to 3(.0) is exciting for two reasons.
 First, heavily refactored experiment API (see [PyCaret-2271](https://github.com/pycaret/pycaret/pull/2271)). The OOP-style experiment setup and command interface is much more relatable than the functional programming-style interface.

@@ -231,8 +231,8 @@ The conversion engine takes notice of that and omits all the related data transf
 
 ### Importing PMML to Openscoring REST web service
 
-[Openscoring](https://github.com/openscoring/openscoring) provides a way to expose a machine learning model as a REST web service.
-The primary design consideration is to make machine learning models easily discoverable and usable (a variation of the [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS) theme) for human and machine agents alike. 
+[Openscoring](https://github.com/openscoring/openscoring) provides a way to expose an ML model as a REST web service.
+The primary design consideration is to make ML models easily discoverable and usable (a variation of the [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS) theme) for human and machine agents alike. 
 The PMML representation is perfect fit thanks to the availability of rich descriptive metadata. Other representations can be plugged into the framework with the help of wrappers that satisfy the requested metadata query needs.
 
 Openscoring is minimalistic Java web application that conforms to Servlet and JAX-RS specifications.
