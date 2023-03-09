@@ -21,7 +21,7 @@ Summary of the workflow:
 * Enhancing the model with verification data.
 * Converting the model to a PMML document using JPMML family conversion tools and libraries.
 
-### Scikit-Learn
+## Scikit-Learn
 
 Scikit-Learn follows object-oriented programming (OOP) paradigm.
 The [Linear Models](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.linear_model) module provides a `LinearModel` base class, which is subclassed and mixed with `RegressorMixin` and `ClassifierMixin` traits to provide algorithm-specific model base classes.
@@ -113,7 +113,7 @@ pipeline.verify(df_X.sample(n = 10))
 sklearn2pmml(pipeline, "SkLearnAudit.pmml")
 ```
 
-### R
+## R
 
 R follows functional programming paradigm.
 The built-in `stats` package provides a [`glm()`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/glm) function for training generalized linear models.
@@ -198,7 +198,7 @@ audit.glm = r2pmml::verify(audit.glm, newdata = dplyr::sample_n(audit.df, 10))
 r2pmml::r2pmml(audit.glm, "RExpAudit.pmml")
 ```
 
-### Apache Spark
+## Apache Spark
 
 Apache Spark allows the end user to choose between programming paradigms.
 The prevailing DataFrame-based API called Apache Spark ML is built around transformers and models that are almost identical to their Scikit-Learn namesakes.
@@ -258,7 +258,7 @@ pmmlBuilder = PMMLBuilder(sc, df, pipelineModel) \
 pmmlBuilder.buildFile("PySparkAudit.pmml")
 ```
 
-### Resources
+## Resources
 
 * "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
 * R script: [`train.R`]({{ "/resources/2020-01-19/train.R" | absolute_url }})

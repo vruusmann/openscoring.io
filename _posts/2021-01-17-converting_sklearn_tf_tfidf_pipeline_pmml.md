@@ -13,7 +13,7 @@ The outline of a TF(-IDF) workflow:
 4. Token aggregation into terms (n-gram generation).
 5. Term score estimation.
 
-### Scikit-Learn
+## Scikit-Learn
 
 Typical implementation:
 
@@ -49,7 +49,7 @@ Decision tree models estimate a score for combinations of terms.
 The sentence score is the value associated with a decision path like "sentence contains term A, and does not contain terms B and C".
 Decision trees can be ensembled either via bagging (random forest) or boosting (XGBoost, LightGBM), which gives them scoring properties that are more similar to linear models.
 
-### PMML
+## PMML
 
 The Predictive Model Markup Language (PMML) provides a [`TextIndex`](https://dmg.org/pmml/v4-4-1/Transformations.html#xsdElement_TextIndex) element for representing TF(-IDF) operations.
 In brief, this tranformation takes a string input value, normalizes it, and then counts the occurrences of the specified term.

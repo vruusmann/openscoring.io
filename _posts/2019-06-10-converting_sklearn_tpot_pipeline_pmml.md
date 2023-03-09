@@ -103,7 +103,7 @@ The lesson is that the PMML representation is only concerned with the final stat
 
 Working with real-life datasets is only a little bit more complicated.
 
-### Data pre-processing
+## Data pre-processing
 
 TPOT estimators require that the `X` argument of the `fit(X, y)` method is a numeric matrix.
 
@@ -169,7 +169,7 @@ pmml_pipeline = make_pmml_pipeline(pipeline, active_fields = X.columns.values, t
 sklearn2pmml(pmml_pipeline, "TPOTAudit.pmml", with_repr = True)
 ```
 
-### Configuring TPOT search space
+## Configuring TPOT search space
 
 The [JPMML-SkLearn](https://github.com/jpmml/jpmml-sklearn) library (that powers the `sklearn2pmml` package) must recognize and support all pipeline steps for the conversion to succeed.
 
@@ -203,7 +203,7 @@ tpot_pmml_config = { key: value for key, value in tpot_pmml_config.items() if no
 del tpot_pmml_config["sklearn.neighbors.KNeighborsClassifier"]
 ```
 
-### Interpreting results
+## Interpreting results
 
 TPOT defines and uses the `tpot.builtins.StackingEstimator` meta-estimator to chain multiple estimators together.
 
@@ -264,7 +264,7 @@ For example, TPOT is casually generating model chains, where the predictions of 
 Good PMML converters such as all JPMML-family conversion libraries can run static analyses on PMML class model objects and correct many such issues.
 Corrected PMML documents have lower resource requirements and perform significantly better.
 
-### Resources
+## Resources
 
 * "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
 * Python script: [`train.py`]({{ "/resources/2019-06-10/train.py" | absolute_url }})

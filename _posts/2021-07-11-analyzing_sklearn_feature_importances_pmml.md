@@ -5,7 +5,7 @@ author: vruusmann
 keywords: scikit-learn sklearn2pmml feature-importance
 ---
 
-### Terminology
+## Terminology
 
 **Feature importance** reflects which features are considered to be significant by the ML algorithm during model training.
 
@@ -20,7 +20,7 @@ Feature importance is sometimes confused with feature impact.
 Feature impact is calculated by substituting feature values into the model equation, and aggregating the partial scores of model terms feature-wise.
 This calculation is applicable to all data records, irrespective of their origin (ie. training, validation and testing datasets).
 
-### Scikit-Learn
+## Scikit-Learn
 
 Some model types have built-in feature importance estimation capabilities.
 For example, decision tree and decision tree ensemble models declare a `feature_importances_` property that yields Gini Impurities.
@@ -65,7 +65,7 @@ imp_classifier = permutation_importance(classifier, Xt, y, random_state = 13)
 print(imp_classifier.importances_mean)
 ```
 
-### Pickle
+## Pickle
 
 The [JPMML-SkLearn](https://github.com/jpmml/jpmml-sklearn) library can only work with this state of a Python object that is serializable in pickle data format.
 A Python property does not have a persistent state. The workaround is to transfer its value into a new regular Python attribute.
@@ -118,7 +118,7 @@ pipeline.pmml_feature_importances_ = result.importances_mean
 sklearn2pmml(pipeline, "LogisticRegressionAudit.pmml")
 ```
 
-### PMML
+## PMML
 
 The [`MiningField`](https://dmg.org/pmml/v4-4-1/MiningSchema.html#xsdElement_MiningField) element specifies an `importance` attribute for recording field importance values.
 
@@ -229,7 +229,7 @@ $ grep -Po "(?<=<MiningField name=\"Occupation\" importance=\")[^\"]*(?=\"/>)" G
 The console print-out shows only 24 values this time.
 The first value `0.1445742412830531` corresponds to the root model. The following 23 values range from `0.00341113616139356` to `0.4084976807753639`, and correspond to member decision tree models; the "missing" eight field importances should be interpreted as `0.0` values.
 
-### Resources
+## Resources
 
 * "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
 * Python script: [`train.py`]({{ "/resources/2021-07-11/train.py" | absolute_url }})

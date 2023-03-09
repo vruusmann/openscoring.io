@@ -19,7 +19,7 @@ This blog post details an alternative route for deploying LightGBM models on the
 2. Converting the model to the standardized PMML representation.
 3. Deploying the model in "PMML interpretation" and "PMML to Java bytecode transpilation" modes.
 
-### Model training
+## Model training
 
 LightGBM has built-in support for categorical features and missing values.
 This functionality often remains unused, because end users simply do not know about it, or cannot find a way to implement it in practice.
@@ -71,7 +71,7 @@ df_X["Age"] = df_X["Age"].astype("category")
 The indices of categorical features (in the mapper output) must be passed to the `LGBMModel.fit(X, y, **fit_params)` method as the `categorical_feature` fit parameter.
 By Scikit-Learn conventions, if the fit method is called via the `(PMML)Pipeline.fit(X, y, **fit_params)` method, then fit parameters need to be prefixed with the name of the step followed by two underscore characters.
 
-### Model conversion
+## Model conversion
 
 The PMML representation of LightGBM models relies on PMML markup and idioms that have been firmly in place since the PMML schema version 3.0.
 This coupled with the fact that the PMML standard is designed with backward compatibility in mind makes for a very convincing argument that LightGBM models that have been converted to the PMML representation shall be usable for years and even decades with zero or very little maintenance.
@@ -107,7 +107,7 @@ Replacing static data structures with dynamic code leads to coupling with fairly
 
 The recommended approach is to use PMML XML files for long-term storage, and perform the transpilation to PMML service provider JAR files at the deployment time.
 
-### Model deployment
+## Model deployment
 
 The model should be evaluatable using any moderately capable PMML engine.
 Java users are advised to head straight to the [JPMML-Evaluator](https://github.com/jpmml/jpmml-evaluator) library.
@@ -196,7 +196,7 @@ The PMML approach to model API problematics is much more robust than Scikit-Lear
 Most PMML documents can be verified and deployed without any external supporting documentation.
 It is virtually impossible to make programming mistakes (eg. accidentally swapping the order of input fields), and the integration work does not need to be touched when updating model versions or upgrading from one model type to another.
 
-### Resources
+## Resources
 
 * "Audit-NA" dataset: [`audit-NA.csv`]({{ "/resources/data/audit-NA.csv" | absolute_url }})
 * Python script: [`train.py`]({{ "/resources/2019-12-03/train.py" | absolute_url }})

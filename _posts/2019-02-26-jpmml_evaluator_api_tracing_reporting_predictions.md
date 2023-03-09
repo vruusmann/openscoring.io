@@ -11,7 +11,7 @@ Most ML frameworks completely overlook this need. For example, Scikit-Learn logi
 
 This problem has an easy two-step solution. First, the model or pipeline should be converted from the low-level ML framework representation to the high-level Predictive Model Markup Language (PMML) representation, which makes it human-readable and -interpretable in the original feature space. Second, all the tracing and reporting work should be automated using a PMML engine.
 
-### Reporting Java API
+## Reporting Java API
 
 The [JPMML-Evaluator](https://github.com/jpmml/jpmml-evaluator) library is probably the most capable and versatile PMML engine for the Java/JVM platform. It provides different API levels and hooks for interacting with deployed models, including a special-purpose Value API for capturing all operations that are made when computing a prediction.
 
@@ -74,7 +74,7 @@ for(TargetField targetField : targetFields){
 }
 ```
 
-### Reporting PMML vendor extension
+## Reporting PMML vendor extension
 
 After successfully designing and implementing the reporting Value API, the authors made a suggestion to Data Mining Group (DMG.org) that the PMML standard should incorporate similar functionality in the form of a [`report` result feature](http://mantis.dmg.org/view.php?id=184). Unfortunately, DMG.org decided against doing so, which leaves everything into the status of a vendor extension.
 
@@ -100,7 +100,7 @@ For example, enhancing a binary classification model to extract probability calc
 
 The ordering of `OutputField` elements is not significant, except for the common sense requirement that the declaration of the base output field must precede the declaration of the reporting output field that references it.
 
-### Python workflow
+## Python workflow
 
 Training a minimalistic XGBoost model for the "audit" dataset:
 
@@ -233,7 +233,7 @@ The result is a `dict` object with six items:
 The above report shows that the boosted value -2.1023297 is obtained by summing 17 member values that range from -0.17968129 to -0.09484299. As is typically the case with gradient boosting methods, the magnitude of member values decreases with each iteration.
 The probability of the positive scenario 0.1088706 is obtained by applying the inverse of the logit function to -2.1023297. The probability of the negative scenario 0.8911294 is obtained by subtracting the probability of the positive scenario from 1.
 
-### Resources
+## Resources
 
 * "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
 * Python scripts: [`train.py`]({{ "/resources/2019-02-26/train.py" | absolute_url }}) and [`report.py`]({{ "/resources/2019-02-26/report.py" | absolute_url }})

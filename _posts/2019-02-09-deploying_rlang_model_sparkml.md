@@ -9,7 +9,7 @@ The [R platform](https://www.r-project.org/) provides a wider and deeper selecti
 
 This blog post demonstrates how to decouple a fitted R model from the R platform by converting it to the standardized Predictive Model Markup Language (PMML) representation. A PMML model is easy to achive and deploy across application environments. Here, the PMML model is turned into an Apache Spark ML transformer, which operates in Java/JVM memory space and can be easily dispatched to where the data resides.
 
-### R side
+## R side
 
 The exercise starts with training a logistic regression model for the "audit" dataset.
 
@@ -83,7 +83,7 @@ library("r2pmml")
 r2pmml(audit.glm, "LogisticRegressionAudit.pmml")
 ```
 
-### Apache Spark side
+## Apache Spark side
 
 The [JPMML-Evaluator](https://github.com/jpmml/jpmml-evaluator) library provides good all-purpose PMML engine for the Java/JVM platform. This library operates on individual data records, which must be translated back and forth to the `java.util.Map<FieldName, ?>` representation.
 
@@ -159,7 +159,7 @@ For example, if the "audit" dataset is loaded from a CSV document without specif
 
 Prediction columns are appended to the input dataset. Depending on the setting of the `TransformerBuilder#exploded(boolean)` configuration method, they are either appended collectively as a single `struct` column, or individually as many scalar columns.
 
-### Resources
+## Resources
 
 * "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
 * R script: [`train.R`]({{ "/resources/2019-02-09/train.R" | absolute_url }})

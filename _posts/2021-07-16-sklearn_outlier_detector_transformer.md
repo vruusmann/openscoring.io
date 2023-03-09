@@ -36,7 +36,7 @@ pipeline = Pipeline([
 pipeline.fit_predict(X, y = None)
 ```
 
-### Anomaly score as a feature
+## Anomaly score as a feature
 
 A data scientist may wish to enrich the dataset with the anomaly score feature in order to train models that exhibit improved predictive performance, and are safer to deploy.
 For example, implementing a row filterer based on anomaly score thresholding.
@@ -141,7 +141,7 @@ enricher = FeatureUnion([
 ])
 ```
 
-### Conditional execution of estimators
+## Conditional execution of estimators
 
 The [`sklearn2pmml`](https://github.com/jpmml/sklearn2pmml) package provides `sklearn2pmml.ensemble.SelectFirstClassifier` and `sklearn2pmml.ensemble.SelectFirstClassifier` ensemble models, which can be used to implement row filtering based on anomaly score.
 
@@ -206,7 +206,7 @@ pipeline.fit(X, y)
 sklearn2pmml(pipeline, "SelectFirstAudit.pmml")
 ```
 
-### Resources
+## Resources
 
 * "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
 * Python script: [`train.py`]({{ "/resources/2021-07-16/train.py" | absolute_url }})

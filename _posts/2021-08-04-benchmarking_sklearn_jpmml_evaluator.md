@@ -5,7 +5,7 @@ author: vruusmann
 keywords: scikit-learn jpmml-evaluator jpmml-evaluator-python optimization
 ---
 
-### Overview
+## Overview
 
 A ML framework design is a trade-off between training and deployment efficiency. Finding a balance is hard, because these two application areas are conceptually and technically rather different.
 
@@ -21,7 +21,7 @@ ML frameworks that prioritize deployment are likely to offer additional APIs.
 The case in point is real-time prediction, where the technical challenge is evaluating an isolated data record as fast as possible.
 Replacing a batch-oriented API with a dedicated data record-oriented API allows the application to avoid unnecessary and expensive interconversions between data records and 1-row data matrices.
 
-##### Scikit-Learn
+### Scikit-Learn
 
 Scikit-Learn is designed for running classical ML algorithms on relatively small datasets.
 The high-level business logic is implemented in Python. All the heavy-lifting is dispatched to the C language layer (Cython and/or C-based libraries such as NumPy, SciPy).
@@ -55,7 +55,7 @@ Some Scikit-Learn algorithms contain different execution paths for dense vs. spa
 Another expensive operation that is often overlooked is the concatenation of child transformer results by the parent (meta-)transformer.
 If the workflow is struggling due to memory constraints, then this may be the place where the eventual out-of-memory error is raised. The need for extra memory management work can be reduced by reordering and grouping columns, optimizing and streamlining the type of data matrices, etc.
 
-##### JPMML-Evaluator
+### JPMML-Evaluator
 
 The [JPMML-Evaluator](https://github.com/jpmml/jpmml-evaluator) library is designed for making predictions on isolated data records. There is no functional need for vectorized math operations, C language libraries, or GPU/TPU acceleration.
 
@@ -79,9 +79,9 @@ In the context of JPMML-Evaluator, this means evaluating data records until the 
 The number of warm-up evaluations depends on the model type and complexity, but should be in the order of tens of thousands. Warm-up data records may be generated randomly based on the model schema, or be emebbed into the PMML document as the model verification dataset. 
 The dataset does not need to consist of unique data records only. It is equally fine to iterate over a small but representative dataset multiple times.
 
-### Materials and methods
+## Materials and methods
 
-##### Dataset
+### Dataset
 
 The "audit" dataset is loaded from a CSV document into a `pandas.DataFrame`.
 Automatic data type detection and conversion results in two continuous integer features, one continuous float feature, and five categorical string features.
@@ -90,7 +90,7 @@ The cardinality of string features is low, ranging from 2 to 16 category levels.
 The data is pre-processed minimally, just to make it comply with Scikit-Learn base expectations.
 Continuous features are standardized in the linear model case, and left as-is in the decision tree ensemble case. Categorical features are one-hot encoded.
 
-##### Modeling
+### Modeling
 
 This exercise uses two binary classification algorithms with vastly different properties.
 
@@ -115,7 +115,7 @@ However, when looking into the source code of `predict(X)` and `predict_proba(X)
 
 Fitted pipelines are first dumped in pickle data format using the `joblib` package, and then converted to the PMML representation using the [`sklearn2pmml`](https://github.com/jpmml/sklearn2pmml) package.
 
-##### Making comparisons
+### Making comparisons
 
 The objective is measuring the pure prediction time.
 
@@ -128,9 +128,9 @@ For batch testing purposes it is necessary to draw new custom size datasets off 
 This is done using random sampling with replacement.
 It is inevitable that Python and Java samples come to contain different data records in different order. However, from the benchmarking perspective, this difference should not be significant, because all data records are considered to be functionally and computationally equivalent.
 
-### Results
+## Results
 
-##### Scikit-Learn
+### Scikit-Learn
 
 The Scikit-Learn experiment is about quantifying the effect of batch size.
 
@@ -190,7 +190,7 @@ Pipeline times indicate that Scikit-Learn is very sensitive to batch sizing.
 With smaller batch sizes (1 to 1'000 data records) the average scoring time decreases 10X as the size of batch increases 10X.
 For example, it takes roughly the same amount of time to evaluate a batch of 1 and a batch of 100 (eg. the same data record cloned the specified number of times).
 
-##### JPMML-Evaluator in Java
+### JPMML-Evaluator in Java
 
 The JPMML-Evaluator experiment is about quantifying the effect of JVM warm-up status.
 
@@ -252,7 +252,7 @@ The worst case is applying RF to a batch of 100'000, where JPMML-Evaluator under
 
 It follows that Scikit-Learn and JPMML-Evaluator are complementary rather than competitive.
 
-##### JPMML-Evaluator in Python: component analysis
+### JPMML-Evaluator in Python: component analysis
 
 The [`jpmml_evaluator`](https://github.com/jpmml/jpmml-evaluator-python) package provides a Python wrapper for the JPMML-Evaluator library.
 
@@ -289,7 +289,7 @@ The `jpmml_evaluator` package communicates between Python and Java environments 
 Since `DataFrame` is a complex data structure that does not have a Java equivalent, it is deconstructed into a list of dicts (data record-oriented API), which maps to a `List<Map<?, ?>>`.
 Pickling uses native encoders on the Python side, and the [Pickle](https://github.com/irmen/pickle) library on the Java side.
 
-###### Java data handler
+#### Java data handler
 
 The `benchmark.Main` application has "Python" language environment emulation mode, which adds arguments unpickling and results pickling work to the core "Java" mode.
 
@@ -322,7 +322,7 @@ Random forest results:
 The pickling overhead for each batch size can be estimated by subtracting the JPMML-Evaluator scoring time from the tabulated scoring times.
 The cost function appears to exhibit a 30 -- 60 microsecs fixed part, and a 1 -- 1.5 microsecs variable part.
 
-###### Python data handler
+#### Python data handler
 
 The `benchmark.py` script has "Dummy" mode, where the predictions are made by a dummy (no-op) model.
 To eliminate any systematic bias or error, this model returns a three-column data matrix (string class label, double probabilities of event and no-event) as is typical with binary classifiers.
@@ -347,7 +347,7 @@ Dummy model results:
 
 The cost function appears to exhibit a ~200 microsecs fixed part, and a 0.5 -- 1 microsecs variable part.
 
-##### JPMML-Evaluator in Python: complete workflow analysis
+### JPMML-Evaluator in Python: complete workflow analysis
 
 The summation of component times gives the "user" workflow time, but there is an additional "system" workflow time, which corresponds to Python calling Java via some inter-process communication technology (steps #3 and #7).
 
@@ -386,9 +386,9 @@ It appears to be a fixed cost somewhere in the 1100 -- 1300 microsecs (PyJNIus) 
 The PyJNIus backend has lower overhead than the Py4J backend.
 However, the difference between the two is not that big in relative terms, which gives application developers freedom to work with either one.
 
-### Main observations and conclusions
+## Main observations and conclusions
 
-##### General
+### General
 
 * Benchmarking should be carried out using a setup that mimics the intended production setup as closely as possible. Benchmarking unrelated transformer and model types with unrelated datasets is a fool's errand.
 
@@ -401,7 +401,7 @@ The ratio between fixed costs vs. variable costs dictates the minimum efficient 
 
 * Benchmarking Java libraries and tools is sensitive towards the JVM warm-up status. The scoring times between "cold" and "hot" states may differ substantially. The warm-up needs to be complete relative to this part of the codebase that is being measured; unrelated parts may be left cold or lukewarm.
 
-##### Scikit-Learn
+### Scikit-Learn
 
 * Scikit-Learn is designed around the batch processing idea, because it addresses both model training and model deployment concerns.
 
@@ -413,7 +413,7 @@ Variable costs are almost negligible when working with all-numeric data.
 
 * Scikit-Learn can and will take advantage of vectorized math operations. However, the implementation resides at the C language layer, which limits its utility with smaller batch sizes.
 
-##### JPMML-Evaluator in Java
+### JPMML-Evaluator in Java
 
 * JPMML-Evaluator and its derivatives are designed exclusively around the model deployment concern.
 In the PMML approach, the model training part is left to specialized ML frameworks such as Apache Spark, R or Scikit-Learn. The fitted pipelines are converted to the PMML representation using high-quality JPMML family conversion tools and libraries.
@@ -427,14 +427,14 @@ The scoring path, and hence the scoring time, depends on the feature values of a
 
 * JPMML-Evaluator is oriented towards real-time and near real-time prediction (eg. stream scoring), where the data comes in sporadically, and has to be acted on immediately. However, it is also applicable to batch prediction, even though its peak throughput is limited due to the unavailability of vectorized math operations.
 
-##### JPMML-Evaluator in Python
+### JPMML-Evaluator in Python
 
 * JPMML-Evaluator-Python is characterized by high fixed costs (1000 to 1500 microsec per batch) and medium variable costs (20 to 100 microsec per data record).
 The fixed costs stem from Python-to-Java inter-process communication, and are difficult to get around using the existing PyJNIus or Py4J backends.
 
 * JPMML-Evaluator-Python is one or two orders of magnitude slower than JPMML-Evaluator, which limits its utility for real-time prediction. However, it is still competitive with Scikit-Learn when dealing with small batches.
 
-### Resources
+## Resources
 
 * "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
 * Python scripts: [`train.py`]({{ "/resources/2021-08-04/train.py" | absolute_url }}) and [`benchmark.py`]({{ "/resources/2021-08-04/benchmark.py" | absolute_url }})

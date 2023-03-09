@@ -14,7 +14,7 @@ Essentially, there is a lower bound (instead of an upper bound) to the effective
 
 This blog post details a workflow where Apache Spark ML pipeline models are converted to the Predictive Model Markup Language (PMML) representation, and then deployed using the Openscoring REST web service for easy interfacing with third-party applications.
 
-### Converting Apache Spark ML pipeline models to the PMML representation
+## Converting Apache Spark ML pipeline models to the PMML representation
 
 [PMML support](https://www.databricks.com/blog/2015/07/02/pmml-support-in-apache-spark-mllib.html) was introduced in Apache Spark MLlib version 1.4.0 in the form of a `org.apache.spark.mllib.pmml.PMMLExportable` trait. The `PMMLExportable#toPMML()` method (or one of its overloaded variants) produces a PMML document which contains the symbolic description of the fitted model.
 
@@ -65,14 +65,14 @@ $ $SPARK_HOME/bin/spark-submit \
 
 The resulting `wine-color.pmml` file can be opened for inspection in a text editor.
 
-### The essentials of the PMML representation
+## The essentials of the PMML representation
 
 A PMML document specifies a workflow for transforming an input data record to an output data record.
 The end user interacts with the entry and exit interfaces of the workflow, and can completely disregard its internals.
 
 The design and implementation of these two interfaces is PMML engine-specific. The [JPMML-Evaluator](https://github.com/jpmml/jpmml-evaluator) library is geared towards maximum automation. The entry interface exposes complete description of active fields. Similarly, the exit interface exposes complete description of the primary target field and secondary output fields. A capable agent can use this information to format input data record and parse output data records without any external help.
 
-##### Input
+### Input
 
 The decision tree model is represented as the `/PMML/TreeModel` element. Its schema is defined by the combination of `MiningSchema` and `Output` child elements.
 
@@ -119,7 +119,7 @@ The enhanced definition reads:
 2. Convert the value to `double` data type and `continuous` operational type.
 3. If the value is in range [3.8, 15.9], then pass it on to the model element. Otherwise, throw an "invalid value" exception.
 
-##### Output
+### Output
 
 The primary target field may be accompanied by a set of secondary output fields, which expose additional details about the prediction.
 For example, classification models typically return the label of the winning class as the primary result, and the breakdown of the class probability distribution as the secondary result.
@@ -169,7 +169,7 @@ Therefore, a PMML engine would be returning implicit identifiers in the form of 
 
 The JPMML-Evaluator and JPMML-Model libraries provides rich APIs that can resolve node identifiers to `org.dmg.pmml.Node` class model objects, and backtrack these to the root of the decision tree.
 
-##### Transformations
+### Transformations
 
 From the PMML perspective, Apache Spark ML data transformations can be classified as "real" or "pseudo".
 A "real" transformation performs a computation on a feature or a feature vector. It is encoded as one or more `/PMML/DataDictionary/DerivedField` elements.
@@ -229,7 +229,7 @@ The case in point is the identification and pruning of unused field declarations
 For example, the `wine.csv` CSV document contains 11 feature columns, but the wine color model reveals that three of them ("residual_sugar", "free_sulfur_dioxide" and "alcohol") do not contribute to the discrimination between white and red wines in any way.
 The conversion engine takes notice of that and omits all the related data transformations from the workflow, thereby eliminating three-elevenths of the complexity.
 
-### Importing PMML to Openscoring REST web service
+## Importing PMML to Openscoring REST web service
 
 [Openscoring](https://github.com/openscoring/openscoring) provides a way to expose an ML model as a REST web service.
 The primary design consideration is to make ML models easily discoverable and usable (a variation of the [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS) theme) for human and machine agents alike. 
@@ -261,7 +261,7 @@ Openscoring maps every PMML document to a `/model/${id}` endpoint, which provide
 Model deployment, download and undeployment are privileged actions that are only accessible to users with the "admin" role. All the unprivileged actions are accessible to all users.
 This basic access and authorization control can be overriden at the Java web container level. For example, configuring Servet filters that restrict the visibility of endpoints by some prefix/suffix, restrict the number of data records that can be evaluated in a time period, etc.
 
-##### Deployment
+### Deployment
 
 Adding the wine color model:
 
@@ -343,7 +343,7 @@ For example, understanding that the REST endpoint `/model/wine-color` holds a cl
 More sophisticated agents could rise to elevated model verification and field schema levels.
 For example, checking that the reported file size and MD5 checksum are correct, and establishing field mappings between the model and the data store.
 
-##### Evaluation
+### Evaluation
 
 Evaluating the wine color model in single prediction mode:
 
@@ -388,7 +388,7 @@ Evaluating the wine color model in CSV mode:
 $ curl -X POST --data-binary @/path/to/wine.csv -H "Content-type: text/plain; charset=UTF-8" http://localhost:8080/openscoring/model/wine-color/csv > /path/to/wine-color.csv
 ```
 
-##### Undeployment
+### Undeployment
 
 Removing the wine color model:
 
@@ -396,7 +396,7 @@ Removing the wine color model:
 $ curl -X DELETE http://localhost:8080/openscoring/model/wine-color
 ```
 
-##### Openscoring client libraries
+### Openscoring client libraries
 
 The Openscoring REST API is fairly mature and stable.
 The majority of changes happen in the "REST over HTTP(S)" transport layer. For example, adding support for new data formats and encodings, new user authentication mechanisms, etc.

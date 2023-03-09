@@ -11,7 +11,7 @@ The recent PyCaret upgrade from 2(.3) to 3(.0) is exciting for two reasons.
 First, heavily refactored experiment API (see [PyCaret-2271](https://github.com/pycaret/pycaret/pull/2271)). The OOP-style experiment setup and command interface is much more relatable than the functional programming-style interface.
 Second, replacing the majority of custom transformer classes with their Scikit-Learn equivalents, which improves interoperability with existing Scikit-Learn oriented tooling.
 
-### PyCaret 3 fundamentals
+## PyCaret 3 fundamentals
 
 Typical supervised learning workflow:
 
@@ -122,7 +122,7 @@ model = exp.create_model(...)
 pycaret_pipeline = exp.finalize_model(model)
 ```
 
-### Classification experiment
+## Classification experiment
 
 The "audit-NA" dataset contains three numeric columns and five categorical string columns. Roughly 25% of values are missing.
 
@@ -173,7 +173,7 @@ Summary of the `pycaret_pipeline` object:
 
 The results reveal that the current configuration failed to achieve redundant feature elimination, because the `RemoveMulticollinearity` transformer draws 19 columns as input, and returns the same 19 columns as result.
 
-### Regression experiment
+## Regression experiment
 
 The "auto" dataset contains four numeric columns and three numeric-like columns. The latter are manually cast to categorical string columns.
 
@@ -229,7 +229,7 @@ Summary of the `pycaret_pipeline` object:
 
 Surprisingly enough, this competition is won by a linear model, well ahead of various decision tree ensemble models.
 
-### PMML
+## PMML
 
 The [`sklearn2pmml`](https://github.com/jpmml/sklearn2pmml) package provides the `sklearn2pmml.sklearn2pmml` utility function for converting Scikit-Learn pipelines to the Predictive Model Markup Language (PMML) representation.
 
@@ -257,7 +257,7 @@ They can be left to their default `None` values if the column names of the train
 PMML documents are concise yet informative, and fully self-contained.
 In the two experiments above, if the PyCaret pipeline object is first saved in PMML data format (uncompressed text) and then in pickle data format (compressed binary), then the size of the PMML file is actually smaller in both cases!
 
-### Resources
+## Resources
 
 * "Audit-NA" dataset: [`audit-NA.csv`]({{ "/resources/data/audit-NA.csv" | absolute_url }})
 * "Auto" dataset: [`auto.csv`]({{ "/resources/data/auto.csv" | absolute_url }})

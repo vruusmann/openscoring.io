@@ -28,7 +28,7 @@ Random forest (RF) algorithms typically grow much deeper decision trees.
 Longer decision paths lead to more complex derived features (eg. interactions between multiple non-linearly transformed features), which lose in interpretability but gain in information content.
 For example, discovering cliffs and other anomalies in the decision space by observing which derived features become associated with extreme node scores.
 
-### Scikit-Learn perspective
+## Scikit-Learn perspective
 
 Scikit-Learn documentation dedicates a separate page to GBDT plus LR (GBDT+LR) ensemble models: [Feature transformations with ensembles of trees](https://scikit-learn.org/stable/auto_examples/ensemble/plot_feature_transformation.html)
 
@@ -37,7 +37,7 @@ Interested parties are either expected to copy-paste the example code, or rely o
 
 The [`sklearn2pmml`](https://github.com/jpmml/sklearn2pmml) package version 0.47.0 introduced `sklearn2pmml.ensemble.GBDTLRClassifier` and  `sklearn2pmml.ensemble.GBDTLMRegressor` ensemble models to address this deficiency.
 
-### PMML perspective
+## PMML perspective
 
 The Predictive Model Markup Language (PMML) provides standardized data structures for representing all common data pre- and post-processing operations and model types, including the GBDT model type and the LR model type.
 
@@ -53,7 +53,7 @@ The PMML representation does not need such layer of indirection, because it is p
 The [JPMML-Model](https://github.com/jpmml/jpmml-model) library provides Visitor API for traversing, updating and transforming PMML class model objects.
 In the current case, the Visitor API is used to transform the GBDT side of the GBDT+LR model to a regression-type boosting model. All leaf nodes are assigned new score values as extracted from the LR side.
 
-### Example workflow
+## Example workflow
 
 The GBDT+LR workflow is much simpler than traditional workflows.
 Specifically, there is no need to perform dedicated feature engineering work, because the GBDT+LR estimator will do it automatically and in a very thorough manner.
@@ -166,7 +166,7 @@ sklearn2pmml(pipeline, "LGBM+LR.pmml")
 Both XGBoost and LightGBM classifiers support missing values.
 When working with sparse datasets, then it is possible to make `make_fit_gbdtlr` and `make_fit_lgbmlr` utility functions missing value-aware by replacing the default `LabelBinarizer` and `LabelEncoder` transformers with `sklearn2pmml.preprocessing.PMMLLabelBinarizer` and `sklearn2pmml.preprocessing.PMMLLabelEncoder` transformers, respectively.
 
-### Resources
+## Resources
 
 * "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
 * Python script: [`train.py`]({{ "/resources/2019-06-19/train.py" | absolute_url }})

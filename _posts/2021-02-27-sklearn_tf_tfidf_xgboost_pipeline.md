@@ -5,7 +5,7 @@ author: vruusmann
 keywords: scikit-learn xgboost mlxtend sklearn2pmml tf-idf data-missing
 ---
 
-### You have been doing it wrong
+## You have been doing it wrong
 
 Consider the simplest TF(-IDF) plus XGBoost pipeline:
 
@@ -56,7 +56,7 @@ For example, the predicted probabilities for the first data record of the "senti
 
 Clearly, one of the two pipelines must be incorrect.
 
-### Untangling the mess
+## Untangling the mess
 
 The situation cannot be definitively cleared up by making more predictions, or exploring the documentation and Python source code of relevant classes and methods.
 
@@ -116,7 +116,7 @@ The former incorrectly believes that it was dealing with massive amounts of miss
 A data scientist may evaluate such a biased TF(-IDF) plus XGBoost pipeline with a validation dataset, and decide that its raw numeric performance is still good enough for productionization.
 It would be okay. The Pipeline API provides adequate guarantees that all biases survive and are consistently applied throughout the pipeline life-cycle.
 
-### Doing it right
+## Doing it right
 
 As of XGBoost 1.3(.3), the `missing` constructor parameter has no effect:
 
@@ -170,7 +170,7 @@ pmml_pipeline = make_pmml_pipeline(pipeline, active_fields = ["Sentence"], targe
 sklearn2pmml(pmml_pipeline, "XGBSentiment.pmml")
 ```
 
-### Resources
+## Resources
 
 * "Sentiment" dataset: [`sentiment.csv`]({{ "/resources/data/sentiment.csv" | absolute_url }})
 * Python script: [`train.py`]({{ "/resources/2021-02-27/train.py" | absolute_url }})

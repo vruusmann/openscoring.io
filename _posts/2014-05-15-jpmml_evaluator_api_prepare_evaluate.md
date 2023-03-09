@@ -17,7 +17,7 @@ Quite naturally, data preparation precedes data evaluation. It involves three ac
 
 The JPMML-Evaluator library represents PMML values using subclasses of the `org.jpmml.evaluator.FieldValue` class (beware, the [JPMML-Model](https://github.com/jpmml/jpmml-model) library contains a class with the same simple name `org.dmg.pmml.FieldValue`). Most model types operate on scalar-type field values. However, there are some model types such as [association rules model](https://dmg.org/pmml/v4-4-1/AssociationRules.html) and [sequence rules model](https://dmg.org/pmml/v4-4-1/Sequence.html) that operate on Collection-type field values. Application developers are advised to employ the `org.jpmml.evaluator.FieldValueUtil` utility class whenever there is a need to create new or refine existing (e.g. change data or operational type) field values.
 
-### Option 1: Eager preparation
+## Option 1: Eager preparation
 
 The classical approach is to create a new argument map, and populate it with prepared field values one by one:
 
@@ -49,7 +49,7 @@ Typically, the `pmmlArguments` variable is serializable using Java's serializati
 
 The `Evaluator#prepare(FieldName, Object)` method only deals with scalar-type field values. A Collection-type field value must be subjected to data preparation element-wise. Application developers are advised to employ the `org.jpmml.evaluator.EvaluatorUtil#prepare(Evaluator, FieldName, Object)` utility method when handling a mix of scalar- and Collection-type field values.
 
-### Option 2: Lazy preparation
+## Option 2: Lazy preparation
 
 The modern approach is to dispatch user arguments as they are:
 
@@ -82,7 +82,7 @@ private FieldValue getFieldValue(Evaluator evaluator, Map<FieldName, ?> argument
 }
 ```
 
-### Option 3: Manual preparation
+## Option 3: Manual preparation
 
 The lazy loading logic provides a "loophole", which makes it possible to circumvent data preparation altogether when `FieldValue` objects are created manually:
 

@@ -13,7 +13,7 @@ This limitation can be tracked as [XGBoost-7292](https://github.com/dmlc/xgboost
 
 The solution is to train XGBoost survival models using the Python Learning API, and then migrate them to the Scikit-Learn API for the eventual productionization.
 
-### Data canonicalization
+## Data canonicalization
 
 Loading the ["lung" dataset](https://lifelines.readthedocs.io/en/latest/lifelines.datasets.html#lifelines.datasets.load_lung):
 
@@ -57,7 +57,7 @@ for col in cols:
   df[col] = df[col].astype(Int64Dtype() if has_missing else int)
 ```
 
-### Data pre-processing
+## Data pre-processing
 
 XGBoost versions 1.5 and newer can work with the canonicalized "lung" dataset as-is.
 There is no longer any technical reason for imputing missing values or encoding categorical values.
@@ -134,7 +134,7 @@ def make_aft_label(time, status):
 
 According to XGBoost conventions, uncensored labels are encoded as `(<value>, <value>)`, whereas right-censored labels are encoded as `(<value>, +Inf)`.
 
-### Training via Python Learning API
+## Training via Python Learning API
 
 Constructing an [`xgboost.DMatrix`](https://xgboost.readthedocs.io/en/stable/python/python_api.html#xgboost.DMatrix) object:
 
@@ -179,7 +179,7 @@ When in doubt, it is possible to open the booster JSON file in a text editor, an
 With categorical features around, one would expect to see a healthy proportion of non-empty list values.
 It would be a clear cause for concern if they were all empty.
 
-### Making predictions via Scikit-Learn API
+## Making predictions via Scikit-Learn API
 
 Scikit-Learn pipeline is a composite of transformers and estimators.
 It provides atomic pickling, and unified `fit_transform(X)` and `fit_predict(X, y)` API methods for dealing with arbitrary complexity workflows.
@@ -203,7 +203,7 @@ pipeline = Pipeline([
 As noted earlier, survival analysis is a subtype of regression analysis.
 This makes it possible to wrap an AFT booster object into an `xgboost.XGBRegressor` object, and have it directly respond to `XGBRegressor.predict(X)` method calls.
 
-### Pipeline verification
+## Pipeline verification
 
 Typically, a `Pipeline` object is constructed using unfitted components, and fitted right thereafter. This is convenient and makes a very strong guarantee that all pipeline steps work together harmoniously.
 However, there are still plenty of situations where one or more pipeline steps defy the unified API, or make use of extra information or functionality that is not available within the `Pipeline.fit(X, y)` method scope.
@@ -250,7 +250,7 @@ The absolute tolerance value of `1E-3` is estimated by multiplying the selected 
 
 In other words, two survival times are considered to be equivalent, if they agree with each other in the order of "full minutes or better".
 
-### PMML
+## PMML
 
 Wrapping the pipeline object into a `PMMLPipeline` object:
 
@@ -281,6 +281,6 @@ The `PMMLPipeline` object is enhanced with verification data in order to auto-di
 PMML implements [model verification](https://dmg.org/pmml/v4-4-1/ModelVerification.html) similarly to the `numpy.isclose` utility function.
 The main difference is terminological, as relative tolerance and absolute tolerance are called "precision" and "zero threshold", respectively.
 
-### Resources
+## Resources
 
 * Python script: [`train.py`]({{ "/resources/2023-01-28/train.py" | absolute_url }})

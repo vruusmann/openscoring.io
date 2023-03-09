@@ -11,7 +11,7 @@ Scikit-Learn users may find H2O.ai interesting when working with datasets that e
 Sure, it is often possible to ignore the problem for extended periods of time by renting a bigger and faster computer.
 But the fact remains that Scikit-Learn is not a "Big Data"-oriented ML framework by design, and some new tools and new ways of doing things are likely to yield much better results.
 
-### Estimator upgrade from Scikit-Learn to H2O.ai
+## Estimator upgrade from Scikit-Learn to H2O.ai
 
 H2O.ai is written in Java, and typically runs in a managed server (whether on-premise or "cloud").
 Python users can interact with an H2O.ai server using the [`h2o`](https://github.com/h2oai/h2o-3/tree/master/h2o-py) package.
@@ -65,7 +65,7 @@ Traceback (most recent call last):
 AttributeError: 'DataFrame' object has no attribute 'cbind'
 ```
 
-### Manual data upload to H2O.ai server
+## Manual data upload to H2O.ai server
 
 Closer inspection of the [`H2OEstimator.fit(X, y)`](https://docs.h2o.ai/h2o/latest-stable/h2o-py/docs/modeling.html#h2o.estimators.estimator_base.H2OEstimator.fit) method signature reveals that it expects both `X` and `y` arguments to be of `h2o.H2OFrame` type.
 
@@ -111,7 +111,7 @@ h2o_y = H2OFrame(y.to_frame(), column_types = ["categorical"])
 pipeline.fit(h2o_X, h2o_y)
 ```
 
-### Semi-automated data upload to H2O.ai server
+## Semi-automated data upload to H2O.ai server
 
 If the pipeline contains any transformer steps, then the manual data upload approach will not work, because Scikit-Learn transformer classes do not support data container types other than `numpy.ndarray` and `pandas.DataFrame`.
 
@@ -134,7 +134,7 @@ pipeline = Pipeline([
 pipeline.fit(X, H2OFrame(y.to_frame(), column_types = ["categorical"]))
 ```
 
-### H2O.ai pipeline persistence
+## H2O.ai pipeline persistence
 
 Scikit-Learn developers recommend using Python's built-in pickle data format for short-term persistence needs:
 
@@ -158,6 +158,6 @@ _pickle.PicklingError: Can't pickle <class 'h2o.estimators.glm.H2OGeneralizedLin
 
 The pickling will work if the H2O.ai version is downgraded to 3.32.1.7 or older.
 
-### Resources
+## Resources
 
 * Python script: [`train.py`]({{ "/resources/2022-11-11/train.py" | absolute_url }})
