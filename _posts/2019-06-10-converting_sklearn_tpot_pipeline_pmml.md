@@ -23,7 +23,7 @@ TPOT is made available for data scientists as a Scikit-Learn estimator, which ca
 For more sophisticated application scenarios, the fitted pipeline can be accessed directly as the `fitted_pipeline_` attribute, or converted to Python application code using the `export(path)` method.
 
 Fitted [TPOT estimators cannot be pickled](https://github.com/EpistasisLab/tpot/issues/520) by design.
-This poses a serious problem for the `sklearn2pmml` package, which operates on Pickle files rather than on in-memory Python objects.
+This poses a serious problem for the `sklearn2pmml` package, which operates on pickle files rather than on in-memory Python objects.
 
 For example, attempting to fit and convert an estimator-only `PMMLPipeline` object:
 
@@ -43,7 +43,7 @@ pmml_pipeline.fit(iris.data, iris.target)
 sklearn2pmml(pmml_pipeline, "TPOTIris.pmml", with_repr = True)
 ```
 
-This attempt fails with a pickling error inside the `sklearn2pmml.sklearn2pmml(Pipeline: pipeline, str: pmml_output_path)` utility function:
+This attempt raises a pickling error inside the `sklearn2pmml.sklearn2pmml(Pipeline: pipeline, str: pmml_output_path)` utility function:
 
 ```
 Generation 1 - Current best internal CV score: 0.9733333333333334               
@@ -80,7 +80,7 @@ Traceback (most recent call last):
 _pickle.PicklingError: Can't pickle <class 'tpot.operator_utils.LogisticRegression__C'>: it's not found as tpot.operator_utils.LogisticRegression__C
 ```
 
-The workaround is to fit `TPOTClassifier` in standalone mode, and create a `PMMLPipeline` object off the `TPOTClassifier.fitted_pipeline_` attribute using the `sklearn2pmml.make_pmml_pipeline(Pipeline: pipeline)` utility function:
+The workaround is to fit `TPOTClassifier` in standalone mode, and create a `PMMLPipeline` object off the `TPOTClassifier.fitted_pipeline_` attribute using the `sklearn2pmml.make_pmml_pipeline(obj)` utility function:
 
 ``` python
 from sklearn.datasets import load_iris
@@ -103,7 +103,7 @@ The lesson is that the PMML representation is only concerned with the final stat
 
 Working with real-life datasets is only a little bit more complicated.
 
-### Feature engineering
+### Data pre-processing
 
 TPOT estimators require that the `X` argument of the `fit(X, y)` method is a numeric matrix.
 
@@ -116,11 +116,11 @@ For example, if the domain knowledge suggests that feature ratios might be signi
 
 An AutoML algorithm should have no problem going through arbitrary size data matrices by applying feature selection.
 
-The suggested approach is to split the workflow into two parts.
-First, there is a feature engineering part, which accepts a raw data matrix, and transforms it to a 2-D Numpy array.
-Second, there is a TPOT part, which performs the magic.
+The suggested approach is to split the workflow into two stages.
+First, there is a data pre-processing stage, which accepts a raw data matrix, and transforms it to a 2-D Numpy array.
+Second, there is a TPOT stage, which performs the magic.
 
-These two parts are executed one after another.
+These two stages are executed one after another.
 They produce fitted "child" `Pipeline` objects, which are joined programmatically into a fitted "parent" `PMMLPipeline` object for a quick and easy conversion to the PMML representation.
 
 Sample usage:

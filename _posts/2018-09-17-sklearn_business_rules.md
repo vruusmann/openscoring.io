@@ -55,13 +55,13 @@ The expressive power of primary predicates seems rather limiting at first glance
 
 ### `RuleSetClassifier` model type
 
-The [`sklearn2pmml`](https://github.com/jpmml/sklearn2pmml) package version 0.38.0 introduced the [`sklearn2pmml.ruleset.RuleSetClassifier`](https://github.com/jpmml/sklearn2pmml/blob/master/sklearn2pmml/ruleset/__init__.py) model type, which allows data scientists to implement a business rules model as a regular Scikit-Learn classifier.
+The [`sklearn2pmml`](https://github.com/jpmml/sklearn2pmml) package version 0.38.0 introduced the [`sklearn2pmml.ruleset.RuleSetClassifier`](https://github.com/jpmml/sklearn2pmml/blob/master/sklearn2pmml/ruleset/__init__.py) class, which allows data scientists to implement a business rules model as a regular Scikit-Learn classifier.
 
 The complete set of user-specified business rules is presented as an iterable of tuples. The first element is a Python predicate, and the second element is the associated (ie. to be predicted) class label. It is likely that future `sklearn2pmml` package versions add support for more elements, such as the associated class probability distribution.
 
 The search for a matching business rule takes place using the simplest "first hit" strategy. If there is no match, then the default class label (could be `None` to indicate a missing result) is returned instead.
 
-The Python side evaluates business rules using Python's built-in [`eval()`](https://docs.python.org/3/library/functions.html#eval) function. The data record is presented as `X` row array (ie. the shape is `(1, )`). Depending on the backing Scikit-Learn workflow, the cells of this row array may be referentiable by name and/or by position. Wherever technically feasible, name-based cell references should be preferred over positional ones. They are easier to read and write, and do not break if the workflow is reorganized.
+The Python side evaluates business rules using Python's built-in [`eval(expr)`](https://docs.python.org/3/library/functions.html#eval) function. The data record is presented as `X` row array (ie. the shape is `(1, )`). Depending on the backing Scikit-Learn workflow, the cells of this row array may be referentiable by name and/or by position. Wherever technically feasible, name-based cell references should be preferred over positional ones. They are easier to read and write, and do not break if the workflow is reorganized.
 
 Python predicates involving continuous features:
 
@@ -137,7 +137,7 @@ The PMML representation of the "core" of this model as a [`RuleSet`](https://dmg
 </RuleSet>
 ```
 
-Real-life workflows tend to include feature engineering steps that revert the `DataFrame` object back to a Numpy array, thereby enforcing positional cell references.
+Real-life workflows tend to include data pre-processing steps that revert the `DataFrame` object back to a Numpy array, thereby enforcing positional cell references.
 For example, the following `sklearn_pandas.DataFrameMapper` step transforms the "named" four-fimensional feature space into an "anonymized" two-dimensional feature space (average flower dimensions), which must be addressed using `X[<column>]`-style field references:
 
 ``` python

@@ -50,7 +50,7 @@ pipeline = Pipeline([
 pipeline.fit(X, y)
 ```
 
-The `Pipeline()` constructor succeeds, but the subsequent `Pipeline.fit(X, y)` method invocation raises a rather obscure attribute error:
+The `Pipeline` constructor succeeds, but the subsequent `Pipeline.fit(X, y)` method call raises a rather obscure attribute error:
 
 ```
 Traceback (most recent call last):
@@ -136,7 +136,7 @@ pipeline.fit(X, H2OFrame(y.to_frame(), column_types = ["categorical"]))
 
 ### H2O.ai pipeline persistence
 
-Scikit-Learn developers recommend using Python's built-in Pickle data format for short-term persistence needs:
+Scikit-Learn developers recommend using Python's built-in pickle data format for short-term persistence needs:
 
 ``` python
 import pickle
@@ -147,7 +147,7 @@ with open("pipeline.pkl", "wb") as f:
 
 Unfitted `H2OEstimator` objects can be pickled and unpickled freely.
 
-However, any attempt to pickle a fitted `H2OEstimator` object raises a pickling error in latest H2O.ai versions (at the time of writing this (November 2022), eg. 3.34.0.8, 3.36.1.5, 3.38.0.2):
+However, any attempt to pickle a fitted `H2OEstimator` object shall fail with the following pickling error in latest H2O.ai versions (at the time of writing this (November 2022), eg. 3.34.0.8, 3.36.1.5, 3.38.0.2):
 
 ```
 Traceback (most recent call last):

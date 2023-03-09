@@ -174,7 +174,7 @@ Random forest results:
 
 The random error associated with time measurements is mitigated by running smaller-sized batches many times (and averaging their results).
 Here, small batches are run 1000 times, medium batches 10 times, and large batches only once.
-In the result tables (see above and below), run configurations are indicated using the formula `<number of runs> * <batch size>`. For example, the "1000 * 10" run configuration reads "create a batch of 10 data records, and invoke the `predict(X)` method 1000 times with it".
+In the result tables (see above and below), run configurations are indicated using the formula `<number of runs> * <batch size>`. For example, the "1000 * 10" run configuration reads "create a batch of 10 data records, and call the `predict(X)` method 1000 times with it".
 
 The scoring times between `benchmark.py` script re-runs do not fluctuate more than 5%, which is considered excellent for a simplictic Python command-line application.
 

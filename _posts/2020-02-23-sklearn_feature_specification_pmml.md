@@ -29,7 +29,7 @@ Every model element holds the description of its data interface:
 * Simple statistics about feature domains - the [`ModelStats`](https://dmg.org/pmml/v4-4-1/Statistics.html#xsdElement_ModelStats) element.
 * Complex statistics about feature domains partitioned by the prediction range - the [`ModelExplanation`](https://dmg.org/pmml/v4-4-1/ModelExplanation.html#xsdElement_ModelExplanation) element.
 
-Value preparation is a two stage process.
+Value preparation is a two-stage process.
 
 In the first stage, the user value is converted to a PMML value according to the [`DataField`](https://dmg.org/pmml/v4-4-1/DataDictionary.html#xsdElement_DataField) element.
 
@@ -130,7 +130,7 @@ The `Domain.transform(X)` method uses all this information to prepare the datase
 
 Domain decorators bring most value when working with heterogeneous datasets.
 
-The simplest way to go about such workflows is to assemble a two-step pipeline, where the first step is either a `sklearn_pandas.DataFrameMapper` or `sklearn.compose.ColumnTransformer` meta-transformer for performing column-oriented feature engineering work, and the second step is an estimator:
+The simplest way to go about such workflows is to assemble a two-step pipeline, where the first step is either a `sklearn_pandas.DataFrameMapper` or `sklearn.compose.ColumnTransformer` meta-transformer for performing column-oriented data pre-processing work, and the second step is an estimator:
 
 ``` python
 from sklearn_pandas import DataFrameMapper

@@ -28,7 +28,7 @@ This blog post demonstrates how to incorporate Imbalanced-Learn samplers into PM
 The "audit" dataset contains 1899 data records; 447 of them are labeled as "event" and 1452 as "no-event".
 In this exercise, the dataset shall be enriched from the initial ~1/4 event ratio to 1/3 event ratio by randomly sampling 1000 "event" data records and 2000 "no-event" data records using the `imblearn.over_sampling.RandomOverSampler` sampler.
 
-The sampler step is typically placed between feature engineering and classifier steps:
+The sampler step is typically placed between mapper and classifier steps:
 
 ``` python
 from imblearn.over_sampling import RandomOverSampler
@@ -58,7 +58,7 @@ pipeline = Pipeline([
 It should be pointed out that a sampler step creates new internal data matrices during fitting that shall live in computer memory side-by-side with incoming data matrices.
 This is not a problem with the "audit" dataset, but may become an issue when working with Big Data-scale datasets.
 
-However, any attempt to insert a sampler step directly into a Scikit-Learn pipeline fails with the following type error:
+However, any attempt to insert a sampler step directly into a Scikit-Learn pipeline shall fail with the following type error:
 
 ```
 Traceback (most recent call last):

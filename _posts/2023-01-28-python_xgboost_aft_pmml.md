@@ -73,7 +73,7 @@ df["sex"] = df["sex"].astype("category")
 
 However, the above code is not suitable for productionization!
 
-A quick cast using the `category` data type alias creates a new `CategoricalDtype` object on each and every invocation.
+A quick cast using the `category` data type alias creates a new `CategoricalDtype` object on each and every call.
 Its "business state" is a mapping from category levels to category indices.
 If a testing dataset does not have exactly the same set of unique category levels as the training dataset, then the mapping will be different, and along with it all the predictions.
 
@@ -201,7 +201,7 @@ pipeline = Pipeline([
 ```
 
 As noted earlier, survival analysis is a subtype of regression analysis.
-This makes it possible to wrap an AFT booster object into an `xgboost.XGBRegressor` object, and have it directly respond to `XGBRegressor.predict(X)` method invocations.
+This makes it possible to wrap an AFT booster object into an `xgboost.XGBRegressor` object, and have it directly respond to `XGBRegressor.predict(X)` method calls.
 
 ### Pipeline verification
 
@@ -210,7 +210,7 @@ However, there are still plenty of situations where one or more pipeline steps d
 
 When a `Pipeline` object is constructed from pre-fitted components, then there are no guarantees in place. For example, the `Pipeline` constructor does not even check if the output dimensions of one step match the input dimensions of the next step.
 
-The correctness of unknown origin and unknown status `Pipeline` objects can only be assessed empirically, by invoking their predict methods (eg. `predict(X)`, `predict_proba(X)`) with adequate verification datasets, and comparing actual results against expected results.
+The correctness of unknown origin and unknown status `Pipeline` objects can only be assessed empirically, by calling their predict methods (eg. `predict(X)`, `predict_proba(X)`) with adequate verification datasets, and comparing actual results against expected results.
 
 Asserting equivalence between Python Learning API and Scikit-Learn API predictions:
 
@@ -240,8 +240,8 @@ If there were any discrepancies between their predictions, then it would be natu
 Arrays of floating-point numeric values can be compared element-wise for equivalence using the [`numpy.isclose`](https://numpy.org/doc/stable/reference/generated/numpy.isclose.html) utility function.
 
 The algorithm is controlled by two parameters.
-First, relative tolerance (the `rtol` argument) is a property of the ML workflow (the precision of the default numeric data type, plus the order of "mathematical complexity" of transformations).
-Second, absolute tolerance (the `atol` argument) is a property of the dataset.
+First, relative tolerance (the `rtol` argument) is a workflow property (the precision of the default numeric data type, plus the order of "mathematical complexity" of transformations).
+Second, absolute tolerance (the `atol` argument) is a dataset property.
 
 The XGBoost algorithm is based on `float32` data type, which limits the relative tolerance to about `1E-6 .. 1E-7` range.
 
@@ -274,7 +274,7 @@ pmml_pipeline.verify(df_verif, precision = 1e-6, zeroThreshold = 1e-3)
 sklearn2pmml(pmml_pipeline, "XGBoostAFTLung.pmml")
 ```
 
-It is advisable to use the `sklearn2pmml.make_pmml_pipeline()` utility function for constructing a `PMMLPipeline` object from pre-fitted components, because it is programmed to perform exactly the same extra object initialization work as the `PMMLPipeline.fit(X, y)` method is doing.
+It is advisable to use the `sklearn2pmml.make_pmml_pipeline(obj)` utility function for constructing a `PMMLPipeline` object from pre-fitted components, because it is programmed to perform exactly the same extra object initialization work as the `PMMLPipeline.fit(X, y)` method is doing.
 For example, setting the `PMMLPipeline.active_fields` and `PMMLPipeline.target_fields` attributes.
 
 The `PMMLPipeline` object is enhanced with verification data in order to auto-discover any regressions that might arise from migration from Python platform to other language platforms.

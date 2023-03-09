@@ -16,9 +16,9 @@ Typically, it is zero for primitive types and 16 bytes for reference types.
 
 ### Scikit-Learn estimators do not (yet-) support the `__sizeof__()` method
 
-Can the in-memory size of Scikit-Learn estimator objects be measured using the `__sizeof__()` method or not?
+Can the in-memory size of Scikit-Learn estimators be measured using the `__sizeof__()` method or not?
 
-As of Scikit-Learn version 1.1(.3), the answer appears to be "no", because the following code keeps printing a constant value of 24 or 32 bytes (depending on the Python version) for a wide variety of transformer and estimator types:
+As of Scikit-Learn version 1.1(.3), the answer appears to be "no", because the following code keeps printing a constant value of 24 or 32 bytes (depending on the Python version) for a wide variety of transformer and model types:
 
 ``` python
 from sklearn.datasets import make_regression
@@ -40,18 +40,18 @@ The most damning evidence is that the reported size of the `estimator` object do
 
 ### Scikit-Learn estimator instance state
 
-Scikit-Learn estimator types can exist in two instance states:
+Scikit-Learn estimators can exist in two instance states:
 
 1. Initial state. Contains learning instructions.
 2. Final fitted state. Contains initial learning instruction, a defensive copy of "employed" learning instructions, plus the full specification of the newly-learned function.
 
-The state change happens when the estimator object is fitted by invoking its `fit(X, y)` method.
+The state change happens when the estimator object is fitted by calling its `fit(X, y)` method.
 A fitted estimator object can be re-fitted multiple times. It is rather uncommon to do so, but technically it simply overwrites the previous fitted state with a new one.
 
 According to [Scikit-Learn conventions](https://scikit-learn.org/stable/modules/generated/sklearn.utils.validation.check_is_fitted.html), end users can distinguish between these two instance states by checking if the estimator object has any attributes that end with a trailing underscore.
 
 With Python being a loosely typed language, it is impossible to write a universal code snippet that could automatically identify and demarcate the instance state of all naturally occuring Python objects.
-However, such code snippet can be written for Scikit-Learn estimator types, because they tend to follow a fairly strict and consistent class layout.
+However, such code snippet can be written for Scikit-Learn estimators, because they tend to follow a fairly strict and consistent class layout.
 
 Algorithm for collecting actual instance attributes:
 

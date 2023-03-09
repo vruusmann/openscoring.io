@@ -8,7 +8,7 @@ keywords: scikit-learn lightgbm sklearn2pmml data-categorical data-missing
 [LightGBM](https://github.com/Microsoft/LightGBM) is a serious contender for the top spot among gradient boosted trees (GBT) algorithms.
 
 Even though it can be used as a standalone tool, it is mostly used as a plugin to more sophisticated ML frameworks such as Scikit-Learn or R.
-The idea is to use the underlying ML framework for generic activities such as loading, cleaning and preparing data, and use a third-party library only in the final stage of training a model.
+The idea is to use the underlying ML framework for generic activities such as loading, cleaning and preparing data, and use a third-party library only in the final stage.
 As a specialized library, LightGBM offers much better performance (eg. distributed and hardware-accelerated backends) and richer parameterization options.
 
 Getting started with third-party libraries is fairly easy on Scikit-Learn, because everything is organized around the pipeline concept, and the roles and responsibilities of individual pipeline steps are formalized via an API.

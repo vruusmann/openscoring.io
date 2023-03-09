@@ -39,7 +39,7 @@ Main stages:
 3. The `exp.finalize_model(...)` method distills all the relevant steps into a unitary, deployment-ready PyCaret pipeline.
 
 The PyCaret pipeline class inherits from the Scikit-Learn pipeline class.
-It overrides all fit, transform and predict methods to enable caching, which is critical when invoking the same computation many times.
+It overrides all fit, transform and predict methods to enable caching, which is critical when performing the same computation many times.
 
 PyCaret 3 relies on its own data management and data flow logic, which assumes `pandas.DataFrame` as the data matrix type, and where individual columns are identified by name, not by position.
 
@@ -238,7 +238,7 @@ However, the `sklearn2pmml` utility method refuses to accept Python classes othe
 The solution is to wrap the PyCaret pipeline object into a `PMMLPipeline` object using the `sklearn2pmml.pycaret.make_pmml_pipeline` utility method.
 This utility method differs from the generic `sklearn2pmml.make_pmml_pipeline` utility method by the fact that it knows about the `TransformerWrapper` meta-transformer class, and can perform proper escaping of its contents.
 
-The escaping is needed to ensure that the "business state" of all transformers and estimators is complete when dumped in Pickle data format.
+The escaping is needed to ensure that the "business state" of all transformers and estimators is complete when dumped in pickle data format.
 The list of known troublemakers contains mostly Scikit-Learn selector classes (caused by the dynamic implementation of the `_get_support_mask()` method).
 If the escaping is not done, then the conversion succeeds with simpler pipelines, but may fail with more complex ones.
 
@@ -255,7 +255,7 @@ The `make_pmml_pipeline` utility function takes `active_fields` and `target_fiel
 They can be left to their default `None` values if the column names of the training dataset are fine.
 
 PMML documents are concise yet informative, and fully self-contained.
-In the two experiments above, if the PyCaret pipeline object is first saved in PMML data format (uncompressed text) and then in Pickle data format (compressed binary), then the size of the PMML file is actually smaller in both cases!
+In the two experiments above, if the PyCaret pipeline object is first saved in PMML data format (uncompressed text) and then in pickle data format (compressed binary), then the size of the PMML file is actually smaller in both cases!
 
 ### Resources
 

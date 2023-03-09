@@ -108,7 +108,7 @@ They are kept separate from one another logically by prefixing parameter names w
 The search meta-estimator is still splitting the original dataset into two subsets.
 However, the split happens before the workflow execution enters the `(PMML)Pipeline.fit(X, y)` method, so all estimators in the pipeline are exposed to the same number of data records.
 
-If the span of a validation subset exceeds that of a training subset, then the corresponding cross-validation fold fails with a value error:
+If the span of a validation subset exceeds that of a training subset, then the corresponding cross-validation fold shall fail with a value error:
 
 ```
 Traceback (most recent call last):

@@ -121,7 +121,7 @@ enricher = FeatureUnion([
 ])
 ```
 
-If the outlier detector is operated in "labelling mode" (by invoking the `predict(X)` method that returns a bi-valued categorical integer feature, see above), then it is advisable to explicitly encode it in order to avoid accidental type system violations.
+If the outlier detector is operated in "labelling mode" (by calling the `predict(X)` method that returns a bi-valued categorical integer feature, see above), then it is advisable to explicitly encode it in order to avoid accidental type system violations.
 
 For example, linear models accept a categorical integer feature, but cast it forcibly to a continuous float feature. During training, the categorical integer feature is associated with a single beta coefficient.
 Such beta coefficient lacks deeper meaning, because it suggests that the contribution and significance of outliers (ie. the `-1` category level) is the exact opposite of inliers (ie. the `+1` category level).

@@ -7,13 +7,13 @@ keywords: scikit-learn r apache-spark pyspark sklearn2pmml r2pmml pyspark2pmml
 
 Logistic regression is often the go-to algorithm for binary classification problems.
 
-This blog post demonstrates how to perform feature engineering and train a logistic regression model in a way that allows for quick productionization using the Predective Model Markup Language (PMML) standard.
+This blog post demonstrates how to perform data pre-processing and train a logistic regression model in a way that allows for quick productionization using the Predective Model Markup Language (PMML) standard.
 The same workflow is implemented using Scikit-Learn, R and Apache Spark frameworks to demostrate their particularities.
 
 Summary of the workflow:
 
 * Ingesting the raw dataset.
-* Feature engineering:
+* Data pre-processing:
   * Capturing and refining feature information.
   * Applying transformations to individual continuous and categorical features.
   * Interacting categorical features.
@@ -119,7 +119,7 @@ R follows functional programming paradigm.
 The built-in `stats` package provides a [`glm()`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/glm) function for training generalized linear models.
 The logistic regression mode is activated by setting the `family` argument to binomial value (either as a string literal or a [`family`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/family) object).
 
-If the goal is to perform feature engineering in a PMML compatible manner, then the `glm()` function must be called using "formula interface".
+If the goal is to perform data pre-processing in a PMML compatible manner, then the `glm()` function must be called using "formula interface".
 Simple formulas can be specified inline (eg. `glm(Adjusted ~ ., family = "binomial", data = audit.df)`).
 Complex formulas should be assembled step by step from stringified terms, and then compiled into a standalone [`formula`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/formula) object:
 

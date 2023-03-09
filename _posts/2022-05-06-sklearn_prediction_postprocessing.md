@@ -8,11 +8,11 @@ keywords: scikit-learn sklearn2pmml
 The centerpiece of ML pipelines is the model.
 Steps that precede the model are called "data pre-processing" aka "feature engineering" steps. Steps that follow the model are called "prediction post-processing" aka "decision engineering" steps.
 
-Overall, the feature engineering part is more appreciated and valued than the decision engineering part.
+Overall, data pre-processing is more appreciated and valued than prediction post-processing.
 Feature transformations allow the data to be (re)presented in more nuanced and relevant ways, thereby leading to better models.
 However, even the best model is functionally compromised if its predictions are confusing or difficult to integrate with the host application.
 
-Scikit-Learn pipelines provide feature engineering support, but completely lack decision engineering support. Any attempt to insert a transformer step after the final estimator step shall be rejected by raising an error.
+Scikit-Learn pipelines provide data pre-processing support, but completely lack prediction post-processing support. Any attempt to insert a transformer step after the final estimator step shall fail with an error.
 
 Potential workarounds include wrapping an estimator into a post-processing meta-estimator (that overrides the `predict(X)` method), or performing post-processing computations outside of the Scikit-Learn pipeline using free-form Python code.
 

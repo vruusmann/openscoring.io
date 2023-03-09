@@ -14,7 +14,7 @@ The PMML document type is a top-level XML document type. It does not limit the n
 There are three main attachment points:
 
 * The [`Annotation`](https://dmg.org/pmml/v4-4-1/Header.html#xsdElement_Annotation) element. Document modification history.
-* The [`Extension`](https://dmg.org/pmml/v4-4-1/GeneralStructure.html#xsdElement_Extension) element. Element-specific vendor extensions. Vendor extensions are suitable for adding "depth" to the target element. For example, persisting non-standard data and metadata, which could come in handy during various stages of model life-cycle.
+* The [`Extension`](https://dmg.org/pmml/v4-4-1/GeneralStructure.html#xsdElement_Extension) element. Element-specific vendor extensions. Vendor extensions are suitable for adding "depth" to the target element. For example, persisting non-standard data and metadata, which could come in handy during various model life-cycle stages.
 Vendor extensions should not be critical for the successful use of the PMML document. The behaviour of a PMML engine should not change (at least, materially) if they are filtered out.
 * The [`InlineTable`](https://dmg.org/pmml/v4-4-1/Taxonomy.html#xsdElement_InlineTable) element. Free-form data tables.
 
@@ -55,7 +55,7 @@ The XML Schema Definition (XSD) for MathML version 3 is is readily available. It
 
 ##### W3C DOM approach
 
-The MathML content is captured as an `org.w3c.dom.Element` object. It is critical that the W3C DOM API is operated in an XML namespace-aware fashion. This involves calling the `javax.xml.parsers.DocumentBuilderFactory#setNamespaceAware(boolean)` method with `true` as an argument and using the `org.w3c.dom.Document#createElementNS(String, String)` method for creating `Element` nodes.
+The MathML content is captured as an `org.w3c.dom.Element` object. It is critical that the W3C DOM API is operated in an XML namespace-aware fashion. This involves invoking the `javax.xml.parsers.DocumentBuilderFactory#setNamespaceAware(boolean)` method with `true` as an argument and using the `org.w3c.dom.Document#createElementNS(String, String)` method for creating `Element` nodes.
 
 ``` java
 private static final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -149,7 +149,7 @@ Caused by: javax.xml.bind.JAXBException: class org.w3c.math.Math nor any of its 
 
 Just like the exception message suggests, the solution is to make the MathML class model known to the JAXB runtime.
 
-A `javax.xml.bind.JAXBContext` objects can be created by calling the `JAXBContext#newInstance(Class...)` method with a list of XML registry classes as arguments. Currently, this list must include `org.dmg.pmml.ObjectFactory` and `org.w3c.math.ObjectFactory` classes.
+A `javax.xml.bind.JAXBContext` objects can be created by invoking the `JAXBContext#newInstance(Class...)` method with a list of XML registry classes as arguments. Currently, this list must include `org.dmg.pmml.ObjectFactory` and `org.w3c.math.ObjectFactory` classes.
 
 A custom `JAXBContext` object passes complete type information to its child `javax.xml.bind.Marshaller` and `javax.xml.bind.Unmarshaller` objects. The marshalling and unmarshalling behaviour can be further modified by adjusting generic as well as implementation-specific configuration options. For example, setting the generic `jaxb.formatted.output` configuration option to `true` will indentate the XML document to make it more human friendly:
 

@@ -85,7 +85,7 @@ The "homogenisation" of LightGBM and XGBoost estimators is possible by enforcing
 However, this reduces the predictive performance of LightGBM.
 For more information, please refer to the blog post about [converting Scikit-Learn LightGBM pipelines to PMML]({% post_url 2019-04-07-converting_sklearn_lightgbm_pipeline_pmml %}).
 
-The solution is to perform feature engineering for each child estimator (and in the passthrough mode, also for the parent estimator) separately:
+The solution is to perform data pre-processing for each child estimator (and in the passthrough mode, also for the parent estimator) separately:
 
 ``` python
 from sklearn_pandas import DataFrameMapper
@@ -107,7 +107,7 @@ pipeline = PMMLPipeline([
 ])
 ```
 
-If all child pipelines perform common feature engineering work, then it should be extracted into the first step of the pipeline.
+If all child pipelines perform common data pre-processing work, then it should be extracted into the first step of the pipeline.
 In this exercise, it is limited to capturing domain of features using `CategoricalDomain` and `ContinuousDomain` decorators.
 
 The initial column transformer changes the representation of the dataset from `pandas.DataFrame` to 2-D Numpy array, which is lacking adequate column-level metadata (eg. names, data types) for setting up subsequent column transformers.

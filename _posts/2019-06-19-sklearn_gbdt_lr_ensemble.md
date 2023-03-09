@@ -8,7 +8,7 @@ keywords: scikit-learn lightgbm xgboost sklearn2pmml data-categorical
 Logistic regression (LR) is often the go-to choice for binary classification.
 Owing to extreme simplicity, LR models are fast to train and easy to deploy, and readily lend themselves for human interpretation.
 
-The predictive performance of LR models depends on the quality and sophistication of feature engineering.
+The predictive performance of LR models depends on the quality and sophistication of data pre-processing, specifically feature engineering.
 There are two major work areas.
 First, delineating and generating the intended feature space. LR algorithms operate on the feature space they are given.
 They are not designed to independently discover non-linearities along individual dimensions, or interactions between multiple dimensions.

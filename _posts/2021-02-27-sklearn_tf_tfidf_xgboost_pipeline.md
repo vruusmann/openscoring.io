@@ -110,7 +110,7 @@ In plain english, these interpretations read like "I do not know if the document
 Scikit-Learn estimators typically error out when they encounter `NaN` values.
 In contrast, XGBoost estimators treat `NaN` values as special-purpose missing value indicator values, and grow missing value-aware decision trees.
 
-When comparing XGBoost estimators between the first and the second pipeline, then they are structurally different (overall vocabulary, the time and location of invoking individual terms, etc.).
+When comparing XGBoost estimators between the first and the second pipeline, then they are structurally different (overall vocabulary, the time and location of individual term invocations, etc.).
 The former incorrectly believes that it was dealing with massive amounts of missing values during training, and all its internals are thus systematically off.
 
 A data scientist may evaluate such a biased TF(-IDF) plus XGBoost pipeline with a validation dataset, and decide that its raw numeric performance is still good enough for productionization.
@@ -156,7 +156,7 @@ yt_proba = classifier.predict_proba(Xt_df_sparse)
 
 The above TF(-IDF) plus XGBoost sequence is correct in a sense that unset cell values are interpreted as zero count values.
 
-The only problem is that this sequence cannot be "formatted" as a `Pipeline` object, because there is no reusable (pseudo-)transformer that would implement the intermediate `DataFrame.sparse.from_spmatrix(data)` method invocation.
+The only problem is that this sequence cannot be "formatted" as a `Pipeline` object, because there is no reusable (pseudo-)transformer that would implement the intermediate `DataFrame.sparse.from_spmatrix(data)` method call.
 
 However, fitted pipeline steps can be combined into a temporary pipeline for PMML conversion purposes:
 

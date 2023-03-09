@@ -103,7 +103,7 @@ $ $SPARK_HOME/bin/pyspark --jars /path/to/jpmml-sparkml-executable-${version}.ja
 
 ### Updating application code
 
-The `org.jpmml.sparkml.ConverterUtil` utility class is still part of JPMML-SparkML, but it has been marked as deprecated, and rendered dysfunctional - both `#toPMML(StructType, PipelineModel)` and `#toPMMLByteArray(StructType, PipelineModel)` utility methods throw an `java.lang.UnsupportedOperationException` when invoked:
+The `org.jpmml.sparkml.ConverterUtil` utility class is still part of JPMML-SparkML, but it has been marked as deprecated, and rendered dysfunctional - both `#toPMML(StructType, PipelineModel)` and `#toPMMLByteArray(StructType, PipelineModel)` utility methods always throw an `java.lang.UnsupportedOperationException`:
 
 ```
 java.lang.UnsupportedOperationException: Replace "org.jpmml.sparkml.ConverterUtil.toPMMLByteArray(schema, pipelineModel)" with "new org.jpmml.sparkml.PMMLBuilder(schema, pipelineModel).buildByteArray()"

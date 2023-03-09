@@ -51,7 +51,7 @@ The default JAXB runtime does not collect and propagate SAX Locator information,
 
 Apache Maven activates all Java EE modules (including the `java.xml.bind` module) during compilation, so the project can again be built without any formal GlassFish Metro dependency.
 
-However, now and in the future, the `org.glassfish.jaxb:jaxb-runtime` library has become a required run-time dependency. If missing, then any attempt to make use of some JAXB class or interface will result in a `java.lang.ClassNotFoundException`:
+However, now and in the future, the `org.glassfish.jaxb:jaxb-runtime` library has become a required run-time dependency. If missing, then any attempt to make use of some JAXB class or interface shall fail with the following `java.lang.ClassNotFoundException`:
 
 ```
 Exception in thread "main" java.lang.NoClassDefFoundError: javax/xml/bind/JAXBContext

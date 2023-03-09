@@ -116,7 +116,7 @@ pipeline = PMMLPipeline([
 pipeline.fit(X, y)
 ``` 
 
-The XGBoost classifier performs label encoding and decoding during `XGBClassifier.fit(X, y)` and `XGBClassifier.predict(X)` method invocations similarly to Scikit-Learn classifiers.
+The XGBoost classifier performs label encoding and decoding during `XGBClassifier.fit(X, y)` and `XGBClassifier.predict(X)` method calls similarly to Scikit-Learn classifiers.
 The learned encoding is stored in the `XGBClassifier._le` attribute as a `sklearn.preprocessing.LabelEncoder` transformer.
 
 Exporting the booster object:
@@ -257,7 +257,7 @@ def make_classifier():
 ```
 
 The `enable_categorical` argument acts as a double confirmation mechanism.
-If not explicitly set to `True`, then the fit method will fail with the following value error:
+If not explicitly set to `True`, then the fit method shall fail with the following value error:
 
 ```
 Traceback (most recent call last):

@@ -50,7 +50,7 @@ $ pip install --upgrade pyspark2pmml
 
 ### Assembling, fitting and converting pipeline models
 
-The JPMML-SparkML library supports most common Apache Spark ML model and transformer types.
+The JPMML-SparkML library supports most common Apache Spark ML transformer and model types.
 
 Selected highlights:
 
@@ -58,7 +58,7 @@ Selected highlights:
 * Feature engineering via [`feature.SQLTransformer`](https://spark.apache.org/docs/latest/api/java/org/apache/spark/ml/feature/SQLTransformer.html).
 * Hyperparameter selection and tuning via [`tuning.CrossValidator`](https://spark.apache.org/docs/latest/api/java/org/apache/spark/ml/tuning/CrossValidator.html) and [`tuning.TrainValidationSplit`](https://spark.apache.org/docs/latest/api/java/org/apache/spark/ml/tuning/TrainValidationSplit.html).
 * Third-party ML framework model types such as XGBoost and LightGBM (MMLSpark).
-* Custom model and transformer types.
+* Custom transformer and model types.
 
 The exercise starts with training two separate classification-type decision tree models for the "red" and "white" subsets of the ["wine quality"](https://archive.ics.uci.edu/ml/datasets/Wine+Quality) dataset.
 

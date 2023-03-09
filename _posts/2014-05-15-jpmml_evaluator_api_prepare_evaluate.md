@@ -59,7 +59,7 @@ public Map<FieldName, ?> prepareLazilyAndEvaluate(Evaluator evaluator, Map<Field
 }
 ```
 
-This approach is the most concise one. Essentially, the interaction with the JPMML-Evaluator library is reduced to a single line of code, which greatly simplifies application maintenance. The downside is less control over data preparation errors. The invocation of the `Evaluator#evaluate(Map<FieldName, ?>)` method fails when the first problematic field value is encountered. In other words, the whole data record is invalidated, not just some field(s).
+This approach is the most concise one. Essentially, the interaction with the JPMML-Evaluator library is reduced to a single line of code, which greatly simplifies application maintenance. The downside is less control over data preparation errors. The `Evaluator#evaluate(Map<FieldName, ?>)` method fails when the first problematic field value is encountered. In other words, the whole data record is invalidated, not just some field(s).
 
 This approach is fully supported by JPMML-Evaluator version 1.1.4 and newer. Earlier versions implement the conversion of values, but do not implement the validation of values and treatment of invalid, outlier and missing values (see above). Even though the data evaluation operation is very likely to succeed with earlier versions, the result is unspecified in terms of the PMML specification (e.g. may complete successfully instead of failing with a PMML invalid field value exception).
 

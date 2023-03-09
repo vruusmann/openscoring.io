@@ -125,7 +125,7 @@ For example, the `/PMML/DataDictionary` element for the "CHAIDIris" model contai
 ```
 
 The category levels that are listed under a `DataField` element fully define the valid value space for that field.
-Any attempt to evaluate a model with an unlisted input value shall raise an error.
+Any attempt to evaluate a model with an unlisted input value shall fail with a value error.
 
 If the goal is to preserve the "normalcy" of continuous features, and even allow for some interpolation and extrapolation, then they should be binned into (temporary-) categorical features.
 Scikit-Learn provides the [`slearn.preprocessing.KBinsDiscretizer`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.KBinsDiscretizer.html) transformer, which can learn bin edges based on common statistical procedures.

@@ -23,7 +23,7 @@ This calculation is applicable to all data records, irrespective of their origin
 ### Scikit-Learn
 
 Some model types have built-in feature importance estimation capabilities.
-For example, decision tree and decision tree ensemble models declare a `feature_importances_` property that yields Gini Impurities upon invocation.
+For example, decision tree and decision tree ensemble models declare a `feature_importances_` property that yields Gini Impurities.
 Similarly, it is not formalized as a linear model property, but all seasoned data scientists know that the beta coefficients of a linear model act as surrogate feature importances (assuming standardized data).
 
 Scikit-Learn version 0.24 and newer provide the [`sklearn.inspection.permutation_importance`](https://scikit-learn.org/stable/modules/generated/sklearn.inspection.permutation_importance.html) utility function for calculating permutation-based importances for all model types.
@@ -67,13 +67,13 @@ print(imp_classifier.importances_mean)
 
 ### Pickle
 
-The [JPMML-SkLearn](https://github.com/jpmml/jpmml-sklearn) library can only work with this state of a Python object that is serializable in Pickle data format.
+The [JPMML-SkLearn](https://github.com/jpmml/jpmml-sklearn) library can only work with this state of a Python object that is serializable in pickle data format.
 A Python property does not have a persistent state. The workaround is to transfer its value into a new regular Python attribute.
 
 By convention, the JPMML-SkLearn library checks if the Python pipeline or model object has a `pmml_feature_importances_` attribute (the `pmml_` prefix prepended to the standard `feature_importances_` attribute name).
 If it does, then it is expected to hold a Numpy array of shape `(n_features, )`.
 
-Exposing the built-in feature importances of a decision tree:
+Exposing decision tree feature importances:
 
 ``` python
 from sklearn.tree import DecisionTreeClassifier
@@ -86,9 +86,9 @@ dtc.pmml_feature_importances_ = dtc.feature_importances_
 sklearn2pmml(pipeline, "DecisionTreeAudit.pmml")
 ```
 
-In case of ensemble models there are feature importances available at different aggregation levels.
+In case of ensemble models there could be feature importances available at different aggregation levels.
 
-Exposing the built-in feature importances of a decision tree ensemble, first at the root model level, and then at the member model level:
+Exposing decision tree ensemble feature importances, first at the root model level, and then at the member model level:
 
 ``` python
 from sklearn.ensemble import RandomForestClassifier

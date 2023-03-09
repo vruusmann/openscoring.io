@@ -35,9 +35,9 @@ audit.formula = as.formula(
 audit.glm = glm(audit.formula, data = audit, family = "binomial")
 ```
 
-The R platform lacks the pipeline concept. Feature engineering can happen either as free-form R code (applying functions "step by step" to the dataset) or as model formula (combining functions to a master function and applying it "atomically" to the dataset).
+The R platform lacks the pipeline concept. Data pre-processing can happen either as free-form R code (applying functions "step by step" to the dataset) or as model formula (combining functions to a master function and applying it "atomically" to the dataset).
 
-The model formula approach requires a bit more experience and discipline to pull off. However, it has a clear and major advantage that the resulting R models are self-contained - all feature engineering logic is stored inside the model object, and is automatically executed whenever the model object is used with the standard `stats::predict(..)` function.
+The model formula approach requires a bit more experience and discipline to pull off. However, it has a clear and major advantage that the resulting R models are self-contained - all data pre-processing logic is stored inside the model object, and is automatically executed whenever the model object is used with the standard `stats::predict(..)` function.
 
 The [`r2pmml`](https://github.com/jpmml/r2pmml) package checks R models for model formula information, and if present, will analyze and convert it to the PMML representation as fully as possible.
 
@@ -135,7 +135,7 @@ val transformer = transformerBuilder.build()
 
 It should be pointed out that the JPMML-Evaluator-Spark library is developed in the Java language, and that its public API (eg. method signatures, return types) only makes use of Java types. This may necessitate extra type casts and/or conversions when working in other languages such as the Scala language.
 
-The `Transformer` object holds the complete "business logic" of the above R script, including all feature engineering, model execution and decision engineering functionality. It also takes full care of translating values between Apache Spark and PMML type systems.
+The `Transformer` object holds the complete "business logic" of the above R script, including all data pre-processing, model execution and prediction post-processing functionality. It also takes full care of translating values between Apache Spark and PMML type systems.
 
 ``` scala
 var inputDs = spark.read.format("csv") \
