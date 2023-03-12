@@ -33,7 +33,7 @@ $ $JAVA_HOME/bin/java -cp target/jaxb_demo-executable-1.0-SNAPSHOT.jar jaxb_demo
 $ $JAVA_HOME/bin/java -cp target/jaxb_demo-executable-1.0-SNAPSHOT.jar jaxb_demo.UnmarshalDemo < /tmp/jaxb_demo.pmml
 ```
 
-## Java SE 1.8(.0_162)
+## Java SE 1.8(.0_162) ##
 
 The project can be built and deployed without any formal GlassFish Metro dependency.
 
@@ -47,7 +47,7 @@ The default JAXB runtime does not collect and propagate SAX Locator information,
 </dependency>
 ```
 
-## Java SE 9(.0.4) and 10(.0.2)
+## Java SE 9(.0.4) and 10(.0.2) ##
 
 Apache Maven activates all Java EE modules (including the `java.xml.bind` module) during compilation, so the project can again be built without any formal GlassFish Metro dependency.
 
@@ -116,7 +116,7 @@ For example, declaring a minimal GlassFish Metro dependency:
 
 These three exclusions reduce the size of the `jaxb_demo` uber-JAR file a bit over 400 kB.
 
-## Java SE 11(.0.2)
+## Java SE 11(.0.2) ##
 
 [Java SE 11 removed all Java EE modules](https://blog.codefx.org/java/java-11-migration-guide/#Removal-Of-Java-EE-Modules), including the `java.xml.bind` module. Since Apache Maven is unable to provide Java XML Binding classes on its own, the project becomes non-buildable:
 
@@ -138,6 +138,6 @@ $ mvn clean install
 
 After declaring the minimal GlassFish Metro dependency, the project can be built and deployed as before.
 
-## Resources
+## Resources ##
 
 * Java application: ["jaxb_demo.zip"]({{ "/resources/2019-02-28/jaxb_demo.zip" | absolute_url }})

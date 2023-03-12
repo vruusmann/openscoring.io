@@ -18,7 +18,7 @@ This blog post walks through all major XGBoost releases from 0.7 to 1.7, with th
 The focus is on handling categorical data.
 Any measurable changes in predictive or computational performance are ignored. The general expectation is that each new major XGBoost release version is smarter and faster than all the previous ones.
 
-## XGBoost version 0.7 (v0.72.1)
+## XGBoost version 0.7 (v0.72.1) ##
 
 The "audit" dataset deals with a binary classification problem.
 
@@ -133,7 +133,7 @@ Unfortunately, the only supported data format is a binary proprietary one, for w
 When making pipeline configuration changes, then it is possible to monitor both its intended and unintended consequences by diffing booster files.
 For example, when updating parameterizations, or replacing Scikit-Learn's `OneHotEncoder` transformer with some third-party implementation, then the byte content of the booster file must remain the same.
 
-## XGBoost versions 0.8 and 0.9 (v0.82, v0.90)
+## XGBoost versions 0.8 and 0.9 (v0.82, v0.90) ##
 
 Added the [`XGBModel.save_model(fname)`](https://github.com/dmlc/xgboost/blob/v0.82/python-package/xgboost/sklearn.py#L246-L262) method:
 
@@ -143,7 +143,7 @@ Exporting the booster object:
 classifier.save_model("Booster.bin")
 ```
 
-## XGBoost version 1.0 (v1.0.2)
+## XGBoost version 1.0 (v1.0.2) ##
 
 Added the [`XGBoostLabelEncoder`](https://github.com/dmlc/xgboost/blob/v1.0.2/python-package/xgboost/compat.py#L140-L161) class, and changed the type of the `XGBClassifier._le` attribute to it.
 
@@ -163,11 +163,11 @@ Pretty-printing a booster JSON file to make it more human friendly:
 $ python -m json.tool < Booster.json > Booster-pretty.json
 ``` 
 
-## XGBoost versions 1.1 and 1.2 (v1.1.1, v1.2.1)
+## XGBoost versions 1.1 and 1.2 (v1.1.1, v1.2.1) ##
 
 No changes.
 
-## XGBoost version 1.3 (v1.3.3)
+## XGBoost version 1.3 (v1.3.3) ##
 
 Added the [`XGBClassifier.use_label_encoder`](https://github.com/dmlc/xgboost/blob/v1.3.3/python-package/xgboost/sklearn.py#L814) attribute.
 
@@ -209,14 +209,14 @@ This functionality is considered highly experimental. It is partially integrated
 
 A booster object that contains categorical splits cannot be saved in binary proprietary data format.
 
-## XGBoost version 1.4 (v1.4.2)
+## XGBoost version 1.4 (v1.4.2) ##
 
 The booster JSON file contains an embedded feature map (lists of feature names and feature types).
 
 When making predictions, then the XGBoost library uses this information to ensure that the new validation or testing datasets are structurally similar to the training dataset.
 Scikit-Learn pipelines should pass such checks cleanly thanks to the "initializer" step.
 
-## XGBoost version 1.5 (v1.5.2)
+## XGBoost version 1.5 (v1.5.2) ##
 
 Added the [`XGBModel.enable_categorical`](https://github.com/dmlc/xgboost/blob/v1.5.2/python-package/xgboost/sklearn.py#L401) attribute.
 
@@ -306,7 +306,7 @@ For example, the "Education" field was mapped to a feature map entry range `[5, 
 The `diff` output shows that the booster JSON file has been rewritten.
 While technically correct, this observation is completely unhelpful when trying to understand the bigger picture.
 
-## XGBoost version 1.6 (v1.6.2)
+## XGBoost version 1.6 (v1.6.2) ##
 
 Deprecated the use of the `XGBClassifier.use_label_encoder` attribute, and added the [`XGBModel.max_cat_to_onehot`](https://github.com/dmlc/xgboost/blob/v1.6.2/python-package/xgboost/sklearn.py#L521) attribute.
 
@@ -333,7 +333,7 @@ classifier.save_model("Booster.ubj")
 UBJSON is a binary data serialization format for JSON-compatible data structures.
 It aims to improve data reading and writing speeds, and reduce data size. These capabilities are highly relevant, as the size of booster JSON files can reach tens to hundreds of megabytes.
 
-## XGBoost version 1.7 (v1.7.3)
+## XGBoost version 1.7 (v1.7.3) ##
 
 Added the [`XGBModel.max_cat_threshold`](https://github.com/dmlc/xgboost/blob/v1.7.3/python-package/xgboost/sklearn.py#L577) attribute.
 
@@ -349,7 +349,7 @@ The structure of member decision trees reflects how the original heterogeneous d
 Continuous and low-cardinality categorical features (see the `max_cat_tp_onehot` tree param!) can appear at every branching level.
 In contrast, medium- and high-cardinality categorical features initially stay on the sidelines. They appear gradually at deeper branching levels, where the details matter.
 
-## PMML
+## PMML ##
 
 The [JPMML-XGBoost](https://github.com/jpmml/jpmml-xgboost) library converts booster objects to the standardized Predictive Model Markup Language (PMML) representation.
 This library supports all XGBoost versions and data formats (eg. Binary, JSON, UBJSON), and can be used either as a standalone command-line application or as an ML framework plugin.
@@ -384,7 +384,7 @@ Alternatively, a PMML document can be optimized for resource efficiency by compa
 
 The conversion process can be guided using conversion options.
 
-## Resources
+## Resources ##
 
 * "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
 * Python scripts: [`train-OHE.py`]({{ "/resources/2023-02-06/train-OHE.py" | absolute_url }}) (XGBoost version 1.0 and newer) and [`train-categorical.py`]({{ "/resources/2023-02-06/train-categorical.py" | absolute_url }}) (XGBoost version 1.6 and newer)

@@ -15,7 +15,7 @@ The workflow has four steps:
 3. Starting Openscoring REST web service.
 4. Using Python client library to work with Openscoring REST web service.
 
-## Importing JPMML-SparkML into Apache Spark
+## Importing JPMML-SparkML into Apache Spark ##
 
 The [JPMML-SparkML](https://github.com/jpmml/jpmml-sparkml) library converts Apache Spark ML pipeline models to the standardized Predictive Model Markup Language (PMML) representation.
 
@@ -48,7 +48,7 @@ PySpark users should additionally install the [`pyspark2pmml`](https://github.co
 $ pip install --upgrade pyspark2pmml
 ```
 
-## Assembling, fitting and converting pipeline models
+## Assembling, fitting and converting pipeline models ##
 
 The JPMML-SparkML library supports most common Apache Spark ML transformer and model types.
 
@@ -111,7 +111,7 @@ PMMLBuilder(sc, df, pipelineModel) \
 Unlike any other ML persistence or serialization data format, the PMML data format is text based and designed to be human-readable.
 It is possible to open the resulting `RedWineQuality.pmml` and `WhiteWineQuality.pmml` files in a text editor and follow the splitting logic of the learned decision tree models in terms of the original feature space.
 
-## Starting Openscoring REST web service
+## Starting Openscoring REST web service ##
 
 The quickest way to have something happening is to download the latest Openscoring server executable uber-JAR file from the [GitHub releases](https://github.com/openscoring/openscoring/releases) page, and run it.
 
@@ -127,7 +127,7 @@ The default user authorization logic is implemented by the `org.openscoring.serv
 
 When looking to upgrade to a more production-like setup, then [Openscoring-Docker](https://github.com/openscoring/openscoring-docker) and [Openscoring-Elastic-Beanstalk](https://github.com/openscoring/openscoring-elastic-beanstalk) projects provide good starting points.
 
-## Using Python client library to work with Openscoring REST web service
+## Using Python client library to work with Openscoring REST web service ##
 
 The [Openscoring REST API](https://github.com/openscoring/openscoring#rest-api) is simple and straightforward.
 
@@ -206,7 +206,7 @@ os.undeploy("RedWineQuality")
 os.undeploy("WhiteWineQuality")
 ```
 
-## Resources
+## Resources ##
 
 * "Wine quality" dataset: [`winequality-red.csv`](https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv) and [`winequality-white.csv`](https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv)
 * Python scripts: [`train.py`]({{ "/resources/2020-02-16/train.py" | absolute_url }}) and [`deploy.py`]({{ "/resources/2020-02-16/deploy.py" | absolute_url }})

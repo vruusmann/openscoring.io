@@ -14,7 +14,7 @@ Essentially, there is a lower bound (instead of an upper bound) to the effective
 
 This blog post details a workflow where Apache Spark ML pipeline models are converted to the Predictive Model Markup Language (PMML) representation, and then deployed using the Openscoring REST web service for easy interfacing with third-party applications.
 
-## Converting Apache Spark ML pipeline models to the PMML representation
+## Converting Apache Spark ML pipeline models to the PMML representation ##
 
 [PMML support](https://www.databricks.com/blog/2015/07/02/pmml-support-in-apache-spark-mllib.html) was introduced in Apache Spark MLlib version 1.4.0 in the form of a `org.apache.spark.mllib.pmml.PMMLExportable` trait. The `PMMLExportable#toPMML()` method (or one of its overloaded variants) produces a PMML document which contains the symbolic description of the fitted model.
 
@@ -65,7 +65,7 @@ $ $SPARK_HOME/bin/spark-submit \
 
 The resulting `wine-color.pmml` file can be opened for inspection in a text editor.
 
-## The essentials of the PMML representation
+## The essentials of the PMML representation ##
 
 A PMML document specifies a workflow for transforming an input data record to an output data record.
 The end user interacts with the entry and exit interfaces of the workflow, and can completely disregard its internals.
@@ -229,7 +229,7 @@ The case in point is the identification and pruning of unused field declarations
 For example, the `wine.csv` CSV document contains 11 feature columns, but the wine color model reveals that three of them ("residual_sugar", "free_sulfur_dioxide" and "alcohol") do not contribute to the discrimination between white and red wines in any way.
 The conversion engine takes notice of that and omits all the related data transformations from the workflow, thereby eliminating three-elevenths of the complexity.
 
-## Importing PMML to Openscoring REST web service
+## Importing PMML to Openscoring REST web service ##
 
 [Openscoring](https://github.com/openscoring/openscoring) provides a way to expose an ML model as a REST web service.
 The primary design consideration is to make ML models easily discoverable and usable (a variation of the [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS) theme) for human and machine agents alike. 

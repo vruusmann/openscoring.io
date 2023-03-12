@@ -14,7 +14,7 @@ Everyday workflows skip out on both ends.
 Typically, they start close to the modeling stage, and stop right after it.
 One reason why it happens is the lack of adequate feature engineering and decision engineering tools.
 
-## Feature engineering vs feature transformation
+## Feature engineering vs feature transformation ##
 
 Inside the data pre-processing stage, there are two sub-stages:
 1. Feature engineering. Deriving new features based on existing features. Manual, ad hoc activity.
@@ -38,7 +38,7 @@ State-of-the-art AutoML tools are incapable of feature engineering, but are high
 To illustrate, they lack the imagination to generate feature crosses or feature ratios.
 However, when such synthetic features are presented to them, they will aptly work out which statistical procedure(s) will amplify the signal further.
 
-## Scikit-Learn perspective
+## Scikit-Learn perspective ##
 
 Scikit-Learn collects all its data pre-processing tools into the `sklearn.preprocessing` module.
 The offering is narrow (at least when compared to the offering of modeling algorithms), but covers all the fundamentals.
@@ -105,7 +105,7 @@ print(scaler.transform(X_test))
 print(func_scaler.transform(X_test))
 ```
 
-## Scikit-Learn function transformer
+## Scikit-Learn function transformer ##
 
 Suppose that there is a stateless **user-defined function** (UDF).
 Does it mean that it can be integrated into a Scikit-Learn pipeline by simply wrapping it into a `FunctionTransformer` object?
@@ -159,7 +159,7 @@ Making guarantees about name resolution requires library approach.
 The `FunctionTransformer` transformer is very suitable for working with stable, third-party library functions such as [Numpy universal functions](https://numpy.org/doc/stable/reference/ufuncs.html), where the only source of error can be a missing import statement.
 If the application has custom data pre-processing needs, then it should get started with its own supporting UDFs library.
 
-## Optimal programming model
+## Optimal programming model ##
 
 As of Scikit-Learn 1.2(.0), there are no formalized tools or guidelines for packaging supporting UDFs.
 In principle, persistence issues could be fixed by subclassing the `FunctionTransformer` class, and overriding its shallow "function name"-based pickling behaviour with a deep "full function source code"-based one.
@@ -179,7 +179,7 @@ Missing out on vectorized math operations is unfortunate.
 However, there should be no macroscopic effect to it, because in the grand scheme of things, the computational cost of the data pre-processing stage is low compared to the modeling stage.
 A few extra loops cannot shift this balance much.
 
-## SkLearn2PMML expression transformer
+## SkLearn2PMML expression transformer ##
 
 The `sklearn2pmml` package provides the `sklearn2pmml.preprocessing.ExpressionTransformer` class since its early days.
 Starting from the SkLearn2PMML version 0.91, it has gained full UDF support, which makes it a viable replacement for the `FunctionTransformer` class in all Scikit-Learn pipelines.
@@ -339,7 +339,7 @@ _eq_sign = mylib._eq_sign
 expr = Expression("_eq_sign(X['a'], X['b'])", function_defs = [_eq_sign, _sign])
 ```
 
-## PMML
+## PMML ##
 
 ### Java
 

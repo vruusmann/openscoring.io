@@ -62,7 +62,7 @@ In plugin mode, they are inherited from the host ML framework, and only checked 
 
 The [`sklearn2pmml`](https://github.com/jpmml/sklearn2pmml) package provides `CategoricalDomain` and `ContinuousDomain` decorators specifically for the purpose of ensuring that Scikit-Learn feature definitions are as rich and nuanced as possible.
 
-## Categorical features
+## Categorical features ##
 
 The `LabelBinarizer` transformer expands a string column to a list of integer columns, one for each category level. For example, the "Education" column is expanded to sixteen integer columns (with cell values being either 0 or 1).
 
@@ -182,7 +182,7 @@ The predictive performance of the LightGBM classifier did not change much (some 
 The biggest impact is observed around the estimated feature importances instead.
 When a categorical feature is binarized, then each category level is benchmarked in isolation. In contrast, when a categorical feature is integer-encoded, then category levels "stay together" and are benchmarked as an aggregate.
 
-## Missing values
+## Missing values ##
 
 Another major advantage of LightGBM is its ability to deal with missing values (aka sparse data).
 
@@ -257,7 +257,7 @@ A LightGBM estimator has no problem accepting and interpreting such data matrix 
 
 The predictive performance of the LightGBM classifier improves considerably across all tracked metrics (accuracy, precision, recall, ROC AUC), when the missing value-ignorant `[SimpleImputer(), LabelEncoder()]` component is replaced with the missing value-aware `PMMLLabelEncoder` component.
 
-## Resources
+## Resources ##
 
 * "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
 * "Audit-NA" dataset: [`audit-NA.csv`]({{ "/resources/data/audit-NA.csv" | absolute_url }})

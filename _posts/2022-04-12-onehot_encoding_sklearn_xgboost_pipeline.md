@@ -28,7 +28,7 @@ This blog post details the technical background, and provides quick and resource
 * External OHE for XGBoost versions 0.60 -- 1.3, for sparse datasets.
 * Model-internal OHE for XGBoost version 1.4 and newer
 
-## Categorical data in XGBoost
+## Categorical data in XGBoost ##
 
 The results of optimization work depend on the correct identification of limiting steps ("bottlenecks"), and finding ways to overcome or bypass them.
 
@@ -92,7 +92,7 @@ In the above example, all `X`, `Xt` and `dmat` datasets would contain the same n
 
 By eliminating a high-cost but low-value data transformation in the Python environment, it will be possible to run existing experiments much faster, or start running new and much bigger experiments.
 
-## Legacy workflow: external OHE
+## Legacy workflow: external OHE ##
 
 The legacy workflow implements OHE in the Scikit-Learn API layer, and therefore supports all XGBoost versions, including all the pre-1.0 ones.
 
@@ -231,7 +231,7 @@ The sparsity of the `Xt` dataset is around 87.8 percent (78'347 cells out of 47 
 An `xgboost::DMatrix` object that is constructed based on a sparse Python matrix appears to transfer data into a sparse C++ matrix as well.
 Interestingly enough, XGBoost can find a data layout that reduces memory usage significantly.
 
-## Modern workflow: model-internal OHE
+## Modern workflow: model-internal OHE ##
 
 XGBoost version 1.3 and newer support model-internal OHE.
 
@@ -273,7 +273,7 @@ Memory usage:
 | dense | 121536 | **129807** | 251'343 |
 | sparse | 121536 | **103323** | 224'859 |
 
-## Resources
+## Resources ##
 
 * "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
 * "Audit-NA" dataset: [`audit-NA.csv`]({{ "/resources/data/audit-NA.csv" | absolute_url }})

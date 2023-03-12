@@ -5,7 +5,7 @@ author: vruusmann
 keywords: scikit-learn jpmml-evaluator jpmml-evaluator-python optimization
 ---
 
-## Overview
+## Overview ##
 
 A ML framework design is a trade-off between training and deployment efficiency. Finding a balance is hard, because these two application areas are conceptually and technically rather different.
 
@@ -79,7 +79,7 @@ In the context of JPMML-Evaluator, this means evaluating data records until the 
 The number of warm-up evaluations depends on the model type and complexity, but should be in the order of tens of thousands. Warm-up data records may be generated randomly based on the model schema, or be emebbed into the PMML document as the model verification dataset. 
 The dataset does not need to consist of unique data records only. It is equally fine to iterate over a small but representative dataset multiple times.
 
-## Materials and methods
+## Materials and methods ##
 
 ### Dataset
 
@@ -128,7 +128,7 @@ For batch testing purposes it is necessary to draw new custom size datasets off 
 This is done using random sampling with replacement.
 It is inevitable that Python and Java samples come to contain different data records in different order. However, from the benchmarking perspective, this difference should not be significant, because all data records are considered to be functionally and computationally equivalent.
 
-## Results
+## Results ##
 
 ### Scikit-Learn
 
@@ -386,7 +386,7 @@ It appears to be a fixed cost somewhere in the 1100 -- 1300 microsecs (PyJNIus) 
 The PyJNIus backend has lower overhead than the Py4J backend.
 However, the difference between the two is not that big in relative terms, which gives application developers freedom to work with either one.
 
-## Main observations and conclusions
+## Main observations and conclusions ##
 
 ### General
 
@@ -434,7 +434,7 @@ The fixed costs stem from Python-to-Java inter-process communication, and are di
 
 * JPMML-Evaluator-Python is one or two orders of magnitude slower than JPMML-Evaluator, which limits its utility for real-time prediction. However, it is still competitive with Scikit-Learn when dealing with small batches.
 
-## Resources
+## Resources ##
 
 * "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
 * Python scripts: [`train.py`]({{ "/resources/2021-08-04/train.py" | absolute_url }}) and [`benchmark.py`]({{ "/resources/2021-08-04/benchmark.py" | absolute_url }})

@@ -18,7 +18,7 @@ JPMML family conversion tools and libraries aim to capture, systematize and stor
 
 This blog post demonstrates how Scikit-Learn users should approach the "model-data fit" problematics.
 
-## Overview
+## Overview ##
 
 The Predictive Model Markup Language (PMML) defines data structures for representing most common model types.
 
@@ -83,7 +83,7 @@ By analogy with invalid value treatment, missing values can be rejected by chang
 
 **Important**: The IEEE 754 constant NaN ("Not a Number") is assigned to invalid value space (not to missing value space).
 
-## SkLearn2PMML domain decorators
+## SkLearn2PMML domain decorators ##
 
 The [`sklearn2pmml`](https://github.com/jpmml/sklearn2pmml) package provides several domain decorators for customizing the content of `DataField` and `MiningField` elements:
 
@@ -126,7 +126,7 @@ domain = ContinuousDomain(outlier_treatment = "as_is", low_value = None, high_va
 
 The `Domain.transform(X)` method uses all this information to prepare the dataset exactly the same way as any standards-compliant PMML engine would do.
 
-## Scikit-Learn examples
+## Scikit-Learn examples ##
 
 Domain decorators bring most value when working with heterogeneous datasets.
 
@@ -234,6 +234,6 @@ These decisions do not carry any weight (eg. "weak left" vs. "strong right") tha
 Invalid and missing value spaces are often merged for convenience reasons.
 No matter if the "Employment" column contains an invalid value or a missing value, it will be replaced with "Private" (the most frequent value in the training dataset).
 
-## Resources
+## Resources ##
 
 * "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})

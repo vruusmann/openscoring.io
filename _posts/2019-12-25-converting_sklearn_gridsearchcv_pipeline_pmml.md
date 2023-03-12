@@ -24,7 +24,7 @@ The latter is a mapping between parameter names and parameter value ranges (a li
 If the dimensionality of the hyperparameter space is low, and the gradation of all individual dimensions is directly enumerable, then it is possible to perform exhaustive search using the `GridSearchCV` meta-estimator.
 In all other cases, it is possible to perform random sampling using the `RandomizedSearchCV` meta-estimator.
 
-## Single estimator (aka local) tuning
+## Single estimator (aka local) tuning ##
 
 If the pipeline contains just one tuneable estimator, then the tuning work should be performed locally, by wrapping this estimator in its current place into a search meta-estimator:
 
@@ -63,7 +63,7 @@ As a result, the fit method of the tuneable estimator is exposed to less data re
 For example, in the above Python code, the `LogisticRegression.fit(X, y)` method is called with roughly 80% of data records (the training subset of the original dataset), whereas `LabelBinarizer.fit(X)` and `StandardScaler.fit(X)` methods are called with 100% of data records (full original dataset).
 Data scientists may want to compensate for this effect, especially when working with smaller and more heterogeneous datasets.
 
-## Pipeline (aka global) tuning
+## Pipeline (aka global) tuning ##
 
 If the pipeline contains multiple tuneable estimators, then the tuning work should be performed globally, by wrapping the complete pipeline into a search meta-estimator:
 
@@ -138,7 +138,7 @@ ValueError: Employment: Data contains 1 invalid values
 
 It is possible to suppress this sanity check by changing the value of the `Domain.invalid_value_treatment` attribute from `return_invalid` to `as_is`.
 
-## Resources
+## Resources ##
 
 * "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
 * Python scripts: [`train-local.py`]({{ "/resources/2019-12-25/train-local.py" | absolute_url }}) and [`train-global.py`]({{ "/resources/2019-12-25/train-global.py" | absolute_url }})

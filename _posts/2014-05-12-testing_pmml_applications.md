@@ -110,6 +110,6 @@ The above Java source code specifies both parameters as 1.e-6 (that is, one part
 [not equal: value differences={Probability_setosa=(0.9999989, 1.0)}]
 ```
 
-## Resources
+## Resources ##
 
 * Demo Apache Maven project: [`DecisionTreeIris.zip`]({{ "/resources/2014-05-12/DecisionTreeIris.zip" | absolute_url }})

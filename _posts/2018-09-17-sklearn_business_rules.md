@@ -5,7 +5,7 @@ author: vruusmann
 keywords: scikit-learn sklearn2pmml business-rules
 ---
 
-## Machine Learning vs. Business Rules
+## Machine Learning vs. Business Rules ##
 
 Predictive analytics applications can be equally well served by algorithmically learned "machine learning" models or manually crafted "business rules" models.
 In fact, some of the most robust and successful models are hybrids between the two, where machine generated candidates are filtered, reviewed and refactored by a human domain expert.
@@ -25,7 +25,7 @@ if(Petal_Length < 2.45){
 }
 ```
 
-## ML framework perspective
+## ML framework perspective ##
 
 Popular ML frameworks such as R, Scikit-Learn and Apache Spark disregard the "business rules" use case.
 The solution is to develop a custom model type, which has the following behaviour:
@@ -39,7 +39,7 @@ First and foremost, they should be easy for the data scientist to compose and ma
 
 There are many third-party business rules solutions available for the Python platform. After some tinkering they were all pushed aside in favour of Python predicates. The reasoning goes that data scientists are well versed with the language, and would prefer programming in Python to programming in some obscure dialect, or learning a completely new tool.
 
-## PMML perspective
+## PMML perspective ##
 
 The PMML specification provides two model elements for representing business rules models.
 The [`TreeModel`](https://dmg.org/pmml/v4-4-1/TreeModel.html#xsdElement_TreeModel) element can be used if the decision path is well determined (ie. unique), which means that a data record can and shall be matched by a single business rule only.
@@ -53,7 +53,7 @@ A predicate is simply a boolean expression. The PMML specification provides thre
 
 The expressive power of primary predicates seems rather limiting at first glance. For example, they require the right-hand side of the expression to be a value literal (rather than another field reference or expression/predicate), which rules out direct comparisons between fields (`<Field> <Operator> <Field>`). The workaround is to extract such complex logic into a standalone `DerivedField` element, and re-express the primary predicate in terms of this derived field and its possible value range. For example, a comparison expression `x1 < x2` can be re-expressed as `(x1 - x2) < 0` or `(x1 / x2) < 1`.
 
-## `RuleSetClassifier` model type
+## `RuleSetClassifier` model type ##
 
 The [`sklearn2pmml`](https://github.com/jpmml/sklearn2pmml) package version 0.38.0 introduced the [`sklearn2pmml.ruleset.RuleSetClassifier`](https://github.com/jpmml/sklearn2pmml/blob/master/sklearn2pmml/ruleset/__init__.py) class, which allows data scientists to implement a business rules model as a regular Scikit-Learn classifier.
 
@@ -76,7 +76,7 @@ Python predicates involving categorical features:
 
 If the `RuleSetClassifier` model will be used only in Scikit-Learn environment, then Python predicates may take advantage of full language and library/platform functionality. However, if the `RuleSetClassifier` model needs to be converted to the PMML representation, then some limitations and restrictions apply. A great deal of them are temporary, and will be lifted as the Python-to-PMML [expression](https://github.com/jpmml/jpmml-python/blob/master/pmml-python/src/main/javacc/expression.jj) and [predicate translation components](https://github.com/jpmml/jpmml-python/blob/master/pmml-python/src/main/javacc/predicate.jj) of the JPMML-SkLearn library evolve.
 
-## Example workflow
+## Example workflow ##
 
 The "iris" dataset is loaded using the [`sklearn.datasets.load_iris()`](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_iris.html) utility function. However, the default representation of Scikit-Learn datasets (instance of `sklearn.utils.Bunch`) is too cumbersome for actual work, and needs to be re-packaged.
 

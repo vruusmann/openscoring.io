@@ -20,7 +20,7 @@ The selection and functionality of meta-estimators is rather limited. The two no
 
 Performing computations using free-form Python code is the nuclear option. It allows reaching any goal, but sacrifices the main value proposition of ML pipelines, which is atomicity and ease of deployment across time and space.
 
-## PMMLPipeline "transformed prediction" API
+## PMMLPipeline "transformed prediction" API ##
 
 The `sklearn2pmml` package provides a `sklearn2pmml.pipeline.PMMLPipeline` class, which extends the `sklearn.pipeline.Pipeline` class with prediction post-processing.
 
@@ -52,7 +52,7 @@ There is no limit to child transformer's complexity, except that it cannot encap
 
 Additionally, the `sklearn2pmml` package provides a `sklearn2pmml.postprocessing.BusinessDecisionTransformer` transformer, which generates rich `OutputField` elements following the ["decision" result feature](https://dmg.org/pmml/v4-4-1/Output.html#xsdElement_Decisions) conventions.
 
-## Examples
+## Examples ##
 
 The class label of the "audit" dataset is encoded as a binary integer, where the "0" value and the "1" value indicate non-productive and productive audits, respectively.
 Such internal encodings should be unwound before reaching higher application levels.
@@ -154,7 +154,7 @@ Scikit-Learn identifies decision tree nodes by 1-based integer index, which can 
 By default, the `sklearn2pmml` package does not collect and encode node identifiers, because that would prevent it from compacting and flattening the tree data structure.
 The default behaviour is suppressed by deactivating `compact` and `flat` conversion options, and activating the `winner_id` conversion option. The `numeric` conversion option controls the encoding of categorical splits, and can toggled freely.
 
-## Resources
+## Resources ##
 
 * "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
 * Python scripts: [`train.py`]({{ "/resources/2022-05-06/train.py" | absolute_url }}) and [`predict.py`]({{ "/resources/2022-05-06/predict.py" | absolute_url }})

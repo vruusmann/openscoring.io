@@ -13,7 +13,7 @@ There are three major approaches to applying ML models to database data:
 
 The choice between these three approaches depends on various technical and organizational considerations. Fundamentally, direct and intermediated SQL execution approaches are about **moving the model to where data are located**, whereas the external execution approach is about **moving data to where the model is located**. SQL execution approaches can operate in real-time on any amount of data. The external execution approach is penalized by the REST web service overhead and network round-trip times. This penalty scales sublinearly. Therefore, it becomes less of an issue if the evaluation operations are less frequent (real-time vs. batch queries) and deal with larger amounts of data (single data record vs. collection of data records). The main advantage of the external execution approach is that is easily applicable to any database backend.
 
-## Overview
+## Overview ##
 
 This blog post demonstrates how to use the [Openscoring REST web service](https://github.com/openscoring/openscoring) from within PostgreSQL database.
 
@@ -29,7 +29,7 @@ The external execution workflow contains three steps:
 2. Performing the model evaluation by calling the CSV prediction REST API endpoint.
 3. Importing data from a CSV document `/tmp/iris_response.csv` back to database.
 
-## Data schema
+## Data schema ##
 
 The data about iris flowers is separated into two tables based on their origin. First, the table `iris` contains experimentally determined data. It is populated with 150 data records from the example file `/tmp/input.csv`. Second, the table `iris_decisiontree` contains predicted data:
 
@@ -56,7 +56,7 @@ CREATE TABLE iris_decisiontree (
 
 This separation makes it straightforward to scale the application from one model to many models. For example, if it becomes necessary to deploy an alternative model `RandomForestIris`, then these predicted data will be stored in another table `iris_randomforest`. A random forest model is a collection of decision tree models. The results take longer to compute, but should be more accurate.
 
-## Export of model argument data
+## Export of model argument data ##
 
 The table `iris` is (periodically-) monitored for data records that do not have a counterpart in the table `iris_decisiontree`. All such unclassified data records are exported to a CSV document `/tmp/iris_request.csv` using the `COPY .. TO` command:
 
@@ -72,7 +72,7 @@ The CSV document must conform to the following rules:
 * The separator character can be the comma (`,`), the semicolon (`;`) or the horizontal tab (`\t`) character. String values may be quoted using the double quote (`"`) character.
 * Two consecutive separator characters (`,,`) indicate a missing field value. An empty string can be represented using two consecutive double quote characters (`,"",`).
 
-## Model evaluation
+## Model evaluation ##
 
 The evaluation is handled by the Openscoring web service over the CSV evaluation REST API endpoint. In brief, this REST API endpoint is bound to the HTTP POST method. The request body is a CSV document with model arguments. The request is processed synchronously. For better responsiveness, application clients can perform the evaluation in parallel, where one big request is split into several smaller requests. The response body is another CSV document with model results.
 
@@ -103,7 +103,7 @@ SQL end users can then perform model evaluation by calling the `evaluate_iris()`
 SELECT evaluate_iris();
 ```
 
-## Import of model result data
+## Import of model result data ##
 
 Class labels and associated probabilities are imported from the file `/tmp/iris_response.csv` to the table `iris_decisiontree` using the already familiar `COPY .. FROM` command.
 
@@ -129,7 +129,7 @@ DROP TABLE iris_decisiontree_temp;
 SELECT clean_iris();
 ```
 
-## Making use of classification results
+## Making use of classification results ##
 
 Displaying all iris flowers where the experimentally determined species (column `iris.Species`) and the predicted species (column `iris_decisiontree.Predicted_Species`) are not equal:
 

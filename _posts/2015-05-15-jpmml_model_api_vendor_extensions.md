@@ -51,7 +51,7 @@ This blog post details a method for working with PMML documents that embed MathM
 
 The XML Schema Definition (XSD) for MathML version 3 is is readily available. It can be compiled to JAXB class model with the help of the XJC binding compiler. The generated MathML class model consists of a number of classes in the `org.wc3.math` package. By convention, the XML registry class is named `org.w3c.math.ObjectFactory`.
 
-## Production
+## Production ##
 
 ### W3C DOM approach
 
@@ -200,7 +200,7 @@ The resulting mixed content PMML document:
 </PMML>
 ```
 
-## Consumption
+## Consumption ##
 
 The "completeness" of unmarshalling operation depends on which JAXB class models are known to the JAXB runtime. In brief, known XML content is returned in the form of JAXB objects, whereas unknown XML content is returned in the form of W3C DOM nodes.
 

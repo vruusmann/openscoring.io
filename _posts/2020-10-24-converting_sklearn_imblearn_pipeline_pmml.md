@@ -141,7 +141,7 @@ Consequently, samplers are functionally void in the PMML representation.
 The only trace left of them are differing data record counts as reported by different pipeline steps.
 For example, the initial domain decorator steps (eg. `ContinuousDomain` and `CategoricalDomain` classes) report a record count of 1899, whereas the final estimator step (ie. the `DecisionTreeClassifier`  class) reports it as 3000.
 
-## Resources
+## Resources ##
 
 * "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
 * Python script: [`train.py`]({{ "/resources/2020-10-24/train.py" | absolute_url }})

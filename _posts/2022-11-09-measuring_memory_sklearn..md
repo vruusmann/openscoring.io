@@ -14,7 +14,7 @@ The size of the Python system overhead state cannot be measured directly.
 It can be calculated by measuring the total size of a Python object using the [`sys.getsizeof(obj)`](https://docs.python.org/3/library/sys.html#sys.getsizeof) function, and then subtracting the size of the instance state from it.
 Typically, it is zero for primitive types and 16 bytes for reference types.
 
-## Scikit-Learn estimators do not (yet-) support the `__sizeof__()` method
+## Scikit-Learn estimators do not (yet-) support the `__sizeof__()` method ##
 
 Can the in-memory size of Scikit-Learn estimators be measured using the `__sizeof__()` method or not?
 
@@ -38,7 +38,7 @@ print("Final fitted state: {} B".format(estimator.__sizeof__()))
 
 The most damning evidence is that the reported size of the `estimator` object does not change after it has been fitted.
 
-## Scikit-Learn estimator instance state
+## Scikit-Learn estimator instance state ##
 
 Scikit-Learn estimators can exist in two instance states:
 
@@ -213,7 +213,7 @@ Inside the object graph, there are 2 decision tree objects in the initial state,
 The in-memory size of fitted decision tree objects ranges from ~805'000 bytes to ~820'000 bytes.
 The variance stems from the fact that the training data was randomly generated. All the trees are close to fully grown, but some branches of some trees have hit early stopping criteria, leading to small variations in node counts.
 
-## Update
+## Update ##
 
 The `deep_sklearn_sizeof(obj, verbose)` utility function has been refactored, and made available in the [`sklearn2pmml`](https://github.com/jpmml/sklearn2pmml) package version 0.87.1 as the `sklearn2pmml.util.deep_sizeof(obj, with_overhead, verbose)` utility function:
 
@@ -224,6 +224,6 @@ memory_size = deep_sizeof(estimator, with_overhead = True, verbose = True)
 print(memory_size)
 ```
 
-## Resources
+## Resources ##
 
 * Python script: [`measure.py`]({{ "/resources/2022-11-09/measure.py" | absolute_url }})

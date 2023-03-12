@@ -16,7 +16,7 @@ The Factory pattern might be a great fit for dynamic programming languages, but 
 The way forward is the [Builder pattern](https://en.wikipedia.org/wiki/Builder_pattern).
 A builder object proposes a sensible default configuration, which can be queried and incrementally updated using accessor methods. The object creation work happens inside the no-arguments `#build()` method. The builder object as a whole is typically reusable and serializable.
 
-## Moving from ModelEvaluatorFactory to ModelEvaluatorBuilder
+## Moving from ModelEvaluatorFactory to ModelEvaluatorBuilder ##
 
 JPMML-Evaluator versions 1.2.0 through 1.4.3 have been recommending the following boilerplate code for creating a `ModelEvaluator` object:
 
@@ -54,7 +54,7 @@ Evaluator evaluator = evaluatorBuilder.build();
 
 The `EvaluatorBuilder#build()` method can be invoked any number of times. It is up to the implementation class to decide if it creates a new `Evaluator` object for each invocation, or caches and keeps returning the same `Evaluator` object.
 
-## Moving from ModelEvaluatorBuilder onward
+## Moving from ModelEvaluatorBuilder onward ##
 
 In most common application scenarios, there is more application code involved in unmarshalling a PMML byte stream or a PMML file into into a live `org.dmg.pmml.PMML` object, than turning the latter into an `Evaluator` object.
 

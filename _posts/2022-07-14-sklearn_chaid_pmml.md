@@ -10,7 +10,7 @@ This choice is driven by high conceptual compatibility between the two (preferen
 
 The CART algorithm is so ingrained into the current code and data structures of the [`sklearn.tree`](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.tree) module, that adding support for alternative algorithms has effectively been ruled out of the project roadmap.
 
-## CART limitations
+## CART limitations ##
 
 Scikit-Learn decision trees suffer from several functional issues:
 
@@ -29,7 +29,7 @@ It performs best with dense continuous features, and worst with sparse categoric
 
 If the dataset is rich in complex features, then it will be smart to explore alternative algorithms such as CHAID, C4.5 or C5.0.
 
-## CHAID implementation
+## CHAID implementation ##
 
 At the time of writing this (July 2022), there are no suitable Scikit-Learn extension packages available.
 The workaround is to choose a Python-based algorithm package, and then integrate it with Scikit-Learn by ourselves.
@@ -54,7 +54,7 @@ However, its API is rather uncommon and is lacking some key interactions points.
 
 The [`sklearn2pmml`](https://github.com/jpmml/sklearn2pmml) package version 0.84 provides `sklearn2pmml.tree.chaid.CHAIDClassifier` and `sklearn2pmml.tree.chaid.CHAIDRegressor` estimators, which make the `CHAID.Tree` class embeddable into Scikit-Learn pipelines, and commandable via familiar `fit(X, y)` and `predict(X)` methods.
 
-## Training
+## Training ##
 
 The `CHAIDEstimator.fit(X, y)` method assumes that all columns of the `X` dataset are categorical features.
 If the `X` dataset contains continuous features (eg. a `float` or `double` column, with many distinct values) then they shall be automatically casted to categorical features.
@@ -164,7 +164,7 @@ def make_sparse_mapper(df, cat_cols, cont_cols):
   )
 ```
 
-## Prediction
+## Prediction ##
 
 The `CHAID.Tree` class is a data exploration and mining tool. It does not provide any Python API for making predictions on new datasets (see [Issue 128](https://github.com/Rambatino/CHAID/issues/128)).
 
@@ -265,7 +265,7 @@ df_pred = evaluator.evaluateAll(df)
 df_pred.to_csv("output.csv", sep = "\t", index = False)
 ```
 
-## Resources
+## Resources ##
 
 * "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
 * "Audit-NA" dataset: [`audit-NA.csv`]({{ "/resources/data/audit-NA.csv" | absolute_url }})

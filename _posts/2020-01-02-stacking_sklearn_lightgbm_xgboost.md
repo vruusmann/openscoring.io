@@ -20,7 +20,7 @@ Scikit-Learn implements two stacking modes.
 In the default non-passthrough mode, the parent estimator is limited to seeing only the predictions of child estimators (`predict_proba` for classifiers and `predict` for regressors).
 In the passthrough mode, the parent estimator also sees the input dataset.
 
-## Stacking homogeneous estimators
+## Stacking homogeneous estimators ##
 
 The pipeline is very simple and straightforward when dealing with homogeneous estimators.
 
@@ -72,7 +72,7 @@ Owing to this discrepany, linear models and decision tree models (and ensembles 
 It is often possible to simplify a "heterogeneous" collection of estimators to a "homogeneous" one by performing data pre-processing following the strictest requirements.
 Linear models and decision tree models become compatible with each other after all continuous features have been scaled (ie. a requirement of linear models, which does not make any difference for decision tree models).
 
-## Stacking heterogeneous estimators
+## Stacking heterogeneous estimators ##
 
 The pipeline needs considerable redesign when dealing with heterogeneous estimators.
 
@@ -235,7 +235,7 @@ pipeline.verify(df_X.sample(n = 10))
 sklearn2pmml(pipeline, "StackingEnsemble.pmml")
 ```
 
-## Resources
+## Resources ##
 
 * "Audit-NA" dataset: [`audit-NA.csv`]({{ "/resources/data/audit-NA.csv" | absolute_url }})
 * "Auto" dataset: [`auto.csv`]({{ "/resources/data/auto.csv" | absolute_url }})
