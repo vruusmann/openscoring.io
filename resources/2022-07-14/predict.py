@@ -1,5 +1,4 @@
 from jpmml_evaluator import make_evaluator
-from jpmml_evaluator.pyjnius import jnius_configure_classpath, PyJNIusBackend
 
 import numpy
 import pandas
@@ -9,11 +8,7 @@ model_path = "CHAIDAuditNA.pmml"
 input_path = "audit-NA.csv"
 output_path = "audit-NA-results.csv"
 
-jnius_configure_classpath()
-
-backend = PyJNIusBackend()
-
-evaluator = make_evaluator(backend, model_path) \
+evaluator = make_evaluator(model_path) \
 	.verify()
 
 df = pandas.read_csv(input_path, na_values = ["N/A", "NA"])

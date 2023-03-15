@@ -187,14 +187,8 @@ Creating a verified PMML engine, and evaluating the first row of the "audit" dat
 
 ``` python
 from jpmml_evaluator import make_evaluator
-from jpmml_evaluator.py4j import launch_gateway, Py4JBackend
 
-# Launch Py4J server
-gateway = launch_gateway()
-
-backend = Py4JBackend(gateway)
-
-evaluator = make_evaluator(backend, "XGBoostAudit-reporting.pmml", reporting = True) \
+evaluator = make_evaluator("XGBoostAudit-reporting.pmml", reporting = True) \
   .verify()
 
 arguments = {
@@ -212,9 +206,6 @@ print(arguments)
 
 results = evaluator.evaluate(arguments)
 print(results)
-
-# Shut down Py4J server
-gateway.shutdown()
 ```
 
 The result is a `dict` object with six items:

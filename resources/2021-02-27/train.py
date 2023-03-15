@@ -1,5 +1,4 @@
 from jpmml_evaluator import make_evaluator
-from jpmml_evaluator.pyjnius import jnius_configure_classpath, PyJNIusBackend
 from mlxtend.preprocessing import DenseTransformer
 from pandas import DataFrame
 from sklearn.feature_extraction.text import CountVectorizer
@@ -14,13 +13,11 @@ df = pandas.read_csv("sentiment.csv")
 X = df["Sentence"]
 y = df["Score"]
 
-jnius_configure_classpath()
-
 def jpmml_convert_evaluate(pipeline):
 	pmml_pipeline = make_pmml_pipeline(pipeline, active_fields = ["Sentence"], target_fields = ["Score"])
 	sklearn2pmml(pmml_pipeline, "XGBSentiment.pmml")
 
-	evaluator = make_evaluator(PyJNIusBackend(), "XGBSentiment.pmml") \
+	evaluator = make_evaluator("XGBSentiment.pmml") \
 		.verify()
 
 	print("jpmml: {}".format(evaluator.evaluate({"Sentence" : X[0]})))

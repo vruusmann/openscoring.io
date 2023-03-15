@@ -1,15 +1,10 @@
 from jpmml_evaluator import make_evaluator
-from jpmml_evaluator.pyjnius import jnius_configure_classpath, PyJNIusBackend
 
 import pandas
 
-jnius_configure_classpath()
-
 df = pandas.read_csv("audit.csv")
 
-backend = PyJNIusBackend()
-
-evaluator = make_evaluator(backend, "DecisionTreeAudit.pmml") \
+evaluator = make_evaluator("DecisionTreeAudit.pmml") \
 	.verify()
 
 yt = evaluator.evaluateAll(df)

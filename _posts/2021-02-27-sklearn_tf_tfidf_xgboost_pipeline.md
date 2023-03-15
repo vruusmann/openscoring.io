@@ -81,13 +81,10 @@ Making predictions using the [`jpmml_evaluator`](https://github.com/jpmml/jpmml-
 
 ``` python
 from jpmml_evaluator import make_evaluator
-from jpmml_evaluator.pyjnius import jnius_configure_classpath, PyJNIusBackend
 
 import pandas
 
-jnius_configure_classpath()
-
-evaluator = make_evaluator(PyJNIusBackend(), "XGBSentiment.pmml") \
+evaluator = make_evaluator("XGBSentiment.pmml") \
   .verify()
 
 arguments = pandas.read_csv("sentiment.csv")

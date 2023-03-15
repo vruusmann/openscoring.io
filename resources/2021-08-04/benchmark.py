@@ -1,6 +1,4 @@
 from jpmml_evaluator import make_evaluator
-from jpmml_evaluator.pyjnius import jnius_configure_classpath, PyJNIusBackend
-from jpmml_evaluator.py4j import launch_gateway, Py4JBackend
 from pandas import DataFrame
 from sklearn.pipeline import Pipeline
 
@@ -42,14 +40,12 @@ def main(estimatorFile, csvFile, flag):
 		else:
 			estimator = joblib.load(estimatorFile)
 	elif estimatorFile.endswith(".pmml"):
-		if flag == "JPMML/PyJNIus":
-			jnius_configure_classpath()
-			backend = PyJNIusBackend()
-			estimator = PMMLEstimator(make_evaluator(backend, estimatorFile))
+		if flag == "JPMML/JPype":
+			estimator = PMMLEstimator(make_evaluator(estimatorFile, "jpype"))
+		elif flag == "JPMML/PyJNIus":
+			estimator = PMMLEstimator(make_evaluator(estimatorFile, "pyjnius"))
 		elif flag == "JPMML/Py4J":
-			gateway = launch_gateway()
-			backend = Py4JBackend(gateway)
-			estimator = PMMLEstimator(make_evaluator(backend, estimatorFile))
+			estimator = PMMLEstimator(make_evaluator(estimatorFile, "py4j"))
 		elif flag == "PyPMML":
 			from pypmml import Model
 			estimator = Model.load(estimatorFile)

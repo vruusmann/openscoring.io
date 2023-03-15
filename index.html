@@ -302,11 +302,9 @@ String whatIdo = (String)results.get("whatIdo");
           Load, verify and score. The Python API is designed after the Java API.</p>
 
 {% highlight python %}
-from jpmml_evaluator import LoadingModelEvaluatorBuilder
+from jpmml_evaluator import make_evaluator
 
-evaluator = LoadingModelEvaluatorBuilder(backend = ...) \
-  .loadFile("MyPipeline.pmml.xml") \
-  .build()
+evaluator = make_evaluator("MyPipeline.pmml.xml")
 
 # Perform automated QA
 evaluator.verify()

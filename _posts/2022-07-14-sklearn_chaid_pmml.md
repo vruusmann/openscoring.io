@@ -241,17 +241,11 @@ Loading and evaluating a model:
 
 ``` python
 from jpmml_evaluator import make_evaluator
-from jpmml_evaluator.pyjnius import jnius_configure_classpath, PyJNIusBackend
 
 import pandas
 
-# Initialize Python-to-Java connectivity
-jnius_configure_classpath()
-
-backend = PyJNIusBackend()
-
 # Load model
-evaluator = make_evaluator(backend, "CHAID.pmml") \
+evaluator = make_evaluator("CHAID.pmml") \
   .verify()
 
 # Load and canonicalize arguments
