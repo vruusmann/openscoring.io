@@ -20,7 +20,7 @@ Upon success, the AutoML tool returns one or more fitted pipelines.
 Such machine-generated pipelines are identical to human-generated pipelines in all technical and functional aspects. They can be converted to the PMML representation using the [`sklearn2pmml`](https://github.com/jpmml/sklearn2pmml) package.
 
 TPOT is made available for data scientists as a Scikit-Learn estimator, which can be fitted and used for prediction using `fit(X, y)` and `predict(X)` methods as usual.
-For more sophisticated application scenarios, the fitted pipeline can be accessed directly as the `fitted_pipeline_` attribute, or converted to Python application code using the `export(path)` method.
+For more sophisticated application scenarios, the fitted pipeline can be accessed directly as the `fitted_pipeline_` attribute, or converted to Python code using the `export(path)` method.
 
 Fitted [TPOT estimators cannot be pickled](https://github.com/EpistasisLab/tpot/issues/520) by design.
 This poses a serious problem for the `sklearn2pmml` package, which operates on pickle files rather than on in-memory Python objects.

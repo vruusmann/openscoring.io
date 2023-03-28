@@ -166,7 +166,7 @@ The left-hand side `X[-1]` reads "get the value of the last row vector element".
 The extended right-hand side `<= 0` reads "test if this value is negative". This condition has been extracted from the [`IsolationForest.predict(X)`](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html#sklearn.ensemble.IsolationForest.predict) method, and is fairly specific to it.
 When using a different outlier detector, a different comparison operator and/or a different threshold value may be more appropriate.
 
-The predicate for the "inlier" subset is simply a `True` constant.
+The predicate for the "inlier" subset is simply a `True` value.
 Its intention is to "match everything (that has not been matched by previous predicates)".
 
 Child estimators see different rows but identical columns.

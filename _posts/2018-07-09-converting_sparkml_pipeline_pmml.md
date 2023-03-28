@@ -8,7 +8,7 @@ keywords: apache-spark pyspark jpmml-sparkml pyspark2pmml sparklyr sparklyr2pmml
 The [JPMML-SparkML](https://github.com/jpmml/jpmml-sparkml) library converts Apache Spark ML pipeline models to the standardized Predictive Model Markup Language (PMML) representation.
 
 The project has been around for more than two years by now.
-The first iteration defined public API entry point in the form of a `org.jpmml.sparkml.ConverterUtil` utility class. Subsequent iterations have been mostly about adding support for more transformer and model types, and expanding Apache Spark version coverage.
+The first iteration defined public API entry point in the form of the `org.jpmml.sparkml.ConverterUtil` utility class. Subsequent iterations have been mostly about adding support for more transformer and model types, and expanding Apache Spark version coverage.
 However, recent iterations have been gradually introducing new public API building blocks, and the last iteration (26 June, 2018) made them official.
 
 This blog post details this breaking API change, and all the new features and functionality that it entails.

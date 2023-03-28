@@ -115,7 +115,7 @@ pipeline = make_fit_gbdtlr(RandomForestClassifier(n_estimators = 31, max_depth =
 sklearn2pmml(pipeline, "RF+LR.pmml")
 ```
 
-The [XGBoost](https://github.com/dmlc/xgboost) plugin library provides an `xgboost.XGBClassifier` model, which can be used as a drop-in replacement for Scikit-Learn classifier classes:
+The [XGBoost](https://github.com/dmlc/xgboost) plugin library provides the `xgboost.XGBClassifier` model, which can be used as a drop-in replacement for Scikit-Learn classifier classes:
 
 ``` python
 from xgboost import XGBClassifier
@@ -124,7 +124,7 @@ pipeline = make_fit_gbdtlr(XGBClassifier(n_estimators = 299, max_depth = 3), Log
 sklearn2pmml(pipeline, "XGB+LR.pmml")
 ```
 
-The [LightGBM](https://github.com/microsoft/LightGBM) plugin library provides a `lightgbm.LGBMClassifier` model.
+The [LightGBM](https://github.com/microsoft/LightGBM) plugin library provides the `lightgbm.LGBMClassifier` model.
 One of its major selling points is proper support for categorical features.
 If the training dataset contains a significant number of (high-cardinality-) categorical features, then the above `make_fit_gbdtlr` utility function should be tailored to maintain this information.
 

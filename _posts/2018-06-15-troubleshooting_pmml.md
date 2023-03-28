@@ -30,7 +30,7 @@ Typically, a PMML document starts with an XML declaration, followed by a `PMML` 
 
 *Tip*: If the content looks messy, consider re-indenting or re-formatting it.
 
-The [JPMML-Model](https://github.com/jpmml/jpmml-model) library provides an `org.jpmml.model.CopyExample` command-line application, which reads/parses a PMML file into an in-memory class model object, and then formats/writes it to another PMML file:
+The [JPMML-Model](https://github.com/jpmml/jpmml-model) library provides the `org.jpmml.model.CopyExample` command-line application, which reads/parses a PMML file into an in-memory class model object, and then formats/writes it to another PMML file:
 
 ```
 $ java -cp pmml-model-example/target/example-1.4-SNAPSHOT.jar org.jpmml.model.CopyExample --input model.pmml.xml --output /dev/null
@@ -62,7 +62,7 @@ Caused by: org.xml.sax.SAXParseException; lineNumber: 248; columnNumber: 19; The
 
 ## Structural validation as PMML ##
 
-The JPMML-Model library provides an `org.jpmml.model.ValidationExample` command-line application, which validates the content of a PMML document against the built-in PMML schema definition (XSD) file. This XSD file is based on the latest PMML schema version (at the time of writing this, 4.3), and includes a limited number JPMML vendor extension elements and attributes. Nevertheless, it is suitable for validating all PMML schema version 3.X and 4.X documents, as the PMML standard is fully backwards- and forwards-compatible in this schema version range.
+The JPMML-Model library provides the `org.jpmml.model.ValidationExample` command-line application, which validates the content of a PMML document against the built-in PMML schema definition (XSD) file. This XSD file is based on the latest PMML schema version (at the time of writing this, 4.3), and includes a limited number JPMML vendor extension elements and attributes. Nevertheless, it is suitable for validating all PMML schema version 3.X and 4.X documents, as the PMML standard is fully backwards- and forwards-compatible in this schema version range.
 
 ```
 $ java -cp pmml-model-example/target/example-1.4-SNAPSHOT.jar org.jpmml.model.ValidationExample --input model.pmml.xml

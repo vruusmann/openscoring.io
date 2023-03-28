@@ -7,11 +7,11 @@ keywords: scikit-learn lightgbm xgboost sklearn2pmml data-categorical data-missi
 
 Latest Scikit-Learn releases have made significant advances in the area of ensemble methods.
 
-[Scikit-Learn version 0.21](https://scikit-learn.org/stable/whats_new/v0.21.html) introduced `HistGradientBoostingClassifier` and `HistGradientBoostingRegressor` classes, which implement histogram-based decision tree ensembles.
+[Scikit-Learn version 0.21](https://scikit-learn.org/stable/whats_new/v0.21.html) introduced `HistGradientBoostingClassifier` and `HistGradientBoostingRegressor` models, which implement histogram-based decision tree ensembles.
 They are based on a completely new `TreePredictor` decision tree representation.
 The claimed benefits over the traditional `Tree` decision tree representation include support for missing values and the ability to process bigger datasets faster.
 
-[Scikit-Learn version 0.22](https://scikit-learn.org/stable/whats_new/v0.22.html) introduced `StackingClassifier` and `StackingRegressor` classes, which aggregate multiple child estimators into an integral whole using a parent (aka final) estimator.
+[Scikit-Learn version 0.22](https://scikit-learn.org/stable/whats_new/v0.22.html) introduced `StackingClassifier` and `StackingRegressor` models, which aggregate multiple child estimators into an integral whole using a parent (aka final) estimator.
 Stacking is closely related to voting.
 The main difference is about how the weights for individual child estimators are obtained.
 Namely, stacking estimators are "active" as they learn optimal weights autonomously during training, whereas voting estimators are "passive" as they expect optimal weights to be supplied.
@@ -188,7 +188,7 @@ sklearn_pipeline = Pipeline([
 ])
 ```
 
-Stacking provides an interesting opportunity to rank LightGBM, XGBoost and Scikit-Learn estimators based on their predictive performance.
+Stacking offers an interesting opportunity to rank LightGBM, XGBoost and Scikit-Learn estimators based on their predictive performance.
 The idea is to grow all child decision tree ensemble models under similar structural constraints, and use a linear model as the parent estimator (`LogisticRegression` for classifiers and `LinearRegression` for regressors).
 The importance of child estimators is then proportional to their estimated coefficient values.
 

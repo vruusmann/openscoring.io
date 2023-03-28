@@ -24,7 +24,7 @@ Summary of the workflow:
 ## Scikit-Learn ##
 
 Scikit-Learn follows object-oriented programming (OOP) paradigm.
-The [Linear Models](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.linear_model) module provides a `LinearModel` base class, which is subclassed and mixed with `RegressorMixin` and `ClassifierMixin` traits to provide algorithm-specific model base classes.
+The [Linear Models](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.linear_model) module provides the `LinearModel` base class, which is subclassed and mixed with `RegressorMixin` and `ClassifierMixin` traits to provide algorithm-specific model base classes.
 The logistic regression algorithm is available as the [`LogisticRegression`](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html) model.
 
 Scikit-Learn estimators are trained by calling the `fit(X, y, **fit_params)` method.
@@ -225,7 +225,7 @@ pipeline = Pipeline(stages = [sqlTransformer, rFormula, classifier])
 
 Apache Spark SQL supports most standard SQL constructs and functions.
 SQL and PMML are are conceptually rather close in their underlying data models (strongly typed, scalar values).
-The [JPMML-SparkML](https://github.com/jpmml/jpmml-sparkml) library provides an `org.jpmml.sparkml.ExpressionTranslator` component for translating Catalyst expressions to PMML expressions.
+The [JPMML-SparkML](https://github.com/jpmml/jpmml-sparkml) library provides the `org.jpmml.sparkml.ExpressionTranslator` component for translating Catalyst expressions to PMML expressions.
 This component currently supports around 45 expression types.
 If some expression is not supported, then it is often possible to work around it by re-expressing it in terms of other supported functions.
 

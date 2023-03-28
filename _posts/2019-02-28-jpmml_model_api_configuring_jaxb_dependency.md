@@ -8,7 +8,7 @@ keywords: jpmml-model
 The [JPMML-Model](https://github.com/jpmml/jpmml-model) library provides a Java class model for the Predictive Model Markup Language (PMML) standard.
 The core set of JPMML-Model classes have been generated based on the PMML XML Schema Definition (XSD) file using the XJC binding compiler technology. As such, they are heavily dependent on the Java XML Binding (JAXB) runtime.
 
-The JAXB runtime was more or less an integral part of Java SE versions 1.6 thorugh 1.8. However, with the advent of [Java SE 9 module system](https://jcp.org/en/jsr/detail?id=376), the JAXB runtime was isolated to a `java.xml.bind` module, and excluded from the core (ie. active by default) module set.
+The JAXB runtime was more or less an integral part of Java SE versions 1.6 thorugh 1.8. However, with the advent of [Java SE 9 module system](https://jcp.org/en/jsr/detail?id=376), the JAXB runtime was isolated to the `java.xml.bind` module, and excluded from the core (ie. active by default) module set.
 
 If a Java SE 9 (or newer) application wants to use JAXB runtime functionality, then it can do one of the following:
 

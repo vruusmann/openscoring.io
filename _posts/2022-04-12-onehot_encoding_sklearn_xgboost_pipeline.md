@@ -205,7 +205,7 @@ There are no standard Scikit-Learn transformers suitable for working with sparse
 The prevailing workaround is filling in missing values via imputation.
 However, while appropriate with Scikit-Learn estimators, it should be generally avoided with XGBoost estimators, which can handle missing values natively, and in fact can learn and reveal interesting relationships around them.
 
-The [`sklearn2pmml`](https://github.com/jpmml/sklearn2pmml) package provides a `sklearn2pmml.preprocessing.PMMLLabelBinarizer` transformer that can produce both two-state dense arrays (`sparse_output = False`) or tri-state sparse matrices (`sparse_output = True`).
+The [`sklearn2pmml`](https://github.com/jpmml/sklearn2pmml) package provides the `sklearn2pmml.preprocessing.PMMLLabelBinarizer` transformer that can produce both two-state dense arrays (`sparse_output = False`) or tri-state sparse matrices (`sparse_output = True`).
 
 Suggested transformer:
 

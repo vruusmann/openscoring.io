@@ -117,11 +117,11 @@ pipeline.fit(X, y)
 ``` 
 
 The XGBoost classifier performs label encoding and decoding during `XGBClassifier.fit(X, y)` and `XGBClassifier.predict(X)` method calls similarly to Scikit-Learn classifiers.
-The learned encoding is stored in the `XGBClassifier._le` attribute as a `sklearn.preprocessing.LabelEncoder` transformer.
+The learned encoding is stored in the `XGBClassifier._le` attribute as a `sklearn.preprocessing.LabelEncoder` object.
 
 Exporting the booster object:
 
-```python
+``` python
 classifier._Booster.save_model("Booster.bin")
 ```
 

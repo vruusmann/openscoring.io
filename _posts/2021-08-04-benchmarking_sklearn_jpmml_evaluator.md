@@ -83,7 +83,7 @@ The dataset does not need to consist of unique data records only. It is equally 
 
 ### Dataset
 
-The "audit" dataset is loaded from a CSV document into a `pandas.DataFrame`.
+The "audit" dataset is loaded from a CSV document into a `pandas.DataFrame` object.
 Automatic data type detection and conversion results in two continuous integer features, one continuous float feature, and five categorical string features.
 The cardinality of string features is low, ranging from 2 to 16 category levels.
 
@@ -243,7 +243,7 @@ The first cliff corresponds to JPMML-Evaluator internal lazy-loading/lazy-initia
 The descent corresponds to the JIT compilation of methods by the JVM. Methods are prioritized by their complexity and frequency of use. The JIT compilation starts with smaller and more popular methods, and proceeds until all JIT compilation-worthy methods have been processed.
 The second cliff corresponds to reaching the "hot" state. The scoring time has reached a plateau, which will change only if the running JVM is perturbed with new information.
 
-The JPMML-Evaluator library provides an `org.jpmml.evaluator.Evaluator#verify()` method, which evaluates the model with the embedded model verification dataset.
+The JPMML-Evaluator library provides the `org.jpmml.evaluator.Evaluator#verify()` method, which evaluates the model with the embedded model verification dataset.
 The above results show that model verification is good for crossing the first cliff, but is typically not adequate for reaching and crossing the second cliff.
 
 Direct comparison of scoring times shows that JPMML-Evaluator outperforms Scikit-Learn with smaller batch sizes (below 1'000), but underperforms with larger batch sizes (over 10'000).
@@ -286,7 +286,7 @@ Unfortunately, Java tools and libraries cannot interface with Pandas' data frame
 The workaround is to deconstruct complex/language-specific data structures into simpler/language-agnostic data structures, which are adequately supported by both sides.
 
 The `jpmml_evaluator` package communicates between Python and Java environments using the pickle protocol.
-Since `DataFrame` is a complex data structure that does not have a Java equivalent, it is deconstructed into a list of dicts (data record-oriented API), which maps to a `List<Map<?, ?>>`.
+Since `DataFrame` is a complex data structure that does not have a Java equivalent, it is deconstructed into a list of dicts (data record-oriented API), which maps to `List<Map<?, ?>>`.
 Pickling uses native encoders on the Python side, and the [Pickle](https://github.com/irmen/pickle) library on the Java side.
 
 #### Java data handler

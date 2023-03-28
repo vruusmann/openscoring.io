@@ -16,7 +16,7 @@ This blog post details a workflow where Apache Spark ML pipeline models are conv
 
 ## Converting Apache Spark ML pipeline models to the PMML representation ##
 
-[PMML support](https://www.databricks.com/blog/2015/07/02/pmml-support-in-apache-spark-mllib.html) was introduced in Apache Spark MLlib version 1.4.0 in the form of a `org.apache.spark.mllib.pmml.PMMLExportable` trait. The `PMMLExportable#toPMML()` method (or one of its overloaded variants) produces a PMML document which contains the symbolic description of the fitted model.
+[PMML support](https://www.databricks.com/blog/2015/07/02/pmml-support-in-apache-spark-mllib.html) was introduced in Apache Spark MLlib version 1.4.0 in the form of the `org.apache.spark.mllib.pmml.PMMLExportable` trait. The `PMMLExportable#toPMML()` method (or one of its overloaded variants) produces a PMML document which contains the symbolic description of the fitted model.
 
 Unfortunately, this solution is not very relevant anymore.
 First, Apache Spark ML is organized around the pipeline formalization. A pipeline can be regarded as a directed graph of data transformations and models. When converting a model, then it will be necessary to include all the preceding pipeline stages to the dump.

@@ -110,7 +110,7 @@ In contrast, XGBoost estimators treat `NaN` values as special-purpose missing va
 When comparing XGBoost estimators between the first and the second pipeline, then they are structurally different (overall vocabulary, the time and location of individual term invocations, etc.).
 The former incorrectly believes that it was dealing with massive amounts of missing values during training, and all its internals are thus systematically off.
 
-A data scientist may evaluate such a biased TF(-IDF) plus XGBoost pipeline with a validation dataset, and decide that its raw numeric performance is still good enough for productionization.
+A data scientist may evaluate such a biased TF(-IDF) plus XGBoost pipeline with a validation dataset, and decide that its raw numeric performance is still good enough for deployment.
 It would be okay. The Pipeline API provides adequate guarantees that all biases survive and are consistently applied throughout the pipeline life-cycle.
 
 ## Doing it right ##

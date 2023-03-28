@@ -181,7 +181,7 @@ The newly generated PMML document `XGBoostAudit.pmml` is copied into `XGBoostAud
 According to the PMML specification, the results provided from the model chain are the results of the last active segment. The results from earlier active segments must be explicitly propagated.
 For example, the value of the "report(xgbValue)" output field stays in "booster" scope by default. It needs to be imported from "booster" scope into "sigmoid function" scope using a `MiningField` element, and then re-exported as "ref(report(xgbValue))" using an `OutputField` element.
 
-The [`jpmml_evaluator`](https://github.com/jpmml/jpmml-evaluator-python) package provides a Python wrapper for the JPMML-Evaluator library. It enables quick PMML validation and evaluation work, without writing a single line of Java application code.
+The [`jpmml_evaluator`](https://github.com/jpmml/jpmml-evaluator-python) package provides a Python wrapper for the JPMML-Evaluator library. It enables quick PMML validation and evaluation work, without writing a single line of Java code.
 
 Creating a verified PMML engine, and evaluating the first row of the "audit" dataset:
 

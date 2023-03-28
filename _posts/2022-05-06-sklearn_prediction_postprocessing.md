@@ -22,7 +22,7 @@ Performing computations using free-form Python code is the nuclear option. It al
 
 ## PMMLPipeline "transformed prediction" API ##
 
-The `sklearn2pmml` package provides a `sklearn2pmml.pipeline.PMMLPipeline` class, which extends the `sklearn.pipeline.Pipeline` class with prediction post-processing.
+The `sklearn2pmml` package provides the `sklearn2pmml.pipeline.PMMLPipeline` class, which extends the `sklearn.pipeline.Pipeline` class with prediction post-processing.
 
 The idea is to attach a number of child transformers to the parent pipeline, one for each predict method:
 
@@ -50,7 +50,7 @@ If a business decision is a function of both model input and output, then it sti
 
 There is no limit to child transformer's complexity, except that it cannot encapsulate a full-blown model.
 
-Additionally, the `sklearn2pmml` package provides a `sklearn2pmml.postprocessing.BusinessDecisionTransformer` transformer, which generates rich `OutputField` elements following the ["decision" result feature](https://dmg.org/pmml/v4-4-1/Output.html#xsdElement_Decisions) conventions.
+Additionally, the `sklearn2pmml` package provides the `sklearn2pmml.postprocessing.BusinessDecisionTransformer` transformer, which generates rich `OutputField` elements following the ["decision" result feature](https://dmg.org/pmml/v4-4-1/Output.html#xsdElement_Decisions) conventions.
 
 ## Examples ##
 

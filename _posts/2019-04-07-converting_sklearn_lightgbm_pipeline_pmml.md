@@ -94,7 +94,7 @@ While correct, the above PMML markup is not particularly elegant.
 LightGBM uses a type system, where continuous and categorical features are represented using `double` and `integer` values, respectively.
 This is different from Scikit-Learn GBT algorithms, which do not use the notion of an operational type, and represent everything using `float` values.
 
-LightGBM has categorical feature detection capabilities, but since the output of a `DataFrameMapper` step is a 2-D Numpy array of `double` values, it does not fire correctly.
+LightGBM has categorical feature detection capabilities, but since the output of the `DataFrameMapper` step is a 2-D Numpy array of `double` values, it does not fire correctly.
 The solution is to supply the indices of categorical features manually, by specifying a `categorical_feature` fit parameter to the `LGBMClassifier.fit(X, y, **fit_params)` method.
 Since the LightGBM classifier is contained inside a pipeline object and the interaction is intermediated by the `Pipeline.fit(X, y, **fit_params)` method, then the name of this fit parameter needs to be prefixed with the name of the step (ie. `categorical_feature` becomes `classifier__categorical_feature`):
 
@@ -238,7 +238,7 @@ For example, both `CategoricalDomain` and `ContinuousDomain` decorators count th
 
 It really is a poor proposition to perform the missing value imputation and risk the data science experiment just to satisfy one component that performs a helper function. Therefore, it needs to go.
 
-The `sklearn2pmml` package provides a `sklearn2pmml.preprocessing.PMMLLabelEncoder` transformer, which is essentially a missing value-aware replacement for the `LabelEncoder` transformer.
+The `sklearn2pmml` package provides the `sklearn2pmml.preprocessing.PMMLLabelEncoder` transformer, which is essentially a missing value-aware replacement for the `LabelEncoder` transformer.
 
 ``` python
 from sklearn2pmml.preprocessing import PMMLLabelEncoder

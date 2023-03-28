@@ -31,7 +31,7 @@ Every H2O.ai algorithm is encapsulated into an `h2o.estmators.H2OEstimator` subc
 
 According to [H2O.ai modeling documentation](https://docs.h2o.ai/h2o/latest-stable/h2o-py/docs/modeling.html), all these classes have Scikit-Learn style `fit(X, y)` and `predict(X)` methods readily available.
 
-This suggests that it should be possible to insert H2O.ai estimator objects into standard Scikit-Learn pipelines:
+This suggests that it should be possible to insert H2O.ai models into standard Scikit-Learn pipelines:
 
 ``` python
 from h2o.estimators.glm import H2OGeneralizedLinearEstimator
@@ -69,7 +69,7 @@ AttributeError: 'DataFrame' object has no attribute 'cbind'
 
 Closer inspection of the [`H2OEstimator.fit(X, y)`](https://docs.h2o.ai/h2o/latest-stable/h2o-py/docs/modeling.html#h2o.estimators.estimator_base.H2OEstimator.fit) method signature reveals that it expects both `X` and `y` arguments to be of `h2o.H2OFrame` type.
 
-In spite of many API similarities, `pandas.DataFrame` and `h2o.H2OFrame` classes are not related in any way, and cannot be used interchangeably in Python application code.
+In spite of many API similarities, `pandas.DataFrame` and `h2o.H2OFrame` classes are not related in any way, and cannot be used interchangeably in Python code.
 The former represents local data, which is stored in local computer memory as "live" NumPy arrays.
 The latter represents **a reference** to remote data, which is stored in H2O.ai server memory.
 
@@ -121,7 +121,7 @@ It means that the `X` dataset cannot be uploaded until the last transformer step
 The `h2o` package does not provide a meta-transformer class for data uploading.
 This gap is filled by the [`sklearn2pmml`](https://github.com/jpmml/sklearn2pmml) package in the form of the `sklearn2pmml.preprocessing.h2o.H2OFrameConstructor` class.
 
-The best place for inserting a data upload step is right before the final H2O estimator step:
+The best place for inserting a data upload step is right before the final H2O.ai model step:
 
 ``` python
 from sklearn2pmml.preprocessing.h2o import H2OFrameConstructor

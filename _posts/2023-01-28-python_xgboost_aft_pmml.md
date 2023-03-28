@@ -11,7 +11,7 @@ XGBoost supports both Cox proportional hazards (Cox PH) and accelerated failure 
 The training is currently possible via the low-level [Python Learning API](https://xgboost.readthedocs.io/en/stable/python/python_api.html#module-xgboost.training), but not via the high-level [Scikit-Learn API](https://xgboost.readthedocs.io/en/stable/python/python_api.html#module-xgboost.sklearn).
 This limitation can be tracked as [XGBoost-7292](https://github.com/dmlc/xgboost/issues/7292).
 
-The solution is to train XGBoost survival models using the Python Learning API, and then migrate them to the Scikit-Learn API for the eventual productionization.
+The solution is to train XGBoost survival models using the Python Learning API, and then migrate them to the Scikit-Learn API for deployment.
 
 ## Data canonicalization ##
 
@@ -71,7 +71,7 @@ df["inst"] = df["inst"].astype("category")
 df["sex"] = df["sex"].astype("category")
 ```
 
-However, the above code is not suitable for productionization!
+However, the above code is not suitable for deployment!
 
 A quick cast using the `category` data type alias creates a new `CategoricalDtype` object on each and every call.
 Its "business state" is a mapping from category levels to category indices.

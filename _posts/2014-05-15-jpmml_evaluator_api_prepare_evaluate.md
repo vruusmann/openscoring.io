@@ -45,7 +45,7 @@ public Map<FieldName, ?> prepareEagerlyAndEvaluate(Evaluator evaluator, Map<Stri
 
 This approach is the most versatile one. The `userArguments` variable could be any map-like data structure, including a query interface that fetches data interactively (e.g. prompts the end user). Application developers have full control over handling data preparation errors.
 
-Typically, the `pmmlArguments` variable is serializable using Java's serialization mechanism (i.e. the whole object graph implements the `java.io.Serializable` interface). This opens up the opportunity of developing distributed applications where data preparation and data evaluation are separated from each other.
+Typically, the `pmmlArguments` variable is serializable using Java's serialization mechanism (i.e. the whole object graph implements the `java.io.Serializable` interface). This allows developing distributed applications where data preparation and data evaluation are separated from each other.
 
 The `Evaluator#prepare(FieldName, Object)` method only deals with scalar-type field values. A Collection-type field value must be subjected to data preparation element-wise. Application developers are advised to employ the `org.jpmml.evaluator.EvaluatorUtil#prepare(Evaluator, FieldName, Object)` utility method when handling a mix of scalar- and Collection-type field values.
 

@@ -49,10 +49,10 @@ During splitting, they can form a standalone branch, or be aggregated with other
 Decision tree algorithms do not care if the training dataset contains multiple collinear features, so there is no practical reason to withhold from experimenting with multiple competing feature transformations.
 If two or more features appear collinear for some subset (ie. not collinear for the training dataset as a whole, but collinear for some segment of it), then the winner is picked randomly.
 
-The [`CHAID`](https://github.com/Rambatino/CHAID) package provides a `CHAID.Tree` class, which codifies a complete and highly parameterizable CHAID algorithm implementation.
+The [`CHAID`](https://github.com/Rambatino/CHAID) package provides the `CHAID.Tree` class, which codifies a complete and highly parameterizable CHAID algorithm implementation.
 However, its API is rather uncommon and is lacking some key interactions points.
 
-The [`sklearn2pmml`](https://github.com/jpmml/sklearn2pmml) package version 0.84 provides `sklearn2pmml.tree.chaid.CHAIDClassifier` and `sklearn2pmml.tree.chaid.CHAIDRegressor` estimators, which make the `CHAID.Tree` class embeddable into Scikit-Learn pipelines, and commandable via familiar `fit(X, y)` and `predict(X)` methods.
+The [`sklearn2pmml`](https://github.com/jpmml/sklearn2pmml) package version 0.84 provides `sklearn2pmml.tree.chaid.CHAIDClassifier` and `sklearn2pmml.tree.chaid.CHAIDRegressor` models, which make the `CHAID.Tree` class embeddable into Scikit-Learn pipelines, and commandable via familiar `fit(X, y)` and `predict(X)` methods.
 
 ## Training ##
 

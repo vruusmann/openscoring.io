@@ -25,7 +25,7 @@ protected RuleFeatureType ruleFeature;
 
 This declaraton states that the `ruleFeature` attribute was added in PMML schema version 4.0 and deprecated in PMML schema version 4.2. In other words, it is a first-class concept in PMML schema version 4.0 and 4.1 documents. It can be used in PMML schema version 4.2 documents, but doing so is discouraged, because it has been superseded by another set of attributes. In any way, the `ruleFeature` attribute cannot be used in PMML schema version 3.2 and earlier documents. A validating PMML parser would report that as an error.
 
-The JPMML-Model library provides a `org.jpmml.model.SchemaInspector` Visitor class that traverses a class model object and computes its supported version range. The upper and lower boundaries can be queried using `#getMinimum()` and `#getMaximum()` methods, respectively. The following Java source code checks if a class model object is compatible with the specified PMML schema version:
+The JPMML-Model library provides the `org.jpmml.model.SchemaInspector` Visitor class that traverses a class model object and computes its supported version range. The upper and lower boundaries can be queried using `#getMinimum()` and `#getMaximum()` methods, respectively. The following Java source code checks if a class model object is compatible with the specified PMML schema version:
 
 ``` java
 public boolean isCompatible(PMMLObject object, Version version){
@@ -56,7 +56,7 @@ The conversion of PMML documents includes the following activities:
 * Updating the `version` attribute of the `PMML` element.
 * Updating the name of renamed elements and attributes.
 
-These activities can be implemented using XML filtering. More complicated activities (e.g. replacing a deprecated feature with an up-to-date feature) should be handled in Java application code. The JPMML-Model library is expected to provide a collection of such programmatic converters in the future.
+These activities can be implemented using XML filtering. More complicated activities (e.g. replacing a deprecated feature with an up-to-date feature) should be handled in Java code. The JPMML-Model library is expected to provide a collection of such programmatic converters in the future.
 
 The XML filtering allows for direct conversion between arbitrary PMML schema versions. However, it is recommended to employ an intermediated conversion approach, where the input PMML document is first parsed to an in-memory PMML schema version 4.2 class model object, which is validated ("trust, but verify") and only then formatted to the output PMML document.
 
