@@ -137,7 +137,7 @@ audit.glm = glm(formula = audit.formula, family = binomial(link = "logit"), data
 Feature engineering is possible by embedding R function calls into model formulae.
 The portability of model formulae can be improved by using fully-qualified function names (ie. `<namespace>::<name>()` instead of `<name>()`).
 
-If the model will be used only in R environment, then it is possible to use any R language operator or function.
+If the model will be used only in the R environment, then it is possible to use any R language operator or function.
 However, if the model needs to be converted to the PMML representation, then it is possible to use only those constructs that are recognized and supported by the conversion tool.
 
 Continuous features can be manipulated using arithmetic operators and functions:

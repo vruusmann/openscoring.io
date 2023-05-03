@@ -74,7 +74,7 @@ Python predicates involving categorical features:
 * `X['Species'] != 'setosa'`
 * `X['Species'] in ['versicolor', 'virginica']`
 
-If the `RuleSetClassifier` model will be used only in Scikit-Learn environment, then Python predicates may take advantage of full language and library/platform functionality. However, if the `RuleSetClassifier` model needs to be converted to the PMML representation, then some limitations and restrictions apply. A great deal of them are temporary, and will be lifted as the Python-to-PMML [expression](https://github.com/jpmml/jpmml-python/blob/master/pmml-python/src/main/javacc/expression.jj) and [predicate translation components](https://github.com/jpmml/jpmml-python/blob/master/pmml-python/src/main/javacc/predicate.jj) of the JPMML-SkLearn library evolve.
+If the `RuleSetClassifier` model will be used only in the Scikit-Learn environment, then Python predicates may take advantage of full language and library/platform functionality. However, if the `RuleSetClassifier` model needs to be converted to the PMML representation, then some limitations and restrictions apply. A great deal of them are temporary, and will be lifted as the Python-to-PMML [expression](https://github.com/jpmml/jpmml-python/blob/master/pmml-python/src/main/javacc/expression.jj) and [predicate translation components](https://github.com/jpmml/jpmml-python/blob/master/pmml-python/src/main/javacc/predicate.jj) of the JPMML-SkLearn library evolve.
 
 ## Example workflow ##
 

@@ -248,7 +248,7 @@ The XGBoost algorithm is based on `float32` data type, which limits the relative
 The label of the "lung" dataset is survival time in days, with a typical range from 100 to 2000.
 The absolute tolerance value of `1E-3` is estimated by multiplying the selected relative tolerance `1E-6` with the selected characteristic label value of `1000`.
 
-In other words, two survival times are considered to be equivalent, if they agree with each other in the order of "full minutes or better".
+In other words, two survival times are considered to be equivalent if they agree with each other in the order of "full minutes or better".
 
 ## PMML ##
 

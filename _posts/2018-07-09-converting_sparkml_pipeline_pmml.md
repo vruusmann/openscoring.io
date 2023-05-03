@@ -53,7 +53,7 @@ At the time of writing this (July 2018; updated in January 2019), JPMML-SparkML 
 | 2.3.X | [`1.4.X`](https://github.com/jpmml/jpmml-sparkml/tree/1.4.X) | [`1.4.14`](https://github.com/jpmml/jpmml-sparkml/releases/tag/1.4.14) |
 | 2.4.X | [`master`](https://github.com/jpmml/jpmml-sparkml/tree/master) | [`1.5.7`](https://github.com/jpmml/jpmml-sparkml/releases/tag/1.5.7) |
 
-JPMML-SparkML checks the version of Apache Spark runtime environment before doing any conversion work.
+JPMML-SparkML checks the version of the Apache Spark runtime environment before doing any conversion work.
 For example, the following exception is thrown when JPMML-SparkML version 1.4(.14) discovers that it has been improperly paired with Apache Spark version 2.2:
 
 ```
@@ -136,7 +136,7 @@ The `org.jpmml.sparkml.PMMLBuilder` class currently exposes three builder method
 
 * `#build()` - Returns the PMML document as a live `org.dmg.pmml.PMML` object.
 * `#buildByteArray()` - Returns the PMML document as a byte array.
-* `#buildFile(java.io.File)` - Writes the PMML document to the specified file in local filesystem. Upon success, returns the argument `java.io.File` object unchanged.
+* `#buildFile(java.io.File)` - Writes the PMML document into the specified file in the local filesystem. Upon success, returns the argument `java.io.File` object unchanged.
 
 The first option is aimed at PMML-savvy applications that wish to perform extra processing on the PMML document (eg. adding or removing feature transformations).
 However, most applications should be content with the JPMML-SparkML generated PMML document, and will be processing it as a generic blob.

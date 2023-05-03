@@ -63,7 +63,7 @@ def make_mapper():
 Numeric columns can be mapped as-is.
 However, string and boolean columns must be transformed into numeric columns.
 
-A data scientist is free to employ any third-party package, any string-to-numeric encoding algorithm here.
+A data scientist is free to employ any third-party library, any string-to-numeric encoding algorithm here.
 For example, the [`category_encoders`](https://github.com/scikit-learn-contrib/category_encoders) package provides a plethora of Scikit-Learn compatible transformers, which are often based on the state-of-the-art ML research publications.
 
 The `scikit-learn` package is rather hapless in comparison.

@@ -38,12 +38,12 @@ If the solution appears to reside in the hardware or meatware parts of the stack
 The standard XGBoost-via-Python software stack stands as follows:
 
 1. [XGBoost API](https://xgboost.readthedocs.io/en/stable/dev/files.html). The core library, plus device-specific (CPU, GPU) acceleration libraries. Defines C++ language data structures and algorithms.
-2. [Python Learning API](https://xgboost.readthedocs.io/en/stable/python/python_api.html#module-xgboost.training). Python language wrappers for the XGBoost API. Data conversion and transfer from Python environment to C++ environment.
+2. [Python Learning API](https://xgboost.readthedocs.io/en/stable/python/python_api.html#module-xgboost.training). Python language wrappers for the XGBoost API. Data conversion and transfer from the Python environment to the C++ environment.
 3. [Scikit-Learn API](https://xgboost.readthedocs.io/en/stable/python/python_api.html#module-xgboost.sklearn). Scikit-Learn compatible Python language wrappers for the Python Learning API. Embedding XGBoost estimators into Scikit-Learn workflows.
 
 XGBoost C++ algorithms operate with a specialized `xgboost::DMatrix` data structure only.
 
-In Python environment, the training data exists in Python-specifc data structures such as Pandas' data frames or Numpy arrays.
+In the Python environment, the training data exists in Python-specifc data structures such as Pandas' data frames or Numpy arrays.
 When the Python Learning API layer passes data to the XGBoost API layer, then Python data structures get left behind into the Python environment, and a new and detached `xgboost::DMatrix` object is created in the C++ environment.
 
 Typical data flow:
@@ -174,8 +174,8 @@ Memory usage with `make_dense_legacy_transformer` function:
 | `numpy.float32` | 121536 | 357012 | 737314 | 1'215'862 |
 | `numpy.float64` | 121536 | **714144** | 737314 | 1'572'994 |
 
-The memory usage of `xgboost::DMatrix` objects cannot be measured directly in Python environment, because its payload is held opaquely in the C++ environment.
-Therefore, the measurement is performed in a roundabout way, by dumping the `xgboost::DMatrix` object into a binary file in local filesystem, and then querying the file size.
+The memory usage of `xgboost::DMatrix` objects cannot be measured directly in the Python environment, because its payload is held opaquely in the C++ environment.
+Therefore, the measurement is performed in a roundabout way, by dumping the `xgboost::DMatrix` object into a binary file in the local filesystem, and then querying the file size.
 
 The results show that by changing the `OneHotEncoder.dtype` attribute from the default `numpy.float64` dtype to `numpy.uint8` dtype it is possible to achieve an eight times reduction of `Xt` dataset size.
 
