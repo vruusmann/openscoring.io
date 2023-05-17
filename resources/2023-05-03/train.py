@@ -48,7 +48,7 @@ def make_class_mapping(cls, templateCls = None):
 mapping_cust = make_class_mapping(MultinomialClassifier)
 print(mapping_cust)
 
-make_class_mapping_jar("multinomial.jar", mapping_cust)
+make_class_mapping_jar(mapping_cust, "multinomial.jar")
 
 mapping = load_class_mapping(user_classpath = ["multinomial.jar"])
 

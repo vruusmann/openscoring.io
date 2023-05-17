@@ -167,7 +167,7 @@ If need be, then it can then be manipulated further using Python's built-in `zip
 ``` python
 from sklearn2pmml import make_class_mapping_jar
 
-make_class_mapping_jar("multinomial.jar", mapping_cust)
+make_class_mapping_jar(mapping_cust, "multinomial.jar")
 
 mapping = load_class_mapping(user_classpath = ["multinomial.jar"])
 
