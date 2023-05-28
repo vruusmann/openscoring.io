@@ -213,7 +213,7 @@ print(result)
 The use of the `eval()` function is considered a major security risk.
 This should not be the case here, because these three module imports are assumed to be safe, and there is no way to access other namespaces.
 
-When facing an unknown or untrusted `ExpressionTransformer` object, then it is recommended to print out its `expr` attribute, and take note of any high-risk activity such as importing system modules.
+When facing an unknown or untrusted `ExpressionTransformer` object, then it is advisable to print out its `expr` attribute, and take note of any high-risk activity such as importing system modules.
 
 However, the best security guarantee can be obtained fully automatically, by attempting conversion into a Predictive Model Markup Language (PMML) document (see below).
 The PMML representation of models and transformers is absolutely safe and secure, because the language is Turing-incomplete, and relies on a small standard library for complex calculations.

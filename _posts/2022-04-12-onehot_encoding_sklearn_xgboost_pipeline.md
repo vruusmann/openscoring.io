@@ -11,7 +11,7 @@ On one hand, Scikit-Learn aims to be the simplest and most generic ML framework 
 This simplicity has been achieved via major trade-offs.
 For example, Scikit-Learn is currently not very comfortable dealing with rich dataset schemas.
 The majority of its algorithms operate on dense numeric arrays.
-There are efforts being made towards retrofitting existing transformers to pass through missing and non-numeric values as-is, but the overall experience is still far from coherent and consistent.
+There are efforts being made towards retrofitting existing transformers to let missing and non-numeric values pass through as-is, but the overall experience is still far from coherent and consistent.
 
 On the other hand, XGBoost aims to be the most powerful and flexible gradient boosting algorithm.
 No one and no thing is perfect, though.

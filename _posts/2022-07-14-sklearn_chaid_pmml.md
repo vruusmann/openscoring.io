@@ -50,7 +50,7 @@ Decision tree algorithms do not care if the training dataset contains multiple c
 If two or more features appear collinear for some subset (ie. not collinear for the training dataset as a whole, but collinear for some segment of it), then the winner is picked randomly.
 
 The [`CHAID`](https://github.com/Rambatino/CHAID) package provides the `CHAID.Tree` class, which codifies a complete and highly parameterizable CHAID algorithm implementation.
-However, its API is rather uncommon and is lacking some key interactions points.
+However, its API is rather uncommon and lacks some key interactions points.
 
 The [`sklearn2pmml`](https://github.com/jpmml/sklearn2pmml) package version 0.84 provides `sklearn2pmml.tree.chaid.CHAIDClassifier` and `sklearn2pmml.tree.chaid.CHAIDRegressor` models, which make the `CHAID.Tree` class embeddable into Scikit-Learn pipelines, and commandable via familiar `fit(X, y)` and `predict(X)` methods.
 
@@ -59,7 +59,7 @@ The [`sklearn2pmml`](https://github.com/jpmml/sklearn2pmml) package version 0.84
 The `CHAIDEstimator.fit(X, y)` method assumes that all columns of the `X` dataset are categorical features.
 If the `X` dataset contains continuous features (eg. a `float` or `double` column, with many distinct values) then they shall be automatically casted to categorical features.
 
-However, it is recommended to make this conversion explicit by passing all features through the `sklearn2pmml.decoration.CategoricalDomain` decorator:
+However, it is advisable to make this conversion explicit by passing all features through the `sklearn2pmml.decoration.CategoricalDomain` decorator:
 
 ``` python
 from sklearn_pandas import DataFrameMapper

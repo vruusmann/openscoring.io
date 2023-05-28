@@ -234,7 +234,7 @@ pipeline_time = pipeline.predict(df)
 check_predict(booster_time, pipeline_time, 1e-6, 1e-3)
 ```
 
-The AFT booster object makes predictions using the same `DMatrix` object that it was trained on, whereas the pipeline object makes predictions starting from the canonicalized dataset.
+The AFT booster object makes predictions using the same `DMatrix` object that it was fitted on, whereas the pipeline object makes predictions starting from the canonicalized dataset.
 If there were any discrepancies between their predictions, then it would be natural to put more trust in the former (the "expected" side), and less in the latter (the "actual" side).
 
 Arrays of floating-point numeric values can be compared element-wise for equivalence using the [`numpy.isclose`](https://numpy.org/doc/stable/reference/generated/numpy.isclose.html) utility function.
@@ -243,7 +243,7 @@ The algorithm is controlled by two parameters.
 First, relative tolerance (the `rtol` argument) is a workflow property (the precision of the default numeric data type, plus the order of "mathematical complexity" of transformations).
 Second, absolute tolerance (the `atol` argument) is a dataset property.
 
-The XGBoost algorithm is based on `float32` data type, which limits the relative tolerance to about `1E-6 .. 1E-7` range.
+XGBoost is based on `float32` data type, which limits the relative tolerance to about `1E-6 .. 1E-7` range.
 
 The label of the "lung" dataset is survival time in days, with a typical range from 100 to 2000.
 The absolute tolerance value of `1E-3` is estimated by multiplying the selected relative tolerance `1E-6` with the selected characteristic label value of `1000`.

@@ -190,7 +190,7 @@ The above two structural validation stages should ensure that a PMML document ca
 
 Let us consider field definition, scoping and referencing.
 
-Structural validation ensures that all field definition elements are complete. However, a field definition may still be unusable due to PMML type system violations. For example, a `DataField` element, which contains unparseable and duplicate category values:
+Structural validation ensures that all field definition elements are complete. However, a field definition may still be unusable due to PMML type system violations. For example, a `DataField` element, which contains unparseable and duplicate category levels:
 
 ``` xml
 <DataField name="x1" optype="categorical" dataType="integer">

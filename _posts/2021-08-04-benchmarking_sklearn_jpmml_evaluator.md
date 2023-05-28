@@ -256,7 +256,7 @@ It follows that Scikit-Learn and JPMML-Evaluator are complementary rather than c
 
 The [`jpmml_evaluator`](https://github.com/jpmml/jpmml-evaluator-python) package provides a Python wrapper for the JPMML-Evaluator library.
 
-The Java core is responsible for all heavy-lifting such as model loading and making predictions.
+The Java core is responsible for all the heavy-lifting such as model loading and making predictions.
 The Python driver to the Java core is responsible for the workflow coordination, data conversions and transfer.
 
 Jumping back-and-forth between language environments is expensive.

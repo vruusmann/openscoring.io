@@ -8,7 +8,7 @@ keywords: scikit-learn xgboost sklearn2pmml data-categorical
 XGBoost is one of the top algorithms for solving Tabular ML problems.
 
 The [`xgboost`](https://github.com/dmlc/xgboost/tree/master/python-package) package provides XGBoost functionality in two flavours.
-First, the low-level [Python Learning API](https://xgboost.readthedocs.io/en/stable/python/python_api.html#module-xgboost.training) aims at API parity with the underlying C(++) library. Second, the high-level [Scikit-Learn API](https://xgboost.readthedocs.io/en/stable/python/python_api.html#module-xgboost.sklearn) aims at making the most popular parts accessible via Scikit-Learn style wrappers.
+First, the low-level [Python Learning API](https://xgboost.readthedocs.io/en/stable/python/python_api.html#module-xgboost.training) aims at API parity with the underlying C++ library. Second, the high-level [Scikit-Learn API](https://xgboost.readthedocs.io/en/stable/python/python_api.html#module-xgboost.sklearn) aims at making the most popular parts accessible via Scikit-Learn style wrappers.
 
 According to the [XGBoost PyPI release history](https://pypi.org/project/xgboost/#history), the `xgboost` package has been publicly available since mid-2015.
 Initial releases (0.4, 0.6) carry "pre-release" markers.
@@ -70,7 +70,7 @@ The `scikit-learn` package is rather hapless in comparison.
 In fact, the only option is the `sklearn.preprocessing.OneHotEncoder` transformer, which performs a deep, two-level encoding of categorical columns (ie. first from string to ordinal integer, and then from ordinal integer to a list of binary indicators).
 
 The other candidate, the `sklearn.preprocessing.OrdinalEncoder` transformer fails in the vetting process, because it performs a shallow, one-level encoding (ie. from string to ordinal integer).
-Unlike the LightGBM algorithm, the XGBoost algorithm is not programmed to handle such "partially" encoded columns.
+XGBoost is not programmed to handle such "partially" encoded columns.
 If ordinal integers slip through, then they will be treated analogously to continuous integers, which qualifies as a serious mistake.
 
 **Important**: A pipeline where Scikit-Learn's `OneHotEncoder` transformer is combined with an XGBoost estimator can only be applied to dense datasets, and never to sparse datasets.
@@ -99,7 +99,7 @@ def make_classifier():
   return XGBClassifier(objective = "binary:logistic", n_estimators = 131, max_depth = 6)
 ```
 
-The values of `XGBModel.n_estimators` and `XGBModel.max_depth` attributes are set to values that should let the XGBoost algorithm to run to exhaustion with this dataset.
+The values of `XGBModel.n_estimators` and `XGBModel.max_depth` attributes are set to values that should let XGBoost to run to exhaustion with this dataset.
 
 Constructing and fitting a pipeline:
 
@@ -341,7 +341,7 @@ This attribute limits the maximum set size for the set-based aka optimal partiti
 
 The [default value of the `max_cat_threshold` tree param is 64](https://github.com/dmlc/xgboost/blob/v1.7.3/src/tree/param.h#L118-L123).
 
-The XGBoost algorithm will consider a direct categorical split only if the number of category levels for a categorical feature has dropped below this value.
+XGBoost will consider a direct categorical split only if the number of category levels for a categorical feature has dropped below this value.
 For example, the [USPS ZIP Code has over 40'000 codes](https://facts.usps.com/42000-zip-codes/).
 When used as a categorical feature, then it would be useless to attempt a categorical split at a federal level (eg. sending 10'000 codes to the left and 30'000 codes to the right) or even at a state level. However, it would be very useful to attempt the same at county or city levels (eg. sending 10 codes to the left and 30 to the right).
 
@@ -374,7 +374,7 @@ sklearn2pmml(pipeline, "XGBoostAudit.pmml")
 ````
 
 The quality of PMML documents depends on the quality and completeness of the XGBoost model schema information.
-For example, XGBoost versions 1.3 through 1.7 do not store category level values in the embedded feature map. It is impossible to generate meaningful categorical splits in such a situation, unless the embedded feature map is overriden with a more sophisticated external feature map.
+For example, XGBoost versions 1.3 through 1.7 do not store category levels in the embedded feature map. It is impossible to generate meaningful categorical splits in such a situation, unless the embedded feature map is overriden with a more sophisticated external feature map.
 
 The integration is much deeper within the JPMML ecosystem, as various JPMML platform libraries (eg. JPMML-SkLearn, JPMML-R, JPMML-SparkML) present the model schema as a live `org.jpmml.converter.Schema` object.
 

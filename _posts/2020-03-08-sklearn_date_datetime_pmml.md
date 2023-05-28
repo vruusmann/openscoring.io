@@ -5,7 +5,7 @@ author: vruusmann
 keywords: scikit-learn sklearn2pmml feature-domain data-temporal
 ---
 
-Scikit-Learn algorithms operate on numerical data.
+Scikit-Learn operates on numerical data.
 If the dataset contains complex features, then they need to be explicitly encoded and/or transformed from their native high-level representation to a suitable low-level representation.
 For example, a string column must be expanded into a list of binary indicator features using `LabelBinarizer` or `OneHotEncoder` transformers.
 
@@ -163,7 +163,7 @@ The main assumption is that the temporal feature(s) is likely to take previously
 In contrast, the `OrdinalDomain` decorator can only be applied to one column at once, but is fully configurable.
 It may come in handy when a temporal feature must be restricted in a certain way.
 
-A datetime is a complex data structure which needs to be "flattened" to a scalar before it can be fed to Scikit-Learn algorithms.
+A datetime is a complex data structure which needs to be "flattened" to a scalar before it can be fed to Scikit-Learn.
 The `sklearn2pmml.preprocessing` module provides three transformers, which correspond to previously discussed PMML built-in functions:
 
 * `DaysSinceYearTransformer`

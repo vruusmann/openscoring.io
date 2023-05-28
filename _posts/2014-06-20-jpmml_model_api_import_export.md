@@ -58,7 +58,7 @@ The conversion of PMML documents includes the following activities:
 
 These activities can be implemented using XML filtering. More complicated activities (e.g. replacing a deprecated feature with an up-to-date feature) should be handled in Java code. The JPMML-Model library is expected to provide a collection of such programmatic converters in the future.
 
-The XML filtering allows for direct conversion between arbitrary PMML schema versions. However, it is recommended to employ an intermediated conversion approach, where the input PMML document is first parsed to an in-memory PMML schema version 4.2 class model object, which is validated ("trust, but verify") and only then formatted to the output PMML document.
+The XML filtering allows for direct conversion between arbitrary PMML schema versions. However, it is advisable to employ an intermediated conversion approach, where the input PMML document is first parsed to an in-memory PMML schema version 4.2 class model object, which is validated ("trust, but verify") and only then formatted to the output PMML document.
 
 The conversion from any PMML schema version 3.X or 4.X document to a PMML schema version 4.2 document is implemented by the `org.jpmml.model.ImportFilter` class. This filter should be applied to the source before feeding it to the PMML unmarshaller:
 

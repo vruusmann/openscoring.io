@@ -160,7 +160,7 @@ os.deployFile("RedWineQuality", "RedWineQuality.pmml")
 os.deployFile("WhiteWineQuality", "WhiteWineQuality.pmml")
 ```
 
-It is recommended to open model URLs in a browser and examine the model schema description part (names, data types and value spaces of all input, target and output fields) of the response object.
+It is advisable to open model URLs in a browser and examine the model schema description part (names, data types and value spaces of all input, target and output fields) of the response object.
 
 For example, the model schema for "RedWineQuality" lists seven input fields, one target field and eight output fields.
 It follows that this model does not care about four input fields (ie. "fixed acidity", "citric acid", "chlorides" and "density" columns) that were present in the `winequality-red.csv` dataset.

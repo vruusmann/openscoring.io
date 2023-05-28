@@ -27,7 +27,7 @@ Scikit-Learn follows object-oriented programming (OOP) paradigm.
 The [Linear Models](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.linear_model) module provides the `LinearModel` base class, which is subclassed and mixed with `RegressorMixin` and `ClassifierMixin` traits to provide algorithm-specific model base classes.
 The logistic regression algorithm is available as the [`LogisticRegression`](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html) model.
 
-Scikit-Learn estimators are trained by calling the `fit(X, y, **fit_params)` method.
+Scikit-Learn estimators are fitted by calling the `fit(X, y, **fit_params)` method.
 However, real-life datasets require serious data pre-processing before they can be passed to this method.
 The main requirement is transforming features from the mixed high-level representation to the unified (floating point) low-level representation so that they would become "understandable" to numerical algorithms.
 

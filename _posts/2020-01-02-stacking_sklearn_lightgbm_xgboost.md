@@ -110,7 +110,7 @@ pipeline = PMMLPipeline([
 If all child pipelines perform common data pre-processing work, then it should be extracted into the first step of the pipeline.
 In this exercise, it is limited to capturing domain of features using `CategoricalDomain` and `ContinuousDomain` decorators.
 
-The initial column transformer changes the representation of the dataset from `pandas.DataFrame` to 2-D Numpy array, which is lacking adequate column-level metadata (eg. names, data types) for setting up subsequent column transformers.
+The initial column transformer changes the representation of the dataset from `pandas.DataFrame` to 2-D Numpy array, which lacks adequate column-level metadata (eg. names, data types) for setting up subsequent column transformers.
 A suitable array descriptor is created manually, by copying the value of the `DataFrame.dtypes` attribute, and changing its index from column names to column positions:
 
 ``` python
