@@ -259,6 +259,5 @@ In the two experiments above, if the PyCaret pipeline object is first saved in P
 
 ## Resources ##
 
-* "Audit-NA" dataset: [`audit-NA.csv`]({{ "/resources/data/audit-NA.csv" | absolute_url }})
-* "Auto" dataset: [`auto.csv`]({{ "/resources/data/auto.csv" | absolute_url }})
+* Datasets: [`audit-NA.csv`]({{ "/resources/data/audit-NA.csv" | absolute_url }}) and [`auto.csv`]({{ "/resources/data/auto.csv" | absolute_url }})
 * Python scripts: [`train-classification.py`]({{ "/resources/2023-01-12/train-classification.py" | absolute_url }}) and [`train-regression.py`]({{ "/resources/2023-01-12/train-regression.py" | absolute_url }})

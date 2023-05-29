@@ -169,5 +169,5 @@ sklearn2pmml(pmml_pipeline, "XGBSentiment.pmml")
 
 ## Resources ##
 
-* "Sentiment" dataset: [`sentiment.csv`]({{ "/resources/data/sentiment.csv" | absolute_url }})
+* Dataset: [`sentiment.csv`]({{ "/resources/data/sentiment.csv" | absolute_url }})
 * Python script: [`train.py`]({{ "/resources/2021-02-27/train.py" | absolute_url }})

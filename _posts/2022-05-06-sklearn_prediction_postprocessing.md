@@ -156,5 +156,5 @@ The default behaviour is suppressed by deactivating `compact` and `flat` convers
 
 ## Resources ##
 
-* "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
+* Dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
 * Python scripts: [`train.py`]({{ "/resources/2022-05-06/train.py" | absolute_url }}) and [`predict.py`]({{ "/resources/2022-05-06/predict.py" | absolute_url }})

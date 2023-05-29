@@ -226,6 +226,6 @@ The probability of the positive scenario 0.1088706 is obtained by applying the i
 
 ## Resources ##
 
-* "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
+* Dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
 * Python scripts: [`train.py`]({{ "/resources/2019-02-26/train.py" | absolute_url }}) and [`report.py`]({{ "/resources/2019-02-26/report.py" | absolute_url }})
 * Reporting PMML document: [`XGBoostAudit-reporting.pmml`]({{ "/resources/2019-02-26/XGBoostAudit-reporting.pmml" | absolute_url }})

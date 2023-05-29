@@ -298,6 +298,5 @@ The original pipeline and its saved-and-loaded clone make identical predictions.
 
 ## Resources ##
 
-* "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
-* "Audit-NA" dataset: [`audit-NA.csv`]({{ "/resources/data/audit-NA.csv" | absolute_url }})
+* Datasets: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }}) and [`audit-NA.csv`]({{ "/resources/data/audit-NA.csv" | absolute_url }})
 * Python scripts: [`check.py`]({{ "/resources/2023-05-26/check.py" | absolute_url }}), [`train.py`]({{ "/resources/2023-05-26/train.py" | absolute_url }}) and [`train-NA.py`]({{ "/resources/2023-05-26/train-NA.py" | absolute_url }})

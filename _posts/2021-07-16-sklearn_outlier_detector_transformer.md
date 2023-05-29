@@ -208,5 +208,5 @@ sklearn2pmml(pipeline, "SelectFirstAudit.pmml")
 
 ## Resources ##
 
-* "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
+* Dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
 * Python script: [`train.py`]({{ "/resources/2021-07-16/train.py" | absolute_url }})

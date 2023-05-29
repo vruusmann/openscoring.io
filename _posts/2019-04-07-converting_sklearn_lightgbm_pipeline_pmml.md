@@ -259,6 +259,5 @@ The predictive performance of the LightGBM classifier improves considerably acro
 
 ## Resources ##
 
-* "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
-* "Audit-NA" dataset: [`audit-NA.csv`]({{ "/resources/data/audit-NA.csv" | absolute_url }})
+* Datasets: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }}) and [`audit-NA.csv`]({{ "/resources/data/audit-NA.csv" | absolute_url }})
 * Python script: [`train.py`]({{ "/resources/2019-04-07/train.py" | absolute_url }})

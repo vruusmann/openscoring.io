@@ -198,5 +198,5 @@ It is virtually impossible to make programming mistakes (eg. accidentally swappi
 
 ## Resources ##
 
-* "Audit-NA" dataset: [`audit-NA.csv`]({{ "/resources/data/audit-NA.csv" | absolute_url }})
+* Dataset: [`audit-NA.csv`]({{ "/resources/data/audit-NA.csv" | absolute_url }})
 * Python script: [`train.py`]({{ "/resources/2019-12-03/train.py" | absolute_url }})

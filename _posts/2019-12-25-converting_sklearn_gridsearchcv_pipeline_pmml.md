@@ -140,5 +140,5 @@ It is possible to suppress this sanity check by changing the value of the `Domai
 
 ## Resources ##
 
-* "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
+* Dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
 * Python scripts: [`train-local.py`]({{ "/resources/2019-12-25/train-local.py" | absolute_url }}) and [`train-global.py`]({{ "/resources/2019-12-25/train-global.py" | absolute_url }})

@@ -386,5 +386,5 @@ The conversion process can be guided using conversion options.
 
 ## Resources ##
 
-* "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
+* Dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
 * Python scripts: [`train-OHE.py`]({{ "/resources/2023-02-06/train-OHE.py" | absolute_url }}) (XGBoost version 1.0 and newer) and [`train-categorical.py`]({{ "/resources/2023-02-06/train-categorical.py" | absolute_url }}) (XGBoost version 1.6 and newer)

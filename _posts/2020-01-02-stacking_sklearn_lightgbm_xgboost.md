@@ -237,6 +237,5 @@ sklearn2pmml(pipeline, "StackingEnsemble.pmml")
 
 ## Resources ##
 
-* "Audit-NA" dataset: [`audit-NA.csv`]({{ "/resources/data/audit-NA.csv" | absolute_url }})
-* "Auto" dataset: [`auto.csv`]({{ "/resources/data/auto.csv" | absolute_url }})
+* Datasets: [`audit-NA.csv`]({{ "/resources/data/audit-NA.csv" | absolute_url }}) and [`auto.csv`]({{ "/resources/data/auto.csv" | absolute_url }})
 * Python scripts: [`train-classification.py`]({{ "/resources/2020-01-02/train-classification.py" | absolute_url }}) and [`train-regression.py`]({{ "/resources/2020-01-02/train-regression.py" | absolute_url }})

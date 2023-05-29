@@ -436,6 +436,6 @@ The fixed costs stem from Python-to-Java inter-process communication, and are di
 
 ## Resources ##
 
-* "Audit" dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
+* Dataset: [`audit.csv`]({{ "/resources/data/audit.csv" | absolute_url }})
 * Python scripts: [`train.py`]({{ "/resources/2021-08-04/train.py" | absolute_url }}) and [`benchmark.py`]({{ "/resources/2021-08-04/benchmark.py" | absolute_url }})
 * Java application: [`benchmark.zip`]({{ "/resources/2021-08-04/benchmark.zip" | absolute_url }})
