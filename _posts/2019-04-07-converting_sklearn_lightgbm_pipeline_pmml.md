@@ -152,8 +152,8 @@ pipeline = PMMLPipeline([...])
 pipeline.fit(df, df["Adjusted"], classifier__categorical_feature = cat_indices)
 ```
 
-A binary-style categorical split discriminates one category level against all others ("send category level A to the left, and all other category levels to the right").
-A multinomial-style categorical split examines every category level, and proposes two distinct subsets based on their discriminatory effect ("send category levels A, C, D and F to the left, and category levels B, and E to the right").
+A binary indicator-style categorical split discriminates one category level against all others ("send category level A to the left, and all other category levels to the right").
+A set-style categorical split examines every category level, and proposes two distinct subsets based on their discriminatory effect ("send category levels A, C, D and F to the left, and category levels B, and E to the right").
 LightGBM does not appear to limit the cardinality of categorical features. There is no need to change anything about the Python script when scaling from two to twenty thousand category levels.
 
 Multinomial-style categorical splits are encoded using the `SimpleSetPredicate` element:
