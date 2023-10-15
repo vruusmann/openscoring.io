@@ -26,7 +26,7 @@ For example, the values of a string column are accessible as Python strings, and
 
 Feature transformation maps values from one value space to another value space following some mathematical or statistical procedure.
 The main use case is ensuring compliance with modeling algorithm requirements.
-For example, all the (numeric-) inputs to a linear model should be standardized. Otherwise, the convergence (towards the solution) will be hampered, and the estimated beta coefficients will be meaningless.
+For example, all the (numeric-) inputs to a linear model should be scaled. Otherwise, the convergence (towards the solution) will be hampered, and the estimated beta coefficients will be meaningless.
 
 The feature transformation needs of Tabular ML applications can be satisfied using a limited number of algorithms such as scaling, discretization and encoding.
 Most ML frameworks provide correct and efficient implementations right out of the box.

@@ -9,7 +9,7 @@ Java (programming language-) agent is a JVM service that is based on the [Java I
 
 ## SAX Locator information ##
 
-The [JPMML-Model](https://github.com/jpmml/jpmml-model) library provides a class model that is rooted at the `org.dmg.pmml.PMMLObject` class. This class declares a sole `locator` field, whose responsibility is to hold SAX Locator information. Different JAXB runtimes are able to discover and initialize this field in a completely automated fashion, because it is marked with appropriate proprietary annotations (eg. `com.sun.xml.bind.annotation.XmlLocation` for [GlassFish Metro](https://javaee.github.io/metro/), `org.eclipse.persistence.oxm.annotations.XmlLocation` for [EclipseLink MOXy](https://www.eclipse.org/eclipselink/)).
+The [JPMML-Model](https://github.com/jpmml/jpmml-model) library provides a class model that is rooted at the `org.dmg.pmml.PMMLObject` class. This class declares a sole `locator` field, whose responsibility is to hold SAX Locator information. Different JAXB runtimes are able to discover and initialize this field in a fully automated fashion, because it is marked with appropriate proprietary annotations (eg. `com.sun.xml.bind.annotation.XmlLocation` for [GlassFish Metro](https://javaee.github.io/metro/), `org.eclipse.persistence.oxm.annotations.XmlLocation` for [EclipseLink MOXy](https://www.eclipse.org/eclipselink/)).
 
 Application developers can access SAX Locator information using the `org.dmg.pmml.HasLocator` interface.
 

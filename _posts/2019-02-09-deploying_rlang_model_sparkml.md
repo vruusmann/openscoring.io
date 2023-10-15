@@ -7,7 +7,7 @@ keywords: r apache-spark r2pmml jpmml-evaluator
 
 The [R platform](https://www.r-project.org/) provides a wider and deeper selection of algorithms than any other platform. The trouble is that all these algorithms are tightly coupled to the R language runtime and package system, which makes their reuse on other platforms and application environments fairly difficult.
 
-This blog post demonstrates how to decouple a fitted R model from the R platform by converting it to the standardized Predictive Model Markup Language (PMML) representation. A PMML model is easy to achive and deploy across application environments. Here, the PMML model is turned into an Apache Spark ML transformer, which operates in Java/JVM memory space and can be easily dispatched to where the data resides.
+This blog post demonstrates how to decouple a fitted R model from the R platform by converting it to the Predictive Model Markup Language (PMML) representation. A PMML model is easy to achive and deploy across application environments. Here, the PMML model is turned into an Apache Spark ML transformer, which operates in Java/JVM memory space and can be easily dispatched to where the data resides.
 
 ## R side ##
 

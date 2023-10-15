@@ -351,7 +351,7 @@ In contrast, medium- and high-cardinality categorical features initially stay on
 
 ## PMML ##
 
-The [JPMML-XGBoost](https://github.com/jpmml/jpmml-xgboost) library converts booster objects to the standardized Predictive Model Markup Language (PMML) representation.
+The [JPMML-XGBoost](https://github.com/jpmml/jpmml-xgboost) library converts booster objects to the Predictive Model Markup Language (PMML) representation.
 This library supports all XGBoost versions and data formats (eg. Binary, JSON, UBJSON), and can be used either as a standalone command-line application or as an ML framework plugin.
 
 Getting started with PMML is easy.

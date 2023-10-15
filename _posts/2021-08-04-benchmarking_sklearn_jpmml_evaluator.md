@@ -88,7 +88,7 @@ Automatic data type detection and conversion results in two continuous integer f
 The cardinality of string features is low, ranging from 2 to 16 category levels.
 
 The data is pre-processed minimally, just to make it comply with Scikit-Learn base expectations.
-Continuous features are standardized in the linear model case, and left as-is in the decision tree ensemble case. Categorical features are one-hot encoded.
+Continuous features are scaled in the linear model case, and left as-is in the decision tree ensemble case. Categorical features are one-hot encoded.
 
 ### Modeling
 

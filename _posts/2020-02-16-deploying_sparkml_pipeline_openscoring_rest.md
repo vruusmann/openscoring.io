@@ -17,7 +17,7 @@ The workflow has four steps:
 
 ## Importing JPMML-SparkML into Apache Spark ##
 
-The [JPMML-SparkML](https://github.com/jpmml/jpmml-sparkml) library converts Apache Spark ML pipeline models to the standardized Predictive Model Markup Language (PMML) representation.
+The [JPMML-SparkML](https://github.com/jpmml/jpmml-sparkml) library converts Apache Spark ML pipeline models to the Predictive Model Markup Language (PMML) representation.
 
 This library can be bundled statically with the application, or imported dynamically into the application driver program using `--jars` or `--packages` command-line options.
 

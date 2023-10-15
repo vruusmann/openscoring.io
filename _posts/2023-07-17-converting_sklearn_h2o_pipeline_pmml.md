@@ -112,7 +112,7 @@ with open("H2ORandomForestAudit.pkl", "wb") as pkl_file:
 The longevity and pervasive nature of the above pickling error suggests that this might be a deliberate restriction rather than a bug.
 
 For reference, the H2O.ai documentation does not place a direct veto on pickling.
-It advises that the only supported way of persisting fitted `H2OEstimator` objects is via a pair of [`h2o.download_model`](https://docs.h2o.ai/h2o/latest-stable/h2o-py/docs/h2o.html#h2o.download_model) and [`h2o.upload_model`](https://docs.h2o.ai/h2o/latest-stable/h2o-py/docs/h2o.html#h2o.upload_model) utility methods:
+It advises that the only supported way of persisting fitted `H2OEstimator` objects is via a pair of [`h2o.download_model`](https://docs.h2o.ai/h2o/latest-stable/h2o-py/docs/h2o.html#h2o.download_model) and [`h2o.upload_model`](https://docs.h2o.ai/h2o/latest-stable/h2o-py/docs/h2o.html#h2o.upload_model) utility functions:
 
 ``` python
 import h2o

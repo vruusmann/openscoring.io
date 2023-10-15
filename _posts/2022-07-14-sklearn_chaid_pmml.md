@@ -168,7 +168,7 @@ def make_sparse_mapper(df, cat_cols, cont_cols):
 
 The `CHAID.Tree` class is a data exploration and mining tool. It does not provide any Python API for making predictions on new datasets (see [Issue 128](https://github.com/Rambatino/CHAID/issues/128)).
 
-Instead of extending the `sklearn2pmml.tree.chaid.CHAIDEstimator` base class with custom prediction methods, it is much easier to export the core decision tree data structure in Predictive Model Markup Language (PMML) data format, and make predictions using a PMML engine instead.
+Instead of extending the `sklearn2pmml.tree.chaid.CHAIDEstimator` base class with custom prediction methods, it is much easier to export the core decision tree data structure in Predictive Model Markup Language (PMML) representation, and make predictions using a PMML engine instead.
 
 Conversion to PMML:
 

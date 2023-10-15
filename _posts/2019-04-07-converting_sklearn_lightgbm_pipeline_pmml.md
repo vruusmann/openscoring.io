@@ -54,7 +54,7 @@ pipeline.fit(df, df["Adjusted"])
 sklearn2pmml(pipeline, "LightGBMAudit.pmml") 
 ```
 
-LightGBM models can be converted to the standardized Predictive Model Markup Language (PMML) representation using the [JPMML-LightGBM](https://github.com/jpmml/jpmml-lightgbm) library.
+The [JPMML-LightGBM](https://github.com/jpmml/jpmml-lightgbm) library converts LightGBM models to the Predictive Model Markup Language (PMML) representation.
 Just like LightGBM itself, this library can be used as a standalone tool or as a plugin to other JPMML family conversion tools and libraries.
 The main difference between these two usage modes is related to the sourcing of feature definitions.
 In standalone mode, they are extracted from the LightGBM model object.

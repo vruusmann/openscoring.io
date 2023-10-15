@@ -16,7 +16,7 @@ The [suggested route](https://github.com/microsoft/LightGBM/issues/909) is to su
 This blog post details an alternative route for deploying LightGBM models on the Java/JVM platform:
 
 1. Training a model using Scikit-Learn API.
-2. Converting the model to the standardized PMML representation.
+2. Converting the model to the PMML representation.
 3. Deploying the model in "PMML interpretation" and "PMML to Java bytecode transpilation" modes.
 
 ## Model training ##

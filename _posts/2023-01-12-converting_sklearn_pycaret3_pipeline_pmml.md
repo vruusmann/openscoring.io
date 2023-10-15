@@ -233,10 +233,10 @@ Surprisingly enough, this competition is won by a linear model, well ahead of va
 
 The [`sklearn2pmml`](https://github.com/jpmml/sklearn2pmml) package provides the `sklearn2pmml.sklearn2pmml` utility function for converting Scikit-Learn pipelines to the Predictive Model Markup Language (PMML) representation.
 
-However, the `sklearn2pmml` utility method refuses to accept Python classes other than the `sklearn2pmml.pipeline.PMMLPipeline` class.
+However, the `sklearn2pmml` utility function refuses to accept Python classes other than the `sklearn2pmml.pipeline.PMMLPipeline` class.
 
-The solution is to wrap the PyCaret pipeline object into a `PMMLPipeline` object using the `sklearn2pmml.pycaret.make_pmml_pipeline` utility method.
-This utility method differs from the generic `sklearn2pmml.make_pmml_pipeline` utility method by the fact that it knows about the `TransformerWrapper` meta-transformer class, and can perform proper escaping of its contents.
+The solution is to wrap the PyCaret pipeline object into a `PMMLPipeline` object using the `sklearn2pmml.pycaret.make_pmml_pipeline` utility function.
+This utility function differs from the generic `sklearn2pmml.make_pmml_pipeline` utility function by the fact that it knows about the `TransformerWrapper` meta-transformer class, and can perform proper escaping of its contents.
 
 The escaping is needed to ensure that the "business state" of all transformers and estimators is complete when dumped in pickle data format.
 The list of known troublemakers contains mostly Scikit-Learn selector classes (caused by the dynamic implementation of the `_get_support_mask()` method).

@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Converting Scikit-Learn hyperparameter-tuned pipelines to PMML"
+title: "Converting Scikit-Learn GridSearchCV pipelines to PMML"
 author: vruusmann
-keywords: scikit-learn sklearn2pmml
+keywords: scikit-learn sklearn2pmml tuning
 ---
 
 The behaviour of Scikit-Learn estimators is controlled using hyperparameters.
