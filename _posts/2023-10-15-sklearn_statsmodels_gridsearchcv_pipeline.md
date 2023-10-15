@@ -169,7 +169,7 @@ Model deployment in non-Python environments might seem impossible due to extensi
 No worries, because the [Java PMML API](https://github.com/jpmml) software project provides a full stack of Java tools and libraries for untangling and converting arbitrary complexity Python ML artifacts to the Predictive Model Markup Language (PMML) representation.
 Dealing with the `best_pipeline` object in a fully automated fashion does not pose any substantial challenge.
 
-There is one minor configuration issue related to the fact that the [JPMML-SkLearn](https://github.com/jpmml-sklearn) library recognizes and supports wrapper classes, but not their ad hoc subclasses.
+There is one minor configuration issue related to the fact that the [JPMML-SkLearn](https://github.com/jpmml/jpmml-sklearn) library recognizes and supports wrapper classes, but not their ad hoc subclasses.
 
 It is possible to avoid tedious model class conversion operation by declaring model class equivalence (ie. "treat `TunableStatsModelsRegressor` objects the same as `StatsModelsRegressor` objects") using a custom class mapping:
 
