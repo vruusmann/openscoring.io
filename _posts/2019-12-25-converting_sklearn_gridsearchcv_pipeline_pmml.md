@@ -3,6 +3,8 @@ layout: post
 title: "Converting Scikit-Learn GridSearchCV pipelines to PMML"
 author: vruusmann
 keywords: scikit-learn sklearn2pmml tuning
+related_posts:
+  - 2023-10-15-sklearn_statsmodels_gridsearchcv_pipeline
 ---
 
 The behaviour of Scikit-Learn estimators is controlled using hyperparameters.

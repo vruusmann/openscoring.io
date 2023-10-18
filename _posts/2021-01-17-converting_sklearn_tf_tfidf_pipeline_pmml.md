@@ -3,6 +3,8 @@ layout: post
 title: "Converting Scikit-Learn TF(-IDF) pipelines to PMML"
 author: vruusmann
 keywords: scikit-learn sklearn2pmml tf-idf
+related_posts:
+  - 2021-02-27-sklearn_tf_tfidf_xgboost_pipeline
 ---
 
 The outline of a TF(-IDF) workflow:

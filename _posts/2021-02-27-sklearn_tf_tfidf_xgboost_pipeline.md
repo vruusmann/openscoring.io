@@ -3,6 +3,10 @@ layout: post
 title: "Training Scikit-Learn TF(-IDF) plus XGBoost pipelines"
 author: vruusmann
 keywords: scikit-learn xgboost mlxtend sklearn2pmml tf-idf data-missing
+related_posts:
+  - 2023-02-06-upgrading_sklearn_xgboost_pipeline_pmml
+  - 2022-04-12-onehot_encoding_sklearn_xgboost_pipeline
+  - 2021-01-17-converting_sklearn_tf_tfidf_pipeline_pmml
 ---
 
 ## You have been doing it wrong ##

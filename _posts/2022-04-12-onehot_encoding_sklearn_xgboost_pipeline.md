@@ -3,6 +3,9 @@ layout: post
 title: "One-hot encoding categorical features in Scikit-Learn XGBoost pipelines"
 author: vruusmann
 keywords: scikit-learn xgboost sklearn2pmml data-categorical data-missing
+related_posts:
+  - 2023-02-06-upgrading_sklearn_xgboost_pipeline_pmml
+  - 2021-02-27-sklearn_tf_tfidf_xgboost_pipeline
 ---
 
 Creating a Scikit-Learn pipeline that feeds categorical data into XGBoost estimator is surprisingly tricky, because there are rather significant mismatches in their conceptual and technical designs.

@@ -3,6 +3,9 @@ layout: post
 title: "Upgrading Scikit-Learn XGBoost pipelines"
 author: vruusmann
 keywords: scikit-learn xgboost sklearn2pmml data-categorical
+related_posts:
+  - 2022-04-12-onehot_encoding_sklearn_xgboost_pipeline
+  - 2021-02-27-sklearn_tf_tfidf_xgboost_pipeline
 ---
 
 XGBoost is one of the top algorithms for solving Tabular ML problems.

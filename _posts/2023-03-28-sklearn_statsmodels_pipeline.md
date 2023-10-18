@@ -3,6 +3,8 @@ layout: post
 title: "Training Scikit-Learn StatsModels pipelines"
 author: vruusmann
 keywords: scikit-learn sklearn2pmml patsy sklego statsmodels
+related_posts:
+  - 2023-10-15-sklearn_statsmodels_gridsearchcv_pipeline
 ---
 
 [StatsModels](https://www.statsmodels.org) is a Python library that specializes in statistical and time-series analyses.

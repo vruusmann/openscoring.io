@@ -3,6 +3,8 @@ layout: post
 title: "Converting Scikit-Learn H2O.ai pipelines to PMML"
 author: vruusmann
 keywords: h2o scikit-learn sklearn2pmml data-categorical
+related_posts:
+  - 2022-11-11-sklearn_h2o_pipeline
 ---
 
 The [`h2o`](https://github.com/h2oai/h2o-3/tree/master/h2o-py) package provides Python language wrappers for H2O.ai estimators.

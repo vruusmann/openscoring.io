@@ -3,6 +3,8 @@ layout: post
 title: "Converting customized Scikit-Learn estimators to PMML"
 author: vruusmann
 keywords: scikit-learn sklearn2pmml jpmml-sklearn
+related_posts:
+  - 2023-10-15-sklearn_statsmodels_gridsearchcv_pipeline
 ---
 
 Scikit-Learn transformers and models are easily customizable via subclassing.

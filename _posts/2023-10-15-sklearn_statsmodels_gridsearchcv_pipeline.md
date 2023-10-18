@@ -3,6 +3,10 @@ layout: post
 title: "Training Scikit-Learn GridSearchCV StatsModels pipelines"
 author: vruusmann
 keywords: scikit-learn sklearn2pmml statsmodels tuning
+related_posts:
+  - 2023-03-28-sklearn_statsmodels_pipeline
+  - 2023-05-03-converting_sklearn_subclass_pmml
+  - 2019-12-25-converting_sklearn_gridsearchcv_pipeline_pmml
 ---
 
 The [`sklearn2pmml`](https://github.com/jpmml/sklearn2pmml) package provides Scikit-Learn style wrappers for StatsModels classification, ordinal classification and regression models:

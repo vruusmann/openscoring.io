@@ -3,6 +3,8 @@ layout: post
 title: "Training Scikit-Learn H2O.ai pipelines"
 author: vruusmann
 keywords: h2o scikit-learn sklearn2pmml data-categorical data-missing
+related_posts:
+  - 2023-07-17-converting_sklearn_h2o_pipeline_pmml
 ---
 
 [H2O.ai](https://h2o.ai/) is an alternative ML framework, which is built with maximum in-memory scaling properties in mind.
