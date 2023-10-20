@@ -119,12 +119,12 @@ The combined StatsModels model selection and model hyperparameter tuning experim
 pipeline = make_statsmodels_pipeline(TunableStatsModelsRegressor(OLS))
 
 ctor_params_grid = {
-	"regressor__fit_intercept" : [True, False]
+  "regressor__fit_intercept" : [True, False]
 }
 
 regfit_params_grid = {
-	"regressor__alpha" : loguniform(1e-2, 1).rvs(5),
-	"regressor__L1_wt" : uniform(0, 1).rvs(5)
+  "regressor__alpha" : loguniform(1e-2, 1).rvs(5),
+  "regressor__L1_wt" : uniform(0, 1).rvs(5)
 }
 
 tuner = GridSearchCV(pipeline, param_grid = {**ctor_params_grid, **regfit_params_grid}, verbose = 3)
@@ -185,7 +185,7 @@ default_mapping = load_class_mapping()
 
 # Map the ad hoc subclass to the same JPMML-SkLearn converter class as the parent class
 statsmodels_mapping = {
-	fqn(TunableStatsModelsRegressor) : default_mapping[fqn(StatsModelsRegressor)]
+  fqn(TunableStatsModelsRegressor) : default_mapping[fqn(StatsModelsRegressor)]
 }
 
 extension_jar = "TunableStatsModelsRegressor.jar"
