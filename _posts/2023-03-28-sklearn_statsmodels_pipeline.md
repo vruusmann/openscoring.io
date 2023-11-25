@@ -264,7 +264,7 @@ The situation can be fixed by proper feature identification.
 Scikit-Learn transformers offer rudimentary feature naming support using the `get_feature_names_out()` method.
 Calling this method on the last transformer step of a fitted pipeline yields a list of strings that should align perfectly against the above list of anonymized terms.
 
-This process can be fully automated in Scikit-Learn version 1.2.0 and newer using the [set_output API](https://scikit-learn.org/stable/auto_examples/miscellaneous/plot_set_output.html):
+This process can be fully automated in Scikit-Learn version 1.2.0 and newer using the [`set_output` API](https://scikit-learn.org/stable/auto_examples/miscellaneous/plot_set_output.html):
 
 ``` python
 from sklearn2pmml.statsmodels import StatsModelsRegressor

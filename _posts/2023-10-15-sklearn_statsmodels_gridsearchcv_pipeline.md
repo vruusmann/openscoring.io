@@ -66,7 +66,7 @@ Any attempt to call the `GridSearchCV.fit(X, y)` method with an expanded param g
 
 ### Task-specific subclassing
 
-The canonical approach to enabling tunable params is by declaring them one-by-one as constructor params, and assigning them to Python class attributes (with exactly the same name) in the constructor body.
+The canonical approach to enabling tunable params is by declaring them one by one as constructor params, and assigning them to Python class attributes (with exactly the same name) in the constructor body.
 
 For example, defining a wrapper subclass for tuning the `alpha` and `L1_wt` params of the [`OLS.fit_regularized`](https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.OLS.fit_regularized.html) method:
 
