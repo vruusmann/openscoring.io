@@ -136,7 +136,7 @@ Unfortunately, closer inspection of `RandomForestRegressor` attributes reveals s
 
 First, nested estimator objects (`base_estimator` and `base_estimator_` attributes) still contribute a constant value of 24 or 32 bytes.
 Second, built-in iterable types such as `list` and `tuple` appear to mis-represent their in-memory size. The situation is understandable for a list of estimator objects (the `estimators_` attribute) but defies all expectations for a list of Python strings (the `_required_parameters` attribute) or a tuple of Python strings (the `estimator_params` attribute).
-Third, non-Python objects (eg. CPython and NumPy types) contribute constant values of around one hundred bytes.
+Third, non-Python objects (eg. Cython and NumPy types) contribute constant values of around one hundred bytes.
 
 The solution is to define a custom "sizeof" function, and apply it (recursively-) to all objects in the object graph.
 

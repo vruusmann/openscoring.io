@@ -7,12 +7,11 @@ keywords: scikit-learn
 
 ## Overview ##
 
-[Decision trees](https://scikit-learn.org/stable/modules/tree.html) and [logistic regression](https://scikit-learn.org/stable/modules/linear_model.html) are some of the most widely used types of models for machine learning (ML) applications.
-Their strengths include high adaptability, simplicity and interpretability.
+[Decision trees](https://scikit-learn.org/stable/modules/tree.html) and [logistic regression](https://scikit-learn.org/stable/modules/linear_model.html) are some of the most popular model types for ML applications.
+Their strengths include simplicity, versatility and interpretability, and getting to know their ins and outs is a prerequisite to a successful career in data science.
 
-Decision trees are suited for solving both classification- and regression-type problems. This is probably one of the first model types applied by any beginner data analyst.
-
-A universally familiar example is multinomial classification based on the ["iris" dataset](https://en.wikipedia.org/wiki/Iris_flower_data_set):
+Decision trees are suited for solving both classification- and regression-type problems.
+The classical example is multinomial classification using the ["iris" dataset](https://en.wikipedia.org/wiki/Iris_flower_data_set):
 
 ``` python
 from sklearn.datasets import load_iris
@@ -24,10 +23,7 @@ classifier = DecisionTreeClassifier()
 classifier.fit(X, y)
 ```
 
-This snippet executes with all versions of [Scikit-Learn](https://scikit-learn.org) published within the last 10 years.
-
-In practice, however, a model is trained once with a then-current Scikit-Learn version, and is then archived.
-The model is then utilized in various ML applications over the years, by restoring the archived model using the now-current Scikit-Learn version, and applying it to new test data.
+This Python code snippet executes fine with all [Scikit-Learn](https://scikit-learn.org) versions published within the last 10 years.
 
 A typical Scikit-Learn model lifecycle:
 
@@ -35,29 +31,36 @@ A typical Scikit-Learn model lifecycle:
 # Development environment, using a then-current Scikit-Learn version
 _pkl_dump(classifier, "classifier.pkl")
 
-# The classifier.pkl file is carried across space and time from the development environment to many production environments
-
-X, y = load_iris(return_X_y = True)
+#
+# The classifier.pkl file is carried across space and time
+# from the development environment to many production environments
+#
 
 # Production environment, using the now-current Scikit-Learn version
 classifier = _pkl_load("classifier.pkl")
+
+X, _ = load_iris(return_X_y = True)
+
 yt = classifier.predict(X)
 ```
 
-Until only recently, the above model serialization & deserialization workflow was extremely reliable.
-For example, one could restore an Scikit-Learn 0.17 model trained 10 years ago, and use it for predictions in Scikit-Learn 1.2.2.
-However, this is no longer possible with Scikit-Learn 1.3.0 and up.
+In practice, a model is trained once, and is used for prediction many times over the years.
 
-This "model breaking" occurring between Scikit-Learn versions 1.2.2 and 1.3.0 can be a really unpleasant surprise for organizations who are effectively locked out of their business-critical intellectual property.
+Until very recently, the above model serialization and deserialization workflow was extremely reliable.
+For example, one could restore a Scikit-Learn 0.17 model trained 10 years ago, and use it for predictions in Scikit-Learn 1.2.2.
+However, this is no longer possible with Scikit-Learn 1.3.0 and newer.
 
-Scikit-Learn developers see this "model breaking" as inevitable and provide no straightforward solutions, instead suggesting that users retrain their models from scratch using the latest library.
-Regrettably, this is not always feasible, especially with more complex models where the original training data and documentation has been lost.
+A "model breakdown" following a routine software upgrade is definitely a very unpleasant surprise.
+For major enterprises, the cost of losing access to their business-critical intellectual property can quickly amount to millions of US dollars.
 
-Often the only practical solution is for organisations to remain infinitely stuck with Scikit-Learn <= 1.2.2, with no realistic way to upgrade to newer versions.
+Scikit-Learn developers see this "model breakdown" as inevitable and provide no straightforward solutions, instead suggesting that data scientists should retrain their models from scratch using the latest library version.
+Unfortunately, this is not always feasible, especially with more complex models where the original training dataset and documentation has been lost.
+
+In such a situation, the least painful option is often to remain infinitely stuck with one particular legacy Scikit-Learn version.
 
 ## Problem description ##
 
-Any attempt to load a legacy decision tree model will raise the following ValueError:
+Any attempt to load a legacy decision tree model shall fail with the following value error:
 
 ```
 Traceback (most recent call last):
@@ -68,26 +71,19 @@ ValueError: node array from the pickle has an incompatible dtype:
 - got     : [('left_child', '<i8'), ('right_child', '<i8'), ('feature', '<i8'), ('threshold', '<f8'), ('impurity', '<f8'), ('n_node_samples', '<i8'), ('weighted_n_node_samples', '<f8')]
 ```
 
-This is a sanity check by the `Tree.__setstate__()` method to verify the structure of data loaded from the pickle file.
-Specifically, the `Tree` class requires the value of the `nodes` attribute to be a 9-dimensional array (with the dimensions being `left_child`, `right_child`, .., `weighted_n_node_samples` and `missing_to_to_left`).
-Here, however, it finds an 8-dimensional array, where the ninth `missing_go_to_left` dimension is absent.
+This is a sanity check by the `Tree.__setstate__()` method to ensure that the unpickled data is structurally complete and valid decision tree data.
 
-The `missing_go_to_left` dimension is a Scikit-Learn 1.3 addition implemented to enhance [the decision tree algorithm with basic missing values support](https://scikit-learn.org/stable/modules/tree.html#missing-values-support).
+Specifically, the `Tree` class requires the value of its `nodes` attribute to be a 9-dimensional array (with the dimensions being `left_child`, `right_child`, .., `weighted_n_node_samples` and `missing_to_to_left`).
+Here, however, it finds an 8-dimensional array, where the ninth `missing_go_to_left` dimension is not present.
+
+The `missing_go_to_left` dimension is a Scikit-Learn 1.3 addition to enhance [the decision tree algorithm with basic missing values support](https://scikit-learn.org/stable/modules/tree.html#missing-values-support).
 
 The Python language and runtime provide relatively simple means to modify class definitions on-the-fly.
-So could the model not be forced to load using reflection tools?
+So, would it be possible to satisfy this new structural requirement using reflection tools?
 
-Unfortunately not, due to two additional complexities:
-1. The `Tree` class is a [Cython](https://cython.org/) class, rather than an ordinary Python class. This makes its behaviour a lot less susceptible to intervention. It is difficult to modify using common Python script with techniques accessible to normal users.
-2. The `nodes` attribute holds a single n-dimensional [Numpy structured array](https://numpy.org/doc/stable/user/basics.rec.html), rather than an n-element collection of Numpy ndarrays. A Numpy structured array allows updating the values of each dimension, but not adding or removing the definitions of dimensions themselves.
-
-## Workaround idea ##
-
-This workaround relies on manual modification of the Numpy structured array outside the pickle protocol layer.
-
-The easiest and most robust way is to divide the Scikit-Learn decision tree into two components.
-First, the high-level Python `DecisionTreeClassifier` or `DecisionTreeRegressor` class, the precise state and behaviour of which are directly determined by the Scikit-Learn version in use.
-Second, the enclosed Cython `Tree` class with a state comprised of five or so attributes, including the problematic `nodes` attribute.
+Unfortunately, the answer is "no", due to two overwhelming technical complexities:
+1. The `Tree` class is a [Cython](https://cython.org/) class, rather than an ordinary Python class. Cython class definitions are effectively impervious to outside manipulation, especially using tools and techniques that are available to ordinary end users.
+2. The `Tree.nodes` attribute holds a single n-dimensional [Numpy structured array](https://numpy.org/doc/stable/user/basics.rec.html), rather than an n-element collection of Numpy ndarrays. A Numpy structured array allows updating the values of each dimension, but not adding or removing the definitions of dimensions themselves.
 
 To make things worse, the attributes of Cython classes are not directly accessible via common reflection methods such as `hasattr`, `getattr` or `setattr`:
 
@@ -105,20 +101,26 @@ assert "nodes" in state.keys()
 assert "values" in state.keys()
 ```
 
-The state of a `Tree` object can only be reliably read and written using `Tree.__getstate__()` and `Tree.__setstate__(state)` methods, respectively.
+It appears to be the case that the state of a `Tree` object can only be reliably read and written using `Tree.__getstate__()` and `Tree.__setstate__(state)` methods, respectively.
 
-## Step-by-step implementation ##
+## Workaround idea and implementation ##
 
-This workflow begins from the existing decision tree mudel in pickle data format, generated using the legacy Scikit-Learn version.
-We have two Scikit-Learn environments available: any Scikit-Learn <= 1.2.2 capable of deserializing the file without issues, and an Scikit-Learn >= 1.3.0 unable to do so.
-The goal is to use the existing pickle file to generate a completely new pickle file which deserializes without problems in Scikit-Learn >= 1.3.0 (ja, conversely, does not deserialize in Scikit-Learn <= 1.2.2).
+The suggested workaround is to perform the manual modification of the problematic Numpy structured array outside of the pickle protocol layer.
 
-It's a three-step workflow.
-The first step is to load the pickle file in the old environment and divide it into two parts - a version-**independent** Python part (eg. `DecisionTreeClassifier` class) and a version-**dependent** CPython part (eg. `Tree` class).
-The second step is to manually adjust the state of the CPython object. Because Scikit-Learn framework-level security and sanity checks are not enabled, arbitrary data structure moldings are available. The adjusted state is saved as a new CPython object.
-The third step is to load the two parts from pickle files in the new environment and recombine them into a functional decision tree object.
+The input is a legacy decision tree model in a pickle file.
 
-### Partitioning a functional decison tree object into "DT-shell" and Tree objects
+Two Scikit-Learn environments will be used.
+The first is Scikit-Learn <= 1.2.2 that can unpickle this file without any problems, and the second is Scikit-Learn >= 1.3.0 that cannot do so.
+
+The goal is to turn the input pickle file into a completely new pickle file that could be unpickled in Scikit-Learn >= 1.3.0.
+
+The workflow has tree steps:
+
+1. Loading the pickle file in the legacy environment and splitting it into two parts - a **version-<u>in</u>dependent** Python part (ie. the `DecisionTreeClassifier` class) and a **version-dependent** Cython part (ie. the `Tree` class).
+2. Manually adjusting the state of the Cython object. When Scikit-Learn framework-level security and sanity checks are not active, then it becomes possible to perform arbitrary data structure molding. The changed state is saved as a new Cython object.
+3. Loading the two parts from pickle files in the new environment and recombining them back into a fully-functional decision tree object.
+
+### Partitioning a functional decison tree object into "DT-shell" and `Tree` objects
 
 ``` python
 classifier = _pkl_load("classifier.pkl")
@@ -133,7 +135,7 @@ _pkl_dump(classifier, "classifier_shell.pkl")
 # Print Python state
 print("Tree(n_features = {}, n_classes = numpy.asarray({}), n_outputs = {})".format(tree.n_features, tree.n_classes, tree.n_outputs))
 
-# Extract and dump CPython state
+# Extract and dump Cython state
 tree_state = tree.__getstate__()
 
 _pkl_dump(tree_state, "tree_state.pkl")
@@ -141,25 +143,30 @@ _pkl_dump(tree_state, "tree_state.pkl")
 
 The value of the `tree_` attribute is extracted, after which the attribute is deleted.
 
-There is no sense saving the resulting `Tree` object in full in pickle data format, as it is a sealed box type object, deserialization of which in Scikit-Learn >= 1.3.0 will raise the above ValueError.
+There is no point in trying to dump the `Tree` object in pickle data format, because it is a sealed "black box"-type object, whose unpickling behaviour in Scikit-Learn >= 1.3.0 is to raise the above `ValueError`.
 
-Therefore, we should continue deconstructing the `Tree` object until the problematic `dtype` sanity check is excluded from executable code paths.
-Luckily this stable state is easily achievable using the `Tree.__getstate__()` method. In this particular case it will return a standard Python `dict` object including four entries for the `max_depth`, `node_count`, `nodes` and `values` items.
-In order to upgrade the tree, the `nodes` item must be updated. The other three items will remain unchanged, at least in the context of this task.
+It follows that the deconstruction of the `Tree` object should be continued until the problematic `dtype` sanity check gets excluded from executable code paths.
 
-Because the original `Tree` object was left behind, it will have to be constructed from scratch in the new place and time, by invoking the `Tree` constructor.
-By inspecting its source code, we see that the constructor requires three arguments: `n_features`, `n_classes` and `n_outputs`.
-Because these are (surprisingly so!) not included in the standardard `__getstate__()` result, we need an alternative way to retain these.
-In this exercise we will take the easy way and simply write them down separately.
+Luckily enough, such a stable state is easily retrievable using the `Tree.__getstate__()` method. The returned value is a standard Python `dict` object that contains four items: `max_depth`, `node_count`, `nodes` and `values`.
+In order to upgrade/downgrade the tree, its `nodes` item must be brought up-to-date with the target Scikit-Learn version. The other three items will remain unchanged.
 
-This step results in two new pickle files which we should be able to load using any version of Scikit-Learn (in any Python environment).
+Since the original `Tree` object was left behind, a new one will have to be constructed in the new place and time, by invoking the `Tree` constructor.
+
+Quick inspection of its source code reveals three constructor parameters: `n_features`, `n_classes` and `n_outputs`.
+Surprisingly enough, none of them is present in the stable state that is returned by the `Tree.__getstate__()` method, which means that they must be carried over using alternative means.
+In this exercise, they are simply sent to the console print-out.
+
+This step results in `classifier_shell.pkl` and `tree_state.pkl` pickle files that can be unpickled using an arbitrary Scikit-Learn version (in an arbitrary Python environment).
 
 A general note on dealing with outdated pickle files.
-If the original `DecisionTreeClassifier` class was trained in a very old version of Scikit-Learn, deserialization may raise a ModuleNotFoundError stating: `No module named 'sklearn.tree.tree'`.
-This error message is due to the gradual (re)organization of the Scikit-Learn framework module structure over the years.
-Specifically, this has included a flattening of module hierarchies - all third or lower level public classes have been raised to exactly the second level. For example, the `sklearn.tree.tree.DecisionTreeClassifier` has become `sklearn.tree.DecisionTreeClassifier`.
 
-To resolve this ModuleNotFoundError, all we need to do is remap the old long/problematic module name to its new short/non-problematic form:
+If the original `DecisionTreeClassifier` object was trained using a very old Scikit-Learn version, then it is possible that unpickling may raise a `ModuleNotFoundError` stating `No module named 'sklearn.tree.tree'`.
+
+This error is caused by the evergoing (re)organization of the Scikit-Learn module structure.
+More specifically, module hierarchies have been systematically flattened over the years - all public classes have been brought from the third or even fourth level to the second level.
+For example, the `sklearn.tree.tree.DecisionTreeClassifier` class has been truncated to `sklearn.tree.DecisionTreeClassifier`.
+
+Such import errors can be resolved by re-mapping the old long/problematic module name to its new short/non-problematic form:
 
 ``` python
 import importlib
@@ -172,7 +179,7 @@ modulename = "sklearn.tree"
 sys.modules[legacy_modulename] = importlib.import_module(modulename)
 ```
 
-### Extending the `Tree` object with a "missing_go_to_left" field
+### Extending the `Tree` object with a `missing_go_to_left` field
 
 ``` python
 import numpy
@@ -205,28 +212,28 @@ The `tree_state` object is essentially a `dict` of two Numpy arrays - the `nodes
 The `tree_state` object therefore only has Numpy library dependency.
 It does not have any Scikit-Learn library dependency, and can therefore be loaded in any Python environment, with or without a Scikit-Learn library available.
 
-The recipe for upgrading Numpy structured arrays is given in this excellent StackOverflow answer: https://stackoverflow.com/a/25429497
+A recipe for upgrading Numpy structured arrays is given in this excellent StackOverflow answer: [https://stackoverflow.com/a/25429497](https://stackoverflow.com/a/25429497)
 
-In brief, the first step is to define a new `dtype` object by appending a new dimension to an existing 8-dimensional `dtype` object.
-This extra dimension is called `missing_go_to_left` with the canonic element type `bool`, to be mapped by convention to an unsigned 1-byte integer.
+In brief, the first operation is to define a new `dtype` object by appending a new dimension to an existing 8-dimensional `dtype` object.
+This extra dimension is called `missing_go_to_left`and its canonical element type is `bool`, which is conventionally mapped to an unsigned 1-byte integer.
 
-Once we have the new `dtype`, it can be used to allocate a new Numpy structured array, copying the entire old array over field by field.
+Once the new `dtype` has been defined, a new Numpy structured array can be allocated based on it, and the content of the old array can be copied field by field.
 
-The final step is to fill the new `missing_go_to_left` field.
-Based on the specification, the value should be `0` or `1`, indicating whether the missing values should be passed on to the left or right tree branch, respectively, at that split point.
+The final operation is to fill the new `missing_go_to_left` field.
+According to the specification, the fill values should be `0` or `1`, indicating whether the missing values should be sent to the right branch or the left branch, respectively, at any given split point.
 
-Our approach of applying a uniform value of `0` to all elements can also be considered conceptually correct.
-After all, the training dataset used in the model had no missing values. Accordingly, if the model is going to be used in its intended application domain, these testing datasets should not include any missing values.
-Since there are no missing values, the decision to use `0` or `1` values is immaterial as the respective business logic will never be triggered anyway.
+The above Python code snippet fills all slots with the `0` value.
+This is justifiable, because the intended applicability domain of this model is restricted to dense datasets. In other words, the training dataset did not contain any missing values, and hence they should not be present in any testing datasets either.
+Given that absence of missing values there is no significance to the fill values of the `missing_go_to_left` field, because the respective business logic will never get triggered anyway.
 
-Looking at the Scikit-Learn 1.3.X source code, the decision `missing_go_to_left` is made based on whether the training dataset favored the left or right tree branch at that split point. In other words, the missing values will always be sent to the majority's way.
-This balance can be reconstructed after the fact, because the `nodes` array includes all necessary information encoded particularly in the `left_child`, `right_child` and `n_node_samples` fields.
-However, we leave this exercise for those interested, as it exceeds the scope of this blog post.
+If the intended applicability domain includes sparse datasets, then realistic fill values must be used.
+They can be reconstructed after the fact, because they reflect the "majority's way" at each split point (ie. "samples with a missing value should be sent to the left branch if the left branch saw more training dataset samples than the right branch, and to the right branch otherwise").
+The `nodes` array provides all the necessary information for this evaluation in its `left_child`, `right_child` and `n_node_samples` fields.
 
 Finally, after creating and populating the new Numpy structured array, it is used to upgrade the `tree_state` object.
-The latter is saved in a new `tree_state-upgraded.pkl` file (the "upgraded" file name suffix indicates a Scikit-Learn >= 1.3.X compatible object).
+The latter is dumped into a `tree_state-upgraded.pkl` file (the "upgraded" filename suffix indicates Scikit-Learn >= 1.3.X compatibility).
 
-### Recombining "DT-shell" and Tree objects back into a functional decision tree object
+### Recombining "DT-shell" and `Tree` objects back into a functional decision tree object
 
 ``` python
 from sklearn.tree._tree import Tree
@@ -246,22 +253,24 @@ classifier.tree_ = tree
 _pkl_dump(classifier, "classifier-upgraded.pkl")
 ```
 
-The operation must be conducted in an environment where the Scikit-Learn >= 1.3.0 library is available. This is needed to ensure that the fully-qualified class name `sklearn.tree._tree.Tree` resolves specifically to a CPython class which will recognise and require the `nodes` attribute.
+This step requires a Python environment where a Scikit-Learn >= 1.3.0 library is available.
+
+The low-level unpickler component attempts to resolve and load the fully-qualified class name `sklearn.tree._tree.Tree` into some kind of Python class definition.
+When doing so, it must first come across the upgraded Cython class that supports a 9-dimensional `nodes` attribute.
 
 There is not much room for error in this regard anyway.
+If the unpickler component first comes across the legacy Cython class, then unpickling shall soon raise a value error that is very similar to the original one.
+The main difference is in the error message, which now complains about the presence of an unnecessary/unsupported `missing_go_to_left` field (whereas originally it complained about its absence).
 
-If we tried to deserialize the "tree_state-upgraded.pkl" pickle file generated in the previous step using Scikit-Learn <= 1.2.2, the operation would fail with a ValueError similar to the one above.
-The only difference being the error text, which now complains about an unnecessary/unsupported extra field `missing_go_to_left` (whereas the above error complained about its absence).
-
-When constructing the new `Tree` object, the parameters `n_features`, `n_classes` and `n_outputs`need to be populated.
+The `Tree` constructor requires arguments for `n_features`, `n_classes` and `n_outputs` parameters.
 In general, these can be deduced from the dataset description (metadata).
-For example, our "iris" classification data table has four columns (i.e. `n_features = X.shape[1]`) and it's a single-output (i.e. `n_outputs = 1`) multinomial classification type target, where the number of classes is three (i.e. `n_classes = 3`).
-There is just one catch, concerning formatting of the `n_outputs` value, because it expect a single-element Numpy array, not a Numpy scalar.
+For example, the "iris" classification data table has four columns (ie. `n_features = X.shape[1]`) and it is a single-output (ie. `n_outputs = 1`) multinomial classification type target, where the number of classes is three (ie. `n_classes = 3`).
+The only gotcha is about the formatting the `n_outputs` value, which is expected to be a single-element Numpy array, not a Numpy scalar.
 
-Alternatively, if the nature of the dataset is not well-described (a historical dataset, for example), the values of the three parameters can be extracted from the `Tree` object, as demonstrated in the first step.
+Alternatively, if the nature of the dataset is not so well known (eg. a historical dataset), the values of the three parameters can be extracted from the original `Tree` object using reflection tools.
 
-After the `Tree` object is successfully created, it is assigned as an attribute of `DecisionTreeClassifier.tree_`.
-This concludes the model upgrade, and the result can be serialized in a "classifier-upgraded.pkl" pickle file.
+After the `Tree` object is successfully created, it is assigned to the `DecisionTreeClassifier.tree_` attribute.
+With this, the decision tree model has been promoted from its non-functional "DT-shell" state back to a fully-functional state, and it is dumped into the `classifier-upgraded.pkl` file.
 
 ### Verification
 
@@ -270,27 +279,30 @@ from sklearn.datasets import load_iris
 
 import sys
 
-X, y = load_iris(return_X_y = True)
-
 # Use the first command-line argument as the name of the pickle file
 classifier = _pkl_load(sys.argv[1])
+
+X, _ = load_iris(return_X_y = True)
 
 y_proba = classifier.predict_proba(X)
 print(y_proba)
 ```
 
-The most straightforward and authoritative validation is to conduct a prediction using the legacy model and upgraded model based on the same input data, and verify that results are identical. Here, "identical" should be construed as full numerical equivalence - identity of all 14 to 16 digits.
+The most straightforward and authoritative way of verifying the upgrade is to use models for prediction.
+The legacy model and the upgraded model should yield identical results when inputted with the same testing dataset(s).
+Here, the word "identical" should be construed as full numerical equivalence - all approximately 14 to 16 significant digits must match.
 
-Note that the predictions must be conducted independently.
-For example, using the "classifier.pkl" in Scikit-Learn <= 1.2.2, and afterwards using the "classifier-upgraded.pkl" file in Scikit-Learn >= 1.3.0.
-There is no point trying to load the two files in a single instance of Python, because deserializing one of the two will always fail due to incompatible Scikit-Learn versions.
+It should be noted that the predictions need to be made separately.
+For example, first using the `classifier.pkl` file in Scikit-Learn <= 1.2.2, and afterwards using the `classifier-upgraded.pkl` file in Scikit-Learn >= 1.3.0.
+Any attempts to load these two pickle files into one and the same Python environment are guaranteed to fail.
 
 ## Conclusions ##
 
-In this blog post, we demonstrated in detail how to upgrade a legacy decision tree model to one compatible with the latest Scikit-Learn version.
-For all intents and purposes, the upgraded model is indistinguishable from a newly trained model (i.e. a casual observer won't be able to tell the difference between the upgraded model and a newly trained model).
+This blog post demonstrates how to upgrade a legacy decision tree model to the latest version.
+For all practical intents and purposes, the upgraded model is indistinguishable from any newly trained model.
 
-Reversing this process (i.e. deleting `missing_go_to_left` from the `Tree.nodes` attribute) would allow us to downgrade decision tree models to the legacy version. While this reverse application is rare, it is good to know that it is technically possible and relatively easy.
+By reversing the process (ie. by deleting the `missing_go_to_left` field from the `Tree.nodes` attribute), it is possible to downgrade a latest decision tree model to the legacy representation.
+This is rarely needed, but it is good to know that the option is there.
 
-Besides standalone decision tree models, the same upgrade/downgrade procedure can also be applied to decision tree ensemble models, such as `RandomForestClassifier`, `GradientBoostingClassifier`, and others.
-For this we would need to adjust the above Python code to export and modify a list of `tree_state` objects instead of the single `tree_state` object above.
+After minor tweaking, the same upgrade/downgrade workflow will also be applicable to decision tree ensemble models (eg. `RandomForestClassifier` and `GradientBoostingClassifier` classes).
+The idea is to extract and modify a list of `tree_state` objects instead of a single `tree_state` object.
