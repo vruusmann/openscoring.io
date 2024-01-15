@@ -158,8 +158,9 @@ In this exercise, they are simply sent to the console print-out.
 
 This step results in `classifier_shell.pkl` and `tree_state.pkl` pickle files that can be unpickled using an arbitrary Scikit-Learn version (in an arbitrary Python environment).
 
-A general note on dealing with outdated pickle files.
-
+<details markdown=block>
+<summary markdown=span>Why do Scikit-Learn pickle files get outdated, and how to fix them?</summary>
+<br>
 If the original `DecisionTreeClassifier` object was trained using a very old Scikit-Learn version, then it is possible that unpickling may raise a `ModuleNotFoundError` stating `No module named 'sklearn.tree.tree'`.
 
 This error is caused by the evergoing (re)organization of the Scikit-Learn module structure.
@@ -178,6 +179,7 @@ modulename = "sklearn.tree"
 # Define a run-time alias
 sys.modules[legacy_modulename] = importlib.import_module(modulename)
 ```
+</details>
 
 ### Extending the `Tree` object with a `missing_go_to_left` field
 
